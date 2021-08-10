@@ -1,0 +1,2 @@
+(this.webpackJsonpair=this.webpackJsonpair||[]).push([[15],{307:function(t,e,n){"use strict";n.r(e),n.d(e,"default",(function(){return r}));n(0);var i=n(14);function r(){return Object(i.jsx)("div",{className:"m-empty-page",children:"\u7a7a\u9875\u9762"})}}}]);
+//# sourceMappingURL=15.e75f9ba1.chunk.js.map
