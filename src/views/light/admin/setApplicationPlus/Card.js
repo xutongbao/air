@@ -8,7 +8,7 @@ const style = {
   backgroundColor: 'white',
   cursor: 'move',
 }
-export const Card = ({ id, text, index, moveCard }) => {
+export default function Card ({ id, title, index, moveCard }) {
   const ref = useRef(null)
   const [{ handlerId }, drop] = useDrop({
     accept: ItemTypes.CARD,
@@ -69,7 +69,7 @@ export const Card = ({ id, text, index, moveCard }) => {
   drag(drop(ref))
   return (
     <div ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId}>
-      {text}
+      {title}
     </div>
   )
 }

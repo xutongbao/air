@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Api from '../../../../api'
 import { Modal } from 'antd'
+import update from 'immutability-helper'
 import { getRouterSearchObj } from '../../../../utils/tools'
 
 const { confirm } = Modal
@@ -22,6 +23,22 @@ export default function useList(props) {
       }
     })
   }
+
+  //拖动改变顺序
+  const moveCard = useCallback(
+    (dragIndex, hoverIndex) => {
+      const dragCard = dataSource[dragIndex]
+      setDataSource(
+        update(dataSource, {
+          $splice: [
+            [dragIndex, 1],
+            [hoverIndex, 0, dragCard],
+          ],
+        })
+      )
+    },
+    [dataSource]
+  )
 
   //删除
   const handleDelete = (record) => {
@@ -48,6 +65,7 @@ export default function useList(props) {
     dataSource,
     applicationTitle,
     handleSearch,
+    moveCard,
     handleDelete,
   }
 }

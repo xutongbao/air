@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import Header from './Header'
 import useList from './useList'
-import Example from './Example'
+import Card from './Card'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 
 function Index(props) {
-  const { applicationTitle } = useList(props)
+  const { applicationTitle, dataSource, moveCard } = useList(props)
 
   return (
     <div className="m-admin-content">
@@ -17,7 +17,17 @@ function Index(props) {
         <div className="m-design-sidebar"></div>
         <div className="m-design-content">
           <DndProvider backend={HTML5Backend}>
-            <Example />
+            <div style={{ width: 400 }}>
+              {dataSource.map((card, index) => (
+                <Card
+                  key={card.id}
+                  index={index}
+                  id={card.id}
+                  title={card.title}
+                  moveCard={moveCard}
+                />
+              ))}
+            </div>
           </DndProvider>
         </div>
         <div className="m-design-attr"></div>
