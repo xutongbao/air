@@ -17,13 +17,12 @@ function Index(props) {
         <div className="m-design-sidebar"></div>
         <div className="m-design-content">
           <DndProvider backend={HTML5Backend}>
-            <div style={{ width: 400 }}>
+            <div>
               {dataSource.map((card, index) => (
                 <Card
                   key={card.id}
                   index={index}
-                  id={card.id}
-                  title={card.title}
+                  card={card}
                   moveCard={moveCard}
                 />
               ))}

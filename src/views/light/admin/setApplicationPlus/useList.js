@@ -18,7 +18,8 @@ export default function useList(props) {
   const handleSearch = () => {
     Api.light.fieldsSearch({ tableId }).then((res) => {
       if (res.code === 200) {
-        setDataSource(res.data.fields)
+        const tempDataSource = res.data.fields.filter(item => !item.isSystem)
+        setDataSource(tempDataSource)
         setApplicationTitle(res.data.title)
       }
     })
