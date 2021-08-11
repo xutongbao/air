@@ -48,7 +48,7 @@ function Index(props) {
             </DndProvider>
             <Form.Item
               wrapperCol={{ offset: 4, span: 17 }}
-              className="m-modal-footer"
+              className="m-design-footer"
             >
               <Button type="primary" htmlType="submit" className="m-space">
                 <Icon name="submit" className="m-tool-btn-icon"></Icon>

@@ -68,7 +68,6 @@ function Index(props) {
           {modalFields}
           <Form.Item
             wrapperCol={{ offset: 4, span: 17 }}
-            className="m-modal-footer"
           >
             {(type === 'add' || type === 'edit') && (
               <>
