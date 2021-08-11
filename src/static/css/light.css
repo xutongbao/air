@@ -35,7 +35,7 @@
 .m-tool-btn-icon{vertical-align: top;}
 .m-set-application-modal-form{position: relative;}
 .m-design-header{line-height: 50px;height: 50px;font-size: 30px;font-weight: bold;background: white;box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);z-index: 9;}
-.m-design-wrap{display: flex;flex:1;}
+.m-design-wrap{display: flex;flex:1;height: 100%;}
 .m-design-sidebar{width: 320px;border-left: 1px solid #ddd;height: 100%;overflow-y: auto;background: white;}
 .m-design-content{flex: 1;padding: 5px; overflow-y: auto;background: white;margin: 0 10px;}
 .m-design-attr{width: 320px;border-right: 1px solid #ddd;height: 100%;overflow-y: auto;background: white;}
