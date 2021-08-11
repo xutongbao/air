@@ -35,6 +35,7 @@ function Index(props) {
               <div
                 key={item.id}
                 className="m-app-item"
+                title={item.title}
                 onClick={() => handleJumpToSet(item.id)}
               >
                 <Dropdown
