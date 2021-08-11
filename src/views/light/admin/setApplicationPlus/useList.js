@@ -44,6 +44,10 @@ export default function useList(props) {
     [dataSource]
   )
 
+  const handleSave = () => {
+    console.log(dataSource)
+  }
+
   //删除
   const handleDelete = (record) => {
     console.log('删除, id:', record.id)
@@ -85,5 +89,6 @@ export default function useList(props) {
     handleDelete,
     handleFinish,
     handleFinishFailed,
+    handleSave,
   }
 }

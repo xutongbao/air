@@ -18,11 +18,12 @@ function Index(props) {
     moveCard,
     handleFinish,
     handleFinishFailed,
+    handleSave,
   } = useList(props)
 
   return (
     <div className="m-admin-content">
-      <Header applicationTitle={applicationTitle}></Header>
+      <Header applicationTitle={applicationTitle} onSave={handleSave}></Header>
       <div className="m-design-wrap">
         <div className="m-design-sidebar"></div>
         <div className="m-design-content">

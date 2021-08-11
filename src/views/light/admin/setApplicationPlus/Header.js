@@ -1,10 +1,10 @@
 import React from 'react'
-import { Button, Space } from 'antd'
+import { Button } from 'antd'
 import { withRouter } from 'react-router-dom'
 import { Icon } from '../../../../components/light'
 
 function Header(props) {
-  const { applicationTitle } = props
+  const { applicationTitle, onSave } = props
   return (
     <div className="m-design-header">
       <div className="m-design-header-title" title={applicationTitle}>
@@ -17,7 +17,7 @@ function Header(props) {
       </div>
       <div className="m-design-header-middle"></div>
       <div className="m-design-header-action">
-        <Button type="primary">保存</Button>
+        <Button type="primary" onClick={onSave}>保存</Button>
         <Button>预览</Button>
       </div>
     </div>
