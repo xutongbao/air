@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react'
 import Api from '../../../../api'
-import { Modal, Form } from 'antd'
+import { Modal } from 'antd'
 import { getRouterSearchObj } from '../../../../utils/tools'
 
 const { confirm } = Modal
 
 export default function useList(props) {
   const [dataSource, setDataSource] = useState([])
-  const [form] = Form.useForm()
   //控制对话框显示和隐藏
   const [isModalVisible, setIsModalVisible] = useState(false)
   //添加表单默认值
@@ -125,16 +124,11 @@ export default function useList(props) {
     // eslint-disable-next-line 
   }, [])
 
-  useEffect(() => {
-    form.resetFields()
-  }, [isModalVisible, form])
-
   return {
     dataSource,
     isModalVisible,
     initValues,
     type,
-    form,
     applicationTitle,
     modalTitle,
     formComponentName,
