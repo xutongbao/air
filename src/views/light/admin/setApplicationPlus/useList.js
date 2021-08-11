@@ -1,12 +1,13 @@
 import { useState, useEffect, useCallback } from 'react'
 import Api from '../../../../api'
-import { Modal } from 'antd'
+import { Modal, Form } from 'antd'
 import update from 'immutability-helper'
 import { getRouterSearchObj } from '../../../../utils/tools'
 
 const { confirm } = Modal
 
 export default function useList(props) {
+  const [form] = Form.useForm()
   const [dataSource, setDataSource] = useState([])
   const [applicationTitle, setApplicationTitle] = useState()
 
@@ -14,11 +15,13 @@ export default function useList(props) {
   const routerSearchObj = getRouterSearchObj(props)
   const tableId = routerSearchObj.id - 0
 
+  const addInitValues = {}
+
   //搜索
   const handleSearch = () => {
     Api.light.fieldsSearch({ tableId }).then((res) => {
       if (res.code === 200) {
-        const tempDataSource = res.data.fields.filter(item => !item.isSystem)
+        const tempDataSource = res.data.fields.filter((item) => !item.isSystem)
         setDataSource(tempDataSource)
         setApplicationTitle(res.data.title)
       }
@@ -55,18 +58,32 @@ export default function useList(props) {
       },
     })
   }
-  
+
+  //添加或编辑
+  const handleFinish = (values) => {
+    console.log('Success:', values)
+  }
+
+  //校验失败
+  const handleFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo)
+  }
+
   //挂载完
   useEffect(() => {
     handleSearch()
-    // eslint-disable-next-line 
+    // eslint-disable-next-line
   }, [])
 
   return {
+    form,
     dataSource,
     applicationTitle,
+    addInitValues,
     handleSearch,
     moveCard,
     handleDelete,
+    handleFinish,
+    handleFinishFailed,
   }
 }

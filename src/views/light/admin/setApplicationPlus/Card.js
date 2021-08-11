@@ -1,9 +1,10 @@
 import { useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 import { ItemTypes } from './ItemTypes'
+import { Form, Input } from 'antd'
+import { getFormComponentArr } from '../../../../utils/tools'
 
 export default function Card({ index, card, moveCard }) {
-  const { id, title } = card
   const ref = useRef(null)
   const [{ handlerId }, drop] = useDrop({
     accept: ItemTypes.CARD,
@@ -54,7 +55,7 @@ export default function Card({ index, card, moveCard }) {
   const [{ isDragging }, drag] = useDrag({
     type: ItemTypes.CARD,
     item: () => {
-      return { id, index }
+      return { id: card.id, index }
     },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
@@ -63,14 +64,36 @@ export default function Card({ index, card, moveCard }) {
   const opacity = isDragging ? 0 : 1
   drag(drop(ref))
 
+  //console.log(card)
+  const renderDom = () => {
+    if (card.isModalField) {
+      const result = getFormComponentArr().find(
+        (componentItem) =>
+          componentItem.formComponentName === card.formComponentName
+      )
+      return (
+        <div
+          ref={ref}
+          style={{ opacity }}
+          data-handler-id={handlerId}
+          className="m-design-card"
+        >
+          <Form.Item
+            key={card.id}
+            label={card.title}
+            name={card.dataIndex}
+            rules={card.rules}
+          >
+            {result ? result.component : <Input></Input>}
+          </Form.Item>
+        </div>
+      )
+    } else {
+      return null
+    }
+  }
+
   return (
-    <div
-      ref={ref}
-      style={{ opacity }}
-      data-handler-id={handlerId}
-      className="m-design-card"
-    >
-      {title}
-    </div>
+    <>{renderDom()}</>
   )
 }
