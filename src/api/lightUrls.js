@@ -1,4 +1,3 @@
-import { baseURL  } from '../utils/config'
 
 const urls = {
   templateSearch: '/api/template/search',

@@ -1,7 +1,7 @@
 import { Form, Input } from 'antd'
 import { getFormComponentArr, getRenderFunArr } from '../../../../utils/tools'
 
-export default () => {
+export default function useFields() {
   //根据fields获取columns
   const getColumns = (fields) => {
     return fields.filter(item => item.isColumn).map((item) => {
@@ -20,13 +20,14 @@ export default () => {
 
   //根据fields获取对话框字段
   const getModalFields = (fields) => {
-    return fields.map((item) => {
+    const arr = []
+    fields.forEach((item) => {
       if (item.isModalField) {
         const result = getFormComponentArr().find(
           (componentItem) =>
             componentItem.formComponentName === item.formComponentName
         )
-        return (
+        arr.push(
           <Form.Item
             key={item.id}
             label={item.title}
@@ -38,6 +39,7 @@ export default () => {
         )
       }
     })
+    return arr
   }
 
   return {

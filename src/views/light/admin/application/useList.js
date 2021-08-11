@@ -96,11 +96,12 @@ export default function useList(props) {
   //挂载完
   useEffect(() => {
     handleSearch()
+    // eslint-disable-next-line 
   }, [])
 
   useEffect(() => {
     form.resetFields()
-  }, [isModalVisible])
+  }, [isModalVisible, form])
 
 
   return {

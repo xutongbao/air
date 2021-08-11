@@ -15,6 +15,7 @@ function Index(props) {
 
   useEffect(() => {
     props.onDispatch(getRouter())
+    // eslint-disable-next-line 
   }, [])
 
   return (
@@ -35,7 +36,7 @@ function Index(props) {
           }
         </Menu>
         <div className="m-header-operate">
-          <Link to="/light/admin/application">管理后台</Link>
+          <Link to="/light/admin/applicationPlus">管理后台</Link>
         </div>
       </div>
       <div className="m-content">

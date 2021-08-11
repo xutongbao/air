@@ -3,24 +3,21 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Modal, Button, Form } from 'antd'
 import Tool from './Tool'
-import { getColumns } from './config'
-import { MyTable, Icon } from '../../../../components/light'
+import { getColumns, getModalFields } from './config'
+import { MyTableForEasy, Icon } from '../../../../components/light'
+import Header from './Header'
 import useList from './useList'
-import useOperate from './useOperate'
 
 function Index(props) {
   const {
     dataSource,
-    total,
-    current,
-    pageSize,
-    columns,
     isModalVisible,
     initValues,
     type,
     form,
+    applicationTitle,
     modalTitle,
-    modalFields,
+    formComponentName,
     handleSearch,
     handleDelete,
     handleAdd,
@@ -29,32 +26,31 @@ function Index(props) {
     setIsModalVisible,
     handleFinish,
     handleFinishFailed,
+    handleValuesChange,
   } = useList(props)
 
-  const { handleRowSelect } = useOperate()
 
   return (
-    <div>
-      <Tool onAdd={handleAdd}></Tool>
-      <MyTable
+    <div className="m-admin-content">
+      <Header applicationTitle={applicationTitle}></Header>
+      <Tool
+        onAdd={handleAdd}
+      ></Tool>
+      <MyTableForEasy
         dataSource={dataSource}
-        total={total}
-        current={current}
-        pageSize={pageSize}
-        columns={columns}
         onSearch={handleSearch}
         onDelete={handleDelete}
         onEdit={handleEdit}
         onCheck={handleCheck}
-        onRowSelect={handleRowSelect}
         getColumns={getColumns}
-      ></MyTable>
+      ></MyTableForEasy>
       <Modal
         title={modalTitle}
         visible={isModalVisible}
         onCancel={() => setIsModalVisible(false)}
         footer={null}
-        className="m-index-content-modal"
+        width={900}
+        className="m-set-application-modal"
         forceRender
       >
         <Form
@@ -62,10 +58,14 @@ function Index(props) {
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 17 }}
           initialValues={{ ...initValues }}
+          scrollToFirstError={true}
           onFinish={handleFinish}
           onFinishFailed={handleFinishFailed}
+          onValuesChange={handleValuesChange}
+          id="m-set-application-modal-form"
+          className="m-set-application-modal-form"
         >
-          {modalFields}
+          {getModalFields({dataSource, type, initValues, formComponentName})}
           <Form.Item
             wrapperCol={{ offset: 4, span: 17 }}
             className="m-modal-footer"

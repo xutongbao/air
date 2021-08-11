@@ -4,11 +4,16 @@ import { Link, Switch, Route, withRouter } from 'react-router-dom'
 import Logo from './Logo'
 
 const Application = lazy(() => import('./application/Index'))
+const ApplicationPlus = lazy(() => import('./applicationPlus/Index'))
 const Other = lazy(() => import('./other/Other'))
 const SetApplication = lazy(() => import('./setApplication/Index'))
+const SetApplicationPlus = lazy(() => import('./setApplicationPlus/Index'))
+
 
 function Admin(props) {
-  const { location: { pathname} } = props
+  const {
+    location: { pathname },
+  } = props
   return (
     <div className="m-admin-wrap">
       <div className="m-admin-menu-wrap">
@@ -19,8 +24,11 @@ function Admin(props) {
           className="m-admin-menu"
         >
           <Logo></Logo>
+          <Menu.Item key="/light/admin/applicationPlus">
+            <Link to="/light/admin/applicationPlus">应用管理</Link>
+          </Menu.Item>
           <Menu.Item key="/light/admin/application">
-            <Link to="/light/admin/application">应用管理</Link>
+            <Link to="/light/admin/application">应用管理_旧</Link>
           </Menu.Item>
           <Menu.Item key="/light/admin/other">
             <Link to="/light/admin/other">其他管理</Link>
@@ -41,8 +49,19 @@ function Admin(props) {
               path="/light/admin/application"
               component={Application}
             ></Route>
+            <Route
+              path="/light/admin/applicationPlus"
+              component={ApplicationPlus}
+            ></Route>
             <Route path="/light/admin/other" component={Other}></Route>
-            <Route path="/light/admin/setApplication" component={SetApplication}></Route>
+            <Route
+              path="/light/admin/setApplication"
+              component={SetApplication}
+            ></Route>
+            <Route
+              path="/light/admin/setApplicationPlus"
+              component={SetApplicationPlus}
+            ></Route>
           </Switch>
         </Suspense>
       </div>

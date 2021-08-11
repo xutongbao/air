@@ -32,10 +32,9 @@ export default function useList(props) {
   const addInitValues = {}
 
   //搜索
-  const statePageSize = state.pageSize
   const handleSearch = ({
     page = 1,
-    pageSize = statePageSize,
+    pageSize = state.pageSize,
     searchParams = {},
   } = {}) => {
     Api.light.tableSearch({ tableId, page, pageSize, searchParams }).then((res) => {
@@ -123,15 +122,15 @@ export default function useList(props) {
     setIsModalVisible(true)
   }
 
-  //挂载完
+  //挂载完执行，切换路由时，search会变化，也会执行
   useEffect(() => {
-    console.log(routerSearchObj.id)
-    handleSearch({ page: current, pageSize: state.pageSize })
-  }, [routerSearchObj.id])
+    handleSearch()
+    // eslint-disable-next-line 
+  }, [props.location.search])
 
   useEffect(() => {
     form.resetFields()
-  }, [isModalVisible])
+  }, [isModalVisible, form])
 
   return {
     dataSource: state.dataSource,
