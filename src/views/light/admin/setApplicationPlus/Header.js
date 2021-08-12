@@ -20,7 +20,7 @@ function Header(props) {
         <Button type="primary" onClick={onSave}>
           保存
         </Button>
-        <Link to={`/light/index/formview?id=${tableId}`} target="_blank" style={{display: 'inherit'}}>
+        <Link to={`/light/formview?id=${tableId}`} target="_blank" style={{display: 'inherit'}}>
           <Button>预览</Button>
         </Link>
       </div>

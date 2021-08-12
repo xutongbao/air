@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from 'antd'
-import { Icon } from '../../../../components/light'
+import { Icon } from '../../../components/light'
 
 function Tool(props) {
   const { onAdd } = props

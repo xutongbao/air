@@ -7,7 +7,6 @@ import { getRouterSearchObj } from '../../../utils/tools'
 import { getRouter } from  '../../../store/light/actionCreator'
 
 const Content = lazy(() => import('./content/Index'))
-const FormView = lazy(() => import('./formview/Index'))
 
 function Index(props) {
   const { router } = props
@@ -44,7 +43,6 @@ function Index(props) {
         <Suspense fallback={null}>
           <Switch>
             <Route path="/light/index/content" component={Content}></Route>
-            <Route path="/light/index/formview" component={FormView}></Route>
           </Switch>
         </Suspense>
       </div>

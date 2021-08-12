@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import Api from '../../../../api'
+import Api from '../../../api'
 import { Modal, Form } from 'antd'
-import { getRouterSearchObj } from '../../../../utils/tools'
+import { getRouterSearchObj } from '../../../utils/tools'
 import useFields from './useFields'
 
 const { confirm } = Modal

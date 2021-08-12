@@ -1,5 +1,5 @@
 import { Form, Input } from 'antd'
-import { getFormComponentArr, getRenderFunArr } from '../../../../utils/tools'
+import { getFormComponentArr, getRenderFunArr } from '../../../utils/tools'
 
 export default function useFields() {
   //根据fields获取columns
