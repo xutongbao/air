@@ -11,6 +11,8 @@ export default function useList(props) {
   const { getModalFields } = useFields(props)
   // eslint-disable-next-line
   const [initValues, setInitValues] = useState({})
+  const [isShowResult, setIsShowResult] = useState(false)
+  const [title, setTitle] = useState('')
 
 
   //获取路由参数
@@ -20,10 +22,11 @@ export default function useList(props) {
   //搜索
   const handleSearch = () => {
     Api.light
-      .tableSearch({ tableId })
+      .fieldsSearch({ tableId })
       .then((res) => {
         if (res.code === 200) {
           setModalFields(getModalFields(res.data.fields))
+          setTitle(res.data.title)
         }
       })
   }
@@ -33,6 +36,7 @@ export default function useList(props) {
     console.log('Success:', values)
     Api.light.tableAdd({ tableId, dataItem: values }).then((res) => {
       if (res.code === 200) {
+        setIsShowResult(true)
       }
     })
   }
@@ -52,6 +56,8 @@ export default function useList(props) {
     form,
     initValues,
     modalFields,
+    isShowResult,
+    title,
     handleSearch,
     handleFinish,
     handleFinishFailed,
