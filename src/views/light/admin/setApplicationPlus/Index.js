@@ -15,6 +15,7 @@ function Index(props) {
     dataSource,
     form,
     initValues,
+    tableId,
     moveCard,
     handleFinish,
     handleFinishFailed,
@@ -23,7 +24,7 @@ function Index(props) {
 
   return (
     <div className="m-admin-content">
-      <Header applicationTitle={applicationTitle} onSave={handleSave}></Header>
+      <Header applicationTitle={applicationTitle} tableId={tableId} onSave={handleSave}></Header>
       <div className="m-design-wrap">
         <div className="m-design-sidebar"></div>
         <div className="m-design-content">

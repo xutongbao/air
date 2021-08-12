@@ -1,10 +1,10 @@
 import React from 'react'
 import { Button } from 'antd'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { Icon } from '../../../../components/light'
 
 function Header(props) {
-  const { applicationTitle, onSave } = props
+  const { applicationTitle, tableId, onSave } = props
   return (
     <div className="m-design-header">
       <div className="m-design-header-title" title={applicationTitle}>
@@ -17,8 +17,12 @@ function Header(props) {
       </div>
       <div className="m-design-header-middle"></div>
       <div className="m-design-header-action">
-        <Button type="primary" onClick={onSave}>保存</Button>
-        <Button>预览</Button>
+        <Button type="primary" onClick={onSave}>
+          保存
+        </Button>
+        <Link to={`/light/index/formview?id=${tableId}`} target="_blank" style={{display: 'inherit'}}>
+          <Button>预览</Button>
+        </Link>
       </div>
     </div>
   )
