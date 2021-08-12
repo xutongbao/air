@@ -20,6 +20,7 @@ const urls = {
   fieldsAdd: '/api/fields/add',
   fieldsDelete: '/api/fields/delete',
   fieldsEdit: '/api/fields/edit',
+  fieldsEditAll: '/api/fields/editAll',
 }
 
 export default urls

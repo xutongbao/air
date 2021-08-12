@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import Api from '../../../../api'
-import { Modal, Form } from 'antd'
+import { Modal, Form, message } from 'antd'
 import update from 'immutability-helper'
 import { getRouterSearchObj } from '../../../../utils/tools'
 
@@ -45,7 +45,15 @@ export default function useList(props) {
   )
 
   const handleSave = () => {
-    console.log(dataSource)
+    const newDataSource = dataSource.map((item, index) => {
+      return { ...item, orderIndex: index + 1 }
+    })
+    console.log(newDataSource)
+    Api.light.fieldsEditAll({ tableId, dataItem: newDataSource }).then(res => {
+      if (res.code === 200) {
+        message.success(res.message)
+      }
+    })
   }
 
   //删除

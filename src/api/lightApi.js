@@ -22,6 +22,7 @@ const Api = {
   fieldsAdd: (data) => common({ url: urls.light.fieldsAdd, data, method: 'post' }),
   fieldsDelete: (data) => common({ url: urls.light.fieldsDelete, data, method: 'post' }),
   fieldsEdit: (data) => common({ url: urls.light.fieldsEdit, data, method: 'post' }),
+  fieldsEditAll: (data) => common({ url: urls.light.fieldsEditAll, data, method: 'post' }),
 }
 
 export default Api
