@@ -82,8 +82,8 @@ function Index(props) {
         <div className="m-design-attr">
           <Form
             form={formForAttr}
-            labelCol={{ span: 4 }}
-            wrapperCol={{ span: 17 }}
+            labelCol={{ span: 8 }}
+            wrapperCol={{ span: 15 }}
             initialValues={{ ...initValuesForAttr }}
             scrollToFirstError={true}
             //onValuesChange={handleValuesChange}

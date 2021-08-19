@@ -24,13 +24,11 @@ export default function useList(props) {
   const handleSearch = () => {
     Api.light.fieldsSearch({ tableId }).then((res) => {
       if (res.code === 200) {
-        const tempDataSource = res.data.fields.filter((item) => !item.isSystem)
+        let tempDataSource = res.data.fields.filter((item) => !item.isSystem)
         setDataSource(tempDataSource)
         setApplicationTitle(res.data.title)
         if(Array.isArray(tempDataSource) && tempDataSource.length > 0) {
-          setCardActiveId(tempDataSource[0].id)
-          setInitValuesForAttr(tempDataSource[0])
-          formForAttr.resetFields()
+          handleCardActiveId({id:tempDataSource[0].id, myDataSource: tempDataSource})
         }
       }
     })
@@ -89,12 +87,17 @@ export default function useList(props) {
     console.log('Failed:', errorInfo)
   }
 
-  const handleCardActiveId = (id) => {
+  const handleCardActiveId = ({id, myDataSource = dataSource}) => {
     setCardActiveId(id)
-    const currentItem = dataSource.find(item => item.id === id)
-    setInitValuesForAttr(currentItem)
-    formForAttr.resetFields()
+    let currentItem = myDataSource.find(item => item.id === id)
+    const rules = Array.isArray(currentItem.rules) ? currentItem.rules[0] : {}
+    setInitValuesForAttr({...currentItem, rules })
   }
+
+  useEffect(() => {
+    formForAttr.resetFields()
+    // eslint-disable-next-line
+  }, [initValuesForAttr])
 
   //挂载完
   useEffect(() => {

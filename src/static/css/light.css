@@ -41,7 +41,7 @@
 .m-design-wrap{display: flex;flex:1;height: 100%;}
 .m-design-sidebar{width: 320px;border-left: 1px solid #ddd;height: 100%;overflow-y: auto;background: white;}
 .m-design-content{flex: 1;margin: 0 5px;padding: 20px 5px; overflow-y: auto;background: white;}
-.m-design-attr{width: 320px;border-right: 1px solid #ddd;height: 100%;overflow-y: auto;background: white;}
+.m-design-attr{padding: 10px 0 0; width: 320px;border-right: 1px solid #ddd;height: 100%;overflow-y: auto;background: white;}
 .m-design-card{margin: 0 0 5px; padding: 5px 0;border: 1px dashed #ddd; cursor: pointer;}
 .m-design-card.active{background: #edf2fd;}
 .m-design-footer{margin: 20px 0 0;}

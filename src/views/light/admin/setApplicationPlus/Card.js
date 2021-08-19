@@ -77,7 +77,7 @@ export default function Card({ index, cardActiveId, card, moveCard, onCardActive
           style={{ opacity }}
           data-handler-id={handlerId}
           className={`m-design-card ${cardActiveId === card.id ? 'active' : ''}`}
-          onClick={(() => onCardActiveId(card.id))}
+          onClick={(() => onCardActiveId({id: card.id}))}
         >
           <Form.Item
             key={card.id}
