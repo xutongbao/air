@@ -4,11 +4,11 @@ import { withRouter } from 'react-router-dom'
 import { Form, Button, Collapse, Col, Row } from 'antd'
 import Header from './Header'
 import useList from './useList'
-import MyCard from './MyCard'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Icon } from '../../../../components/light'
 import { getComponentArr, getAttrFields } from './config'
+import useCenterList from './useCenterList'
 
 const { Panel } = Collapse
 
@@ -29,6 +29,13 @@ function Index(props) {
     handleCardActiveId,
     handleValuesChange,
   } = useList(props)
+
+  const { getCenterListDom } = useCenterList({
+    dataSource,
+    cardActiveId,
+    moveCard,
+    handleCardActiveId,
+  })
 
   return (
     <div className="m-admin-content">
@@ -84,18 +91,7 @@ function Index(props) {
             onFinishFailed={handleFinishFailed}
           >
             <DndProvider backend={HTML5Backend}>
-              <div>
-                {dataSource.map((card, index) => (
-                  <MyCard
-                    key={card.id}
-                    index={index}
-                    cardActiveId={cardActiveId}
-                    card={card}
-                    moveCard={moveCard}
-                    onCardActiveId={handleCardActiveId}
-                  />
-                ))}
-              </div>
+              {getCenterListDom()}
             </DndProvider>
             <Form.Item
               wrapperCol={{ offset: 4, span: 17 }}
