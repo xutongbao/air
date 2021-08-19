@@ -1,14 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Form, Button } from 'antd'
+import { Form, Button, Collapse, Card, Col, Row } from 'antd'
 import Header from './Header'
 import useList from './useList'
-import Card from './Card'
+import MyCard from './MyCard'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Icon } from '../../../../components/light'
-import { getModalFields } from './config'
+import { getComponentArr, getAttrFields } from './config'
+
+const { Panel } = Collapse
 
 function Index(props) {
   const {
@@ -36,7 +38,42 @@ function Index(props) {
         onSave={handleSave}
       ></Header>
       <div className="m-design-wrap">
-        <div className="m-design-sidebar"></div>
+        <div className="m-design-sidebar">
+          <Collapse defaultActiveKey={['1', '2', '3']}>
+            <Panel header="通用字段" key="1">
+              <Row gutter={[2, 2]}>
+                {getComponentArr().map((item) => (
+                  <Col span={8}>
+                    <div className="m-component-item">
+                      <div></div>
+                      <div>{item.name}</div>
+                    </div>
+                  </Col>
+                ))}
+              </Row>
+            </Panel>
+            <Panel header="联系信息字段" key="2">
+              <Row gutter={[2, 2]}>
+                <Col span={8}>
+                  <div className="m-component-item">
+                    <div></div>
+                    <div>敬请期待</div>
+                  </div>
+                </Col>
+              </Row>
+            </Panel>
+            <Panel header="商品字段" key="3">
+              <Row gutter={[2, 2]}>
+                <Col span={8}>
+                  <div className="m-component-item">
+                    <div></div>
+                    <div>敬请期待</div>
+                  </div>
+                </Col>
+              </Row>
+            </Panel>
+          </Collapse>
+        </div>
         <div className="m-design-content">
           <Form
             form={form}
@@ -49,7 +86,7 @@ function Index(props) {
             <DndProvider backend={HTML5Backend}>
               <div>
                 {dataSource.map((card, index) => (
-                  <Card
+                  <MyCard
                     key={card.id}
                     index={index}
                     cardActiveId={cardActiveId}
@@ -91,7 +128,7 @@ function Index(props) {
             id="m-set-application-modal-form"
             className="m-set-application-modal-form"
           >
-            {getModalFields()}
+            {getAttrFields()}
           </Form>
         </div>
       </div>

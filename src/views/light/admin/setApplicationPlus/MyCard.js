@@ -4,7 +4,7 @@ import { ItemTypes } from './ItemTypes'
 import { Form, Input } from 'antd'
 import { getFormComponentArr } from '../../../../utils/tools'
 
-export default function Card({ index, cardActiveId, card, moveCard, onCardActiveId }) {
+export default function MyCard({ index, cardActiveId, card, moveCard, onCardActiveId }) {
   const ref = useRef(null)
   const [{ handlerId }, drop] = useDrop({
     accept: ItemTypes.CARD,

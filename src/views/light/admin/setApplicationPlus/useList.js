@@ -104,14 +104,12 @@ export default function useList(props) {
       rules: [allValues.rules]
     }
     
-
     dataSource[cardActiveIndex] = {
       ...dataSource[cardActiveIndex],
       ...allValues,
       ...tempValues
     }
     setDataSource([...dataSource])
-    console.log(changedValues, allValues)
   }
 
   useEffect(() => {

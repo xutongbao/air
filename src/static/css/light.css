@@ -49,4 +49,5 @@
 .m-formview-inner{display: inline-block; width: 800px;min-height: 100%; background: white;box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);text-align: left;}
 .m-formview-color-header{height: 40px;background: #1890ff;}
 .m-formview-header{margin: 0 0 40px; padding: 10px 10px 10px; font-size: 24px;font-weight: bold;border-bottom: 1px solid #ddd;}
-
+.m-component-item{color: #333; cursor: pointer;text-align: center;}
+.m-component-item:hover{color: #1890ff;}

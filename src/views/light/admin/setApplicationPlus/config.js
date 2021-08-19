@@ -105,8 +105,23 @@ const getColumns = (props) => {
   ]
 }
 
+//组件元素
+const getComponentArr = () => {
+  return [
+    {
+      name: '单行文本',
+    },
+    {
+      name: '多行文本',
+    },
+    {
+      name: '数字',
+    },
+  ]
+}
+
 //添加编辑查看对话框表单字段
-const getModalFields = () => {
+const getAttrFields = () => {
   return (
     <>
       <Form.Item
@@ -116,7 +131,7 @@ const getModalFields = () => {
           {
             required: true,
             message: '请输入字段名称！',
-          }
+          },
         ]}
       >
         <Input />
@@ -128,7 +143,7 @@ const getModalFields = () => {
           {
             required: true,
             message: '请输入字段名称！',
-          }
+          },
         ]}
       >
         <Input />
@@ -140,4 +155,4 @@ const getModalFields = () => {
   )
 }
 
-export { getColumns, getModalFields }
+export { getColumns, getComponentArr, getAttrFields }
