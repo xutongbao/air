@@ -50,6 +50,7 @@ export default function useList(props) {
     [dataSource]
   )
 
+  //保存
   const handleSave = () => {
     const newDataSource = dataSource.map((item, index) => {
       return { ...item, orderIndex: index + 1 }
@@ -87,11 +88,30 @@ export default function useList(props) {
     console.log('Failed:', errorInfo)
   }
 
+  //设置当前card
   const handleCardActiveId = ({id, myDataSource = dataSource}) => {
     setCardActiveId(id)
     let currentItem = myDataSource.find(item => item.id === id)
     const rules = Array.isArray(currentItem.rules) ? currentItem.rules[0] : {}
     setInitValuesForAttr({...currentItem, rules })
+  }
+
+  //修改表单字段属性
+  const handleValuesChange = (changedValues, allValues) => {
+    const cardActiveIndex = dataSource.findIndex(item =>item.id === cardActiveId)
+
+    let tempValues = {
+      rules: [allValues.rules]
+    }
+    
+
+    dataSource[cardActiveIndex] = {
+      ...dataSource[cardActiveIndex],
+      ...allValues,
+      ...tempValues
+    }
+    setDataSource([...dataSource])
+    console.log(changedValues, allValues)
   }
 
   useEffect(() => {
@@ -121,5 +141,6 @@ export default function useList(props) {
     handleFinishFailed,
     handleSave,
     handleCardActiveId,
+    handleValuesChange,
   }
 }

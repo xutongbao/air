@@ -25,6 +25,7 @@ function Index(props) {
     handleFinishFailed,
     handleSave,
     handleCardActiveId,
+    handleValuesChange,
   } = useList(props)
 
   return (
@@ -86,7 +87,7 @@ function Index(props) {
             wrapperCol={{ span: 15 }}
             initialValues={{ ...initValuesForAttr }}
             scrollToFirstError={true}
-            //onValuesChange={handleValuesChange}
+            onValuesChange={handleValuesChange}
             id="m-set-application-modal-form"
             className="m-set-application-modal-form"
           >
