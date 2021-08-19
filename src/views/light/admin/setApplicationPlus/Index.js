@@ -7,24 +7,33 @@ import useList from './useList'
 import Card from './Card'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import {Icon } from '../../../../components/light'
+import { Icon } from '../../../../components/light'
+import { getModalFields } from './config'
 
 function Index(props) {
   const {
     applicationTitle,
     dataSource,
     form,
+    formForAttr,
     initValues,
+    initValuesForAttr,
     tableId,
+    cardActiveId,
     moveCard,
     handleFinish,
     handleFinishFailed,
     handleSave,
+    handleCardActiveId,
   } = useList(props)
 
   return (
     <div className="m-admin-content">
-      <Header applicationTitle={applicationTitle} tableId={tableId} onSave={handleSave}></Header>
+      <Header
+        applicationTitle={applicationTitle}
+        tableId={tableId}
+        onSave={handleSave}
+      ></Header>
       <div className="m-design-wrap">
         <div className="m-design-sidebar"></div>
         <div className="m-design-content">
@@ -42,8 +51,10 @@ function Index(props) {
                   <Card
                     key={card.id}
                     index={index}
+                    cardActiveId={cardActiveId}
                     card={card}
                     moveCard={moveCard}
+                    onCardActiveId={handleCardActiveId}
                   />
                 ))}
               </div>
@@ -68,7 +79,20 @@ function Index(props) {
             </Form.Item>
           </Form>
         </div>
-        <div className="m-design-attr"></div>
+        <div className="m-design-attr">
+          <Form
+            form={formForAttr}
+            labelCol={{ span: 4 }}
+            wrapperCol={{ span: 17 }}
+            initialValues={{ ...initValuesForAttr }}
+            scrollToFirstError={true}
+            //onValuesChange={handleValuesChange}
+            id="m-set-application-modal-form"
+            className="m-set-application-modal-form"
+          >
+            {getModalFields()}
+          </Form>
+        </div>
       </div>
     </div>
   )

@@ -7,13 +7,14 @@ function Header(props) {
   const { applicationTitle, tableId, onSave } = props
   return (
     <div className="m-design-header">
-      <div className="m-design-header-title" title={applicationTitle}>
+      <div className="m-design-header-title">
         <Icon
           name="arrow"
+          title="返回"
           className="m-set-application-header-icon"
           onClick={() => props.history.go(-1)}
         ></Icon>
-        {applicationTitle}
+        <span title={applicationTitle}>{applicationTitle}</span>
       </div>
       <div className="m-design-header-middle"></div>
       <div className="m-design-header-action">

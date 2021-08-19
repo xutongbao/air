@@ -83,7 +83,7 @@
   },
   "homepage": "/air",
   "scripts": {
-    "start": "cross-env PORT=3001 node scripts/start.js",
+    "start": "cross-env PORT=3002 node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },

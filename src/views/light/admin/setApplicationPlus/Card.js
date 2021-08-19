@@ -4,7 +4,7 @@ import { ItemTypes } from './ItemTypes'
 import { Form, Input } from 'antd'
 import { getFormComponentArr } from '../../../../utils/tools'
 
-export default function Card({ index, card, moveCard }) {
+export default function Card({ index, cardActiveId, card, moveCard, onCardActiveId }) {
   const ref = useRef(null)
   const [{ handlerId }, drop] = useDrop({
     accept: ItemTypes.CARD,
@@ -76,7 +76,8 @@ export default function Card({ index, card, moveCard }) {
           ref={ref}
           style={{ opacity }}
           data-handler-id={handlerId}
-          className="m-design-card"
+          className={`m-design-card ${cardActiveId === card.id ? 'active' : ''}`}
+          onClick={(() => onCardActiveId(card.id))}
         >
           <Form.Item
             key={card.id}
@@ -93,7 +94,5 @@ export default function Card({ index, card, moveCard }) {
     }
   }
 
-  return (
-    <>{renderDom()}</>
-  )
+  return <>{renderDom()}</>
 }

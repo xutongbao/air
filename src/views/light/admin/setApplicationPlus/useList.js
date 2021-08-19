@@ -8,8 +8,11 @@ const { confirm } = Modal
 
 export default function useList(props) {
   const [form] = Form.useForm()
+  const [formForAttr] = Form.useForm()
   const [dataSource, setDataSource] = useState([])
   const [applicationTitle, setApplicationTitle] = useState()
+  const [cardActiveId, setCardActiveId] = useState()
+  const [initValuesForAttr, setInitValuesForAttr] = useState({})
 
   //获取路由参数
   const routerSearchObj = getRouterSearchObj(props)
@@ -24,6 +27,11 @@ export default function useList(props) {
         const tempDataSource = res.data.fields.filter((item) => !item.isSystem)
         setDataSource(tempDataSource)
         setApplicationTitle(res.data.title)
+        if(Array.isArray(tempDataSource) && tempDataSource.length > 0) {
+          setCardActiveId(tempDataSource[0].id)
+          setInitValuesForAttr(tempDataSource[0])
+          formForAttr.resetFields()
+        }
       }
     })
   }
@@ -81,6 +89,13 @@ export default function useList(props) {
     console.log('Failed:', errorInfo)
   }
 
+  const handleCardActiveId = (id) => {
+    setCardActiveId(id)
+    const currentItem = dataSource.find(item => item.id === id)
+    setInitValuesForAttr(currentItem)
+    formForAttr.resetFields()
+  }
+
   //挂载完
   useEffect(() => {
     handleSearch()
@@ -89,15 +104,19 @@ export default function useList(props) {
 
   return {
     form,
+    formForAttr,
+    initValuesForAttr,
     dataSource,
     applicationTitle,
     addInitValues,
     tableId,
+    cardActiveId,
     handleSearch,
     moveCard,
     handleDelete,
     handleFinish,
     handleFinishFailed,
     handleSave,
+    handleCardActiveId,
   }
 }
