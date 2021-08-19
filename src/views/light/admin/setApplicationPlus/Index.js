@@ -9,6 +9,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Icon } from '../../../../components/light'
 import { getComponentArr, getAttrFields } from './config'
 import useCenterList from './useCenterList'
+import Example from './example'
 
 const { Panel } = Collapse
 
@@ -90,8 +91,9 @@ function Index(props) {
             onFinish={handleFinish}
             onFinishFailed={handleFinishFailed}
           >
-            <DndProvider backend={HTML5Backend}>
-              {getCenterListDom()}
+            <DndProvider backend={HTML5Backend}>   
+              <Example></Example>  
+              {getCenterListDom()}       
             </DndProvider>
             <Form.Item
               wrapperCol={{ offset: 4, span: 17 }}
