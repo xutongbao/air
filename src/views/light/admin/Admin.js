@@ -5,7 +5,6 @@ import Logo from './Logo'
 
 const Application = lazy(() => import('./application/Index'))
 const ApplicationPlus = lazy(() => import('./applicationPlus/Index'))
-const Other = lazy(() => import('./other/Other'))
 const SetApplication = lazy(() => import('./setApplication/Index'))
 const SetApplicationPlus = lazy(() => import('./setApplicationPlus/Index'))
 
@@ -30,9 +29,6 @@ function Admin(props) {
           <Menu.Item key="/light/admin/application">
             <Link to="/light/admin/application">应用管理_旧</Link>
           </Menu.Item>
-          <Menu.Item key="/light/admin/other">
-            <Link to="/light/admin/other">其他管理</Link>
-          </Menu.Item>
         </Menu>
       </div>
       <div className="m-admin-info">
@@ -53,7 +49,6 @@ function Admin(props) {
               path="/light/admin/applicationPlus"
               component={ApplicationPlus}
             ></Route>
-            <Route path="/light/admin/other" component={Other}></Route>
             <Route
               path="/light/admin/setApplication"
               component={SetApplication}

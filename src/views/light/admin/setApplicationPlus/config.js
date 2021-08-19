@@ -109,12 +109,15 @@ const getColumns = (props) => {
 const getComponentArr = () => {
   return [
     {
+      icon: 'input',
       name: '单行文本',
     },
     {
+      icon: 'textarea',
       name: '多行文本',
     },
     {
+      icon: 'number-input',
       name: '数字',
     },
   ]

@@ -9,7 +9,7 @@ function Header(props) {
     <div className="m-design-header">
       <div className="m-design-header-title">
         <Icon
-          name="arrow"
+          name="goback"
           title="返回"
           className="m-set-application-header-icon"
           onClick={() => props.history.go(-1)}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Form, Button, Collapse, Card, Col, Row } from 'antd'
+import { Form, Button, Collapse, Col, Row } from 'antd'
 import Header from './Header'
 import useList from './useList'
 import MyCard from './MyCard'
@@ -42,10 +42,10 @@ function Index(props) {
           <Collapse defaultActiveKey={['1', '2', '3']}>
             <Panel header="通用字段" key="1">
               <Row gutter={[2, 2]}>
-                {getComponentArr().map((item) => (
-                  <Col span={8}>
+                {getComponentArr().map((item, index) => (
+                  <Col span={8} key={index}>
                     <div className="m-component-item">
-                      <div></div>
+                      <div><Icon name={item.icon}></Icon></div>
                       <div>{item.name}</div>
                     </div>
                   </Col>
