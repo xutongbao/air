@@ -118,10 +118,16 @@ const getComponentArr = () => {
     {
       icon: 'textarea',
       title: '多行文本',
+      formComponentName: "TextArea",
+      dataIndex: 'textArea',
+      renderFunName: "renderSpan"
     },
     {
       icon: 'number-input',
       title: '数字',
+      formComponentName: "InputNumber",
+      dataIndex: 'inputNumber ',
+      renderFunName: "renderSpan"
     },
   ]
 }

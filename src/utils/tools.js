@@ -1,6 +1,8 @@
 import store from '../store'
-import { Input } from 'antd'
+import { Input, InputNumber } from 'antd'
 import moment from 'moment'
+
+const { TextArea } = Input
 
 let timer
 
@@ -63,9 +65,21 @@ const getFormComponentArr = () => {
   return [
     {
       id: 0,
-      title: '输入框(Input)',
+      title: '单行文本',
       formComponentName: 'Input',
       component: <Input></Input>,
+    },
+    {
+      id: 1,
+      title: '多行文本',
+      formComponentName: 'TextArea',
+      component: <TextArea></TextArea>,
+    },
+    {
+      id: 2,
+      title: '数字',
+      formComponentName: 'InputNumber',
+      component: <InputNumber></InputNumber>,
     },
   ]
 }
@@ -77,7 +91,7 @@ const getRenderFunArr = () => {
       id: 0,
       title: 'span标签',
       renderFunName: 'renderSpan',
-      formComponentNameArr: ['Input'],
+      formComponentNameArr: ['Input', 'TextArea'],
       render: (text) => {
         return <span>{text}</span>
       },
