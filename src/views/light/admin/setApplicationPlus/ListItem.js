@@ -1,10 +1,17 @@
 import { useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 import { ItemTypes } from './ItemTypes'
-import { Form, Input } from 'antd'
+import { Form, Input, Button } from 'antd'
 import { getFormComponentArr } from '../../../../utils/tools'
 
-export default function ListItem({ index, cardActiveId, card, moveCard, onCardActiveId }) {
+export default function ListItem({
+  index,
+  cardActiveId,
+  card,
+  moveCard,
+  onCardActiveId,
+  onDelete,
+}) {
   const ref = useRef(null)
   const [{ handlerId }, drop] = useDrop({
     accept: ItemTypes.LIST_ITEM,
@@ -50,6 +57,8 @@ export default function ListItem({ index, cardActiveId, card, moveCard, onCardAc
       // but it's good here for the sake of performance
       // to avoid expensive index searches.
       item.index = hoverIndex
+
+      console.log(hoverIndex)
     },
   })
   const [{ isDragging }, drag] = useDrag({
@@ -76,17 +85,31 @@ export default function ListItem({ index, cardActiveId, card, moveCard, onCardAc
           ref={ref}
           style={{ opacity }}
           data-handler-id={handlerId}
-          className={`m-design-card ${cardActiveId === card.id ? 'active' : ''}`}
-          onClick={(() => onCardActiveId({id: card.id}))}
+          className={`m-design-card ${
+            cardActiveId === card.id ? 'active' : ''
+          }`}
+          onClick={() => onCardActiveId({ id: card.id })}
         >
-          <Form.Item
-            key={card.id}
-            label={card.title}
-            name={card.dataIndex}
-            rules={card.rules}
-          >
-            {result ? result.component : <Input></Input>}
-          </Form.Item>
+          <div className="m-design-card-info">
+            <Form.Item
+              key={card.id}
+              label={card.title}
+              name={card.dataIndex}
+              rules={card.rules}
+            >
+              {result ? result.component : <Input></Input>}
+            </Form.Item>
+          </div>
+          <div className="m-design-card-action">
+            <Button
+              className="m-action-btn"
+              size="small"
+              danger
+              onClick={() => onDelete(card)}
+            >
+              删除
+            </Button>
+          </div>
         </div>
       )
     } else {

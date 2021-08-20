@@ -79,7 +79,7 @@ const getFormComponentArr = () => {
       id: 2,
       title: '数字',
       formComponentName: 'InputNumber',
-      component: <InputNumber></InputNumber>,
+      component: <InputNumber style={{width: '100%'}}></InputNumber>,
     },
   ]
 }

@@ -7,6 +7,7 @@ export default function List({
   cardActiveId,
   moveCard,
   handleCardActiveId,
+  handleDelete,
 }) {
   const [{ canDrop, isOver }, drop] = useDrop(() => ({
     accept: ItemTypes.BTN_FIELD,
@@ -30,6 +31,7 @@ export default function List({
           card={card}
           moveCard={moveCard}
           onCardActiveId={handleCardActiveId}
+          onDelete={handleDelete}
         />
       ))}
     </div>

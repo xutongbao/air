@@ -94,11 +94,8 @@ export default function useList(props) {
     confirm({
       title: '确认要删除吗？',
       onOk() {
-        Api.light.fieldsDelete({ tableId, ids: [record.id] }).then((res) => {
-          if (res.code === 200) {
-            handleSearch()
-          }
-        })
+        const newDataSource = dataSource.filter(item => item.id !== record.id)
+        setDataSource(newDataSource)
       },
     })
   }

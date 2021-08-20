@@ -30,6 +30,7 @@ function Index(props) {
     handleSave,
     handleCardActiveId,
     handleValuesChange,
+    handleDelete,
   } = useList(props)
 
   return (
@@ -88,6 +89,7 @@ function Index(props) {
                 cardActiveId={cardActiveId}
                 moveCard={moveCard}
                 handleCardActiveId={handleCardActiveId}
+                handleDelete={handleDelete}
               />
             </DndProvider>
             <Form.Item
