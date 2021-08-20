@@ -1,13 +1,16 @@
 import { useDrag } from 'react-dnd'
 import { ItemTypes } from './ItemTypes'
-export const Box = function Box({ name }) {
+import { Icon } from '../../../../components/light'
+import { Col } from 'antd'
+
+export default function Box({ fieldInfo }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.BOX,
-    item: { name },
+    item: { ...fieldInfo },
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult()
       if (item && dropResult) {
-        alert(`You dropped ${item.name} into ${dropResult.name}!`)
+        console.log(`${item.name} 加入 ${dropResult.name}`)
       }
     },
     collect: (monitor) => ({
@@ -17,8 +20,18 @@ export const Box = function Box({ name }) {
   }))
   const opacity = isDragging ? 0.4 : 1
   return (
-    <span ref={drag} style={{ opacity }} data-testid={`box-${name}`} className="m-box">
-      {name}
-    </span>
+    <Col span={8}>
+      <div
+        className="m-component-item"
+        ref={drag}
+        style={{ opacity }}
+        data-testid={`box-${fieldInfo.name}`}
+      >
+        <div>
+          <Icon name={fieldInfo.icon}></Icon>
+        </div>
+        <div>{fieldInfo.name}</div>
+      </div>
+    </Col>
   )
 }

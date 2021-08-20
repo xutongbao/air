@@ -10,7 +10,7 @@ export default function Dustbin({
 }) {
   const [{ canDrop, isOver }, drop] = useDrop(() => ({
     accept: ItemTypes.BOX,
-    drop: () => ({ name: 'Dustbin' }),
+    drop: () => ({ name: '容器' }),
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),

@@ -8,8 +8,8 @@ import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Icon } from '../../../../components/light'
 import { getComponentArr, getAttrFields } from './config'
-import useCenterList from './useCenterList'
 import Dustbin from './Dustbin'
+import Box from './Box'
 
 const { Panel } = Collapse
 
@@ -31,13 +31,6 @@ function Index(props) {
     handleValuesChange,
   } = useList(props)
 
-  const { getCenterListDomPlus } = useCenterList({
-    dataSource,
-    cardActiveId,
-    moveCard,
-    handleCardActiveId,
-  })
-
   return (
     <div className="m-admin-content">
       <Header
@@ -50,16 +43,11 @@ function Index(props) {
           <Collapse defaultActiveKey={['1', '2', '3']}>
             <Panel header="通用字段" key="1">
               <Row gutter={[2, 2]}>
-                {getComponentArr().map((item, index) => (
-                  <Col span={8} key={index}>
-                    <div className="m-component-item">
-                      <div>
-                        <Icon name={item.icon}></Icon>
-                      </div>
-                      <div>{item.name}</div>
-                    </div>
-                  </Col>
-                ))}
+                <DndProvider backend={HTML5Backend}>
+                  {getComponentArr().map((fieldInfo, index) => (
+                    <Box key={index} name="Glass" fieldInfo={fieldInfo} />
+                  ))}
+                </DndProvider>
               </Row>
             </Panel>
             <Panel header="联系信息字段" key="2">
@@ -100,8 +88,6 @@ function Index(props) {
                 moveCard={moveCard}
                 handleCardActiveId={handleCardActiveId}
               />
-
-              {getCenterListDomPlus()}
             </DndProvider>
             <Form.Item
               wrapperCol={{ offset: 4, span: 17 }}
