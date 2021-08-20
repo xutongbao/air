@@ -5,10 +5,6 @@ class Cards extends Component {
   constructor() {
     super()
 
-    this.onColumnDrop = this.onColumnDrop.bind(this)
-    this.onCardDrop = this.onCardDrop.bind(this)
-    this.getCardPayload = this.getCardPayload.bind(this)
-
     let temp = [
       {
         id: 'column0',
@@ -72,7 +68,7 @@ class Cards extends Component {
       <div className="card-scene">
         <Container
           orientation="horizontal"
-          onDrop={this.onColumnDrop}
+          onDrop={(dropResult) => this.onColumnDrop(dropResult)}
           dragHandleSelector=".column-drag-handle"
           dropPlaceholder={{
             animationDuration: 150,
@@ -87,13 +83,10 @@ class Cards extends Component {
                   <Container
                     {...column.props}
                     groupName="col"
-                    onDragStart={(e) => console.log('drag started', e)}
-                    onDragEnd={(e) => console.log('drag end', e)}
                     onDrop={(e) => this.onCardDrop(column.id, e)}
                     getChildPayload={(index) =>
                       this.getCardPayload(column.id, index)
                     }
-                    onDropReady={(p) => console.log('Drop ready: ', p)}
                     dropPlaceholder={{
                       animationDuration: 150,
                       showOnTop: true,
@@ -121,26 +114,28 @@ class Cards extends Component {
   }
 
   applyDrag(arr, dragResult) {
-    const { removedIndex, addedIndex, payload } = dragResult;
-    if (removedIndex === null && addedIndex === null) return arr;
-  
-    const result = [...arr];
-    let itemToAdd = payload;
-  
+    const { removedIndex, addedIndex, payload } = dragResult
+    if (removedIndex === null && addedIndex === null) return arr
+
+    const result = [...arr]
+    let itemToAdd = payload
+
     if (removedIndex !== null) {
-      itemToAdd = result.splice(removedIndex, 1)[0];
+      itemToAdd = result.splice(removedIndex, 1)[0]
     }
-  
+
     if (addedIndex !== null) {
-      result.splice(addedIndex, 0, itemToAdd);
+      result.splice(addedIndex, 0, itemToAdd)
     }
-  
-    return result;
+
+    return result
   }
 
   getCardPayload(columnId, index) {
-    return this.state.scene.children.filter((p) => p.id === columnId)[0]
+    const temp = this.state.scene.children.filter((p) => p.id === columnId)[0]
       .children[index]
+
+    return temp
   }
 
   onColumnDrop(dropResult) {
