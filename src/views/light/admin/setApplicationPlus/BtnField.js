@@ -3,9 +3,9 @@ import { ItemTypes } from './ItemTypes'
 import { Icon } from '../../../../components/light'
 import { Col } from 'antd'
 
-export default function Box({ fieldInfo }) {
+export default function BtnField({ fieldInfo }) {
   const [{ isDragging }, drag] = useDrag(() => ({
-    type: ItemTypes.BOX,
+    type: ItemTypes.BTN_FIELD,
     item: { ...fieldInfo },
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult()

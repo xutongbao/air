@@ -1,15 +1,15 @@
 import { useDrop } from 'react-dnd'
 import { ItemTypes } from './ItemTypes'
-import MyCard from './MyCard'
+import ListItem from './ListItem'
 
-export default function Dustbin({
+export default function List({
   dataSource,
   cardActiveId,
   moveCard,
   handleCardActiveId,
 }) {
   const [{ canDrop, isOver }, drop] = useDrop(() => ({
-    accept: ItemTypes.BOX,
+    accept: ItemTypes.BTN_FIELD,
     drop: () => ({ name: '容器' }),
     collect: (monitor) => ({
       isOver: monitor.isOver(),
@@ -23,7 +23,7 @@ export default function Dustbin({
       className={`m-center-list-wrap ${isActive ? 'active' : ''}`}
     >
       {dataSource.map((card, index) => (
-        <MyCard
+        <ListItem
           key={card.id}
           index={index}
           cardActiveId={cardActiveId}

@@ -4,10 +4,10 @@ import { ItemTypes } from './ItemTypes'
 import { Form, Input } from 'antd'
 import { getFormComponentArr } from '../../../../utils/tools'
 
-export default function MyCard({ index, cardActiveId, card, moveCard, onCardActiveId }) {
+export default function ListItem({ index, cardActiveId, card, moveCard, onCardActiveId }) {
   const ref = useRef(null)
   const [{ handlerId }, drop] = useDrop({
-    accept: ItemTypes.CARD,
+    accept: ItemTypes.LIST_ITEM,
     collect(monitor) {
       return {
         handlerId: monitor.getHandlerId(),
@@ -53,7 +53,7 @@ export default function MyCard({ index, cardActiveId, card, moveCard, onCardActi
     },
   })
   const [{ isDragging }, drag] = useDrag({
-    type: ItemTypes.CARD,
+    type: ItemTypes.LIST_ITEM,
     item: () => {
       return { id: card.id, index }
     },

@@ -8,8 +8,8 @@ import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Icon } from '../../../../components/light'
 import { getComponentArr, getAttrFields } from './config'
-import Dustbin from './Dustbin'
-import Box from './Box'
+import List from './List'
+import BtnField from './BtnField'
 
 const { Panel } = Collapse
 
@@ -45,7 +45,7 @@ function Index(props) {
               <Row gutter={[2, 2]}>
                 <DndProvider backend={HTML5Backend}>
                   {getComponentArr().map((fieldInfo, index) => (
-                    <Box key={index} name="Glass" fieldInfo={fieldInfo} />
+                    <BtnField key={index} name="Glass" fieldInfo={fieldInfo} />
                   ))}
                 </DndProvider>
               </Row>
@@ -82,7 +82,7 @@ function Index(props) {
             onFinishFailed={handleFinishFailed}
           >
             <DndProvider backend={HTML5Backend}>
-              <Dustbin
+              <List
                 dataSource={dataSource}
                 cardActiveId={cardActiveId}
                 moveCard={moveCard}
