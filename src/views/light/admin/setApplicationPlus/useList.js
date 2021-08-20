@@ -6,6 +6,7 @@ import { getRouterSearchObj } from '../../../../utils/tools'
 
 const { confirm } = Modal
 
+let currentDataSource = []
 export default function useList(props) {
   const [form] = Form.useForm()
   const [formForAttr] = Form.useForm()
@@ -27,8 +28,11 @@ export default function useList(props) {
         let tempDataSource = res.data.fields.filter((item) => !item.isSystem)
         setDataSource(tempDataSource)
         setApplicationTitle(res.data.title)
-        if(Array.isArray(tempDataSource) && tempDataSource.length > 0) {
-          handleCardActiveId({id:tempDataSource[0].id, myDataSource: tempDataSource})
+        if (Array.isArray(tempDataSource) && tempDataSource.length > 0) {
+          handleCardActiveId({
+            id: tempDataSource[0].id,
+            myDataSource: tempDataSource,
+          })
         }
       }
     })
@@ -50,17 +54,27 @@ export default function useList(props) {
     [dataSource]
   )
 
+  //添加新字段
+  const handleAdd = ({ fieldInfo }) => {
+    console.log(fieldInfo)
+    console.log(currentDataSource)
+    //setDataSource(dataSource)
+  }
+
   //保存
   const handleSave = () => {
+    console.log(dataSource)
     const newDataSource = dataSource.map((item, index) => {
       return { ...item, orderIndex: index + 1 }
     })
     console.log(newDataSource)
-    Api.light.fieldsEditAll({ tableId, dataItem: newDataSource }).then(res => {
-      if (res.code === 200) {
-        message.success(res.message)
-      }
-    })
+    Api.light
+      .fieldsEditAll({ tableId, dataItem: newDataSource })
+      .then((res) => {
+        if (res.code === 200) {
+          message.success(res.message)
+        }
+      })
   }
 
   //删除
@@ -89,25 +103,27 @@ export default function useList(props) {
   }
 
   //设置当前card
-  const handleCardActiveId = ({id, myDataSource = dataSource}) => {
+  const handleCardActiveId = ({ id, myDataSource = dataSource }) => {
     setCardActiveId(id)
-    let currentItem = myDataSource.find(item => item.id === id)
+    let currentItem = myDataSource.find((item) => item.id === id)
     const rules = Array.isArray(currentItem.rules) ? currentItem.rules[0] : {}
-    setInitValuesForAttr({...currentItem, rules })
+    setInitValuesForAttr({ ...currentItem, rules })
   }
 
   //修改表单字段属性
   const handleValuesChange = (changedValues, allValues) => {
-    const cardActiveIndex = dataSource.findIndex(item =>item.id === cardActiveId)
+    const cardActiveIndex = dataSource.findIndex(
+      (item) => item.id === cardActiveId
+    )
 
     let tempValues = {
-      rules: [allValues.rules]
+      rules: [allValues.rules],
     }
-    
+
     dataSource[cardActiveIndex] = {
       ...dataSource[cardActiveIndex],
       ...allValues,
-      ...tempValues
+      ...tempValues,
     }
     setDataSource([...dataSource])
   }
@@ -123,6 +139,11 @@ export default function useList(props) {
     // eslint-disable-next-line
   }, [])
 
+  //dataSource更新，同步更新currentDataSource,handleAdd函数中dataSource的值为空数组，这是一个bug
+  useEffect(() => {
+    currentDataSource = dataSource
+  }, [dataSource])
+
   return {
     form,
     formForAttr,
@@ -137,6 +158,7 @@ export default function useList(props) {
     handleDelete,
     handleFinish,
     handleFinishFailed,
+    handleAdd,
     handleSave,
     handleCardActiveId,
     handleValuesChange,

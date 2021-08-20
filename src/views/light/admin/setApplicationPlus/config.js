@@ -111,6 +111,8 @@ const getComponentArr = () => {
     {
       icon: 'input',
       name: '单行文本',
+      formComponentName: "Input",
+      dataIndex: 'input'
     },
     {
       icon: 'textarea',

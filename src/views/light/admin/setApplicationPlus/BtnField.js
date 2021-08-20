@@ -3,7 +3,7 @@ import { ItemTypes } from './ItemTypes'
 import { Icon } from '../../../../components/light'
 import { Col } from 'antd'
 
-export default function BtnField({ fieldInfo }) {
+export default function BtnField({ fieldInfo, onAdd }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.BTN_FIELD,
     item: { ...fieldInfo },
@@ -11,6 +11,7 @@ export default function BtnField({ fieldInfo }) {
       const dropResult = monitor.getDropResult()
       if (item && dropResult) {
         console.log(`${item.name} 加入 ${dropResult.name}`)
+        onAdd({fieldInfo})
       }
     },
     collect: (monitor) => ({
@@ -26,6 +27,7 @@ export default function BtnField({ fieldInfo }) {
         ref={drag}
         style={{ opacity }}
         data-testid={`box-${fieldInfo.name}`}
+        onClick={() => onAdd({fieldInfo})}
       >
         <div>
           <Icon name={fieldInfo.icon}></Icon>
