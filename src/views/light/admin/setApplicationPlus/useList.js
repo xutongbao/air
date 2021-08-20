@@ -3,6 +3,7 @@ import Api from '../../../../api'
 import { Modal, Form, message } from 'antd'
 import update from 'immutability-helper'
 import { getRouterSearchObj } from '../../../../utils/tools'
+import { v4 as uuidv4 } from 'uuid'
 
 const { confirm } = Modal
 
@@ -56,9 +57,19 @@ export default function useList(props) {
 
   //添加新字段
   const handleAdd = ({ fieldInfo }) => {
-    console.log(fieldInfo)
+    const orderIndexArr = currentDataSource.map((item) => item.orderIndex)
+    const orderIndex = Math.max.apply(Math, orderIndexArr) + 1
+    const id = uuidv4()
+    let tempValues = {
+      id,
+      dataIndex: `${fieldInfo.dataIndex}-${id}`,
+      isColumn: true,
+      isModalField: true,
+      orderIndex,
+    }
+    console.log({ ...fieldInfo, ...tempValues })
     console.log(currentDataSource)
-    //setDataSource(dataSource)
+    setDataSource([...currentDataSource, { ...fieldInfo, ...tempValues }])
   }
 
   //保存
@@ -106,7 +117,10 @@ export default function useList(props) {
   const handleCardActiveId = ({ id, myDataSource = dataSource }) => {
     setCardActiveId(id)
     let currentItem = myDataSource.find((item) => item.id === id)
-    const rules = Array.isArray(currentItem.rules) ? currentItem.rules[0] : {}
+    const rules =
+      Array.isArray(currentItem.rules) && currentItem.rules.length > 0
+        ? currentItem.rules[0]
+        : {}
     setInitValuesForAttr({ ...currentItem, rules })
   }
 

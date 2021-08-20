@@ -46,7 +46,7 @@ function Index(props) {
               <Row gutter={[2, 2]}>
                 <DndProvider backend={HTML5Backend}>
                   {getComponentArr().map((fieldInfo, index) => (
-                    <BtnField key={index} name="Glass" fieldInfo={fieldInfo} onAdd={handleAdd} />
+                    <BtnField key={index} fieldInfo={fieldInfo} onAdd={handleAdd} />
                   ))}
                 </DndProvider>
               </Row>

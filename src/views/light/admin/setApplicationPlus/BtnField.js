@@ -10,7 +10,7 @@ export default function BtnField({ fieldInfo, onAdd }) {
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult()
       if (item && dropResult) {
-        console.log(`${item.name} 加入 ${dropResult.name}`)
+        console.log(`${item.title} 加入 ${dropResult.name}`)
         onAdd({fieldInfo})
       }
     },
@@ -26,13 +26,13 @@ export default function BtnField({ fieldInfo, onAdd }) {
         className="m-component-item"
         ref={drag}
         style={{ opacity }}
-        data-testid={`box-${fieldInfo.name}`}
+        data-testid={`box-${fieldInfo.title}`}
         onClick={() => onAdd({fieldInfo})}
       >
         <div>
           <Icon name={fieldInfo.icon}></Icon>
         </div>
-        <div>{fieldInfo.name}</div>
+        <div>{fieldInfo.title}</div>
       </div>
     </Col>
   )
