@@ -1,4 +1,4 @@
 export const ItemTypes = {
   LIST_ITEM: 'listItem',
-  BTN_FIELD: 'listItem' //'btnField',
+  BTN_FIELD: 'btnField' //'btnField',
 }
