@@ -9,6 +9,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Icon } from '../../../../components/light'
 import { getComponentArr, getAttrFields } from './config'
 import useCenterList from './useCenterList'
+import Dustbin from './Dustbin'
 
 const { Panel } = Collapse
 
@@ -30,7 +31,7 @@ function Index(props) {
     handleValuesChange,
   } = useList(props)
 
-  const { getCenterListDom, getCenterListDomPlus } = useCenterList({
+  const { getCenterListDomPlus } = useCenterList({
     dataSource,
     cardActiveId,
     moveCard,
@@ -52,7 +53,9 @@ function Index(props) {
                 {getComponentArr().map((item, index) => (
                   <Col span={8} key={index}>
                     <div className="m-component-item">
-                      <div><Icon name={item.icon}></Icon></div>
+                      <div>
+                        <Icon name={item.icon}></Icon>
+                      </div>
                       <div>{item.name}</div>
                     </div>
                   </Col>
@@ -90,9 +93,15 @@ function Index(props) {
             onFinish={handleFinish}
             onFinishFailed={handleFinishFailed}
           >
-            <DndProvider backend={HTML5Backend}>   
-              {getCenterListDomPlus()}  
-              {getCenterListDom()}       
+            <DndProvider backend={HTML5Backend}>
+              <Dustbin
+                dataSource={dataSource}
+                cardActiveId={cardActiveId}
+                moveCard={moveCard}
+                handleCardActiveId={handleCardActiveId}
+              />
+
+              {getCenterListDomPlus()}
             </DndProvider>
             <Form.Item
               wrapperCol={{ offset: 4, span: 17 }}
