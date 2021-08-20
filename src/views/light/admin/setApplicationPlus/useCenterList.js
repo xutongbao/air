@@ -2,6 +2,7 @@ import React from 'react'
 import MyCard from './MyCard'
 import { Dustbin } from './Dustbin'
 import { Box } from './Box'
+import { Space } from 'antd'
 
 export default function useCenterList({
   dataSource,
@@ -9,7 +10,6 @@ export default function useCenterList({
   moveCard,
   handleCardActiveId,
 }) {
-
   const getCenterListDom = () => {
     return (
       <div>
@@ -30,13 +30,15 @@ export default function useCenterList({
   const getCenterListDomPlus = () => {
     return (
       <div>
-        <div style={{ overflow: 'hidden', clear: 'both' }}>
+        <div>
           <Dustbin />
         </div>
-        <div style={{ overflow: 'hidden', clear: 'both' }}>
-          <Box name="Glass" />
-          <Box name="Banana" />
-          <Box name="Paper" />
+        <div className="m-box-wrap">
+          <Space>
+            <Box name="Glass" />
+            <Box name="Banana" />
+            <Box name="Paper" />
+          </Space>
         </div>
       </div>
     )

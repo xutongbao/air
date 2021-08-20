@@ -53,3 +53,5 @@
 .m-component-item:hover{color: #1890ff;}
 .m-center-list-wrap{min-height: 200px;border: 1px dashed #1890ff;}
 .m-center-list-wrap.active{background: #edf2fd}
+.m-box-wrap{margin: 10px 0;}
+.m-box{display: inline-block; border: 1px dashed #ddd;padding: 10px;}
