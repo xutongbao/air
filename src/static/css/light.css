@@ -51,3 +51,5 @@
 .m-formview-header{margin: 0 0 40px; padding: 10px 10px 10px; font-size: 24px;font-weight: bold;border-bottom: 1px solid #ddd;}
 .m-component-item{color: #333; cursor: pointer;text-align: center;}
 .m-component-item:hover{color: #1890ff;}
+.m-center-list-wrap{min-height: 200px;border: 1px dashed #1890ff;}
+.m-center-list-wrap.active{background: #edf2fd}
