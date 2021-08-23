@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Container, Draggable } from 'react-smooth-dnd'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function CardPlus() {
   const [toolList, setToolList] = useState([
@@ -52,7 +53,8 @@ export default function CardPlus() {
 
   const handleGetChildPayload = ({type, index}) => {
     if (type === 'tool') {
-      return toolList[index]
+      const id = uuidv4()
+      return {...toolList[index], id}
     } else if (type === 'content') {
       return contentList[index]
     }
@@ -68,6 +70,7 @@ export default function CardPlus() {
       setContentList(result)
     }
   }
+
   return (
     <div className="m-test-wrap">
       <div className="m-test-tool">
@@ -75,6 +78,7 @@ export default function CardPlus() {
           orientation="vertical"
           onDrop={(dragResult) => handleCardDrop({ type: 'tool', dragResult })}
           getChildPayload={(index) => handleGetChildPayload({type: 'tool', index})}
+          behaviour="copy"
           groupName="col"
         >
           {toolList.map((item) => (
