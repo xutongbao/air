@@ -4,30 +4,30 @@ import { Container, Draggable } from 'react-smooth-dnd'
 export default function CardPlus() {
   const [toolList, setToolList] = useState([
     {
-      id: 0,
+      id: 't0',
       name: '1',
     },
     {
-      id: 1,
+      id: 't1',
       name: '2',
     },
     {
-      id: 2,
+      id: 't2',
       name: '3',
     },
   ])
 
   const [contentList, setContentList] = useState([
     {
-      id: 0,
+      id: 'c0',
       name: 'a',
     },
     {
-      id: 1,
+      id: 'c1',
       name: 'b',
     },
     {
-      id: 2,
+      id: 'c2',
       name: 'c',
     },
   ])
@@ -50,12 +50,15 @@ export default function CardPlus() {
     return result
   }
 
-  const handleGetChildPayload = (index) => {
-    console.log(index)
-    return index
+  const handleGetChildPayload = ({type, index}) => {
+    if (type === 'tool') {
+      return toolList[index]
+    } else if (type === 'content') {
+      return contentList[index]
+    }
   }
 
-  const handleCardDrop = ({type, dragResult}) => {
+  const handleCardDrop = ({ type, dragResult }) => {
     console.log(dragResult)
     if (type === 'tool') {
       const result = applyDrag(toolList, dragResult)
@@ -64,15 +67,15 @@ export default function CardPlus() {
       const result = applyDrag(contentList, dragResult)
       setContentList(result)
     }
-    
   }
   return (
     <div className="m-test-wrap">
       <div className="m-test-tool">
         <Container
           orientation="vertical"
-          onDrop={(dragResult ) => handleCardDrop({type:'tool', dragResult})}
-          getChildPayload={handleGetChildPayload}
+          onDrop={(dragResult) => handleCardDrop({ type: 'tool', dragResult })}
+          getChildPayload={(index) => handleGetChildPayload({type: 'tool', index})}
+          groupName="col"
         >
           {toolList.map((item) => (
             <Draggable key={item.id} className="m-test-list-item">
@@ -84,8 +87,11 @@ export default function CardPlus() {
       <div className="m-test-list">
         <Container
           orientation="vertical"
-          onDrop={(dragResult ) => handleCardDrop({type:'content', dragResult})}
-          getChildPayload={handleGetChildPayload}
+          onDrop={(dragResult) =>
+            handleCardDrop({ type: 'content', dragResult })
+          }
+          getChildPayload={(index) => handleGetChildPayload({type: 'content', index})}
+          groupName="col"
         >
           {contentList.map((item) => (
             <Draggable key={item.id} className="m-test-list-item">
