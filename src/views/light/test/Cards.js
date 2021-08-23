@@ -68,7 +68,6 @@ class Cards extends Component {
       <div className="card-scene">
         <Container
           orientation="horizontal"
-          onDrop={(dropResult) => this.onColumnDrop(dropResult)}
           dragHandleSelector=".column-drag-handle"
           dropPlaceholder={{
             animationDuration: 150,
@@ -136,14 +135,6 @@ class Cards extends Component {
       .children[index]
 
     return temp
-  }
-
-  onColumnDrop(dropResult) {
-    const scene = Object.assign({}, this.state.scene)
-    scene.children = this.applyDrag(scene.children, dropResult)
-    this.setState({
-      scene,
-    })
   }
 
   onCardDrop(columnId, dropResult) {
