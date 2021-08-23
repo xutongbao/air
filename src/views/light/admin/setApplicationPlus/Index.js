@@ -102,6 +102,7 @@ function Index(props) {
             onFinish={handleFinish}
             onFinishFailed={handleFinishFailed}
           >
+            <div className="m-design-card-wrap">
             <Container
               orientation="vertical"
               onDrop={(dragResult) =>
@@ -150,6 +151,7 @@ function Index(props) {
                 )
               })}
             </Container>
+            </div>
             <Form.Item
               wrapperCol={{ offset: 4, span: 17 }}
               className="m-design-footer"

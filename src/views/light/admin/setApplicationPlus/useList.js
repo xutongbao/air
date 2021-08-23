@@ -155,21 +155,15 @@ export default function useList(props) {
         isModalField: true,
         orderIndex,
       }
-      console.log({ ...fieldInfo, ...tempValues })
-      console.log(currentDataSource)
       return { ...fieldInfo, ...tempValues }
-
-      //return {...tempList[index], id}
     } else if (type === 'content') {
       return dataSource[index]
     }
   }
 
   const handleCardDrop = ({ type, dragResult }) => {
-    console.log(dragResult)
     if (type === 'tool') {
-      //const result = applyDrag(toolList, dragResult)
-      //setToolList(result)
+
     } else if (type === 'content') {
       const result = applyDrag(dataSource, dragResult)
       setDataSource(result)

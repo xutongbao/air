@@ -134,27 +134,19 @@ const getComponentArr = () => {
     },
     {
       id: 4,
-      icon: 'input',
-      title: '单行文本',
-      formComponentName: "Input",
-      dataIndex: 'input',
-      renderFunName: "renderSpan"
+      icon: 'image',
+      title: '图片',
+      formComponentName: "Image",
+      dataIndex: 'image',
+      renderFunName: "renderImage"
     },
     {
       id: 5,
-      icon: 'textarea',
+      icon: 'select',
       title: '多行文本',
-      formComponentName: "TextArea",
-      dataIndex: 'textArea',
-      renderFunName: "renderSpan"
-    },
-    {
-      id: 6,
-      icon: 'number-input',
-      title: '数字',
-      formComponentName: "InputNumber",
-      dataIndex: 'inputNumber ',
-      renderFunName: "renderSpan"
+      formComponentName: "Select",
+      dataIndex: 'select',
+      renderFunName: "renderSelect"
     },
   ]
 }
