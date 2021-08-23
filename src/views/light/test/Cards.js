@@ -65,50 +65,36 @@ class Cards extends Component {
 
   render() {
     return (
-      <div className="card-scene">
-        <Container
-          orientation="horizontal"
-          dragHandleSelector=".column-drag-handle"
-          dropPlaceholder={{
-            animationDuration: 150,
-            showOnTop: true,
-            className: 'cards-drop-preview',
-          }}
-        >
-          {this.state.scene.children.map((column) => {
-            return (
-              <Draggable key={column.id}>
-                <div>
-                  <Container
-                    {...column.props}
-                    groupName="col"
-                    onDrop={(e) => this.onCardDrop(column.id, e)}
-                    getChildPayload={(index) =>
-                      this.getCardPayload(column.id, index)
-                    }
-                    dropPlaceholder={{
-                      animationDuration: 150,
-                      showOnTop: true,
-                      className: 'drop-preview',
-                    }}
-                    dropPlaceholderAnimationDuration={200}
-                  >
-                    {column.children.map((card) => {
-                      return (
-                        <Draggable key={card.id}>
-                          <div {...card.props}>
-                            <p>{card.data}</p>
-                          </div>
-                        </Draggable>
-                      )
-                    })}
-                  </Container>
-                </div>
-              </Draggable>
-            )
-          })}
-        </Container>
-      </div>
+      <Container
+        orientation="horizontal"
+      >
+        {this.state.scene.children.map((column) => {
+          return (
+            <Draggable key={column.id}>
+              <div>
+                <Container
+                  {...column.props}
+                  groupName="col"
+                  onDrop={(e) => this.onCardDrop(column.id, e)}
+                  getChildPayload={(index) =>
+                    this.getCardPayload(column.id, index)
+                  }
+                >
+                  {column.children.map((card) => {
+                    return (
+                      <Draggable key={card.id}>
+                        <div {...card.props}>
+                          <p>{card.data}</p>
+                        </div>
+                      </Draggable>
+                    )
+                  })}
+                </Container>
+              </div>
+            </Draggable>
+          )
+        })}
+      </Container>
     )
   }
 
