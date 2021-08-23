@@ -8,7 +8,6 @@ import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Icon } from '../../../../components/light'
 import { getComponentArr, getAttrFields } from './config'
-import List from './List'
 import BtnField from './BtnField'
 import { Container, Draggable } from 'react-smooth-dnd'
 import { getFormComponentArr } from '../../../../utils/tools'
@@ -26,7 +25,6 @@ function Index(props) {
     tableId,
     cardActiveId,
     toolList,
-    moveCard,
     handleFinish,
     handleFinishFailed,
     handleAdd,
@@ -61,13 +59,23 @@ function Index(props) {
                   behaviour="copy"
                   groupName="col"
                 >
-                  {toolList.map((item) => (
+                  {getComponentArr().map((item) => (
                     <Draggable key={item.id} className="m-test-list-item">
-                      <div>{item.name}</div>
+                      <Col span={8}>
+                        <div
+                          className="m-component-item"
+                          onClick={() => handleAdd({ fieldInfo: item })}
+                        >
+                          <div>
+                            <Icon name={item.icon}></Icon>
+                          </div>
+                          <div>{item.title}</div>
+                        </div>
+                      </Col>
                     </Draggable>
                   ))}
                 </Container>
-                <DndProvider backend={HTML5Backend}>
+                {/* <DndProvider backend={HTML5Backend}>
                   {getComponentArr().map((fieldInfo, index) => (
                     <BtnField
                       key={index}
@@ -75,7 +83,7 @@ function Index(props) {
                       onAdd={handleAdd}
                     />
                   ))}
-                </DndProvider>
+                </DndProvider> */}
               </Row>
             </Panel>
             <Panel header="联系信息字段" key="2">
@@ -157,15 +165,6 @@ function Index(props) {
                 )
               })}
             </Container>
-            <DndProvider backend={HTML5Backend}>
-              <List
-                dataSource={dataSource}
-                cardActiveId={cardActiveId}
-                moveCard={moveCard}
-                handleCardActiveId={handleCardActiveId}
-                handleDelete={handleDelete}
-              />
-            </DndProvider>
             <Form.Item
               wrapperCol={{ offset: 4, span: 17 }}
               className="m-design-footer"

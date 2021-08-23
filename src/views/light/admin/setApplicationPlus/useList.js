@@ -4,6 +4,7 @@ import { Modal, Form, message } from 'antd'
 import update from 'immutability-helper'
 import { getRouterSearchObj } from '../../../../utils/tools'
 import { v4 as uuidv4 } from 'uuid'
+import { getComponentArr, getAttrFields } from './config'
 
 const { confirm } = Modal
 
@@ -52,22 +53,6 @@ export default function useList(props) {
       }
     })
   }
-
-  //拖动改变顺序
-  const moveCard = useCallback(
-    (dragIndex, hoverIndex) => {
-      const dragCard = dataSource[dragIndex]
-      setDataSource(
-        update(dataSource, {
-          $splice: [
-            [dragIndex, 1],
-            [hoverIndex, 0, dragCard],
-          ],
-        })
-      )
-    },
-    [dataSource]
-  )
 
   //添加新字段
   const handleAdd = ({ fieldInfo }) => {
@@ -174,7 +159,22 @@ export default function useList(props) {
   const handleGetChildPayload = ({type, index}) => {
     if (type === 'tool') {
       const id = uuidv4()
-      return {...toolList[index], id}
+      const tempList = getComponentArr()
+      const orderIndexArr = currentDataSource.map((item) => item.orderIndex)
+      const orderIndex = Math.max.apply(Math, orderIndexArr) + 1
+      const fieldInfo = tempList[index]
+      let tempValues = {
+        id,
+        dataIndex: `${fieldInfo.dataIndex}-${id}`,
+        isColumn: true,
+        isModalField: true,
+        orderIndex,
+      }
+      console.log({ ...fieldInfo, ...tempValues })
+      console.log(currentDataSource)
+      return { ...fieldInfo, ...tempValues }
+
+      //return {...tempList[index], id}
     } else if (type === 'content') {
       return dataSource[index]
     }
@@ -218,7 +218,6 @@ export default function useList(props) {
     cardActiveId,
     toolList,
     handleSearch,
-    moveCard,
     handleDelete,
     handleFinish,
     handleFinishFailed,
