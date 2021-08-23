@@ -71,50 +71,6 @@ class Cards extends Component {
   render() {
     return (
       <Container orientation="horizontal">
-        <Draggable>
-          <div>
-            <Container
-              orientation="vertical"
-              groupName="col"
-              onDrop={(e) => this.handleCardDrop(e)}
-              getChildPayload={(index) => this.handleGetChildPayload(index)}
-            >
-              <Draggable>
-                <div>
-                  1
-                </div>
-              </Draggable>
-              <Draggable>
-                <div>
-                  2
-                </div>
-              </Draggable>
-            </Container>
-          </div>
-        </Draggable>
-
-        <Draggable>
-          <div>
-            <Container
-              orientation="vertical"
-              groupName="col"
-              onDrop={(e) => this.handleCardDrop(e)}
-              getChildPayload={(index) => this.handleGetChildPayload(index)}
-            >
-              <Draggable>
-                <div>
-                  a
-                </div>
-              </Draggable>
-              <Draggable>
-                <div>
-                  b
-                </div>
-              </Draggable>
-            </Container>
-          </div>
-        </Draggable>
-
         {this.state.scene.children.map((column) => {
           return (
             <Draggable key={column.id}>

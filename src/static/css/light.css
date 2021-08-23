@@ -57,7 +57,9 @@
 .m-center-list-wrap.active{background: #edf2fd}
 .m-box-wrap{margin: 10px 0;}
 .m-box{display: inline-block; border: 1px dashed #ddd;padding: 10px;}
-.m-test-list{margin: 10px; padding: 10px; border: 1px dashed #ddd;}
+.m-test-wrap{display: flex;}
+.m-test-tool{width: 200px;margin: 10px; padding: 10px; border: 1px dashed #ddd;}
+.m-test-list{flex:1; margin: 10px; padding: 10px; border: 1px dashed #ddd;}
 .m-test-list-item{ margin: 0 0 10px 0; padding: 10px; border: 1px dashed #ddd;cursor: pointer;}
 
 

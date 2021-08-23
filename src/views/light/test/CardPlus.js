@@ -17,6 +17,21 @@ export default function CardPlus() {
     },
   ])
 
+  const [contentList, setContentList] = useState([
+    {
+      id: 0,
+      name: 'a',
+    },
+    {
+      id: 1,
+      name: 'b',
+    },
+    {
+      id: 2,
+      name: 'c',
+    },
+  ])
+
   const applyDrag = (arr, dragResult) => {
     const { removedIndex, addedIndex, payload } = dragResult
     if (removedIndex === null && addedIndex === null) return arr
@@ -40,25 +55,45 @@ export default function CardPlus() {
     return index
   }
 
-  const handleCardDrop = (dragResult) => {
+  const handleCardDrop = ({type, dragResult}) => {
     console.log(dragResult)
-    const result = applyDrag(toolList, dragResult)
-    console.log(result)
-    setToolList(result)
+    if (type === 'tool') {
+      const result = applyDrag(toolList, dragResult)
+      setToolList(result)
+    } else if (type === 'content') {
+      const result = applyDrag(contentList, dragResult)
+      setContentList(result)
+    }
+    
   }
   return (
-    <div className="m-test-list">
-      <Container
-        orientation="vertical"
-        onDrop={handleCardDrop}
-        getChildPayload={handleGetChildPayload}
-      >
-        {toolList.map((item) => (
-          <Draggable key={item.id} className="m-test-list-item">
-            <div>{item.name}</div>
-          </Draggable>
-        ))}
-      </Container>
+    <div className="m-test-wrap">
+      <div className="m-test-tool">
+        <Container
+          orientation="vertical"
+          onDrop={(dragResult ) => handleCardDrop({type:'tool', dragResult})}
+          getChildPayload={handleGetChildPayload}
+        >
+          {toolList.map((item) => (
+            <Draggable key={item.id} className="m-test-list-item">
+              <div>{item.name}</div>
+            </Draggable>
+          ))}
+        </Container>
+      </div>
+      <div className="m-test-list">
+        <Container
+          orientation="vertical"
+          onDrop={(dragResult ) => handleCardDrop({type:'content', dragResult})}
+          getChildPayload={handleGetChildPayload}
+        >
+          {contentList.map((item) => (
+            <Draggable key={item.id} className="m-test-list-item">
+              <div>{item.name}</div>
+            </Draggable>
+          ))}
+        </Container>
+      </div>
     </div>
   )
 }
