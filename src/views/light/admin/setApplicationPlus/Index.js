@@ -118,7 +118,7 @@ function Index(props) {
                     componentItem.formComponentName === item.formComponentName
                 )
                 return (
-                  <Draggable key={item.id} className="m-test-list-item">
+                  <Draggable key={item.id}>
                     <div
                       className={`m-design-card ${
                         cardActiveId === item.id ? 'active' : ''
