@@ -4,6 +4,8 @@ const Index = lazy(() => import('../views/light/index/Index'))
 const Admin = lazy(() => import('../views/light/admin/Admin'))
 const FormView = lazy(() => import('../views/light/formview/Index'))
 const Cards = lazy(() => import('../views/light/test/Cards'))
+const CardPlus = lazy(() => import('../views/light/test/CardPlus'))
+
 
 
 export default function Router() {
@@ -16,6 +18,7 @@ export default function Router() {
           <Route path="/light/admin" component={Admin}></Route>
           <Route path="/light/formview" component={FormView}></Route>
           <Route path="/light/cards" component={Cards}></Route>
+          <Route path="/light/cardPlus" component={CardPlus}></Route>
         </Switch>
       </Suspense>
     </>
