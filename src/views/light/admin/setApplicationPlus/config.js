@@ -109,6 +109,7 @@ const getColumns = (props) => {
 const getComponentArr = () => {
   return [
     {
+      id: 1,
       icon: 'input',
       title: '单行文本',
       formComponentName: "Input",
@@ -116,6 +117,7 @@ const getComponentArr = () => {
       renderFunName: "renderSpan"
     },
     {
+      id: 2,
       icon: 'textarea',
       title: '多行文本',
       formComponentName: "TextArea",
@@ -123,6 +125,31 @@ const getComponentArr = () => {
       renderFunName: "renderSpan"
     },
     {
+      id: 3,
+      icon: 'number-input',
+      title: '数字',
+      formComponentName: "InputNumber",
+      dataIndex: 'inputNumber ',
+      renderFunName: "renderSpan"
+    },
+    {
+      id: 4,
+      icon: 'input',
+      title: '单行文本',
+      formComponentName: "Input",
+      dataIndex: 'input',
+      renderFunName: "renderSpan"
+    },
+    {
+      id: 5,
+      icon: 'textarea',
+      title: '多行文本',
+      formComponentName: "TextArea",
+      dataIndex: 'textArea',
+      renderFunName: "renderSpan"
+    },
+    {
+      id: 6,
       icon: 'number-input',
       title: '数字',
       formComponentName: "InputNumber",

@@ -61,7 +61,9 @@
 .m-test-tool{width: 200px;margin: 10px; padding: 10px; border: 1px dashed #ddd;}
 .m-test-list{width: 200px;; margin: 10px; padding: 10px; border: 1px dashed #ddd;}
 .m-test-list-item{ margin: 0 0 10px 0; padding: 10px; border: 1px dashed #ddd;cursor: pointer;}
-
+.m-design-sidebar-container{}
+.m-design-sidebar-container .smooth-dnd-container{width: 100%; display: flex!important;flex-flow: row wrap;row-gap: 20px}
+.m-design-sidebar-container .smooth-dnd-draggable-wrapper{flex: 0 0 33.33333333%;}
 
 
 

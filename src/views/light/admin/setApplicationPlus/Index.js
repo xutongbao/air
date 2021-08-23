@@ -4,11 +4,8 @@ import { withRouter } from 'react-router-dom'
 import { Form, Button, Collapse, Col, Row, Input } from 'antd'
 import Header from './Header'
 import useList from './useList'
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Icon } from '../../../../components/light'
 import { getComponentArr, getAttrFields } from './config'
-import BtnField from './BtnField'
 import { Container, Draggable } from 'react-smooth-dnd'
 import { getFormComponentArr } from '../../../../utils/tools'
 
@@ -24,7 +21,6 @@ function Index(props) {
     initValuesForAttr,
     tableId,
     cardActiveId,
-    toolList,
     handleFinish,
     handleFinishFailed,
     handleAdd,
@@ -47,9 +43,9 @@ function Index(props) {
         <div className="m-design-sidebar">
           <Collapse defaultActiveKey={['1', '2', '3']}>
             <Panel header="通用字段" key="1">
-              <Row gutter={[2, 2]}>
+              <div className="m-design-sidebar-container">
                 <Container
-                  orientation="vertical"
+                  orientation="horizontal"
                   onDrop={(dragResult) =>
                     handleCardDrop({ type: 'tool', dragResult })
                   }
@@ -60,31 +56,20 @@ function Index(props) {
                   groupName="col"
                 >
                   {getComponentArr().map((item) => (
-                    <Draggable key={item.id} className="m-test-list-item">
-                      <Col span={8}>
-                        <div
-                          className="m-component-item"
-                          onClick={() => handleAdd({ fieldInfo: item })}
-                        >
-                          <div>
-                            <Icon name={item.icon}></Icon>
-                          </div>
-                          <div>{item.title}</div>
+                    <Draggable key={item.id}>
+                      <div
+                        className="m-component-item"
+                        onClick={() => handleAdd({ fieldInfo: item })}
+                      >
+                        <div>
+                          <Icon name={item.icon}></Icon>
                         </div>
-                      </Col>
+                        <div>{item.title}</div>
+                      </div>
                     </Draggable>
                   ))}
                 </Container>
-                {/* <DndProvider backend={HTML5Backend}>
-                  {getComponentArr().map((fieldInfo, index) => (
-                    <BtnField
-                      key={index}
-                      fieldInfo={fieldInfo}
-                      onAdd={handleAdd}
-                    />
-                  ))}
-                </DndProvider> */}
-              </Row>
+              </div>
             </Panel>
             <Panel header="联系信息字段" key="2">
               <Row gutter={[2, 2]}>

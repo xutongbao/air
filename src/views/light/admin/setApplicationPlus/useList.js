@@ -1,10 +1,9 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import Api from '../../../../api'
 import { Modal, Form, message } from 'antd'
-import update from 'immutability-helper'
 import { getRouterSearchObj } from '../../../../utils/tools'
 import { v4 as uuidv4 } from 'uuid'
-import { getComponentArr, getAttrFields } from './config'
+import { getComponentArr } from './config'
 
 const { confirm } = Modal
 
@@ -16,20 +15,6 @@ export default function useList(props) {
   const [applicationTitle, setApplicationTitle] = useState()
   const [cardActiveId, setCardActiveId] = useState()
   const [initValuesForAttr, setInitValuesForAttr] = useState({})
-  const [toolList, setToolList] = useState([
-    {
-      id: 't0',
-      name: '1',
-    },
-    {
-      id: 't1',
-      name: '2',
-    },
-    {
-      id: 't2',
-      name: '3',
-    },
-  ])
 
   //获取路由参数
   const routerSearchObj = getRouterSearchObj(props)
@@ -183,8 +168,8 @@ export default function useList(props) {
   const handleCardDrop = ({ type, dragResult }) => {
     console.log(dragResult)
     if (type === 'tool') {
-      const result = applyDrag(toolList, dragResult)
-      setToolList(result)
+      //const result = applyDrag(toolList, dragResult)
+      //setToolList(result)
     } else if (type === 'content') {
       const result = applyDrag(dataSource, dragResult)
       setDataSource(result)
@@ -216,7 +201,6 @@ export default function useList(props) {
     addInitValues,
     tableId,
     cardActiveId,
-    toolList,
     handleSearch,
     handleDelete,
     handleFinish,
