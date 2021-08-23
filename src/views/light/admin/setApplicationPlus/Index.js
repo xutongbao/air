@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Form, Button, Collapse, Col, Row } from 'antd'
+import { Form, Button, Collapse, Col, Row, Input } from 'antd'
 import Header from './Header'
 import useList from './useList'
 import { DndProvider } from 'react-dnd'
@@ -10,6 +10,8 @@ import { Icon } from '../../../../components/light'
 import { getComponentArr, getAttrFields } from './config'
 import List from './List'
 import BtnField from './BtnField'
+import { Container, Draggable } from 'react-smooth-dnd'
+import { getFormComponentArr } from '../../../../utils/tools'
 
 const { Panel } = Collapse
 
@@ -23,6 +25,7 @@ function Index(props) {
     initValuesForAttr,
     tableId,
     cardActiveId,
+    toolList,
     moveCard,
     handleFinish,
     handleFinishFailed,
@@ -31,6 +34,8 @@ function Index(props) {
     handleCardActiveId,
     handleValuesChange,
     handleDelete,
+    handleGetChildPayload,
+    handleCardDrop,
   } = useList(props)
 
   return (
@@ -45,9 +50,30 @@ function Index(props) {
           <Collapse defaultActiveKey={['1', '2', '3']}>
             <Panel header="通用字段" key="1">
               <Row gutter={[2, 2]}>
+                <Container
+                  orientation="vertical"
+                  onDrop={(dragResult) =>
+                    handleCardDrop({ type: 'tool', dragResult })
+                  }
+                  getChildPayload={(index) =>
+                    handleGetChildPayload({ type: 'tool', index })
+                  }
+                  behaviour="copy"
+                  groupName="col"
+                >
+                  {toolList.map((item) => (
+                    <Draggable key={item.id} className="m-test-list-item">
+                      <div>{item.name}</div>
+                    </Draggable>
+                  ))}
+                </Container>
                 <DndProvider backend={HTML5Backend}>
                   {getComponentArr().map((fieldInfo, index) => (
-                    <BtnField key={index} fieldInfo={fieldInfo} onAdd={handleAdd} />
+                    <BtnField
+                      key={index}
+                      fieldInfo={fieldInfo}
+                      onAdd={handleAdd}
+                    />
                   ))}
                 </DndProvider>
               </Row>
@@ -83,6 +109,54 @@ function Index(props) {
             onFinish={handleFinish}
             onFinishFailed={handleFinishFailed}
           >
+            <Container
+              orientation="vertical"
+              onDrop={(dragResult) =>
+                handleCardDrop({ type: 'content', dragResult })
+              }
+              getChildPayload={(index) =>
+                handleGetChildPayload({ type: 'content', index })
+              }
+              groupName="col"
+            >
+              {dataSource.map((item) => {
+                const result = getFormComponentArr().find(
+                  (componentItem) =>
+                    componentItem.formComponentName === item.formComponentName
+                )
+                return (
+                  <Draggable key={item.id} className="m-test-list-item">
+                    <div
+                      className={`m-design-card ${
+                        cardActiveId === item.id ? 'active' : ''
+                      }`}
+                      onClick={() => handleCardActiveId({ id: item.id })}
+                    >
+                      <div className="m-design-card-info">
+                        <Form.Item
+                          key={item.id}
+                          label={item.title}
+                          name={item.dataIndex}
+                          rules={item.rules}
+                        >
+                          {result ? result.component : <Input></Input>}
+                        </Form.Item>
+                      </div>
+                      <div className="m-design-card-action">
+                        <Button
+                          className="m-action-btn"
+                          size="small"
+                          danger
+                          onClick={() => handleDelete(item)}
+                        >
+                          删除
+                        </Button>
+                      </div>
+                    </div>
+                  </Draggable>
+                )
+              })}
+            </Container>
             <DndProvider backend={HTML5Backend}>
               <List
                 dataSource={dataSource}

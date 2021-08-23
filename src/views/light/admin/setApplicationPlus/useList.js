@@ -15,6 +15,20 @@ export default function useList(props) {
   const [applicationTitle, setApplicationTitle] = useState()
   const [cardActiveId, setCardActiveId] = useState()
   const [initValuesForAttr, setInitValuesForAttr] = useState({})
+  const [toolList, setToolList] = useState([
+    {
+      id: 't0',
+      name: '1',
+    },
+    {
+      id: 't1',
+      name: '2',
+    },
+    {
+      id: 't2',
+      name: '3',
+    },
+  ])
 
   //获取路由参数
   const routerSearchObj = getRouterSearchObj(props)
@@ -139,6 +153,44 @@ export default function useList(props) {
     setDataSource([...dataSource])
   }
 
+  const applyDrag = (arr, dragResult) => {
+    const { removedIndex, addedIndex, payload } = dragResult
+    if (removedIndex === null && addedIndex === null) return arr
+
+    const result = [...arr]
+    let itemToAdd = payload
+
+    if (removedIndex !== null) {
+      itemToAdd = result.splice(removedIndex, 1)[0]
+    }
+
+    if (addedIndex !== null) {
+      result.splice(addedIndex, 0, itemToAdd)
+    }
+
+    return result
+  }
+
+  const handleGetChildPayload = ({type, index}) => {
+    if (type === 'tool') {
+      const id = uuidv4()
+      return {...toolList[index], id}
+    } else if (type === 'content') {
+      return dataSource[index]
+    }
+  }
+
+  const handleCardDrop = ({ type, dragResult }) => {
+    console.log(dragResult)
+    if (type === 'tool') {
+      const result = applyDrag(toolList, dragResult)
+      setToolList(result)
+    } else if (type === 'content') {
+      const result = applyDrag(dataSource, dragResult)
+      setDataSource(result)
+    }
+  }  
+
   useEffect(() => {
     formForAttr.resetFields()
     // eslint-disable-next-line
@@ -164,6 +216,7 @@ export default function useList(props) {
     addInitValues,
     tableId,
     cardActiveId,
+    toolList,
     handleSearch,
     moveCard,
     handleDelete,
@@ -173,5 +226,7 @@ export default function useList(props) {
     handleSave,
     handleCardActiveId,
     handleValuesChange,
+    handleGetChildPayload,
+    handleCardDrop, 
   }
 }
