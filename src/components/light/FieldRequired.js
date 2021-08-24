@@ -27,7 +27,7 @@ export default function FieldRequired({ value = {}, onChange }) {
 
   let checked = false
   let tempMessage = ''
-  if (typeof value.required === 'boolean') {
+  if (value && typeof value.required === 'boolean') {
     checked = value.required
     tempMessage = value.message
   } else {

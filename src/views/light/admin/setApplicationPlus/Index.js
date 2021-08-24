@@ -148,7 +148,9 @@ function Index(props) {
                               wrapperCol={24}
                             >
                               {result ? (
-                                result.getComponent({ props: item.props })
+                                result.getComponent({ props: {
+                                  src: item.src
+                                } })
                               ) : (
                                 <Input></Input>
                               )}

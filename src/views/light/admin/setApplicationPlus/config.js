@@ -1,5 +1,5 @@
 import { Form, Input } from 'antd'
-import { FieldRequired } from '../../../../components/light'
+import { FieldRequired, UploadImgLight } from '../../../../components/light'
 
 //组件元素
 const getComponentArr = () => {
@@ -47,9 +47,8 @@ const getComponentArr = () => {
       type: 'image',
       isHasRules: false,
       isHasPlaceHolder: false,
-      props: {
-        src: 'https://www.jsform.com/rs/images/defaultimg.png'
-      }
+      //默认图片
+      src: 'https://www.jsform.com/rs/images/defaultimg.png',
     },
     {
       id: 5,
@@ -102,6 +101,11 @@ const getAttrFields = ({ initValuesForAttr }) => {
       {initValuesForAttr.isHasRules && (
         <Form.Item label="字段必填" name="rules">
           <FieldRequired></FieldRequired>
+        </Form.Item>
+      )}
+      {initValuesForAttr.type === 'image' && (
+        <Form.Item label="上传图片" name="src">
+          <UploadImgLight></UploadImgLight>
         </Form.Item>
       )}
     </>
