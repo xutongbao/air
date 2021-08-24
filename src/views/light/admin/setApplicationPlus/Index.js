@@ -1,15 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Form, Button, Collapse, Col, Row } from 'antd'
+import { Form, Button, Collapse, Col, Row, Input } from 'antd'
 import Header from './Header'
 import useList from './useList'
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Icon } from '../../../../components/light'
 import { getComponentArr, getAttrFields } from './config'
-import List from './List'
-import BtnField from './BtnField'
+import { Container, Draggable } from 'react-smooth-dnd'
+import { getFormComponentArr } from '../../../../utils/tools'
 
 const { Panel } = Collapse
 
@@ -23,7 +21,6 @@ function Index(props) {
     initValuesForAttr,
     tableId,
     cardActiveId,
-    moveCard,
     handleFinish,
     handleFinishFailed,
     handleAdd,
@@ -31,6 +28,8 @@ function Index(props) {
     handleCardActiveId,
     handleValuesChange,
     handleDelete,
+    handleGetChildPayload,
+    handleCardDrop,
   } = useList(props)
 
   return (
@@ -44,13 +43,33 @@ function Index(props) {
         <div className="m-design-sidebar">
           <Collapse defaultActiveKey={['1', '2', '3']}>
             <Panel header="通用字段" key="1">
-              <Row gutter={[2, 2]}>
-                <DndProvider backend={HTML5Backend}>
-                  {getComponentArr().map((fieldInfo, index) => (
-                    <BtnField key={index} fieldInfo={fieldInfo} onAdd={handleAdd} />
+              <div className="m-design-sidebar-container">
+                <Container
+                  orientation="horizontal"
+                  onDrop={(dragResult) =>
+                    handleCardDrop({ type: 'tool', dragResult })
+                  }
+                  getChildPayload={(index) =>
+                    handleGetChildPayload({ type: 'tool', index })
+                  }
+                  behaviour="copy"
+                  groupName="col"
+                >
+                  {getComponentArr().map((item) => (
+                    <Draggable key={item.id}>
+                      <div
+                        className="m-component-item"
+                        onClick={() => handleAdd({ fieldInfo: item })}
+                      >
+                        <div>
+                          <Icon name={item.icon}></Icon>
+                        </div>
+                        <div>{item.title}</div>
+                      </div>
+                    </Draggable>
                   ))}
-                </DndProvider>
-              </Row>
+                </Container>
+              </div>
             </Panel>
             <Panel header="联系信息字段" key="2">
               <Row gutter={[2, 2]}>
@@ -83,15 +102,80 @@ function Index(props) {
             onFinish={handleFinish}
             onFinishFailed={handleFinishFailed}
           >
-            <DndProvider backend={HTML5Backend}>
-              <List
-                dataSource={dataSource}
-                cardActiveId={cardActiveId}
-                moveCard={moveCard}
-                handleCardActiveId={handleCardActiveId}
-                handleDelete={handleDelete}
-              />
-            </DndProvider>
+            <div className="m-design-card-wrap">
+              <Container
+                orientation="vertical"
+                onDrop={(dragResult) =>
+                  handleCardDrop({ type: 'content', dragResult })
+                }
+                getChildPayload={(index) =>
+                  handleGetChildPayload({ type: 'content', index })
+                }
+                groupName="col"
+              >
+                {dataSource.map((item) => {
+                  const result = getFormComponentArr().find(
+                    (componentItem) =>
+                      componentItem.formComponentName === item.formComponentName
+                  )
+                  return (
+                    <Draggable key={item.id}>
+                      <div
+                        className={`m-design-card ${
+                          cardActiveId === item.id ? 'active' : ''
+                        }`}
+                        onClick={() => handleCardActiveId({ id: item.id })}
+                      >
+                        <div className="m-design-card-info">
+                          {item.type === 'formItem' && (
+                            <Form.Item
+                              key={item.id}
+                              label={item.title}
+                              name={item.dataIndex}
+                              rules={item.rules}
+                            >
+                              {result ? (
+                                result.getComponent({ props: item.props })
+                              ) : (
+                                <Input></Input>
+                              )}
+                            </Form.Item>
+                          )}
+                          {item.type === 'image' && (
+                            <Form.Item
+                              key={item.id}
+                              name={item.dataIndex}
+                              wrapperCol={24}
+                            >
+                              {result ? (
+                                result.getComponent({
+                                  props: {
+                                    src: item.src,
+                                  },
+                                })
+                              ) : (
+                                <Input></Input>
+                              )}
+                            </Form.Item>
+                          )}
+                        </div>
+                        <div
+                          className={`m-design-card-action ${
+                            cardActiveId === item.id ? 'active' : ''
+                          }`}
+                        >
+                          <Icon
+                            name="delete"
+                            className="m-design-card-delete"
+                            onClick={(e) => handleDelete(e, item)}
+                          ></Icon>
+                        </div>
+                      </div>
+                    </Draggable>
+                  )
+                })}
+              </Container>
+            </div>
             <Form.Item
               wrapperCol={{ offset: 4, span: 17 }}
               className="m-design-footer"
@@ -120,10 +204,15 @@ function Index(props) {
             initialValues={{ ...initValuesForAttr }}
             scrollToFirstError={true}
             onValuesChange={handleValuesChange}
+            onFinish={handleFinish}
             id="m-set-application-modal-form"
             className="m-set-application-modal-form"
           >
-            {getAttrFields()}
+            {cardActiveId ? (
+              getAttrFields({ initValuesForAttr })
+            ) : (
+              <div className="m-empty-text">请选择字段</div>
+            )}
           </Form>
         </div>
       </div>

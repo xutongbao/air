@@ -12,6 +12,7 @@ function Index(props) {
     modalFields,
     isShowResult,
     title,
+    isImageFirst,
     handleFinish,
     handleFinishFailed,
   } = useList(props)
@@ -28,7 +29,7 @@ function Index(props) {
           ></Result>
         ) : (
           <>
-            <div className="m-formview-header">{title}</div>
+            <div className={`m-formview-header ${isImageFirst ? 'image-first' : ''}`}>{title}</div>
             <Form
               form={form}
               labelCol={{ span: 4 }}

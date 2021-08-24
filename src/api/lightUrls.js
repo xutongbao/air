@@ -1,5 +1,8 @@
+import { baseURL } from '../utils/config'
 
 const urls = {
+  testUpload: baseURL + '/api/upload', //不是axios发起的请求，需要特殊处
+
   templateSearch: '/api/template/search',
   templateAdd: '/api/template/add',
   templateDelete: '/api/template/delete',

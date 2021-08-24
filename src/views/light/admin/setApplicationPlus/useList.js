@@ -1,9 +1,9 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import Api from '../../../../api'
 import { Modal, Form, message } from 'antd'
-import update from 'immutability-helper'
 import { getRouterSearchObj } from '../../../../utils/tools'
 import { v4 as uuidv4 } from 'uuid'
+import { getComponentArr } from './config'
 
 const { confirm } = Modal
 
@@ -18,7 +18,7 @@ export default function useList(props) {
 
   //获取路由参数
   const routerSearchObj = getRouterSearchObj(props)
-  const tableId = routerSearchObj.id - 0
+  const tableId = routerSearchObj.id
 
   const addInitValues = {}
 
@@ -39,23 +39,7 @@ export default function useList(props) {
     })
   }
 
-  //拖动改变顺序
-  const moveCard = useCallback(
-    (dragIndex, hoverIndex) => {
-      const dragCard = dataSource[dragIndex]
-      setDataSource(
-        update(dataSource, {
-          $splice: [
-            [dragIndex, 1],
-            [hoverIndex, 0, dragCard],
-          ],
-        })
-      )
-    },
-    [dataSource]
-  )
-
-  //添加新字段
+  //点击时按钮，添加新字段
   const handleAdd = ({ fieldInfo }) => {
     const orderIndexArr = currentDataSource.map((item) => item.orderIndex)
     const orderIndex = Math.max.apply(Math, orderIndexArr) + 1
@@ -69,7 +53,17 @@ export default function useList(props) {
     }
     console.log({ ...fieldInfo, ...tempValues })
     console.log(currentDataSource)
-    setDataSource([...currentDataSource, { ...fieldInfo, ...tempValues }])
+    const tempDataSource = [
+      ...currentDataSource,
+      { ...fieldInfo, ...tempValues },
+    ]
+    setDataSource(tempDataSource)
+    if (Array.isArray(tempDataSource) && tempDataSource.length > 0) {
+      handleCardActiveId({
+        id,
+        myDataSource: tempDataSource,
+      })
+    }
   }
 
   //保存
@@ -89,18 +83,31 @@ export default function useList(props) {
   }
 
   //删除
-  const handleDelete = (record) => {
+  const handleDelete = (e, record) => {
+    e.stopPropagation()
     console.log('删除, id:', record.id)
     confirm({
       title: '确认要删除吗？',
       onOk() {
-        const newDataSource = dataSource.filter(item => item.id !== record.id)
-        setDataSource(newDataSource)
+        const tempDataSource = dataSource.filter(
+          (item) => item.id !== record.id
+        )
+        setDataSource(tempDataSource)
+        if (Array.isArray(tempDataSource) && tempDataSource.length > 0) {
+          if (record.id === cardActiveId) {
+            handleCardActiveId({
+              id: tempDataSource[0].id,
+              myDataSource: tempDataSource,
+            })
+          }
+        } else {
+          setCardActiveId(false)
+        }
       },
     })
   }
 
-  //添加或编辑
+  //提交按钮
   const handleFinish = (values) => {
     console.log('Success:', values)
   }
@@ -114,21 +121,29 @@ export default function useList(props) {
   const handleCardActiveId = ({ id, myDataSource = dataSource }) => {
     setCardActiveId(id)
     let currentItem = myDataSource.find((item) => item.id === id)
-    const rules =
+    let rules =
       Array.isArray(currentItem.rules) && currentItem.rules.length > 0
         ? currentItem.rules[0]
-        : {}
+        : {
+            message: `${currentItem.title}不能为空`,
+          }
     setInitValuesForAttr({ ...currentItem, rules })
   }
 
   //修改表单字段属性
   const handleValuesChange = (changedValues, allValues) => {
+    const temp = formForAttr.getFieldsValue()
+    console.log(temp)
     const cardActiveIndex = dataSource.findIndex(
       (item) => item.id === cardActiveId
     )
 
     let tempValues = {
       rules: [allValues.rules],
+      props: {
+        placeholder: allValues.placeholder,
+      },
+      //src: 'https://jsformimages.biaodan.info/611f6c2afc918f46dd5ee186.jpg'
     }
 
     dataSource[cardActiveIndex] = {
@@ -137,6 +152,61 @@ export default function useList(props) {
       ...tempValues,
     }
     setDataSource([...dataSource])
+  }
+
+  //拖拽处理函数
+  const applyDrag = (arr, dragResult) => {
+    const { removedIndex, addedIndex, payload } = dragResult
+    if (removedIndex === null && addedIndex === null) return arr
+
+    const result = [...arr]
+    let itemToAdd = payload
+
+    if (removedIndex !== null) {
+      itemToAdd = result.splice(removedIndex, 1)[0]
+    }
+
+    if (addedIndex !== null) {
+      result.splice(addedIndex, 0, itemToAdd)
+    }
+
+    return result
+  }
+
+  //获取拖拽元素的值
+  const handleGetChildPayload = ({ type, index }) => {
+    if (type === 'tool') {
+      const id = uuidv4()
+      const tempList = getComponentArr()
+      const orderIndexArr = currentDataSource.map((item) => item.orderIndex)
+      const orderIndex = Math.max.apply(Math, orderIndexArr) + 1
+      const fieldInfo = tempList[index]
+      let tempValues = {
+        id,
+        dataIndex: `${fieldInfo.dataIndex}-${id}`,
+        isColumn: true,
+        isModalField: true,
+        orderIndex,
+      }
+      return { ...fieldInfo, ...tempValues }
+    } else if (type === 'content') {
+      return dataSource[index]
+    }
+  }
+
+  //拖拽结束时修改数据状态
+  const handleCardDrop = ({ type, dragResult }) => {
+    if (type === 'tool') {
+    } else if (type === 'content') {
+      const tempDataSource = applyDrag(dataSource, dragResult)
+      setDataSource(tempDataSource)
+      if (Array.isArray(tempDataSource) && tempDataSource.length > 0) {
+        handleCardActiveId({
+          id: dragResult.payload.id,
+          myDataSource: tempDataSource,
+        })
+      }
+    }
   }
 
   useEffect(() => {
@@ -165,7 +235,6 @@ export default function useList(props) {
     tableId,
     cardActiveId,
     handleSearch,
-    moveCard,
     handleDelete,
     handleFinish,
     handleFinishFailed,
@@ -173,5 +242,7 @@ export default function useList(props) {
     handleSave,
     handleCardActiveId,
     handleValuesChange,
+    handleGetChildPayload,
+    handleCardDrop,
   }
 }

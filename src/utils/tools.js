@@ -64,22 +64,40 @@ const getHost = (url) => {
 const getFormComponentArr = () => {
   return [
     {
-      id: 0,
+      id: 1,
       title: '单行文本',
       formComponentName: 'Input',
       component: <Input></Input>,
-    },
-    {
-      id: 1,
-      title: '多行文本',
-      formComponentName: 'TextArea',
-      component: <TextArea></TextArea>,
+      getComponent: ({props}) => {
+        return <Input {...props}></Input>
+      }
     },
     {
       id: 2,
+      title: '多行文本',
+      formComponentName: 'TextArea',
+      component: <TextArea></TextArea>,
+      getComponent: ({props}) => {
+        return <TextArea {...props}></TextArea>
+      }
+    },
+    {
+      id: 3,
       title: '数字',
       formComponentName: 'InputNumber',
       component: <InputNumber style={{width: '100%'}}></InputNumber>,
+      getComponent: ({props}) => {
+        return <InputNumber style={{width: '100%'}} {...props}></InputNumber>
+      }
+    },
+    {
+      id: 4,
+      title: '图片',
+      formComponentName: 'Image',
+      component: <img style={{width: '100%'}} alt="图片"></img>,
+      getComponent: ({props}) => {
+        return <img style={{width: '100%'}}  {...props} alt="图片"></img>
+      }
     },
   ]
 }
@@ -88,7 +106,7 @@ const getFormComponentArr = () => {
 const getRenderFunArr = () => {
   return [
     {
-      id: 0,
+      id: 1,
       title: 'span标签',
       renderFunName: 'renderSpan',
       formComponentNameArr: ['Input', 'TextArea'],
@@ -97,12 +115,21 @@ const getRenderFunArr = () => {
       },
     },
     {
-      id: 1,
+      id: 2,
       title: '日期',
       renderFunName: 'renderDatetime',
       formComponentNameArr: [],
       render: (text) => {
         return <span>{text ? moment(text).format('YYYY-MM-DD HH:mm:ss') : ''}</span>
+      },
+    },
+    {
+      id: 3,
+      title: '图片',
+      renderFunName: 'renderImage',
+      formComponentNameArr: ['Image'],
+      render: (text) => {
+        return <img alt="图片" src={text}></img>
       },
     },
   ]

@@ -13,11 +13,12 @@ export default function useList(props) {
   const [initValues, setInitValues] = useState({})
   const [isShowResult, setIsShowResult] = useState(false)
   const [title, setTitle] = useState('')
+  const [isImageFirst, setIsImageFirst] = useState(false)
 
 
   //获取路由参数
   const routerSearchObj = getRouterSearchObj(props)
-  const tableId = routerSearchObj.id - 0
+  const tableId = routerSearchObj.id
 
   //搜索
   const handleSearch = () => {
@@ -25,8 +26,15 @@ export default function useList(props) {
       .fieldsSearch({ tableId })
       .then((res) => {
         if (res.code === 200) {
+          const fields = res.data.fields
           setModalFields(getModalFields(res.data.fields))
           setTitle(res.data.title)
+          const tempFields = fields.filter(item => item.isModalField)
+          if (Array.isArray(tempFields) && tempFields.length > 0) {
+            if (tempFields[0].type === 'image') {
+              setIsImageFirst(true)
+            }
+          }
         }
       })
   }
@@ -58,6 +66,7 @@ export default function useList(props) {
     modalFields,
     isShowResult,
     title,
+    isImageFirst,
     handleSearch,
     handleFinish,
     handleFinishFailed,
