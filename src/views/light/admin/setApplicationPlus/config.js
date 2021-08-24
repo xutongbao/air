@@ -31,7 +31,7 @@ const getComponentArr = () => {
       icon: 'number-input',
       title: '数字',
       formComponentName: 'InputNumber',
-      dataIndex: 'inputNumber ',
+      dataIndex: 'inputNumber',
       renderFunName: 'renderSpan',
       type: 'formItem',
       isHasRules: true,

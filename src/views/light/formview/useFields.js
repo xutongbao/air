@@ -36,6 +36,7 @@ export default function useFields() {
               label={item.title}
               name={item.dataIndex}
               rules={item.rules}
+              className="m-formview-formitem"
             >
               {result ? (
                 result.getComponent({ props: item.props })

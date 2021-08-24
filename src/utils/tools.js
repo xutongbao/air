@@ -126,7 +126,7 @@ const getRenderFunArr = () => {
     {
       id: 3,
       title: '图片',
-      renderFunName: 'renderImgage',
+      renderFunName: 'renderImage',
       formComponentNameArr: ['Image'],
       render: (text) => {
         return <img alt="图片" src={text}></img>
