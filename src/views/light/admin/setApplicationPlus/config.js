@@ -11,6 +11,7 @@ const getComponentArr = () => {
       formComponentName: 'Input',
       dataIndex: 'input',
       renderFunName: 'renderSpan',
+      type: 'formItem',
       isHasRules: true,
       isHasPlaceHolder: true,
     },
@@ -21,6 +22,7 @@ const getComponentArr = () => {
       formComponentName: 'TextArea',
       dataIndex: 'textArea',
       renderFunName: 'renderSpan',
+      type: 'formItem',
       isHasRules: true,
       isHasPlaceHolder: true,
     },
@@ -31,6 +33,7 @@ const getComponentArr = () => {
       formComponentName: 'InputNumber',
       dataIndex: 'inputNumber ',
       renderFunName: 'renderSpan',
+      type: 'formItem',
       isHasRules: true,
       isHasPlaceHolder: true,
     },
@@ -41,8 +44,12 @@ const getComponentArr = () => {
       formComponentName: 'Image',
       dataIndex: 'image',
       renderFunName: 'renderImage',
+      type: 'image',
       isHasRules: false,
       isHasPlaceHolder: false,
+      props: {
+        src: 'https://www.jsform.com/rs/images/defaultimg.png'
+      }
     },
     {
       id: 5,
@@ -51,6 +58,7 @@ const getComponentArr = () => {
       formComponentName: 'Select',
       dataIndex: 'select',
       renderFunName: 'renderSelect',
+      type: 'formItem',
       isHasRules: true,
       isHasPlaceHolder: true,
     },

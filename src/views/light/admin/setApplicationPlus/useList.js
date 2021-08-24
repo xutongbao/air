@@ -140,6 +140,7 @@ export default function useList(props) {
       rules: [allValues.rules],
       props: {
         placeholder: allValues.placeholder,
+        src: 'https://jsformimages.biaodan.info/611f6c2afc918f46dd5ee186.jpg'
       },
     }
 

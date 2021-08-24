@@ -127,22 +127,44 @@ function Index(props) {
                         onClick={() => handleCardActiveId({ id: item.id })}
                       >
                         <div className="m-design-card-info">
-                          <Form.Item
-                            key={item.id}
-                            label={item.title}
-                            name={item.dataIndex}
-                            rules={item.rules}
-                          >
-                            {result ? result.getComponent({props: item.props}) : <Input></Input>}
-                          </Form.Item>
+                          {item.type === 'formItem' && (
+                            <Form.Item
+                              key={item.id}
+                              label={item.title}
+                              name={item.dataIndex}
+                              rules={item.rules}
+                            >
+                              {result ? (
+                                result.getComponent({ props: item.props })
+                              ) : (
+                                <Input></Input>
+                              )}
+                            </Form.Item>
+                          )}
+                          {item.type === 'image' && (
+                            <Form.Item
+                              key={item.id}
+                              name={item.dataIndex}
+                              wrapperCol={24}
+                            >
+                              {result ? (
+                                result.getComponent({ props: item.props })
+                              ) : (
+                                <Input></Input>
+                              )}
+                            </Form.Item>
+                          )}
                         </div>
-                        <div className={`m-design-card-action ${cardActiveId === item.id ? 'active' : ''}`}>
+                        <div
+                          className={`m-design-card-action ${
+                            cardActiveId === item.id ? 'active' : ''
+                          }`}
+                        >
                           <Icon
                             name="delete"
                             className="m-design-card-delete"
                             onClick={(e) => handleDelete(e, item)}
-                          >
-                          </Icon>
+                          ></Icon>
                         </div>
                       </div>
                     </Draggable>
@@ -182,7 +204,7 @@ function Index(props) {
             className="m-set-application-modal-form"
           >
             {cardActiveId ? (
-              getAttrFields({initValuesForAttr})
+              getAttrFields({ initValuesForAttr })
             ) : (
               <div className="m-empty-text">请选择字段</div>
             )}
