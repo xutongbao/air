@@ -14,6 +14,7 @@ const getComponentArr = () => {
       type: 'formItem',
       isHasRules: true,
       isHasPlaceHolder: true,
+      isColumn: true,
     },
     {
       id: 2,
@@ -25,6 +26,7 @@ const getComponentArr = () => {
       type: 'formItem',
       isHasRules: true,
       isHasPlaceHolder: true,
+      isColumn: true,
     },
     {
       id: 3,
@@ -36,6 +38,7 @@ const getComponentArr = () => {
       type: 'formItem',
       isHasRules: true,
       isHasPlaceHolder: true,
+      isColumn: true,
     },
     {
       id: 4,
@@ -47,7 +50,8 @@ const getComponentArr = () => {
       type: 'image',
       isHasRules: false,
       isHasPlaceHolder: false,
-      src: 'https://www.jsform.com/rs/images/defaultimg.png'
+      src: 'https://www.jsform.com/rs/images/defaultimg.png',
+      isColumn: false,
     },
     // {
     //   id: 5,

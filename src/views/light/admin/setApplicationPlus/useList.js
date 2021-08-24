@@ -47,7 +47,6 @@ export default function useList(props) {
     let tempValues = {
       id,
       dataIndex: `${fieldInfo.dataIndex}-${id}`,
-      isColumn: true,
       isModalField: true,
       orderIndex,
     }
@@ -184,7 +183,6 @@ export default function useList(props) {
       let tempValues = {
         id,
         dataIndex: `${fieldInfo.dataIndex}-${id}`,
-        isColumn: true,
         isModalField: true,
         orderIndex,
       }

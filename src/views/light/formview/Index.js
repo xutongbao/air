@@ -39,7 +39,7 @@ function Index(props) {
               onFinishFailed={handleFinishFailed}
             >
               {modalFields}
-              <Form.Item wrapperCol={{ offset: 4, span: 17 }}>
+              <Form.Item wrapperCol={{ offset: 4, span: 17 }} className="m-formview-formitem">
                 <Button type="primary" htmlType="submit" className="m-space">
                   <Icon name="submit" className="m-tool-btn-icon"></Icon>
                   提交

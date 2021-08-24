@@ -27,7 +27,7 @@ export default function useList(props) {
 
   //获取路由参数
   const routerSearchObj = getRouterSearchObj(props)
-  const tableId = routerSearchObj.id - 0
+  const tableId = routerSearchObj.id
 
   const addInitValues = {}
 
