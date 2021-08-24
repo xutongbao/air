@@ -138,12 +138,13 @@ const getComponentArr = () => {
       title: '图片',
       formComponentName: "Image",
       dataIndex: 'image',
-      renderFunName: "renderImage"
+      renderFunName: "renderImage",
+      isHasRules: false,
     },
     {
       id: 5,
       icon: 'select',
-      title: '多行文本',
+      title: '下拉列表',
       formComponentName: "Select",
       dataIndex: 'select',
       renderFunName: "renderSelect"

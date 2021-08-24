@@ -53,7 +53,14 @@ export default function useList(props) {
     }
     console.log({ ...fieldInfo, ...tempValues })
     console.log(currentDataSource)
-    setDataSource([...currentDataSource, { ...fieldInfo, ...tempValues }])
+    const tempDataSource = [...currentDataSource, { ...fieldInfo, ...tempValues }]
+    setDataSource(tempDataSource)
+    if (Array.isArray(tempDataSource) && tempDataSource.length > 0) {
+      handleCardActiveId({
+        id,
+        myDataSource: tempDataSource,
+      })
+    }
   }
 
   //保存
@@ -73,13 +80,24 @@ export default function useList(props) {
   }
 
   //删除
-  const handleDelete = (record) => {
+  const handleDelete = (e, record) => {
+    e.stopPropagation()
     console.log('删除, id:', record.id)
     confirm({
       title: '确认要删除吗？',
       onOk() {
-        const newDataSource = dataSource.filter(item => item.id !== record.id)
-        setDataSource(newDataSource)
+        const tempDataSource = dataSource.filter(item => item.id !== record.id)
+        setDataSource(tempDataSource)
+        if (Array.isArray(tempDataSource) && tempDataSource.length > 0) {
+          if (record.id === cardActiveId) {
+            handleCardActiveId({
+              id: tempDataSource[0].id,
+              myDataSource: tempDataSource,
+            })
+          }
+        } else {
+          setCardActiveId(false)
+        }
       },
     })
   }
@@ -98,10 +116,12 @@ export default function useList(props) {
   const handleCardActiveId = ({ id, myDataSource = dataSource }) => {
     setCardActiveId(id)
     let currentItem = myDataSource.find((item) => item.id === id)
-    const rules =
+    let rules =
       Array.isArray(currentItem.rules) && currentItem.rules.length > 0
         ? currentItem.rules[0]
-        : {}
+        : {
+          message: `${currentItem.title}不能为空` 
+        }
     setInitValuesForAttr({ ...currentItem, rules })
   }
 
@@ -165,8 +185,14 @@ export default function useList(props) {
     if (type === 'tool') {
 
     } else if (type === 'content') {
-      const result = applyDrag(dataSource, dragResult)
-      setDataSource(result)
+      const tempDataSource = applyDrag(dataSource, dragResult)
+      setDataSource(tempDataSource)
+      if (Array.isArray(tempDataSource) && tempDataSource.length > 0) {
+        handleCardActiveId({
+          id: dragResult.payload.id,
+          myDataSource: tempDataSource,
+        })
+      }
     }
   }  
 

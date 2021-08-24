@@ -20,6 +20,7 @@
 .m-admin-logo{line-height: 50px;height: 50px; font-size: 20px;font-weight: bold;text-align: center;border-bottom: 1px solid #333;}
 .m-header-title{padding: 0 0 0 20px; font-weight: bold;font-size: 18px;}
 .m-empty-page{flex:1;line-height: 300px; text-align: center;color: #ddd;font-size: 50px;overflow-y: auto;background-color: #f0f2f5;}
+.m-empty-text{line-height: 300px;text-align: center;color: #ddd;font-size: 30px;}
 .m-space{margin: 0 8px 0 0;}
 .m-action{text-align: left;}
 .m-action-btn{margin: 1px 2px; font-size: 12;}
