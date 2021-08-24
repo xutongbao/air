@@ -39,7 +39,7 @@ export default function useList(props) {
     })
   }
 
-  //添加新字段
+  //点击时按钮，添加新字段
   const handleAdd = ({ fieldInfo }) => {
     const orderIndexArr = currentDataSource.map((item) => item.orderIndex)
     const orderIndex = Math.max.apply(Math, orderIndexArr) + 1
@@ -53,7 +53,10 @@ export default function useList(props) {
     }
     console.log({ ...fieldInfo, ...tempValues })
     console.log(currentDataSource)
-    const tempDataSource = [...currentDataSource, { ...fieldInfo, ...tempValues }]
+    const tempDataSource = [
+      ...currentDataSource,
+      { ...fieldInfo, ...tempValues },
+    ]
     setDataSource(tempDataSource)
     if (Array.isArray(tempDataSource) && tempDataSource.length > 0) {
       handleCardActiveId({
@@ -86,7 +89,9 @@ export default function useList(props) {
     confirm({
       title: '确认要删除吗？',
       onOk() {
-        const tempDataSource = dataSource.filter(item => item.id !== record.id)
+        const tempDataSource = dataSource.filter(
+          (item) => item.id !== record.id
+        )
         setDataSource(tempDataSource)
         if (Array.isArray(tempDataSource) && tempDataSource.length > 0) {
           if (record.id === cardActiveId) {
@@ -102,7 +107,7 @@ export default function useList(props) {
     })
   }
 
-  //添加或编辑
+  //提交按钮
   const handleFinish = (values) => {
     console.log('Success:', values)
   }
@@ -120,8 +125,8 @@ export default function useList(props) {
       Array.isArray(currentItem.rules) && currentItem.rules.length > 0
         ? currentItem.rules[0]
         : {
-          message: `${currentItem.title}不能为空` 
-        }
+            message: `${currentItem.title}不能为空`,
+          }
     setInitValuesForAttr({ ...currentItem, rules })
   }
 
@@ -133,6 +138,9 @@ export default function useList(props) {
 
     let tempValues = {
       rules: [allValues.rules],
+      props: {
+        placeholder: allValues.placeholder,
+      },
     }
 
     dataSource[cardActiveIndex] = {
@@ -143,6 +151,7 @@ export default function useList(props) {
     setDataSource([...dataSource])
   }
 
+  //拖拽处理函数
   const applyDrag = (arr, dragResult) => {
     const { removedIndex, addedIndex, payload } = dragResult
     if (removedIndex === null && addedIndex === null) return arr
@@ -161,7 +170,8 @@ export default function useList(props) {
     return result
   }
 
-  const handleGetChildPayload = ({type, index}) => {
+  //获取拖拽元素的值
+  const handleGetChildPayload = ({ type, index }) => {
     if (type === 'tool') {
       const id = uuidv4()
       const tempList = getComponentArr()
@@ -181,9 +191,9 @@ export default function useList(props) {
     }
   }
 
+  //拖拽结束时修改数据状态
   const handleCardDrop = ({ type, dragResult }) => {
     if (type === 'tool') {
-
     } else if (type === 'content') {
       const tempDataSource = applyDrag(dataSource, dragResult)
       setDataSource(tempDataSource)
@@ -194,7 +204,7 @@ export default function useList(props) {
         })
       }
     }
-  }  
+  }
 
   useEffect(() => {
     formForAttr.resetFields()
@@ -230,6 +240,6 @@ export default function useList(props) {
     handleCardActiveId,
     handleValuesChange,
     handleGetChildPayload,
-    handleCardDrop, 
+    handleCardDrop,
   }
 }

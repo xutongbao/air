@@ -34,7 +34,7 @@ export default function useFields() {
             name={item.dataIndex}
             rules={item.rules}
           >
-            {result ? result.component : <Input></Input>}
+            {result ? result.getComponent({props: item.props}) : <Input></Input>}
           </Form.Item>
         )
       }

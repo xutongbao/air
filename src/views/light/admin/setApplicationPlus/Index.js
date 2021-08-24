@@ -133,7 +133,7 @@ function Index(props) {
                             name={item.dataIndex}
                             rules={item.rules}
                           >
-                            {result ? result.component : <Input></Input>}
+                            {result ? result.getComponent({props: item.props}) : <Input></Input>}
                           </Form.Item>
                         </div>
                         <div className="m-design-card-action">
@@ -173,20 +173,22 @@ function Index(props) {
           </Form>
         </div>
         <div className="m-design-attr">
-          {cardActiveId ? (
-            <Form
-              form={formForAttr}
-              labelCol={{ span: 8 }}
-              wrapperCol={{ span: 15 }}
-              initialValues={{ ...initValuesForAttr }}
-              scrollToFirstError={true}
-              onValuesChange={handleValuesChange}
-              id="m-set-application-modal-form"
-              className="m-set-application-modal-form"
-            >
-              {getAttrFields()}
-            </Form>
-          ) : <div className="m-empty-text">请选择字段</div>}
+          <Form
+            form={formForAttr}
+            labelCol={{ span: 8 }}
+            wrapperCol={{ span: 15 }}
+            initialValues={{ ...initValuesForAttr }}
+            scrollToFirstError={true}
+            onValuesChange={handleValuesChange}
+            id="m-set-application-modal-form"
+            className="m-set-application-modal-form"
+          >
+            {cardActiveId ? (
+              getAttrFields({initValuesForAttr})
+            ) : (
+              <div className="m-empty-text">请选择字段</div>
+            )}
+          </Form>
         </div>
       </div>
     </div>

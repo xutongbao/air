@@ -68,24 +68,36 @@ const getFormComponentArr = () => {
       title: '单行文本',
       formComponentName: 'Input',
       component: <Input></Input>,
+      getComponent: ({props}) => {
+        return <Input {...props}></Input>
+      }
     },
     {
       id: 2,
       title: '多行文本',
       formComponentName: 'TextArea',
       component: <TextArea></TextArea>,
+      getComponent: ({props}) => {
+        return <TextArea {...props}></TextArea>
+      }
     },
     {
       id: 3,
       title: '数字',
       formComponentName: 'InputNumber',
       component: <InputNumber style={{width: '100%'}}></InputNumber>,
+      getComponent: ({props}) => {
+        return <InputNumber style={{width: '100%'}} {...props}></InputNumber>
+      }
     },
     {
       id: 4,
       title: '图片',
       formComponentName: 'Image',
       component: <img style={{width: '100%'}} alt="图片"></img>,
+      getComponent: ({props}) => {
+        return <img style={{width: '100%'}}  {...props} alt="图片"></img>
+      }
     },
   ]
 }
