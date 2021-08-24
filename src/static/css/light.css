@@ -51,7 +51,7 @@
 .m-design-card-action.active{display: block;}
 .m-design-card-delete{color: red;font-weight: bold;font-size: 20px;}
 .m-design-footer{margin: 20px 0 0;}
-.m-formview-wrap{position: absolute;top: 0;left: 0;right: 0;bottom: 0;padding: 10px 0; background: rgb(234,234,234);overflow-y: auto;text-align: center;}
+.m-formview-wrap{position: absolute;top: 0;left: 0;right: 0;bottom: 0;padding: 10px 0; background: rgb(234,234,234);overflow-y: auto;overflow-x: hidden;text-align: center;}
 .m-formview-inner{display: inline-block;padding: 0 0 100px;width: 800px;min-height: 100%; background: white;box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);text-align: left;}
 .m-formview-color-header{height: 40px;background: #1890ff;}
 .m-formview-header{margin: 0 0 40px; padding: 10px 10px 10px; font-size: 24px;font-weight: bold;border-bottom: 1px solid #ddd;}
