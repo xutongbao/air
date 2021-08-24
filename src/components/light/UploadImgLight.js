@@ -38,6 +38,8 @@ export default function UploadImgLight({
         message.success(`${info.file.name} 上传成功`)
         if (info.file.response.state === 1) {
           // console.log(info.file.xhr.responseURL)
+          const temp = getHost('https://efficacious-tiny-infinity.glitch.me/api/upload')
+          console.log(temp)
           const imgUrl = `${getHost(info.file.xhr.responseURL)}/${info.file.response.data.filename}`
           console.log(imgUrl)
           onChange(imgUrl)

@@ -53,7 +53,7 @@ const getRouterSearchObj = (props) => {
 
 //获取主机名
 const getHost = (url) => {
-  var reg = /http(s)?:\/\/([A-Za-z0123456789:.]+)\/\S+/
+  var reg = /http(s)?:\/\/([A-Za-z0123456789:.-]+)\/\S+/
   var result = reg.exec(url)
   if (result) {
     return 'http://' + result[2]
