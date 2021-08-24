@@ -83,10 +83,10 @@
     "webpack-manifest-plugin": "2.2.0",
     "workbox-webpack-plugin": "5.1.4"
   },
-  "homepage": "",
   "scripts": {
     "start": "cross-env PORT=3002 node scripts/start.js",
     "build": "node scripts/build.js",
+    "build_test": "cross-env PUBLIC_URL=/air node scripts/build.js",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
