@@ -44,10 +44,12 @@
 .m-design-content{flex: 1;margin: 0 5px;padding: 20px 5px; overflow-y: auto;background: white;}
 .m-design-attr{padding: 10px 0 0; width: 320px;border-right: 1px solid #ddd;height: 100%;overflow-y: auto;background: white;}
 .m-design-card-wrap{padding: 5px; border: 1px dashed #ddd;}
-.m-design-card{display: flex; margin: 0 0 5px; padding: 5px 0;border: 1px dashed #ddd; cursor: pointer;}
+.m-design-card{position: relative; display: flex; margin: 0 0 5px; padding: 5px 0;border: 1px dashed #ddd; cursor: pointer;}
 .m-design-card.active{background: #edf2fd;}
 .m-design-card-info{flex: 1}
-.m-design-card-action{width: 70px;}
+.m-design-card-action{position: absolute;display: none; bottom: -16px; right: 10px; width: 70px;text-align: right;}
+.m-design-card-action.active{display: block;}
+.m-design-card-delete{color: red;font-weight: bold;font-size: 20px;}
 .m-design-footer{margin: 20px 0 0;}
 .m-formview-wrap{position: absolute;top: 0;left: 0;right: 0;bottom: 0;padding: 10px 0; background: rgb(234,234,234);overflow-y: auto;text-align: center;}
 .m-formview-inner{display: inline-block; width: 800px;min-height: 100%; background: white;box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);text-align: left;}

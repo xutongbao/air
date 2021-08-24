@@ -136,15 +136,13 @@ function Index(props) {
                             {result ? result.getComponent({props: item.props}) : <Input></Input>}
                           </Form.Item>
                         </div>
-                        <div className="m-design-card-action">
-                          <Button
-                            className="m-action-btn"
-                            size="small"
-                            danger
+                        <div className={`m-design-card-action ${cardActiveId === item.id ? 'active' : ''}`}>
+                          <Icon
+                            name="delete"
+                            className="m-design-card-delete"
                             onClick={(e) => handleDelete(e, item)}
                           >
-                            删除
-                          </Button>
+                          </Icon>
                         </div>
                       </div>
                     </Draggable>

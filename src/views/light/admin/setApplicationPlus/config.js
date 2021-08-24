@@ -11,6 +11,8 @@ const getComponentArr = () => {
       formComponentName: 'Input',
       dataIndex: 'input',
       renderFunName: 'renderSpan',
+      isHasRules: true,
+      isHasPlaceHolder: true,
     },
     {
       id: 2,
@@ -19,6 +21,8 @@ const getComponentArr = () => {
       formComponentName: 'TextArea',
       dataIndex: 'textArea',
       renderFunName: 'renderSpan',
+      isHasRules: true,
+      isHasPlaceHolder: true,
     },
     {
       id: 3,
@@ -27,6 +31,8 @@ const getComponentArr = () => {
       formComponentName: 'InputNumber',
       dataIndex: 'inputNumber ',
       renderFunName: 'renderSpan',
+      isHasRules: true,
+      isHasPlaceHolder: true,
     },
     {
       id: 4,
@@ -36,6 +42,7 @@ const getComponentArr = () => {
       dataIndex: 'image',
       renderFunName: 'renderImage',
       isHasRules: false,
+      isHasPlaceHolder: false,
     },
     {
       id: 5,
@@ -44,6 +51,8 @@ const getComponentArr = () => {
       formComponentName: 'Select',
       dataIndex: 'select',
       renderFunName: 'renderSelect',
+      isHasRules: true,
+      isHasPlaceHolder: true,
     },
   ]
 }
@@ -64,12 +73,12 @@ const getAttrFields = ({ initValuesForAttr }) => {
       >
         <Input />
       </Form.Item>
-      <Form.Item
-        label="placeholder"
-        name="placeholder"
-      >
-        <Input />
-      </Form.Item>
+      {initValuesForAttr.isHasPlaceHolder && (
+        <Form.Item label="placeholder" name="placeholder">
+          <Input />
+        </Form.Item>
+      )}
+
       <Form.Item
         label="英文名称"
         name="dataIndex"
@@ -82,7 +91,7 @@ const getAttrFields = ({ initValuesForAttr }) => {
       >
         <Input />
       </Form.Item>
-      {initValuesForAttr.isHasRules === false ? null : (
+      {initValuesForAttr.isHasRules && (
         <Form.Item label="字段必填" name="rules">
           <FieldRequired></FieldRequired>
         </Form.Item>
