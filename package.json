@@ -86,7 +86,7 @@
   "scripts": {
     "start": "cross-env PORT=3002 node scripts/start.js",
     "build": "node scripts/build.js",
-    "build_test": "cross-env PUBLIC_URL=/air node scripts/build.js",
+    "build_test": "cross-env PUBLIC_URL=./air node scripts/build.js",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
