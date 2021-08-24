@@ -47,20 +47,19 @@ const getComponentArr = () => {
       type: 'image',
       isHasRules: false,
       isHasPlaceHolder: false,
-      //默认图片
-      src: 'https://www.jsform.com/rs/images/defaultimg.png',
+      src: 'https://www.jsform.com/rs/images/defaultimg.png'
     },
-    {
-      id: 5,
-      icon: 'select',
-      title: '下拉列表',
-      formComponentName: 'Select',
-      dataIndex: 'select',
-      renderFunName: 'renderSelect',
-      type: 'formItem',
-      isHasRules: true,
-      isHasPlaceHolder: true,
-    },
+    // {
+    //   id: 5,
+    //   icon: 'select',
+    //   title: '下拉列表',
+    //   formComponentName: 'Select',
+    //   dataIndex: 'select',
+    //   renderFunName: 'renderSelect',
+    //   type: 'formItem',
+    //   isHasRules: true,
+    //   isHasPlaceHolder: true,
+    // },
   ]
 }
 

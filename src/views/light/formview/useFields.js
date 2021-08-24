@@ -29,33 +29,36 @@ export default function useFields() {
           (componentItem) =>
             componentItem.formComponentName === item.formComponentName
         )
-        arr.push(
-          <>
-            {item.type === 'formItem' && (
-              <Form.Item
-                key={item.id}
-                label={item.title}
-                name={item.dataIndex}
-                rules={item.rules}
-              >
-                {result ? (
-                  result.getComponent({ props: item.props })
-                ) : (
-                  <Input></Input>
-                )}
-              </Form.Item>
-            )}
-            {item.type === 'image' && (
-              <Form.Item key={item.id} name={item.dataIndex} wrapperCol={24}>
-                {result ? (
-                  result.getComponent({ props: item.props })
-                ) : (
-                  <Input></Input>
-                )}
-              </Form.Item>
-            )}
-          </>
-        )
+        if (item.type === 'formItem') {
+          arr.push(
+            <Form.Item
+              key={item.id}
+              label={item.title}
+              name={item.dataIndex}
+              rules={item.rules}
+            >
+              {result ? (
+                result.getComponent({ props: item.props })
+              ) : (
+                <Input></Input>
+              )}
+            </Form.Item>
+          )
+        } else if (item.type === 'image') {
+          arr.push(
+            <Form.Item key={item.id} name={item.dataIndex} wrapperCol={24}>
+              {result ? (
+                result.getComponent({
+                  props: {
+                    src: item.src,
+                  },
+                })
+              ) : (
+                <Input></Input>
+              )}
+            </Form.Item>
+          )
+        }
       }
     })
     return arr

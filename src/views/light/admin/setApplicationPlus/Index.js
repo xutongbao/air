@@ -148,9 +148,11 @@ function Index(props) {
                               wrapperCol={24}
                             >
                               {result ? (
-                                result.getComponent({ props: {
-                                  src: item.src
-                                } })
+                                result.getComponent({
+                                  props: {
+                                    src: item.src,
+                                  },
+                                })
                               ) : (
                                 <Input></Input>
                               )}
@@ -202,6 +204,7 @@ function Index(props) {
             initialValues={{ ...initValuesForAttr }}
             scrollToFirstError={true}
             onValuesChange={handleValuesChange}
+            onFinish={handleFinish}
             id="m-set-application-modal-form"
             className="m-set-application-modal-form"
           >

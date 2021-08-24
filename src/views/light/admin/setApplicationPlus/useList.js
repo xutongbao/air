@@ -132,6 +132,8 @@ export default function useList(props) {
 
   //修改表单字段属性
   const handleValuesChange = (changedValues, allValues) => {
+    const temp = formForAttr.getFieldsValue()
+    console.log(temp)
     const cardActiveIndex = dataSource.findIndex(
       (item) => item.id === cardActiveId
     )
