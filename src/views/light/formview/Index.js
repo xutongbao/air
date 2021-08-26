@@ -58,7 +58,7 @@ function Index(props) {
               {modalFields}
               <Form.Item
                 wrapperCol={{ offset: 4, span: 17 }}
-                className="m-formview-formitem"
+                className="m-formview-formitem m-formview-formitem-footer-mobile"
               >
                 <Button type="primary" htmlType="submit" className="m-space">
                   <Icon name="submit" className="m-tool-btn-icon"></Icon>

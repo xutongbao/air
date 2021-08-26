@@ -71,9 +71,12 @@
 .m-design-sidebar-container .smooth-dnd-draggable-wrapper{flex: 0 0 33.33333333%;}
 
 @media screen and (max-width: 800px) {  
-  .m-formview-inner{
-    width: 100%;
-  } 
+.m-formview-inner{width: 100%;} 
+
+}
+@media (max-width:575px) {
+.m-formview-formitem-footer-mobile .ant-form-item-control{margin-left: 0;text-align: center;}
+
 }
 
 
