@@ -4602,6 +4602,11 @@ es6-iterator@2.0.3, es6-iterator@~2.0.3:
     es5-ext "^0.10.35"
     es6-symbol "^3.1.1"
 
+es6-promise@^4.2.4:
+  version "4.2.8"
+  resolved "https://registry.nlark.com/es6-promise/download/es6-promise-4.2.8.tgz#4eb21594c972bc40553d276e510539143db53e0a"
+  integrity sha1-TrIVlMlyvEBVPSduUQU5FD21Pgo=
+
 es6-symbol@^3.1.1, es6-symbol@~3.1.3:
   version "3.1.3"
   resolved "https://registry.npm.taobao.org/es6-symbol/download/es6-symbol-3.1.3.tgz#bad5d3c1bcdac28269f4cb331e431c78ac705d18"
@@ -9141,7 +9146,15 @@ q@^1.1.2:
   resolved "https://registry.nlark.com/q/download/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
 
-qrcode@^1.4.4:
+qr-code-with-logo@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.nlark.com/qr-code-with-logo/download/qr-code-with-logo-1.1.0.tgz#366869677561a435761468239c8716d04d2e07e4"
+  integrity sha1-NmhpZ3VhpDV2FGgjnIcW0E0uB+Q=
+  dependencies:
+    es6-promise "^4.2.4"
+    qrcode "^1.2.0"
+
+qrcode@^1.2.0, qrcode@^1.4.4:
   version "1.4.4"
   resolved "https://registry.nlark.com/qrcode/download/qrcode-1.4.4.tgz#f0c43568a7e7510a55efc3b88d9602f71963ea83"
   integrity sha1-8MQ1aKfnUQpV78O4jZYC9xlj6oM=

@@ -4,6 +4,8 @@ import { Form } from 'antd'
 import { getRouterSearchObj } from '../../../utils/tools'
 import useFields from './useFields'
 import QRCode from 'qrcode'
+import QrCodeWithLogo from 'qr-code-with-logo'
+import logo from '../../../static/images/logo.png'
 
 export default function useList(props) {
   const [form] = Form.useForm()
@@ -59,14 +61,31 @@ export default function useList(props) {
   }, [props.location.search])
 
   useEffect(() => {
-    QRCode.toDataURL(document.location.href)
-      .then((url) => {
-        console.log(url)
-        setQrCodeImageUrl(url)
-      })
-      .catch((err) => {
-        console.error(err)
-      })
+    //不带logo
+    // QRCode.toDataURL(document.location.href)
+    //   .then((url) => {
+    //     console.log(url)
+    //     setQrCodeImageUrl(url)
+    //   })
+    //   .catch((err) => {
+    //     console.error(err)
+    //   })
+
+    const image = new Image()
+    QrCodeWithLogo.toImage({
+      image,
+      content: document.location.href,
+      logo: {
+        src: logo,
+      },
+    })
+    image.id = 'm-img'
+    image.style = "display:none;"
+    document.body.appendChild(image)
+    const imageDom = document.getElementById('m-img')
+    setTimeout(() => {
+      setQrCodeImageUrl(imageDom.src)
+    })
   }, [])
 
   return {
