@@ -3,7 +3,7 @@ import Api from '../../../api'
 import { Form } from 'antd'
 import { getRouterSearchObj } from '../../../utils/tools'
 import useFields from './useFields'
-
+import QRCode from 'qrcode'
 
 export default function useList(props) {
   const [form] = Form.useForm()
@@ -14,7 +14,7 @@ export default function useList(props) {
   const [isShowResult, setIsShowResult] = useState(false)
   const [title, setTitle] = useState('')
   const [isImageFirst, setIsImageFirst] = useState(false)
-
+  const [qrCodeImageUrl, setQrCodeImageUrl] = useState()
 
   //获取路由参数
   const routerSearchObj = getRouterSearchObj(props)
@@ -22,21 +22,19 @@ export default function useList(props) {
 
   //搜索
   const handleSearch = () => {
-    Api.light
-      .fieldsSearch({ tableId })
-      .then((res) => {
-        if (res.code === 200) {
-          const fields = res.data.fields
-          setModalFields(getModalFields(res.data.fields))
-          setTitle(res.data.title)
-          const tempFields = fields.filter(item => item.isModalField)
-          if (Array.isArray(tempFields) && tempFields.length > 0) {
-            if (tempFields[0].type === 'image') {
-              setIsImageFirst(true)
-            }
+    Api.light.fieldsSearch({ tableId }).then((res) => {
+      if (res.code === 200) {
+        const fields = res.data.fields
+        setModalFields(getModalFields(res.data.fields))
+        setTitle(res.data.title)
+        const tempFields = fields.filter((item) => item.isModalField)
+        if (Array.isArray(tempFields) && tempFields.length > 0) {
+          if (tempFields[0].type === 'image') {
+            setIsImageFirst(true)
           }
         }
-      })
+      }
+    })
   }
 
   //添加或编辑
@@ -60,6 +58,17 @@ export default function useList(props) {
     // eslint-disable-next-line
   }, [props.location.search])
 
+  useEffect(() => {
+    QRCode.toDataURL(document.location.href)
+      .then((url) => {
+        console.log(url)
+        setQrCodeImageUrl(url)
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  }, [])
+
   return {
     form,
     initValues,
@@ -67,6 +76,7 @@ export default function useList(props) {
     isShowResult,
     title,
     isImageFirst,
+    qrCodeImageUrl,
     handleSearch,
     handleFinish,
     handleFinishFailed,

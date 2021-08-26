@@ -54,8 +54,9 @@
 .m-formview-wrap{position: absolute;top: 0;left: 0;right: 0;bottom: 0;padding: 10px 0; background: rgb(234,234,234);overflow-y: auto;overflow-x: hidden;text-align: center;}
 .m-formview-inner{display: inline-block;padding: 0 0 100px;width: 800px;min-height: 100%; background: white;box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);text-align: left;}
 .m-formview-color-header{height: 40px;background: #1890ff;}
-.m-formview-header{margin: 0 0 40px; padding: 10px 10px 10px; font-size: 24px;font-weight: bold;border-bottom: 1px solid #ddd;}
+.m-formview-header{display: flex;align-items: center; margin: 0 0 40px; padding: 10px 10px 10px; font-size: 24px;font-weight: bold;border-bottom: 1px solid #ddd;}
 .m-formview-header.image-first{margin: 0;}
+.m-qrcode-img{display: inline-block;vertical-align: top;margin: 4px 0 0; width: 30px;height: 30px;cursor: pointer;}
 .m-formview-formitem{padding: 0 10px;}
 .m-component-item{color: #333; cursor: pointer;text-align: center;}
 .m-component-item:hover{color: #1890ff;}

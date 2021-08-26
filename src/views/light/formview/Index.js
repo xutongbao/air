@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Button, Form, Result } from 'antd'
+import { Button, Form, Result, Image, Space } from 'antd'
 import { Icon } from '../../../components/light'
 import useList from './useList'
 
@@ -13,6 +13,7 @@ function Index(props) {
     isShowResult,
     title,
     isImageFirst,
+    qrCodeImageUrl,
     handleFinish,
     handleFinishFailed,
   } = useList(props)
@@ -29,7 +30,23 @@ function Index(props) {
           ></Result>
         ) : (
           <>
-            <div className={`m-formview-header ${isImageFirst ? 'image-first' : ''}`}>{title}</div>
+            <div
+              className={`m-formview-header ${
+                isImageFirst ? 'image-first' : ''
+              }`}
+            >
+              <Space>
+                <span>{title}</span>
+                <Image
+                  className="m-qrcode-img"
+                  src={qrCodeImageUrl}
+                  alt={'图片'}
+                  preview={{
+                    mask: '',
+                  }}
+                ></Image>
+              </Space>
+            </div>
             <Form
               form={form}
               labelCol={{ span: 4 }}
@@ -39,7 +56,10 @@ function Index(props) {
               onFinishFailed={handleFinishFailed}
             >
               {modalFields}
-              <Form.Item wrapperCol={{ offset: 4, span: 17 }} className="m-formview-formitem">
+              <Form.Item
+                wrapperCol={{ offset: 4, span: 17 }}
+                className="m-formview-formitem"
+              >
                 <Button type="primary" htmlType="submit" className="m-space">
                   <Icon name="submit" className="m-tool-btn-icon"></Icon>
                   提交
