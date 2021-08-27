@@ -89,7 +89,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "cross-env MODE_ENV=prod GENERATE_SOURCEMAP=false node scripts/build.js",
-    "build_test": "cross-env MODE_ENV=test GENERATE_SOURCEMAP=false node scripts/build.js",
+    "build_test": "cross-env MODE_ENV=test PUBLIC_URL=/air GENERATE_SOURCEMAP=false node scripts/build.js",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
