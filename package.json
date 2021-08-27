@@ -89,7 +89,7 @@
     "workbox-webpack-plugin": "5.1.4"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start": "cross-env PORT=3002 node scripts/start.js",
     "build": "cross-env MODE_ENV=prod GENERATE_SOURCEMAP=false node scripts/build.js",
     "build_test": "cross-env MODE_ENV=test PUBLIC_URL=/air GENERATE_SOURCEMAP=false GENERATE_BUNDLE_ANALYZER_REPORT=true node scripts/build.js",
     "test": "node scripts/test.js"
