@@ -30,7 +30,10 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const postcssNormalize = require('postcss-normalize');
 
 const appPackageJson = require(paths.appPackageJson);
-
+//可视化打包分析报告
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+// 编译进度条
+const WebpackBar = require('webpackbar')
 // gzip
 const CompressionPlugin = require("compression-webpack-plugin");
 
@@ -79,6 +82,8 @@ const hasJsxRuntime = (() => {
     return false;
   }
 })();
+
+const isBundleAnalyzer = process.env.GENERATE_BUNDLE_ANALYZER_REPORT === 'true'
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
@@ -740,6 +745,8 @@ module.exports = function (webpackEnv) {
             },
           },
         }),
+        new webpack.ProgressPlugin(),
+        new WebpackBar(),
         // https://www.npmjs.com/package/compression-webpack-plugin
         isEnvProduction && new CompressionPlugin({
           // [path] is replaced with the directories to the original asset, included trailing /
@@ -750,6 +757,9 @@ module.exports = function (webpackEnv) {
           threshold: 10240,  // 对超过10k的数据进行压缩
           minRatio: 0.8,  // 只有压缩率小于这个值的资源才会被处理
         }),
+        //生成 report.html 可视化打包分析
+        //通过设置环境变量GENERATE_BUNDLE_ANALYZER_REPORT=true来生成report
+        isEnvProduction && isBundleAnalyzer && new BundleAnalyzerPlugin()
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell webpack to provide empty mocks for them so importing them works.

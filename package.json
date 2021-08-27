@@ -82,14 +82,16 @@
     "uuid": "^8.3.2",
     "web-vitals": "^1.0.1",
     "webpack": "4.44.2",
+    "webpack-bundle-analyzer": "^4.4.2",
     "webpack-dev-server": "3.11.1",
     "webpack-manifest-plugin": "2.2.0",
+    "webpackbar": "^5.0.0-3",
     "workbox-webpack-plugin": "5.1.4"
   },
   "scripts": {
     "start": "node scripts/start.js",
     "build": "cross-env MODE_ENV=prod GENERATE_SOURCEMAP=false node scripts/build.js",
-    "build_test": "cross-env MODE_ENV=test PUBLIC_URL=/air GENERATE_SOURCEMAP=false node scripts/build.js",
+    "build_test": "cross-env MODE_ENV=test PUBLIC_URL=/air GENERATE_SOURCEMAP=false GENERATE_BUNDLE_ANALYZER_REPORT=true node scripts/build.js",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
