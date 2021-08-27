@@ -31,6 +31,9 @@ const postcssNormalize = require('postcss-normalize');
 
 const appPackageJson = require(paths.appPackageJson);
 
+// gzip
+const CompressionPlugin = require("compression-webpack-plugin");
+
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 
@@ -736,6 +739,16 @@ module.exports = function (webpackEnv) {
               }),
             },
           },
+        }),
+        // https://www.npmjs.com/package/compression-webpack-plugin
+        isEnvProduction && new CompressionPlugin({
+          // [path] is replaced with the directories to the original asset, included trailing /
+          // [query] is replaced with the query of the original asset, included ?
+          filename: '[path].gz[query]',
+          algorithm: 'gzip',
+          test: /\.js$|\.css$/,
+          threshold: 10240,  // 对超过10k的数据进行压缩
+          minRatio: 0.8,  // 只有压缩率小于这个值的资源才会被处理
         }),
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
