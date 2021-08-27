@@ -37,14 +37,16 @@ function Index(props) {
             >
               <Space>
                 <span>{title}</span>
-                <Image
-                  className="m-qrcode-img"
-                  src={qrCodeImageUrl}
-                  alt={'图片'}
-                  preview={{
-                    mask: '',
-                  }}
-                ></Image>
+                {qrCodeImageUrl && (
+                  <Image
+                    className="m-qrcode-img"
+                    src={qrCodeImageUrl}
+                    alt={'图片'}
+                    preview={{
+                      mask: '',
+                    }}
+                  ></Image>
+                )}
               </Space>
             </div>
             <Form

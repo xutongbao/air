@@ -3,7 +3,10 @@ import Api from '../../../api'
 import { Form } from 'antd'
 import { getRouterSearchObj } from '../../../utils/tools'
 import useFields from './useFields'
+//https://github.com/soldair/node-qrcode
+// eslint-disable-next-line
 import QRCode from 'qrcode'
+//https://github.com/HerbLuo/qr-code-with-logo
 import QrCodeWithLogo from 'qr-code-with-logo'
 import logo from '../../../static/images/logo.png'
 
