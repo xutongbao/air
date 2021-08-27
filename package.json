@@ -21,6 +21,7 @@
     "bfj": "^7.0.2",
     "camelcase": "^6.1.0",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
+    "compression-webpack-plugin": "5",
     "cross-env": "^7.0.3",
     "css-loader": "4.3.0",
     "dotenv": "8.2.0",
@@ -86,10 +87,10 @@
     "workbox-webpack-plugin": "5.1.4"
   },
   "scripts": {
-    "start": "cross-env PORT=3002 node scripts/start.js",
-    "build": "node scripts/build.js",
-    "build_test": "cross-env MODE_ENV=test PUBLIC_URL=/air GENERATE_SOURCEMAP=false node scripts/build.js",
-    "test": "cross-env MODE_ENV=prod node scripts/test.js"
+    "start": "node scripts/start.js",
+    "build": "cross-env MODE_ENV=prod GENERATE_SOURCEMAP=false node scripts/build.js",
+    "build_test": "cross-env MODE_ENV=test GENERATE_SOURCEMAP=false node scripts/build.js",
+    "test": "node scripts/test.js"
   },
   "eslintConfig": {
     "extends": [

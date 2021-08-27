@@ -6,4 +6,8 @@ const baseURL = {
   prod: 'http://39.97.238.175:81'
 }[process.env.REACT_APP_MODE]
 
+console.log(process.env)
+
+console.log(baseURL)
+
 export { baseURL }
