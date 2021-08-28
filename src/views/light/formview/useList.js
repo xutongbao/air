@@ -33,7 +33,7 @@ export default function useList(props) {
         const fields = res.data.fields
         setModalFields(getModalFields(res.data.fields))
         setTitle(res.data.title)
-        setSkin(res.data.skin)
+        setSkin(res.data.skin ? res.data.skin : {})
         const tempFields = fields.filter((item) => item.isModalField)
         if (Array.isArray(tempFields) && tempFields.length > 0) {
           if (tempFields[0].type === 'image') {
