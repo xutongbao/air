@@ -20,7 +20,7 @@ function Index(props) {
   } = useList(props)
 
   return (
-    <div className="m-formview-wrap" style={{background: `url(${skin.backgroundImg})`}}>
+    <div className="m-formview-wrap" style={{backgroundImage: `url(${skin.backgroundImg})`}}>
       <div className="m-formview-inner">
         {/* <div className="m-formview-color-header"></div> */}
         {isShowResult ? (
