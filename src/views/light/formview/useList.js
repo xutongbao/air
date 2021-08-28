@@ -90,7 +90,7 @@ export default function useList(props) {
     const imageDom = document.getElementById('m-img')
     setTimeout(() => {
       setQrCodeImageUrl(imageDom.src)
-    })
+    }, 500)
   }, [])
 
   return {
