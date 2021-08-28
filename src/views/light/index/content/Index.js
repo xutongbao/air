@@ -21,6 +21,7 @@ function Index(props) {
     form,
     modalTitle,
     modalFields,
+    routerSearchObj,
     handleSearch,
     handleDelete,
     handleAdd,
@@ -35,7 +36,7 @@ function Index(props) {
 
   return (
     <div>
-      <Tool onAdd={handleAdd}></Tool>
+      <Tool routerSearchObj={routerSearchObj} onAdd={handleAdd}></Tool>
       <MyTable
         dataSource={dataSource}
         total={total}

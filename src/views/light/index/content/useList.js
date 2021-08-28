@@ -144,6 +144,7 @@ export default function useList(props) {
     form,
     modalTitle,
     modalFields,
+    routerSearchObj,
     handleSearch,
     handleDelete,
     handleAdd,
