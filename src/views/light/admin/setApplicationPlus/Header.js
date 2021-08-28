@@ -37,7 +37,7 @@ function Header(props) {
 
   const handleChange = (current) => {
     const result = accountList.find(item => item.id === current)
-    props.history.push(result.path)
+    props.history.replace(result.path)
   }
 
   useEffect(() => {

@@ -14,14 +14,15 @@ function Index(props) {
     title,
     isImageFirst,
     qrCodeImageUrl,
+    skin,
     handleFinish,
     handleFinishFailed,
   } = useList(props)
 
   return (
-    <div className="m-formview-wrap">
+    <div className="m-formview-wrap" style={{background: `url(${skin.backgroundImg})`}}>
       <div className="m-formview-inner">
-        <div className="m-formview-color-header"></div>
+        {/* <div className="m-formview-color-header"></div> */}
         {isShowResult ? (
           <Result
             status="success"
@@ -30,8 +31,17 @@ function Index(props) {
           ></Result>
         ) : (
           <>
+            {skin.headerImg && (
+              <div className="m-formview-header-img-wrap">
+                <img
+                  className="m-formview-header-img"
+                  alt="表头"
+                  src={skin.headerImg}
+                ></img>
+              </div>
+            )}
             <div
-              className={`m-formview-header ${
+              className={`m-formview-header-text ${
                 isImageFirst ? 'image-first' : ''
               }`}
             >

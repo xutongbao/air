@@ -20,6 +20,7 @@ export default function useList(props) {
   const [title, setTitle] = useState('')
   const [isImageFirst, setIsImageFirst] = useState(false)
   const [qrCodeImageUrl, setQrCodeImageUrl] = useState()
+  const [skin, setSkin] = useState({})
 
   //获取路由参数
   const routerSearchObj = getRouterSearchObj(props)
@@ -32,6 +33,7 @@ export default function useList(props) {
         const fields = res.data.fields
         setModalFields(getModalFields(res.data.fields))
         setTitle(res.data.title)
+        setSkin(res.data.skin)
         const tempFields = fields.filter((item) => item.isModalField)
         if (Array.isArray(tempFields) && tempFields.length > 0) {
           if (tempFields[0].type === 'image') {
@@ -99,6 +101,7 @@ export default function useList(props) {
     title,
     isImageFirst,
     qrCodeImageUrl,
+    skin,
     handleSearch,
     handleFinish,
     handleFinishFailed,
