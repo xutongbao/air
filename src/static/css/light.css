@@ -1,4 +1,4 @@
-@import '~antd/dist/antd.css';
+@import 'myAntd.css';
 .m-wrap{display: flex;flex-direction: column;position: absolute;top: 0;left: 0;right: 0;bottom: 0;}
 .m-header{display: flex;height: 50px;border-bottom: 1px solid #ddd;line-height: 50px;}
 .m-header-logo{width: 150px;text-align: center;font-weight: bold;font-size: 20px;}

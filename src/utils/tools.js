@@ -1,5 +1,5 @@
 import store from '../store'
-import { Input, InputNumber } from 'antd'
+import { Input, InputNumber, Form } from 'antd'
 import moment from 'moment'
 
 const { TextArea } = Input
@@ -68,36 +68,36 @@ const getFormComponentArr = () => {
       title: '单行文本',
       formComponentName: 'Input',
       component: <Input></Input>,
-      getComponent: ({props}) => {
+      getComponent: ({ props }) => {
         return <Input {...props}></Input>
-      }
+      },
     },
     {
       id: 2,
       title: '多行文本',
       formComponentName: 'TextArea',
       component: <TextArea></TextArea>,
-      getComponent: ({props}) => {
+      getComponent: ({ props }) => {
         return <TextArea {...props}></TextArea>
-      }
+      },
     },
     {
       id: 3,
       title: '数字',
       formComponentName: 'InputNumber',
-      component: <InputNumber style={{width: '100%'}}></InputNumber>,
-      getComponent: ({props}) => {
-        return <InputNumber style={{width: '100%'}} {...props}></InputNumber>
-      }
+      component: <InputNumber style={{ width: '100%' }}></InputNumber>,
+      getComponent: ({ props }) => {
+        return <InputNumber style={{ width: '100%' }} {...props}></InputNumber>
+      },
     },
     {
       id: 4,
       title: '图片',
       formComponentName: 'Image',
-      component: <img style={{width: '100%'}} alt="图片"></img>,
-      getComponent: ({props}) => {
-        return <img style={{width: '100%'}}  {...props} alt="图片"></img>
-      }
+      component: <img style={{ width: '100%' }} alt="图片"></img>,
+      getComponent: ({ props }) => {
+        return <img style={{ width: '100%' }} {...props} alt="图片"></img>
+      },
     },
   ]
 }
@@ -120,7 +120,9 @@ const getRenderFunArr = () => {
       renderFunName: 'renderDatetime',
       formComponentNameArr: [],
       render: (text) => {
-        return <span>{text ? moment(text).format('YYYY-MM-DD HH:mm:ss') : ''}</span>
+        return (
+          <span>{text ? moment(text).format('YYYY-MM-DD HH:mm:ss') : ''}</span>
+        )
       },
     },
     {
@@ -135,6 +137,51 @@ const getRenderFunArr = () => {
   ]
 }
 
+//根据fields获取对话框字段
+const getFieldsDom = (fields) => {
+  const arr = []
+  fields.forEach((item) => {
+    if (item.isModalField) {
+      const result = getFormComponentArr().find(
+        (componentItem) =>
+          componentItem.formComponentName === item.formComponentName
+      )
+      if (item.type === 'formItem') {
+        arr.push(
+          <Form.Item
+            key={item.id}
+            label={item.title}
+            name={item.dataIndex}
+            rules={item.rules}
+            className="m-formview-formitem"
+          >
+            {result ? (
+              result.getComponent({ props: item.props })
+            ) : (
+              <Input></Input>
+            )}
+          </Form.Item>
+        )
+      } else if (item.type === 'image') {
+        arr.push(
+          <Form.Item key={item.id} name={item.dataIndex} wrapperCol={24}>
+            {result ? (
+              result.getComponent({
+                props: {
+                  src: item.src,
+                },
+              })
+            ) : (
+              <Input></Input>
+            )}
+          </Form.Item>
+        )
+      }
+    }
+  })
+  return arr
+}
+
 export {
   showLoading,
   hideLoading,
@@ -143,4 +190,5 @@ export {
   getHost,
   getFormComponentArr,
   getRenderFunArr,
+  getFieldsDom,
 }

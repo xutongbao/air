@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Api from '../../../../api'
 import { Modal, Form } from 'antd'
-import { getRouterSearchObj } from '../../../../utils/tools'
+import { getRouterSearchObj, getFieldsDom } from '../../../../utils/tools'
 import useFields from './useFields'
 
 const { confirm } = Modal
@@ -23,7 +23,7 @@ export default function useList(props) {
   const [type, setType] = useState('add')
   const [modalTitle, setModalTitle] = useState()
   const [modalFields, setModalFields] = useState([])
-  const { getColumns, getModalFields } = useFields(props)
+  const { getColumns } = useFields(props)
 
   //获取路由参数
   const routerSearchObj = getRouterSearchObj(props)
@@ -44,7 +44,7 @@ export default function useList(props) {
           dataSource: res.data.list,
           pageSize: res.data.pageSize,
         })
-        setModalFields(getModalFields(res.data.fields))
+        setModalFields(getFieldsDom(res.data.fields))
         setTotal(res.data.total)
         setCurrent(res.data.current)
       }
