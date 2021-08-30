@@ -20,10 +20,13 @@ function Index(props) {
   } = useList(props)
 
   return (
-    <div className="m-formview-wrap" style={{backgroundImage: `url(${skin.backgroundImg})`}}>
+    <div
+      className="m-formview-wrap"
+      style={{ backgroundImage: `url(${skin.backgroundImg})` }}
+    >
       <div className="m-formview-inner">
         {/* <div className="m-formview-color-header"></div> */}
-        { !isShowResult ? (
+        {!isShowResult ? (
           <>
             {skin.headerImg && (
               <div className="m-formview-header-img-wrap">
@@ -87,9 +90,16 @@ function Index(props) {
             status="success"
             title="提交成功"
             subTitle="感谢您的参与"
-            extra={<Button type="primary" onClick={() => { 
-              document.location.reload()
-            }}>返回</Button>}
+            extra={
+              <Button
+                type="primary"
+                onClick={() => {
+                  document.location.reload()
+                }}
+              >
+                返回
+              </Button>
+            }
           ></Result>
         )}
       </div>
