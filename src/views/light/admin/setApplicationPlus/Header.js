@@ -13,25 +13,25 @@ function Header(props) {
       id: 0,
       title: '编辑',
       type: 'edit',
-      path: `/light/admin/setApplicationPlus?id=${routerSearchObj.id}&type=edit`,
+      path: `/light/admin/applicationPlus?type=detail&id=${routerSearchObj.id}&progress=edit`,
     },
     {
       id: 1,
       title: '皮肤',
       type: 'skin',
-      path: `/light/admin/setApplicationPlus?id=${routerSearchObj.id}&type=skin`,
+      path: `/light/admin/applicationPlus?type=detail&id=${routerSearchObj.id}&progress=skin`,
     },
     {
       id: 2,
       title: '设置',
       type: 'set',
-      path: `/light/admin/setApplicationPlus?id=${routerSearchObj.id}&type=set`,
+      path: `/light/admin/applicationPlus?type=detail&id=${routerSearchObj.id}&progress=set`,
     },
     {
       id: 3,
       title: '发布',
       type: 'publish',
-      path: `/light/admin/setApplicationPlus?id=${routerSearchObj.id}&type=publish`,
+      path: `/light/admin/applicationPlus?type=detail&id=${routerSearchObj.id}&progress=publish`,
     },
   ]
 
@@ -41,7 +41,7 @@ function Header(props) {
   }
 
   useEffect(() => {
-    const result = accountList.find(item => item.type === routerSearchObj.type)
+    const result = accountList.find(item => item.type === routerSearchObj.progress)
     setCurrent(result.id)
     // eslint-disable-next-line
   }, [])

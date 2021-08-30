@@ -47,11 +47,11 @@ function List(props) {
     listRender(myRouter)
     // 路由的数据保存在store里，通过url切换不同系统的路由，登录时切换系统，路由还没切换好，不能添加404的重定向
     // 不然每次切换系统后登录都会404
-    // if (Array.isArray(myRouter) && myRouter.length > 0) {
-    //   if (myRouter[0].path.slice(0, 5) === pathname.slice(0, 5)) {
-    //     listDom.push(<Redirect key="404" from="*" to="/404" exact></Redirect>)
-    //   }
-    // }
+    if (Array.isArray(myRouter) && myRouter.length > 0) {
+      if (myRouter[0].path.slice(0, 5) === pathname.slice(0, 5)) {
+        listDom.push(<Redirect key="404" from="*" to="/404" exact></Redirect>)
+      }
+    }
 
     return listDom
     // eslint-disable-next-line

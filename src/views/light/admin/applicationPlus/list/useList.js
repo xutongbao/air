@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import Api from '../../../../api'
+import Api from '../../../../../api'
 import { Modal, Form } from 'antd'
-import { getRouter } from '../../../../store/light/actionCreator'
+import { getRouter } from '../../../../../store/light/actionCreator'
 
 
 const { confirm } = Modal
@@ -14,7 +14,7 @@ export default function useList(props) {
   const [initValues, setInitValues] = useState({})
   const [type, setType] = useState('add')
   const [modalTitle, setModalTitle] = useState()
-  const { router } = props
+  const { routerForApp } = props
 
   const addInitValues = {}
 
@@ -49,7 +49,7 @@ export default function useList(props) {
 
   //显示编辑对话框
   const handleEdit = (id) => {
-    const record = router.find(item => item.id === id)
+    const record = routerForApp.find(item => item.id === id)
     console.log('编辑, id:', record)
     setType('edit')
     setModalTitle('修改名称')
@@ -90,7 +90,7 @@ export default function useList(props) {
 
   //跳转到应用设置页面
   const handleJumpToSet = (id) => {
-    props.history.push(`/light/admin/setApplicationPlus?id=${id}&type=edit`)
+    props.history.push(`/light/admin/applicationPlus?type=detail&id=${id}&progress=edit`)
   }
 
   //挂载完

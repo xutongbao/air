@@ -1,29 +1,17 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { Menu, Dropdown } from 'antd'
-import { DownOutlined } from '@ant-design/icons'
 import Icon from '../../../components/light/Icon'
-import Api from '../../../api'
 
 function Header(props) {
   const {
     collapsed,
-    userInfo,
   } = props
 
   const handleArrow = () => {
     props.onSetState(['collapsed'], !collapsed)
     localStorage.setItem('collapsed', !collapsed)
-  }
-
-  const handleQuit = () => {
-    Api.light.testLogout().then((res) => {
-      if (res.state === 1) {
-        props.history.push('/')
-        window.localStorage.removeItem('accessTokenForAdmin')
-      }
-    })
   }
 
   const handleTheme = (theme) => {
@@ -39,15 +27,6 @@ function Header(props) {
     props.onSetState(['theme'], theme)
     // eslint-disable-next-line
   }, [])
-
-  const userMenu = (
-    <Menu>
-      {/* <Menu.Item key={0}>更改密码</Menu.Item> */}
-      <Menu.Item key={1} onClick={() => handleQuit()}>
-        退出
-      </Menu.Item>
-    </Menu>
-  )
 
   const themeMenu = (
     <Menu>
@@ -69,7 +48,7 @@ function Header(props) {
       ></Icon>
       <div className="m-list-header-info"></div>
       <div className="m-list-header-menu">
-        <span className="m-list-header-menu-welcome">欢迎您</span>
+        {/* <span className="m-list-header-menu-welcome">欢迎您</span>
         <Dropdown overlay={userMenu}>
           <span className="ant-dropdown-link">
             <span className="m-list-header-menu-username">
@@ -77,7 +56,8 @@ function Header(props) {
             </span>
             <DownOutlined />
           </span>
-        </Dropdown>
+        </Dropdown> */}
+        <Link to="/light/index/content?id=0">进入应用</Link>
         <Dropdown overlay={themeMenu}>
           <span className="m-list-header-menu-theme">
             <Icon name="theme"></Icon>

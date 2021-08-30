@@ -4,7 +4,8 @@ import router from './router'
 const defaultState = fromJS({
   router,
   collapsed: false,
-  userInfo: {}
+  userInfo: {},
+  routerForApp: []
 })
 
 const reducer = (state = defaultState, action) => {

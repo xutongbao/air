@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import Edit from './edit/Index'
 import Skin from './skin/Index'
 import Set from './set/Index'
@@ -25,8 +26,8 @@ function Index(props) {
         component: <Publish></Publish>,
       },
     }
-    if (routerSearchObj.type) {
-      return hook[routerSearchObj.type] ? hook[routerSearchObj.type].component : null
+    if (routerSearchObj.progress) {
+      return hook[routerSearchObj.progress] ? hook[routerSearchObj.progress].component : null
     } else {
       return <Edit></Edit>
     }
@@ -59,4 +60,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Index)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Index))

@@ -9,7 +9,7 @@ import { getRouter } from  '../../../store/light/actionCreator'
 const Content = lazy(() => import('./content/Index'))
 
 function Index(props) {
-  const { router } = props
+  const { routerForApp } = props
   //获取路由参数
   const routerSearchObj = getRouterSearchObj(props)
 
@@ -28,7 +28,7 @@ function Index(props) {
           mode="horizontal"
         >
           {
-            router.map(item => (
+            routerForApp.map(item => (
               <Menu.Item key={item.key}>
                 <Link to={item.path}>{item.title}</Link>
               </Menu.Item>
@@ -52,7 +52,7 @@ function Index(props) {
 
 const mapStateToProps = (state) => {
   return {
-    router: state.getIn(['light', 'router']).toJS(),
+    routerForApp: state.getIn(['light', 'routerForApp']).toJS(),
   }
 }
 
