@@ -9,7 +9,7 @@ function Index(props) {
   const {
     initValues,
     form,
-    modalFields,
+    fieldsDom,
     isShowResult,
     title,
     isImageFirst,
@@ -23,13 +23,7 @@ function Index(props) {
     <div className="m-formview-wrap" style={{backgroundImage: `url(${skin.backgroundImg})`}}>
       <div className="m-formview-inner">
         {/* <div className="m-formview-color-header"></div> */}
-        {isShowResult ? (
-          <Result
-            status="success"
-            title="提交成功"
-            subTitle="感谢您的参与"
-          ></Result>
-        ) : (
+        { !isShowResult ? (
           <>
             {skin.headerImg && (
               <div className="m-formview-header-img-wrap">
@@ -51,7 +45,7 @@ function Index(props) {
                   <Image
                     className="m-qrcode-img"
                     src={qrCodeImageUrl}
-                    alt={'图片'}
+                    alt={'二维码'}
                     preview={{
                       mask: '',
                     }}
@@ -67,7 +61,7 @@ function Index(props) {
               onFinish={handleFinish}
               onFinishFailed={handleFinishFailed}
             >
-              {modalFields}
+              {fieldsDom}
               <Form.Item
                 wrapperCol={{ offset: 4, span: 17 }}
                 className="m-formview-formitem m-formview-formitem-footer-mobile"
@@ -88,6 +82,12 @@ function Index(props) {
               </Form.Item>
             </Form>
           </>
+        ) : (
+          <Result
+            status="success"
+            title="提交成功"
+            subTitle="感谢您的参与"
+          ></Result>
         )}
       </div>
     </div>

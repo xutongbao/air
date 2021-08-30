@@ -1,19 +1,13 @@
 import { useState, useEffect } from 'react'
 import Api from '../../../api'
-import { Form } from 'antd'
-import { getRouterSearchObj } from '../../../utils/tools'
-import useFields from './useFields'
-//https://github.com/soldair/node-qrcode
-// eslint-disable-next-line
-import QRCode from 'qrcode'
-//https://github.com/HerbLuo/qr-code-with-logo
+import { Form, Input } from 'antd'
+import { getRouterSearchObj, getFormComponentArr } from '../../../utils/tools'
 import QrCodeWithLogo from 'qr-code-with-logo'
 import logo from '../../../static/images/logo.png'
 
 export default function useList(props) {
   const [form] = Form.useForm()
-  const [modalFields, setModalFields] = useState([])
-  const { getModalFields } = useFields(props)
+  const [fieldsDom, setFieldsDom] = useState([])
   // eslint-disable-next-line
   const [initValues, setInitValues] = useState({})
   const [isShowResult, setIsShowResult] = useState(false)
@@ -26,12 +20,57 @@ export default function useList(props) {
   const routerSearchObj = getRouterSearchObj(props)
   const tableId = routerSearchObj.id
 
+  //根据fields获取对话框字段
+  const getFieldsDom = (fields) => {
+    const arr = []
+    fields.forEach((item) => {
+      if (item.isModalField) {
+        const result = getFormComponentArr().find(
+          (componentItem) =>
+            componentItem.formComponentName === item.formComponentName
+        )
+        if (item.type === 'formItem') {
+          arr.push(
+            <Form.Item
+              key={item.id}
+              label={item.title}
+              name={item.dataIndex}
+              rules={item.rules}
+              className="m-formview-formitem"
+            >
+              {result ? (
+                result.getComponent({ props: item.props })
+              ) : (
+                <Input></Input>
+              )}
+            </Form.Item>
+          )
+        } else if (item.type === 'image') {
+          arr.push(
+            <Form.Item key={item.id} name={item.dataIndex} wrapperCol={24}>
+              {result ? (
+                result.getComponent({
+                  props: {
+                    src: item.src,
+                  },
+                })
+              ) : (
+                <Input></Input>
+              )}
+            </Form.Item>
+          )
+        }
+      }
+    })
+    return arr
+  }
+
   //搜索
   const handleSearch = () => {
     Api.light.fieldsSearch({ tableId }).then((res) => {
       if (res.code === 200) {
         const fields = res.data.fields
-        setModalFields(getModalFields(res.data.fields))
+        setFieldsDom(getFieldsDom(res.data.fields))
         setTitle(res.data.title)
         setSkin(res.data.skin ? res.data.skin : {})
         const tempFields = fields.filter((item) => item.isModalField)
@@ -65,17 +104,8 @@ export default function useList(props) {
     // eslint-disable-next-line
   }, [props.location.search])
 
+  //根据当前的url生成二维码
   useEffect(() => {
-    //不带logo
-    // QRCode.toDataURL(document.location.href)
-    //   .then((url) => {
-    //     console.log(url)
-    //     setQrCodeImageUrl(url)
-    //   })
-    //   .catch((err) => {
-    //     console.error(err)
-    //   })
-
     const image = new Image()
     QrCodeWithLogo.toImage({
       image,
@@ -96,7 +126,7 @@ export default function useList(props) {
   return {
     form,
     initValues,
-    modalFields,
+    fieldsDom,
     isShowResult,
     title,
     isImageFirst,
