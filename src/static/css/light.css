@@ -37,10 +37,11 @@
 .m-set-application-modal-form{position: relative;}
 .m-design-header{display: flex; line-height: 50px;height: 50px;font-size: 30px;font-weight: bold;background: white;box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);z-index: 9;}
 .m-design-header-title{min-width: 250px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap}
-.m-design-header-middle{display: flex;align-items: center; flex:1;font-size: 20px;text-align: center;}
+.m-design-header-middle{display: flex;align-items: center; flex:1;font-size: 20px;justify-content: center;}
+.m-design-header-middle-inner{display: inline-block; min-width: 400px;}
 .m-design-header-middle-item{color: #333;margin: 0 5px;}
 .m-design-header-middle-item.active{color: #1890ff;}
-.m-design-header-action{display: flex;padding: 0 18px 0 0; align-items: center; width: 180px;gap: 8px;justify-content: flex-end;}
+.m-design-header-action{display: flex;padding: 0 18px 0 0; align-items: center; width: 250px;gap: 8px;justify-content: flex-end;}
 .m-design-wrap{display: flex;flex:1;overflow-y: auto;}
 .m-design-sidebar{width: 320px;border-left: 1px solid #ddd;height: 100%;overflow-y: auto;background: white;}
 .m-design-content{flex: 1;margin: 0 5px;padding: 20px 5px; overflow-y: auto;background: white;}

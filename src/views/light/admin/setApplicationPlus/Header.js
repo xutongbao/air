@@ -58,11 +58,14 @@ function Header(props) {
         <span title={applicationTitle}>{applicationTitle}</span>
       </div>
       <div className="m-design-header-middle">
+        <div className="m-design-header-middle-inner">
         <Steps current={current} onChange={handleChange}>
           {accountList.map((item) => (
             <Step key={item.id} title={item.title} />
           ))}
         </Steps>
+        </div>
+
       </div>
       <div className="m-design-header-action">
         <Button type="primary" onClick={onSave}>
