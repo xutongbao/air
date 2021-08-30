@@ -1,8 +1,8 @@
 @import 'myAntd.css';
 .m-wrap{display: flex;flex-direction: column;position: absolute;top: 0;left: 0;right: 0;bottom: 0;}
-.m-header{display: flex;height: 50px;border-bottom: 1px solid #ddd;line-height: 50px;}
+.m-header{display: flex;height: 64px;border-bottom: 1px solid #ddd;line-height: 64px;}
 .m-header-logo{width: 150px;text-align: center;font-weight: bold;font-size: 20px;}
-.m-header-nav{flex:1;border-bottom: none;line-height: 50px;}
+.m-header-nav{flex:1;border-bottom: none;line-height: 64px;}
 .m-header-operate{width: 200px;text-align: right;padding: 0 40px;}
 .m-content{flex:1;padding: 10px 0 50px;overflow-y: auto;background: #f0f2f5;}
 .m-admin-content{display: flex;flex-direction: column; flex:1;padding: 0 0 0; overflow-y: auto;background: #f0f2f5;}
@@ -81,7 +81,7 @@
 .m-list{display: flex;flex-direction: column; position: relative;flex:1;overflow: hidden;}
 .m-sidebar-icon.big{font-size: 22px!important;margin: 0 0 0 -4px;}
 .m-sidebar-icon-wrap{vertical-align: text-bottom;}
-.m-logo{height: 64px;line-height: 64px;text-align: center;font-size: 16px;font-weight: bold; color: white;border-bottom: 1px solid #333;white-space:nowrap}
+.m-logo{height: 64px;line-height: 64px;text-align: center;font-size: 20px;font-weight: bold; color: white;border-bottom: 1px solid #333;white-space:nowrap}
 .m-logo.light{color: rgba(0, 0, 0, 0.6);border-bottom: 1px solid #ddd;}
 .m-list-header{display: flex; height: 64px;line-height: 64px;border-bottom: 1px solid #ddd;}
 .m-list-header-icon{display: inline-block; width: 52px;height: 64px;font-size: 30px;cursor: pointer;text-align: center;}
