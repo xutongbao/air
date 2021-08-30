@@ -6,4 +6,10 @@ const baseURL = {
   prod: 'http://39.97.238.175:81'
 }[process.env.REACT_APP_MODE]
 
-export { baseURL }
+const nodeBaseURL = {
+  dev: 'http://localhost:81',
+  test: 'https://efficacious-tiny-infinity.glitch.me',
+  prod: 'https://efficacious-tiny-infinity.glitch.me',
+}[process.env.REACT_APP_MODE]
+
+export { baseURL, nodeBaseURL }

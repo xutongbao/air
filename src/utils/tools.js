@@ -2,6 +2,8 @@ import store from '../store'
 import { Input, InputNumber, Form } from 'antd'
 import moment from 'moment'
 import { fromJS } from 'immutable'
+import Api from '../api'
+import Store from '../store'
 
 
 const { TextArea } = Input
@@ -279,6 +281,21 @@ const deepClone = (obj) => {
   return fromJS(obj).toJS()
 }
 
+//添加日志
+const addLog = ({ errorTitle, detail }) => {
+  const {
+    location: { pathname },
+  } = window.reactRouter
+  const userInfo = Store.getState().getIn(['light', 'userInfo']).toJS()
+  const tempValues = {
+    username: userInfo.username,
+    path: pathname,
+    errorTitle,
+    detail,
+  }
+  Api.light.testLogAdd({ dataItem: { ...tempValues } }).then(() => {})
+}
+
 
 export {
   showLoading,
@@ -291,4 +308,5 @@ export {
   getFieldsDom,
   formatAuthData,
   deepClone,
+  addLog,
 }

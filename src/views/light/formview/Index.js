@@ -87,6 +87,9 @@ function Index(props) {
             status="success"
             title="提交成功"
             subTitle="感谢您的参与"
+            extra={<Button type="primary" onClick={() => { 
+              document.location.reload()
+            }}>返回</Button>}
           ></Result>
         )}
       </div>

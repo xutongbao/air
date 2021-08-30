@@ -6,5 +6,18 @@ import FieldRequired from './FieldRequired'
 import UploadImgLight from './UploadImgLight'
 //回到顶部
 import MyBackTop from './MyBackTop'
+//错误边界
+import ErrorBoundary from './ErrorBoundary'
+//loading
+import Loading from './Loading'
 
-export { Icon, MyTable, MyTableForEasy, FieldRequired, UploadImgLight, MyBackTop }
+export {
+  Icon,
+  MyTable,
+  MyTableForEasy,
+  FieldRequired,
+  UploadImgLight,
+  MyBackTop,
+  ErrorBoundary,
+  Loading,
+}

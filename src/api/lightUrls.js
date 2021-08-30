@@ -1,7 +1,12 @@
-import { baseURL } from '../utils/config'
+import { baseURL, nodeBaseURL } from '../utils/config'
 
 const urls = {
   testUpload: baseURL + '/api/upload', //不是axios发起的请求，需要特殊处
+
+  //#region 错误日志列表(node)
+  testLogAdd: nodeBaseURL + '/api/log/add',
+
+  //#endregion
 
   templateSearch: '/api/template/search',
   templateAdd: '/api/template/add',

@@ -2,6 +2,12 @@ import urls from './urls'
 import { common } from './common'
 
 const Api = {
+
+  //#region 错误日志列表(node)
+  testLogAdd: (data) => common({ url: urls.light.testLogAdd, data, method: 'post' }),
+
+  //#endregion
+
   templateSearch: (data) => common({ url: urls.light.templateSearch, data, method: 'post' }),
   templateAdd: (data) => common({ url: urls.light.templateAdd, data, method: 'post' }),
   templateDelete: (data) => common({ url: urls.light.templateDelete, data, method: 'post' }),

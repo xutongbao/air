@@ -53,7 +53,7 @@
 .m-design-card-action{position: absolute;display: none; bottom: -16px; right: 10px; width: 70px;text-align: right;}
 .m-design-card-action.active{display: block;}
 .m-design-card-delete{color: red;font-weight: bold;font-size: 20px;}
-.m-design-footer{margin: 20px 0 0;}
+.m-design-footer{margin: 20px 8px 0;}
 .m-formview-wrap{position: absolute;top: 0;left: 0;right: 0;bottom: 0;padding: 0 0; background-size: 100% 100%; overflow-y: auto;overflow-x: hidden;text-align: center;}
 .m-formview-inner{display: inline-block;margin: 16px 0; padding: 0 0 100px;width: 800px;min-height: 100%; background: white;box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);text-align: left;}
 .m-formview-color-header{height: 40px;background: #1890ff;}
@@ -99,7 +99,9 @@
 .m-home-content-box{margin: 10px 10px 5px;padding: 10px;}
 .m-home-welcome{font-size: 20px;line-height: 32px;color: #333;margin: 0 0 10px 10px;}
 .m-content-wrap{display: flex;flex:1;height: 100%;}
-
+.m-loading{display: none; position: fixed;top: 0;left: 0;right: 0;bottom: 0;background: rgba(0, 0, 0, 0);z-index: 10000;}
+.m-loading.active{display: flex;}
+.m-spin{margin: auto;}
 
 
 @media screen and (max-width: 800px) {  
