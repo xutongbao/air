@@ -13,35 +13,37 @@ function Header(props) {
       id: 0,
       title: '编辑',
       type: 'edit',
-      path: `/light/admin/applicationPlus?type=detail&id=${routerSearchObj.id}&progress=edit`,
+      path: `/light/admin/app?type=detail&id=${routerSearchObj.id}&progress=edit`,
     },
     {
       id: 1,
       title: '皮肤',
       type: 'skin',
-      path: `/light/admin/applicationPlus?type=detail&id=${routerSearchObj.id}&progress=skin`,
+      path: `/light/admin/app?type=detail&id=${routerSearchObj.id}&progress=skin`,
     },
     {
       id: 2,
       title: '设置',
       type: 'set',
-      path: `/light/admin/applicationPlus?type=detail&id=${routerSearchObj.id}&progress=set`,
+      path: `/light/admin/app?type=detail&id=${routerSearchObj.id}&progress=set`,
     },
     {
       id: 3,
       title: '发布',
       type: 'publish',
-      path: `/light/admin/applicationPlus?type=detail&id=${routerSearchObj.id}&progress=publish`,
+      path: `/light/admin/app?type=detail&id=${routerSearchObj.id}&progress=publish`,
     },
   ]
 
   const handleChange = (current) => {
-    const result = accountList.find(item => item.id === current)
+    const result = accountList.find((item) => item.id === current)
     props.history.replace(result.path)
   }
 
   useEffect(() => {
-    const result = accountList.find(item => item.type === routerSearchObj.progress)
+    const result = accountList.find(
+      (item) => item.type === routerSearchObj.progress
+    )
     setCurrent(result.id)
     // eslint-disable-next-line
   }, [])
@@ -59,13 +61,12 @@ function Header(props) {
       </div>
       <div className="m-design-header-middle">
         <div className="m-design-header-middle-inner">
-        <Steps current={current} onChange={handleChange}>
-          {accountList.map((item) => (
-            <Step key={item.id} title={item.title} />
-          ))}
-        </Steps>
+          <Steps current={current} onChange={handleChange}>
+            {accountList.map((item) => (
+              <Step key={item.id} title={item.title} />
+            ))}
+          </Steps>
         </div>
-
       </div>
       <div className="m-design-header-action">
         <Button type="primary" onClick={onSave}>

@@ -7,7 +7,7 @@ import useList from './useList'
 function Home(props) {
   const { companyCount, shopCount, courseCount } = useList(props)
   return (
-    <div className="m-content-wrap">
+    <div className="m-admin-content">
       <div className="m-home-content-box">
         <div className="m-home-welcome">今日概况</div>
         <div className="m-home-content">

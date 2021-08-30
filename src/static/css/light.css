@@ -5,7 +5,7 @@
 .m-header-nav{flex:1;border-bottom: none;line-height: 50px;}
 .m-header-operate{width: 200px;text-align: right;padding: 0 40px;}
 .m-content{flex:1;padding: 10px 0 50px;overflow-y: auto;background: #f0f2f5;}
-.m-admin-content{display: flex;flex-direction: column; flex:1;padding: 10px 0 0; overflow-y: auto;background: #f0f2f5;}
+.m-admin-content{display: flex;flex-direction: column; flex:1;padding: 0 0 0; overflow-y: auto;background: #f0f2f5;}
 .m-admin-content.home{padding: 100px 0 50px;}
 .m-app-item{display: inline-block;position: relative; margin: 0 20px 20px 0; padding: 0 5px; background: white;font-size: 20px; width: 200px;height: 80px;line-height: 80px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;text-align: center;cursor: pointer;}
 .m-app-item:hover{box-shadow: 10px 10px  10px #ddd;}

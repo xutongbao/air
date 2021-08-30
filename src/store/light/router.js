@@ -14,8 +14,8 @@ const router = [
     title: '应用管理',
     icon: 'base',
     isVisible: true,
-    path: '/light/admin/applicationPlus',
-    component: lazy(() => import('../../views/light/admin/applicationPlus/Index')),
+    path: '/light/admin/app',
+    component: lazy(() => import('../../views/light/admin/app/Index')),
   },
 ]
 
