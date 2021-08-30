@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Steps } from 'antd'
 import { withRouter, Link } from 'react-router-dom'
-import { Icon } from '../../../../components/light'
+import { Icon } from '../../../../../components/light'
 const { Step } = Steps
 
 function Header(props) {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import List from './list/Index'
-import Detail from '../setApplicationPlus/Index'
+import Detail from './detail/Index'
 import { getRouterSearchObj } from '../../../../utils/tools'
 
 function Index(props) {

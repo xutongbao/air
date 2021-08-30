@@ -4,10 +4,10 @@ import { withRouter } from 'react-router-dom'
 import { Form, Button, Collapse, Col, Row, Input } from 'antd'
 import Header from '../Header'
 import useList from './useList'
-import { Icon } from '../../../../../components/light'
+import { Icon } from '../../../../../../components/light'
 import { getComponentArr, getAttrFields } from './config'
 import { Container, Draggable } from 'react-smooth-dnd'
-import { getFormComponentArr } from '../../../../../utils/tools'
+import { getFormComponentArr } from '../../../../../../utils/tools'
 
 const { Panel } = Collapse
 

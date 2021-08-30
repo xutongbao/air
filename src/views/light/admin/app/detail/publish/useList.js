@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import Api from '../../../../../api'
+import Api from '../../../../../../api'
 import { Modal, message } from 'antd'
-import { getRouterSearchObj } from '../../../../../utils/tools'
+import { getRouterSearchObj } from '../../../../../../utils/tools'
 import { v4 as uuidv4 } from 'uuid'
 import { getComponentArr } from './config'
 

@@ -1,5 +1,5 @@
 import { Form, Input } from 'antd'
-import { FieldRequired, UploadImgLight } from '../../../../../components/light'
+import { FieldRequired, UploadImgLight } from '../../../../../../components/light'
 
 //组件元素
 const getComponentArr = () => {
