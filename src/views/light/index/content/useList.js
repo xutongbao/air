@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 import Api from '../../../../api'
 import { Modal, Form } from 'antd'
-import { getRouterSearchObj, getFieldsDom } from '../../../../utils/tools'
-import useFields from './useFields'
+import { getRouterSearchObj, getRenderFunArr, getFieldsDom, } from '../../../../utils/tools'
 
 const { confirm } = Modal
 
@@ -23,13 +22,28 @@ export default function useList(props) {
   const [type, setType] = useState('add')
   const [modalTitle, setModalTitle] = useState()
   const [modalFields, setModalFields] = useState([])
-  const { getColumns } = useFields(props)
 
   //获取路由参数
   const routerSearchObj = getRouterSearchObj(props)
   const tableId = routerSearchObj.id
 
   const addInitValues = {}
+
+  //根据fields获取columns
+  const getColumns = (fields) => {
+    return fields.filter(item => item.isColumn).map((item) => {
+      return {
+        title: item.title,
+        dataIndex: item.dataIndex,
+        render: (text, record) => {
+          const result = getRenderFunArr().find(
+            (funItem) => funItem.renderFunName === item.renderFunName
+          )
+          return result ? result.render(text, record) : text
+        },
+      }
+    })
+  }  
 
   //搜索
   const handleSearch = ({

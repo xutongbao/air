@@ -72,6 +72,33 @@
 .m-test-list{width: 200px;; margin: 10px; padding: 10px; border: 1px dashed #ddd;}
 .m-design-sidebar-container .smooth-dnd-container{width: 100%; display: flex!important;flex-flow: row wrap;row-gap: 20px}
 .m-design-sidebar-container .smooth-dnd-draggable-wrapper{flex: 0 0 33.33333333%;}
+.m-not-found-wrap{display: flex;position: absolute;top: 0;left: 0;right: 0;bottom: 0;}
+.m-not-found{margin: auto;}
+.m-not-found-img{margin: -100px 0 0 0; width: 404px; height: 204px;background-image: url(../images/m-not-found.png);}
+.m-not-found-text{color: #333;line-height: 40px;text-align: center;}
+.m-index-wrap{display: flex; position: absolute;top: 0;left: 0;right: 0;bottom: 0;}
+.m-list{display: flex;flex-direction: column; position: relative;flex:1;overflow: hidden;}
+.m-sidebar-icon.big{font-size: 22px!important;margin: 0 0 0 -4px;}
+.m-sidebar-icon-wrap{vertical-align: text-bottom;}
+.m-logo{height: 64px;line-height: 64px;text-align: center;font-size: 16px;font-weight: bold; color: white;border-bottom: 1px solid #333;white-space:nowrap}
+.m-logo.light{color: rgba(0, 0, 0, 0.6);border-bottom: 1px solid #ddd;}
+.m-list-header{display: flex; height: 64px;line-height: 64px;border-bottom: 1px solid #ddd;}
+.m-list-header-icon{display: inline-block; width: 52px;height: 64px;font-size: 30px;cursor: pointer;text-align: center;}
+.m-list-header-icon.rotate{transform: rotate(180deg);}
+.m-list-header-icon:hover{background: #ddd;}
+.m-list-info{display: flex;flex-direction: column; flex: 1;overflow-y: auto;background: #f0f2f5;}
+.m-list-header-info{flex: 1}
+.m-list-header-menu{width: 300px; text-align: right;padding: 0 20px 0 0;}
+.m-list-header-menu-welcome{margin: 0 20px 0 0;}
+.m-list-header-menu-username{margin: 0 5px;cursor: pointer;}
+.m-list-header-menu-theme{margin: 0 0 0 20px;cursor: pointer;}
+.m-list-nav{display: flex; padding: 5px 0 5px 20px;border-bottom: 1px solid #ddd;}
+.m-list-nav-info{margin: 0 0 0 20px;vertical-align: top;color: rgba(0, 0, 0, 0.45);}
+.m-list-nav-info-icon{display: inline-block; margin: -1px 0 0 5px;vertical-align: top;color: rgba(0, 0, 0, 0.45);}
+.m-home-content-box{margin: 10px 10px 5px;padding: 10px;}
+.m-home-welcome{font-size: 20px;line-height: 32px;color: #333;margin: 0 0 10px 10px;}
+
+
 
 @media screen and (max-width: 800px) {  
 .m-formview-inner{width: 100%;} 

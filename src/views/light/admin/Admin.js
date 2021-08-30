@@ -2,6 +2,9 @@ import React, { Suspense, lazy } from 'react'
 import { Menu } from 'antd'
 import { Link, Switch, Route, withRouter } from 'react-router-dom'
 import Logo from './Logo'
+import {
+  PieChartOutlined,
+} from '@ant-design/icons'
 
 const ApplicationPlus = lazy(() => import('./applicationPlus/Index'))
 const SetApplicationPlus = lazy(() => import('./setApplicationPlus/Index'))
@@ -21,14 +24,14 @@ function Admin(props) {
           className="m-admin-menu"
         >
           <Logo></Logo>
-          <Menu.Item key="/light/admin/applicationPlus">
+          <Menu.Item key="/light/admin/applicationPlus" icon={<PieChartOutlined />}>
             <Link to="/light/admin/applicationPlus">应用管理</Link>
           </Menu.Item>
         </Menu>
       </div>
       <div className="m-admin-info">
         <div className="m-header">
-          <div className="m-header-title"></div>
+          <div className="m-header-title">1</div>
           <div className="m-header-nav"></div>
           <div className="m-header-operate">
             <Link to="/light/index/content?id=0">进入应用</Link>

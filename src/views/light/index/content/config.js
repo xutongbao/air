@@ -55,25 +55,4 @@ const getSearchFields = (isExpand) => {
   )
 }
 
-//添加编辑查看对话框表单字段
-const getModalFields = () => {
-  return (
-    <>
-      <Form.Item
-        label="名称"
-        name="name"
-        rules={[
-          {
-            required: true,
-            message: '请输入店铺名称！',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
-    </>
-  )
-}
-
-
-export { getColumns, getSearchFields, getModalFields }
+export { getColumns, getSearchFields }

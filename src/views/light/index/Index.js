@@ -36,7 +36,7 @@ function Index(props) {
           }
         </Menu>
         <div className="m-header-operate">
-          <Link to="/light/admin/applicationPlus">管理后台</Link>
+          <Link to="/light/admin/home">管理后台</Link>
         </div>
       </div>
       <div className="m-content">

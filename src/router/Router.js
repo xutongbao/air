@@ -1,12 +1,11 @@
 import React, { Suspense, lazy } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 const Index = lazy(() => import('../views/light/index/Index'))
-const Admin = lazy(() => import('../views/light/admin/Admin'))
+const Admin = lazy(() => import('../views/light/admin/Index'))
 const FormView = lazy(() => import('../views/light/formview/Index'))
 const Cards = lazy(() => import('../views/light/test/Cards'))
 const CardPlus = lazy(() => import('../views/light/test/CardPlus'))
-
-
+const NotFound = lazy(() => import('../views/light/notFound/NotFound'))
 
 export default function Router() {
   return (
@@ -19,6 +18,8 @@ export default function Router() {
           <Route path="/light/formview" component={FormView}></Route>
           <Route path="/light/cards" component={Cards}></Route>
           <Route path="/light/cardPlus" component={CardPlus}></Route>
+          <Route path="/404" component={NotFound}></Route>
+          <Redirect from="*" to="/404" exact></Redirect>
         </Switch>
       </Suspense>
     </>

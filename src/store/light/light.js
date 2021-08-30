@@ -1,7 +1,10 @@
 import { fromJS } from 'immutable'
+import router from './router'
 
 const defaultState = fromJS({
-  router: [],
+  router,
+  collapsed: false,
+  userInfo: {}
 })
 
 const reducer = (state = defaultState, action) => {

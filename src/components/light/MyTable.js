@@ -22,7 +22,7 @@ function MyTable(props) {
           pageSize,
           onChange: (page, pageSize) => props.onSearch({page, pageSize}),
           showSizeChanger: true,
-          pageSizeOptions: [10, 20, 50],
+          pageSizeOptions: [10, 20, 50, 300],
           onShowSizeChange: (page, pageSize) => props.onSearch({page, pageSize}),
           showTotal: (total) => <span>共有数据： <span className="m-total-text">{total}</span> 条</span>,
         }}

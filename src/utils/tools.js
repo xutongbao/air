@@ -1,6 +1,8 @@
 import store from '../store'
 import { Input, InputNumber, Form } from 'antd'
 import moment from 'moment'
+import { fromJS } from 'immutable'
+
 
 const { TextArea } = Input
 
@@ -182,6 +184,102 @@ const getFieldsDom = (fields) => {
   return arr
 }
 
+//格式化权限数据
+const formatAuthData = ({ router, authData = [], isForTable = false }) => {
+  router = deepClone(router)
+  const newRouterAuthDataArr = []
+  const find = (arr, parentId = '') => {
+    for (let i = 0; i < arr.length; i++) {
+      //查询后端提供的权限
+      const findResult = authData.find(
+        (item) => item.path === arr[i].path || item.path === arr[i].key
+      )
+      //后端的权限应用到菜单的显示隐藏
+      if (findResult) {
+        const checkResult =
+          Array.isArray(findResult.auth) &&
+          findResult.auth.find((item) => item.name === 'check')
+        if (checkResult) {
+          arr[i].isVisible = checkResult.isVisible
+        } else {
+          arr[i].isVisible = false
+        }
+      }
+      //后端的权限应用到按钮的显示隐藏
+      if (Array.isArray(arr[i].auth)) {
+        arr[i].auth.forEach((authItem) => {
+          if (findResult && Array.isArray(findResult.auth)) {
+            const temp = findResult.auth.find(
+              (item) => item.name === authItem.name
+            )
+            if (temp) {
+              authItem.isVisible = temp.isVisible
+            } else {
+              authItem.isVisible = false
+            }
+          } else {
+            if (authItem.name === 'check') {
+              authItem.isVisible = true
+            } else {
+              authItem.isVisible = false
+            }
+          }
+        })
+        let path = ''
+        if (arr[i].path) {
+          path = arr[i].path
+        } else if (arr[i].key) {
+          path = arr[i].key
+        }
+        newRouterAuthDataArr.push({
+          path,
+          auth: deepClone(arr[i].auth),
+        })
+      }
+      //后端的权限应用到数据范围
+      if (arr[i].dataRange) {
+        if (findResult && findResult.dataRange && findResult.dataRange.value) {
+          arr[i].dataRange.value = findResult.dataRange.value
+        } else {
+          arr[i].dataRange.value = 1
+        }
+        const index = newRouterAuthDataArr.findIndex(
+          (item) => item.path === arr[i].path
+        )
+        if (index >= 0) {
+          newRouterAuthDataArr[index] = {
+            ...newRouterAuthDataArr[index],
+            dataRange: deepClone(arr[i].dataRange),
+          }
+        }
+      }
+      //ID
+      if (Array.isArray(arr[i].children) && arr[i].children.length > 0) {
+        arr[i].id = `${parentId}${i + 1}`
+        find(arr[i].children, `${parentId}${i + 1}`)
+      } else {
+        arr[i].id = `${parentId}${i + 1}`
+        if (
+          arr[i].isDevMenu === true &&
+          isForTable &&
+          !(process.env.REACT_APP_MODE === 'dev')
+        ) {
+          arr.splice(i, 1)
+          i = i - 1
+        }
+      }
+    }
+  }
+  find(router)
+  return { newRouter: router, newRouterAuthDataArr }
+}
+
+//深拷贝
+const deepClone = (obj) => {
+  return fromJS(obj).toJS()
+}
+
+
 export {
   showLoading,
   hideLoading,
@@ -191,4 +289,6 @@ export {
   getFormComponentArr,
   getRenderFunArr,
   getFieldsDom,
+  formatAuthData,
+  deepClone,
 }
