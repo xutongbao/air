@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getRouterSearchObj } from '../../../utils/tools'
 import { getRouter } from  '../../../store/light/actionCreator'
+import { MyBackTop } from '../../../components/light'
 
 const Content = lazy(() => import('./content/Index'))
 
@@ -39,12 +40,13 @@ function Index(props) {
           <Link to="/light/admin/home">管理后台</Link>
         </div>
       </div>
-      <div className="m-content">
+      <div className="m-content" id="m-content">
         <Suspense fallback={null}>
           <Switch>
             <Route path="/light/index/content" component={Content}></Route>
           </Switch>
         </Suspense>
+        <MyBackTop dom={document.getElementById("m-content")}></MyBackTop>
       </div>
     </div>
   )
