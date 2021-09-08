@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import Api from '../../../../../../api'
-import { message } from 'antd'
+import { message, Form } from 'antd'
 import { getRouterSearchObj } from '../../../../../../utils/tools'
 
 export default function useList(props) {
+  const [form] = Form.useForm()
   const [dataSource, setDataSource] = useState([])
   const [applicationTitle, setApplicationTitle] = useState()
   const [skin, setSkin] = useState({})
@@ -20,8 +21,15 @@ export default function useList(props) {
         setDataSource(tempDataSource)
         setApplicationTitle(res.data.title)
         setSkin(res.data.skin ? res.data.skin : {})
+        form.resetFields()
       }
     })
+  }
+
+  //表单值变化
+  const handleValuesChange = (changedValues, allValues) => {
+    console.log(allValues)
+    setSkin(allValues)
   }
 
   //保存
@@ -50,6 +58,8 @@ export default function useList(props) {
     applicationTitle,
     routerSearchObj,
     skin,
+    form,
     handleSave,
+    handleValuesChange,
   }
 }

@@ -30,18 +30,14 @@ export default function UploadImgLight({
     defaultFileList: [...fileList],
     accept,
     onChange(info) {
-      // if (info.file.status !== 'uploading') {
-      //   console.log(info.file, info.fileList)
-      //   onChange(undefined)
-      // }
+      if (info.file.status !== 'uploading') {
+        console.log(info.file, info.fileList)
+        onChange(undefined)
+      }
       if (info.file.status === 'done') {
         message.success(`${info.file.name} 上传成功`)
         if (info.file.response.state === 1) {
-          // console.log(info.file.xhr.responseURL)
-          const temp = getHost('https://efficacious-tiny-infinity.glitch.me/api/upload')
-          console.log(temp)
           const imgUrl = `${getHost(info.file.xhr.responseURL)}/${info.file.response.data.filename}`
-          console.log(imgUrl)
           onChange(imgUrl)
         }
       } else if (info.file.status === 'error') {

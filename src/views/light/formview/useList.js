@@ -62,7 +62,7 @@ export default function useList(props) {
 
   useEffect(() => {
     console.log(previewSkin)
-    if (previewSkin.headerImg) {
+    if (previewSkin && previewSkin.headerImg) {
       setSkin(previewSkin)
     }
   }, [previewSkin])

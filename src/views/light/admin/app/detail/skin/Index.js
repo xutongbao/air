@@ -4,14 +4,12 @@ import { withRouter } from 'react-router-dom'
 import useList from './useList'
 import Header from '../Header'
 import Preview from '../../../../formview/Index'
+import { Form } from 'antd'
+import { UploadImgLight } from '../../../../../../components/light'
 
 function Index(props) {
-  const {
-    applicationTitle,
-    routerSearchObj,
-    skin,
-    handleSave,
-  } = useList(props)
+  const { applicationTitle, routerSearchObj, skin, form, handleSave, handleValuesChange } =
+    useList(props)
   return (
     <div className="m-admin-content">
       <Header
@@ -20,7 +18,24 @@ function Index(props) {
         onSave={handleSave}
       ></Header>
       <div className="m-design-wrap">
-        <div className="m-design-sidebar"></div>
+        <div className="m-design-sidebar skin">
+          <Form
+            form={form}
+            labelCol={{ span: 8 }}
+            wrapperCol={{ span: 15 }}
+            initialValues={{ ...skin }}
+            // onFinish={handleFinish}
+            // onFinishFailed={handleFinishFailed}
+            onValuesChange={handleValuesChange}
+          >
+            <Form.Item label="表头图片" name="headerImg">
+              <UploadImgLight></UploadImgLight>
+            </Form.Item>
+            <Form.Item label="背景图片" name="backgroundImg">
+              <UploadImgLight></UploadImgLight>
+            </Form.Item>
+          </Form>
+        </div>
         <div className="m-design-content">
           <Preview previewSkin={skin}></Preview>
         </div>
