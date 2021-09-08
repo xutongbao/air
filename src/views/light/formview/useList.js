@@ -19,6 +19,7 @@ export default function useList(props) {
   //获取路由参数
   const routerSearchObj = getRouterSearchObj(props)
   const tableId = routerSearchObj.id
+  const { previewSkin } = props
 
   //搜索
   const handleSearch = () => {
@@ -58,6 +59,13 @@ export default function useList(props) {
     handleSearch()
     // eslint-disable-next-line
   }, [props.location.search])
+
+  useEffect(() => {
+    console.log(previewSkin)
+    if (previewSkin.headerImg) {
+      setSkin(previewSkin)
+    }
+  }, [previewSkin])
 
   //根据当前的url生成二维码
   useEffect(() => {

@@ -3,11 +3,13 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import useList from './useList'
 import Header from '../Header'
+import Preview from '../../../../formview/Index'
 
 function Index(props) {
   const {
     applicationTitle,
     routerSearchObj,
+    skin,
     handleSave,
   } = useList(props)
   return (
@@ -17,7 +19,12 @@ function Index(props) {
         routerSearchObj={routerSearchObj}
         onSave={handleSave}
       ></Header>
-      <div className="m-empty-page">占位空页面</div>
+      <div className="m-design-wrap">
+        <div className="m-design-sidebar"></div>
+        <div className="m-design-content">
+          <Preview previewSkin={skin}></Preview>
+        </div>
+      </div>
     </div>
   )
 }
