@@ -28,19 +28,17 @@ export default function useList(props) {
 
   //表单值变化
   const handleValuesChange = (changedValues, allValues) => {
-    console.log(allValues)
     setSkin(allValues)
   }
 
   //保存
   const handleSave = () => {
-    console.log(dataSource)
     const newDataSource = dataSource.map((item, index) => {
       return { ...item, orderIndex: index + 1 }
     })
-    console.log(newDataSource)
+
     Api.light
-      .fieldsEditAll({ tableId, dataItem: newDataSource })
+      .fieldsEditAll({ tableId, dataItem: newDataSource, skin })
       .then((res) => {
         if (res.code === 200) {
           message.success(res.message)

@@ -61,7 +61,6 @@ export default function useList(props) {
   }, [props.location.search])
 
   useEffect(() => {
-    console.log(previewSkin)
     if (previewSkin && previewSkin.headerImg) {
       setSkin(previewSkin)
     }
