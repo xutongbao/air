@@ -29,10 +29,10 @@ function Index(props) {
             onValuesChange={handleValuesChange}
           >
             <Form.Item label="表头图片" name="headerImg">
-              <UploadImgLight></UploadImgLight>
+              <UploadImgLight msg="尺寸640*272"></UploadImgLight>
             </Form.Item>
             <Form.Item label="背景图片" name="backgroundImg">
-              <UploadImgLight></UploadImgLight>
+              <UploadImgLight msg="尺寸1394*840"></UploadImgLight>
             </Form.Item>
           </Form>
         </div>
