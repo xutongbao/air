@@ -14,17 +14,17 @@ pipeline {
                 sh 'yarn'
             }
         }
-        // stage('Build2') {
-        //     steps {
-        //         sh 'yarn build'
-        //     }
-        // }
-        stage('Deliver') { 
+        stage('Build2') {
             steps {
-                sh './jenkins/scripts/deliver.sh' 
-                input message: 'Finished using the web site? (Click "Proceed" to continue)' 
-                sh './jenkins/scripts/kill.sh' 
+                sh 'yarn build_jenkins'
             }
         }
+        // stage('Deliver') { 
+        //     steps {
+        //         sh './jenkins/scripts/deliver.sh' 
+        //         input message: 'Finished using the web site? (Click "Proceed" to continue)' 
+        //         sh './jenkins/scripts/kill.sh' 
+        //     }
+        // }
     }
 }
