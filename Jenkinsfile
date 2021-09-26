@@ -9,14 +9,19 @@ pipeline {
         CI = 'true'
     }
     stages {
-        stage('Build') {
+        stage('install') {
             steps {
                 sh 'yarn'
             }
         }
-        stage('Build2') {
+        stage('Build') {
             steps {
                 sh 'yarn build_jenkins'
+            }
+        }
+        stage('server') {
+            steps {
+                sh 'yarn server'
             }
         }
         // stage('Deliver') { 
