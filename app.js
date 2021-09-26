@@ -8,7 +8,7 @@ app.use(express.static('build'))
 app.use(
   '/api',
   createProxyMiddleware({
-    target: 'http://localhost:81',
+    target: 'http://192.168.1.60:81',
     changeOrigin: true,
   })
 )
