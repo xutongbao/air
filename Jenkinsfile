@@ -10,13 +10,13 @@ pipeline {
                 ok "Yes, we should."
                 submitter "alice,bob"
                 parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+                    string(name: 'PERSON', defaultValue: '3002', description: 'Who should I say hello to?')
                 }
             }
             agent {
                 docker {
                     image 'node:12'
-                    args '-p 3002:3002'
+                    args "-p ${PERSON}:3002"
                 }
             }            
             steps {
