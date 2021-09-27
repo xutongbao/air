@@ -8,15 +8,7 @@ pipeline {
     environment { 
         CI = 'true'
     }
-    parameters {
-        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
-    }
     stages {
-        stage('Example') {
-            steps {
-                git branch: "${params.BRANCH}", url: 'git@github.com:xutongbao/air.git'
-            }
-        }
         stage('install') {
             steps {
                 echo 'hello,world!'
