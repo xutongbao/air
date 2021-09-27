@@ -19,8 +19,7 @@ pipeline {
                 }
             }            
             steps {
-                echo 'hello,world!'
-                echo "PORT: ${PORT}"
+                echo "PORT: ${PORT},http://xxx:${PORT}"
                 sh 'yarn -v'
                 sh 'yarn'
                 sh 'set -x'
