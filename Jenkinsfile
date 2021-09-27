@@ -5,6 +5,14 @@ pipeline {
     }
     stages {
         stage('install') {
+            input {
+                message "Should we continue?"
+                ok "Yes, we should."
+                submitter "alice,bob"
+                parameters {
+                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+                }
+            }
             agent {
                 docker {
                     image 'node:12'
@@ -13,6 +21,7 @@ pipeline {
             }            
             steps {
                 echo 'hello,world!'
+                echo "Hello, ${PERSON}, nice to meet you."
                 sh 'yarn -v'
                 sh 'yarn'
                 sh 'set -x'
