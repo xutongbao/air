@@ -18,7 +18,9 @@ pipeline {
         }
         stage('Build') {
             steps {
+                sh 'set -x'
                 sh 'yarn build_jenkins'
+                sh 'set +x'
             }
         }
         stage('server') {
