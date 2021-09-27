@@ -6,10 +6,10 @@ pipeline {
     stages {
         stage('install') {
             input {
-                message "请设置端口号?"
-                ok "确定"
+                message "Please set the port number?"
+                ok "Ok"
                 parameters {
-                    string(name: 'PORT', defaultValue: '3002', description: '设置docker容器对外保留的端口号?')
+                    string(name: 'PORT', defaultValue: '3002', description: ' Set the expose port number of docker container?')
                 }
             }
             agent {
