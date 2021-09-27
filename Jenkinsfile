@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('install') {
             steps {
-                echo '开始'
+                echo 'hello,world!'
                 sh 'yarn -v'
                 sh 'yarn'
             }
