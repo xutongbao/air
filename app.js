@@ -1,6 +1,7 @@
 const express = require('express')
 const { createProxyMiddleware } = require('http-proxy-middleware')
-const compression = require('compression');
+const compression = require('compression')
+const axios = require('axios')
 
 const app = express()
 app.use(compression({ filter: shouldCompress }))
