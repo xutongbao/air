@@ -31,8 +31,6 @@ const emailPost = (emailData) => {
       ...emailData
     })
     .then((res) => {
-      console.log(`statusCode: ${res.statusCode}`)
-      console.log(res)
     })
     .catch((error) => {
       console.error(error)
