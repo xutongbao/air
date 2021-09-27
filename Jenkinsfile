@@ -6,22 +6,21 @@ pipeline {
     stages {
         stage('install') {
             input {
-                message "Should we continue?"
-                ok "Yes, we should."
-                submitter "alice,bob"
+                message "请设置端口号?"
+                ok "确定"
                 parameters {
-                    string(name: 'PERSON', defaultValue: '3002', description: 'Who should I say hello to?')
+                    string(name: 'PORT', defaultValue: '3002', description: '设置docker容器对外保留的端口号?')
                 }
             }
             agent {
                 docker {
                     image 'node:12'
-                    args "-p ${PERSON}:3002"
+                    args "-p ${PORT}:3002"
                 }
             }            
             steps {
                 echo 'hello,world!'
-                echo "Hello, ${PERSON}, nice to meet you."
+                echo "PORT: ${PORT}"
                 sh 'yarn -v'
                 sh 'yarn'
                 sh 'set -x'
