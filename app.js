@@ -24,6 +24,28 @@ app.use(
   })
 )
 
+const emailPost = (emailData) => {
+  axios
+    .post('http://39.97.238.175:81/api/log/email', {
+      ...emailData
+    })
+    .then((res) => {
+      console.log(`statusCode: ${res.statusCode}`)
+      console.log(res)
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+}
+
 app.listen(process.env.PORT, () => {
   console.log(process.env.PORT)
+  const tempValues = {
+    username: 'xxx',
+    path: `http://xx:${process.env.PORT}`,
+    errorTitle: '构建',
+    detail: '构建成功',
+    browser: '1'
+  }
+  emailPost(tempValues)
 })
