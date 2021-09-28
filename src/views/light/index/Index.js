@@ -22,7 +22,7 @@ function Index(props) {
   return (
     <div className="m-wrap">
       <div className="m-header">
-        <div className="m-header-logo">SalesWork</div>
+        <div className="m-header-logo">SalesWork(home)</div>
         <Menu
           className="m-header-nav"
           selectedKeys={[routerSearchObj.id]}
