@@ -4,11 +4,11 @@ pipeline {
         CI = 'true'
     }
     stages {
-        stage('install') {         
+        stage('build') {         
             steps {
                 bat "echo ${branch}"
                 bat 'yarn -v'
-                bat './test.bat'
+                bat './build.bat'
                 //bat 'set branchTemp=%branch:/=\\%'
                 //bat "echo ${branchTemp}"
                 //bat "xcopy D:\\Jenkins\\workspace\\air D:\\temp\\air\\%branchTemp%\\ /Y /E"

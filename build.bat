@@ -7,3 +7,4 @@ set aa=%aa:world=china%
 echo aa=%aa% 
 set branchTemp=%branch:/=\%
 echo %branchTemp%
+xcopy D:\\Jenkins\\workspace\\air D:\\temp\\air\\%branchTemp%\\ /Y /E
