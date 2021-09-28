@@ -18,6 +18,8 @@ pipeline {
                 bat "xcopy C:\\Windows\\System32\\config\\systemprofile\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\air d:\\temp\\air\\${PORT}\\ /Y /E"
                 bat "cd D:"
                 bat "cd D:\\temp\\air\\${PORT}"
+                bat "yarn"
+                bat "set PORT=${PORT} && node app"
             }
         }
     }
