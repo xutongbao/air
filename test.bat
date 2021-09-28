@@ -5,5 +5,5 @@ echo aa=%aa%
 echo %aa%
 set aa=%aa:world=china%
 echo aa=%aa% 
-set branchTemp=%branch:/=\\%
+set branchTemp=%branch:/=\%
 echo %branchTemp%
