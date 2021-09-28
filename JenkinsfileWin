@@ -11,21 +11,15 @@ pipeline {
                 parameters {
                     string(name: 'PORT', defaultValue: '3002', description: ' Set the expose port number of docker container?')
                 }
-            }
-            agent {
-                docker {
-                    image 'node:12'
-                    args "-p ${PORT}:3002"
-                }
-            }            
+            }           
             steps {
-                echo "PORT: ${PORT},http://xxx:${PORT}"
-                sh 'yarn -v'
-                sh 'yarn'
-                sh 'set -x'
-                sh 'yarn build_jenkins'
-                sh 'set +x'
-                sh 'yarn server'
+                bat "echo PORT: ${PORT},http://xxx:${PORT}"
+                bat 'yarn -v'
+                bat "xcopy C:\\Windows\\System32\\config\\systemprofile\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\air d:\\temp\\air\\${PORT}\\ /Y /E"
+                bat "cd D:"
+                bat "cd D:\\temp\\air\\${PORT}"
+                bat "yarn"
+                bat "set PORT=${PORT} && node app"
             }
         }
     }
