@@ -14,7 +14,7 @@ const emailPost = (emailData) => {
 const email = () => {
   const tempValues = {
     username: 'xxx',
-    path: `http://xx:${process.env.PORT}`,
+    path: `http://localhost:81/${process.env.branch}`,
     errorTitle: '构建',
     detail: '构建成功',
     browser: '1',

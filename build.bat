@@ -6,4 +6,4 @@ set PUBLIC_URL=/air/%branch%
 set GENERATE_SOURCEMAP=false 
 call node scripts/build.js
 xcopy D:\Jenkins\workspace\air\build D:\temp\air\%branch:/=\%\ /Y /E
-call yarn buildDone
+call set branch=/air/%branch% && node buildDone
