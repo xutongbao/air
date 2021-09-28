@@ -1,4 +1,4 @@
-set aa=hello！world
+set aa=hello,world!
 echo 替换前:%aa%
 echo 替换后:%aa:world=china%
 echo aa=%aa%
