@@ -15,9 +15,8 @@ pipeline {
             steps {
                 bat "echo PORT: ${PORT},http://xxx:${PORT}"
                 bat 'yarn -v'
-                bat "xcopy C:\\Windows\\System32\\config\\systemprofile\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\air d:\\temp\\air\\${PORT}\\ /Y /E"
-                bat "d:"
-                bat "D:\\temp\\air\\${PORT}"
+                bat "xcopy D:\\Jenkins\\workspace\\air D:\\temp\\air\\${PORT}\\ /Y /E"
+                bat "cd D:\\temp\\air\\${PORT}"
                 bat "dir"
                 // bat "yarn"
                 // bat "set PORT=${PORT} && node app"
