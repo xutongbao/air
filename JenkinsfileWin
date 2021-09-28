@@ -9,13 +9,6 @@ pipeline {
                 bat "echo ${branch}"
                 bat 'yarn -v'
                 bat './build.bat'
-                //bat 'set branchTemp=%branch:/=\\%'
-                //bat "echo ${branchTemp}"
-                //bat "xcopy D:\\Jenkins\\workspace\\air D:\\temp\\air\\%branchTemp%\\ /Y /E"
-                // bat "cd temp/air/${PORT}"
-                // bat "dir"
-                // bat "yarn"
-                // bat "set PORT=${PORT} && node app"
             }
         }
     }
