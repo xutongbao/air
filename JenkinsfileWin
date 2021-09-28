@@ -16,7 +16,9 @@ pipeline {
                 bat "echo PORT: ${PORT},http://xxx:${PORT}"
                 bat 'yarn -v'
                 bat "xcopy D:\\Jenkins\\workspace\\air D:\\temp\\air\\${PORT}\\ /Y /E"
-                bat "cd ../../.."
+                bat "cd .."
+                bat "cd .."
+                bat "cd .."
                 bat "cd temp/air/${PORT}"
                 bat "dir"
                 // bat "yarn"
