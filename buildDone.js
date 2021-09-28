@@ -13,6 +13,8 @@ const emailPost = (emailData) => {
 
 const email = () => {
   const tempValues = {
+    type: 'jenkins',
+    title: '构建成功',
     username: 'xxx',
     path: `http://39.97.238.175:81${process.env.myBranch}`,
     errorTitle: '构建',
