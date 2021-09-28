@@ -9,5 +9,6 @@ set branchTemp=%branch:/=\%
 echo %branchTemp%
 call yarn
 echo install done
-cross-env MODE_ENV=jenkins BUILD_PATH=/temp/air/%branch% PUBLIC_URL=/air/%branch% GENERATE_SOURCEMAP=false node scripts/build.js
+call yarn build_jenkins
+@REM cross-env MODE_ENV=jenkins BUILD_PATH=/temp/air/%branch% PUBLIC_URL=/air/%branch% GENERATE_SOURCEMAP=false node scripts/build.js
 @REM xcopy D:\\Jenkins\\workspace\\air D:\\temp\\air\\%branchTemp%\\ /Y /E
