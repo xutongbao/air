@@ -8,7 +8,7 @@ pipeline {
             steps {
                 bat "echo ${branch}"
                 bat 'yarn -v'
-                bat "xcopy D:\\Jenkins\\workspace\\air D:\\temp\\air\\${branch}\\ /Y /E"
+                bat "xcopy D:\\Jenkins\\workspace\\air D:\\temp\\air\\${branch:/=\}\\ /Y /E"
                 // bat "cd temp/air/${PORT}"
                 // bat "dir"
                 // bat "yarn"
