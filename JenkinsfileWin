@@ -8,7 +8,7 @@ pipeline {
             steps {
                 bat "echo ${branch}"
                 bat 'yarn -v'
-                bat 'set branchTemp=hello echo branchTemp'
+                bat './test.bat'
                 //bat 'set branchTemp=%branch:/=\\%'
                 //bat "echo ${branchTemp}"
                 //bat "xcopy D:\\Jenkins\\workspace\\air D:\\temp\\air\\%branchTemp%\\ /Y /E"
