@@ -93,7 +93,7 @@
     "start": "cross-env PORT=3002 node scripts/start.js",
     "build": "cross-env MODE_ENV=prod GENERATE_SOURCEMAP=false node scripts/build.js",
     "build_test": "cross-env MODE_ENV=test PUBLIC_URL=/air GENERATE_SOURCEMAP=false GENERATE_BUNDLE_ANALYZER_REPORT=true node scripts/build.js",
-    "build_jenkins": "cross-env MODE_ENV=jenkins GENERATE_SOURCEMAP=false node scripts/build.js",
+    "build_jenkins": "cross-env MODE_ENV=jenkins BUILD_PATH=/temp/air/master PUBLIC_URL=/air/master GENERATE_SOURCEMAP=false node scripts/build.js",
     "server": "PORT=3002 node app",
     "server2": "set PORT=3003 && node app",
     "test": "node scripts/test.js"
