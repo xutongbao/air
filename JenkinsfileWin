@@ -6,9 +6,9 @@ pipeline {
     stages {
         stage('install') {         
             steps {
-                bat "${branch}"
+                bat "echo ${branch}"
                 bat 'yarn -v'
-                // bat "xcopy D:\\Jenkins\\workspace\\air D:\\temp\\air\\${PORT}\\ /Y /E"
+                bat "xcopy D:\\Jenkins\\workspace\\air D:\\temp\\air\\${branch}\\ /Y /E"
                 // bat "cd temp/air/${PORT}"
                 // bat "dir"
                 // bat "yarn"
