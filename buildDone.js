@@ -41,7 +41,7 @@ const handleAddRecord = () => {
       dataItem,
     })
     .then((res) => {
-      console.log(' Record added successfully!')
+      console.log('Record added successfully!')
     })
     .catch((error) => {
       console.error(error)

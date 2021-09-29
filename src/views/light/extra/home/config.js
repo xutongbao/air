@@ -25,14 +25,9 @@ const getColumns = (props) => {
       title: '测试链接',
       dataIndex: 'url',
       render: (text) => {
-        const getHref = () => {
-          const host = window.location.host.split(':')[0] + ':81'
-          const href = `${window.location.protocol}//${host}${text}`
-          return href
-        }
         return (
-          <a href={getHref()} target="_blank" rel="noreferrer">
-            {getHref()}
+          <a href={text} target="_blank" rel="noreferrer">
+            {text}
           </a>
         )
       },
