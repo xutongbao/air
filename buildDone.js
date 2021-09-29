@@ -18,7 +18,7 @@ const email = () => {
       ...emailData,
     })
     .then((res) => {
-      console.log('发送邮件成功！')
+      console.log('E-Mail sent successfully!')
     })
     .catch((error) => {
       console.error(error)
@@ -39,7 +39,7 @@ const handleAddRecord = () => {
       dataItem,
     })
     .then((res) => {
-      console.log('添加记录成功！')
+      console.log(' Record added successfully!')
     })
     .catch((error) => {
       console.error(error)
