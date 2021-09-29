@@ -7,4 +7,4 @@ set GENERATE_SOURCEMAP=false
 call node scripts/build.js
 xcopy \Jenkins\workspace\air\build \temp\air\%branch:/=\%\ /Y /E
 call set myBranch=/air/%branch% && node buildDone
-echo http://localhost:81/air/%branch%
+echo http://39.97.238.175:81/air/%branch%

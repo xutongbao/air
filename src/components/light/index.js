@@ -10,6 +10,8 @@ import MyBackTop from './MyBackTop'
 import ErrorBoundary from './ErrorBoundary'
 //loading
 import Loading from './Loading'
+//搜索
+import Search from './Search'
 
 export {
   Icon,
@@ -20,4 +22,5 @@ export {
   MyBackTop,
   ErrorBoundary,
   Loading,
+  Search,
 }
