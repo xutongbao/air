@@ -23,7 +23,7 @@ export default function Router() {
             <Route path="/light/formview" component={FormView}></Route>
             <Route path="/light/cards" component={Cards}></Route>
             <Route path="/light/cardPlus" component={CardPlus}></Route>
-            <Route path="/extra/home" component={Home}></Route>
+            <Route path="/air/light/extra/home" component={Home}></Route>
             <Route path="/extra/template" component={Template}></Route>
             <Route path="/404" component={NotFound}></Route>
             <Redirect from="*" to="/404" exact></Redirect>

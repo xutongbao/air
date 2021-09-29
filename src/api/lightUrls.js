@@ -12,6 +12,8 @@ const urls = {
   templateAdd: '/api/template/add',
   templateDelete: '/api/template/delete',
   templateEdit: '/api/template/edit',
+  templateUp: '/api/template/up',
+
   easyTemplateSearch: '/api/easyTemplate/search',
   easyTemplateAdd: '/api/easyTemplate/add',
   easyTemplateDelete: '/api/easyTemplate/delete',

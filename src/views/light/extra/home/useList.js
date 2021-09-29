@@ -169,6 +169,11 @@ export default function useList(props) {
     searchForm.resetFields()
   }, [search, searchForm])
 
+  useEffect(() => {
+    document.title = '管理系统'
+  }, [])
+
+
   return {
     dataSource: state.dataSource,
     total,

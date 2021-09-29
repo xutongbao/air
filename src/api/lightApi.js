@@ -12,6 +12,8 @@ const Api = {
   templateAdd: (data) => common({ url: urls.light.templateAdd, data, method: 'post' }),
   templateDelete: (data) => common({ url: urls.light.templateDelete, data, method: 'post' }),
   templateEdit: (data) => common({ url: urls.light.templateEdit, data, method: 'post' }),
+  templateUp: (data) => common({ url: urls.light.templateUp, data, method: 'post' }),
+
   easyTemplateSearch: (data) => common({ url: urls.light.easyTemplateSearch, data, method: 'post' }),
   easyTemplateAdd: (data) => common({ url: urls.light.easyTemplateAdd, data, method: 'post' }),
   easyTemplateDelete: (data) => common({ url: urls.light.easyTemplateDelete, data, method: 'post' }),
