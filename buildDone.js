@@ -3,15 +3,17 @@ const axios = require('axios')
 const baseURL = `http://${process.env.IP}:81`
 console.log(baseURL)
 
+console.log(process.env.myBranch)
+
 const email = () => {
   const emailData = {
     type: 'jenkins',
     title: '构建成功',
-    username: 'xxx',
-    path: `${baseURL}${process.env.myBranch}`,
-    errorTitle: '构建',
-    detail: '构建成功',
-    browser: '1',
+    name: '无代码平台',
+    gitRepositorieName: 'air',
+    branch: 'origin/master',
+    url: `${baseURL}${process.env.myBranch}`,
+    remarks: '自动'
   }
   axios
     .post(`${baseURL}/api/log/email`, {
@@ -31,7 +33,7 @@ const handleAddRecord = () => {
     name: '无代码平台',
     gitRepositorieName: 'air',
     branch: 'origin/master',
-    url: '/air/origin/master/#/light/index/content?id=0',
+    url: `${baseURL}${process.env.myBranch}`,
     remarks: '自动'
   }
   axios
