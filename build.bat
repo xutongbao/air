@@ -1,6 +1,6 @@
 call yarn
 echo install done
-set MODE_ENV=jenkins 
+set MODE_ENV=production 
 set BUILD_PATH=build
 set PUBLIC_URL=/air/%branch%
 set GENERATE_SOURCEMAP=false 
