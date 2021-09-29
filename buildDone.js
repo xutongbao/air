@@ -5,12 +5,13 @@ console.log(baseURL)
 
 console.log(process.env.myBranch)
 
+// 发邮件
 const email = () => {
   const emailData = {
     type: 'jenkins',
     title: '构建成功',
     name: '无代码平台',
-    gitRepositorieName: 'air',
+    gitRepositorieName: process.env.gitRepositorieName,
     branch: 'origin/master',
     url: `${baseURL}${process.env.myBranch}`,
     remarks: '自动'
@@ -27,11 +28,12 @@ const email = () => {
     })
 }
 
+// 添加构建记录
 const handleAddRecord = () => {
   const dataItem = {
     id: Date.now(),
     name: '无代码平台',
-    gitRepositorieName: 'air',
+    gitRepositorieName: process.env.gitRepositorieName,
     branch: 'origin/master',
     url: `${baseURL}${process.env.myBranch}`,
     remarks: '自动'
