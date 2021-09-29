@@ -10,36 +10,21 @@ const getColumns = (props) => {
       dataIndex: 'id',
     },
     {
-      title: '名称',
+      title: '项目名称',
       dataIndex: 'name',
+    },
+    {
+      title: '分支名称',
+      dataIndex: '',
+    },
+    {
+      title: '测试链接',
+      dataIndex: '',
     },
     {
       title: '添加/更新时间',
       dataIndex: 'addtime',
       render: renderTime,
-    },
-    {
-      title: '状态',
-      dataIndex: 'isUp',
-      render: (text) => {
-        let hook = {
-          0: {
-            title: '下架',
-            className: 'no-pass',
-          },
-          1: {
-            title: '上架',
-            className: 'pass',
-          },
-        }
-        return (
-          <span
-            className={`m-check-status ${hook[text] && hook[text].className}`}
-          >
-            {hook[text] && hook[text].title}
-          </span>
-        )
-      },
     },
     {
       title: '操作',
@@ -69,50 +54,6 @@ const getColumns = (props) => {
             >
               编辑
             </Button>
-            {record.isUp ? (
-              <Button
-                className="m-action-btn forbidden"
-                size="small"
-                onClick={() => props.onAction({ type: 'up', record })}
-              >
-                下架
-              </Button>
-            ) : (
-              <Button
-                className="m-action-btn open"
-                size="small"
-                onClick={() => props.onAction({ type: 'up', record })}
-              >
-                上架
-              </Button>
-            )}
-            {record.bdAuditStatus === 0 && (
-              <Button
-                className="m-action-btn"
-                size="small"
-                onClick={() => props.onAction({ type: 'check', record })}
-              >
-                百度审核
-              </Button>
-            )}
-            {record.bdAuditStatus !== 0 && (
-              <>
-                <Button
-                  className="m-action-btn"
-                  size="small"
-                  onClick={() => props.onAction({ type: 'reset', record })}
-                >
-                  百度更新
-                </Button>
-                <Button
-                  className="m-action-btn"
-                  size="small"
-                  onClick={() => props.onAction({ type: 'view', record })}
-                >
-                  百度查看
-                </Button>
-              </>
-            )}
           </div>
         )
       },
@@ -128,8 +69,8 @@ const getSearchFields = (isExpand) => {
   return (
     <>
       <Col span={span}>
-        <Form.Item name="searchName" label="名称">
-          <Input placeholder="名称" />
+        <Form.Item name="searchName" label="项目名称">
+          <Input placeholder="项目名称" />
         </Form.Item>
       </Col>
     </>

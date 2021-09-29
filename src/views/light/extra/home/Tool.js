@@ -2,16 +2,26 @@ import React from 'react'
 import { Button } from 'antd'
 import { Icon } from '../../../../components/light'
 
-function Tool(props) {
-  const { onAdd } = props
+function Tool() {
+  const getHref = () => {
+    const host = window.location.host.split(':')[0] + ':8080'
+    const href = `${window.location.protocol}//${host}`
+    return href
+  }
 
   return (
     <div className="m-content-tool">
       <div className="m-content-tool-row">
-        <Button className="m-space" type="primary" onClick={onAdd}>
-          <Icon name="add" className="m-tool-btn-icon"></Icon>
-          添加
-        </Button>
+        <a
+          href={getHref()}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Button className="m-space" type="primary">
+            <Icon name="jenkins" className="m-tool-btn-icon"></Icon>
+             <span className="m-space-left">Jenkins部署</span>
+          </Button>
+        </a>
       </div>
     </div>
   )
