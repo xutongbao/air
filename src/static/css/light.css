@@ -105,7 +105,13 @@
 .m-spin{margin: auto;}
 .m-back-top{right: 30px;}
 .m-upload-text{margin: 0 0 0 10px;color: #999;}
-
+.m-list-wrap{position: absolute;top: 0;left: 0;right: 0;bottom: 0;}
+.m-content-list-wrap{position: relative; display: flex;flex-direction: column; flex:1;background: #f0f2f5;overflow-y: auto;overflow-x: hidden;}
+.m-content-search{margin: 10px 10px 5px;padding: 10px; background: white;}
+.m-time-item-wrap{text-align: left;}
+.m-time-item{text-align: left;}
+.m-space-left{margin: 0 0 0 9px;}
+.m-template-page{margin: 10px 10px 5px;padding: 10px; background: white;text-align: center;line-height: 50px;font-size: 30px;color: #ddd;}
 
 
 
