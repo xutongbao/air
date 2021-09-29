@@ -44,7 +44,7 @@ export default function useList(props) {
     searchParams.name = searchParams.searchName
     delete searchParams.searchName
     Api.light
-      .templateSearch({ pageNum: page, pageSize, ...searchParams })
+      .jenkinsSearch({ pageNum: page, pageSize, ...searchParams })
       .then((res) => {
         if (res.state === 1) {
           setState({
@@ -63,7 +63,7 @@ export default function useList(props) {
     confirm({
       title: '确认要删除吗？',
       onOk() {
-        Api.light.templateDelete({ ids: [record.id] }).then((res) => {
+        Api.light.jenkinsDelete({ ids: [record.id] }).then((res) => {
           if (res.state === 1) {
             handleSearch({ page: current })
           }
@@ -109,7 +109,7 @@ export default function useList(props) {
   const handleFinish = (values) => {
     console.log('Success:', values)
     if (type === 'add') {
-      Api.light.templateAdd({ dataItem: values }).then((res) => {
+      Api.light.jenkinsAdd({ dataItem: values }).then((res) => {
         if (res.state === 1) {
           setIsModalVisible(false)
           handleSearch()
@@ -117,7 +117,7 @@ export default function useList(props) {
       })
     } else if (type === 'edit') {
       Api.light
-        .templateEdit({
+        .jenkinsEdit({
           id: initValues.id,
           dataItem: { ...initValues, ...values },
         })
@@ -142,7 +142,7 @@ export default function useList(props) {
         title: `确认要${record.isUp === 1 ? '下架' : '上架'}吗？`,
         onOk() {
           Api.light
-            .templateUp({ id: record.id, isUp: record.isUp === 1 ? 0 : 1 })
+            .jenkinsUp({ id: record.id, isUp: record.isUp === 1 ? 0 : 1 })
             .then((res) => {
               if (res.state === 1) {
                 handleSearch({ page: current })

@@ -1,4 +1,4 @@
-// 全局替换一次  saleUser
+// 全局替换一次  template
 // 替换完复制，不要保存，以后还要使用
 
 const Api = {

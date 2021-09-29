@@ -31,6 +31,15 @@ const Api = {
   fieldsDelete: (data) => common({ url: urls.light.fieldsDelete, data, method: 'post' }),
   fieldsEdit: (data) => common({ url: urls.light.fieldsEdit, data, method: 'post' }),
   fieldsEditAll: (data) => common({ url: urls.light.fieldsEditAll, data, method: 'post' }),
+
+  //#region jenkins部署列表
+  jenkinsSearch: (data) => common({ url: urls.light.jenkinsSearch, data, method: 'post' }),
+  jenkinsAdd: (data) => common({ url: urls.light.jenkinsAdd, data, method: 'post' }),
+  jenkinsDelete: (data) => common({ url: urls.light.jenkinsDelete, data, method: 'post' }),
+  jenkinsEdit: (data) => common({ url: urls.light.jenkinsEdit, data, method: 'post' }),
+  jenkinsUp: (data) => common({ url: urls.light.jenkinsUp, data, method: 'post' }),
+
+  //#endregion  
 }
 
 export default Api

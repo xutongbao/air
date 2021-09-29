@@ -31,6 +31,14 @@ const urls = {
   fieldsDelete: '/api/fields/delete',
   fieldsEdit: '/api/fields/edit',
   fieldsEditAll: '/api/fields/editAll',
+
+  //#region jenkins部署列表
+  jenkinsSearch: '/api/jenkins/search',
+  jenkinsAdd: '/api/jenkins/add',
+  jenkinsDelete: '/api/jenkins/delete',
+  jenkinsEdit: '/api/jenkins/edit',
+  jenkinsUp: '/api/jenkins/up',
+  //#endregion  
 }
 
 export default urls

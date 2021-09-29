@@ -14,12 +14,32 @@ const getColumns = (props) => {
       dataIndex: 'name',
     },
     {
+      title: 'Git仓库名称',
+      dataIndex: 'gitRepositorieName',
+    },
+    {
       title: '分支名称',
-      dataIndex: '',
+      dataIndex: 'branch',
     },
     {
       title: '测试链接',
-      dataIndex: '',
+      dataIndex: 'url',
+      render: (text) => {
+        const getHref = () => {
+          const host = window.location.host.split(':')[0] + ':81'
+          const href = `${window.location.protocol}//${host}${text}`
+          return href
+        }
+        return (
+          <a href={getHref()} target="_blank" rel="noreferrer">
+            {getHref()}
+          </a>
+        )
+      },
+    },
+    {
+      title: '备注',
+      dataIndex: 'remarks',
     },
     {
       title: '添加/更新时间',
@@ -30,6 +50,11 @@ const getColumns = (props) => {
       title: '操作',
       //width: 220,
       render: (record) => {
+        const getHref = () => {
+          const host = window.location.host.split(':')[0] + ':8080'
+          const href = `${window.location.protocol}//${host}/job/${record.gitRepositorieName}/build?delay=0sec`
+          return href
+        }
         return (
           <div className="m-action">
             <Button
@@ -54,6 +79,12 @@ const getColumns = (props) => {
             >
               编辑
             </Button>
+            <a href={getHref()} target="_blank" rel="noreferrer">
+              <Button className="m-action-btn" size="small" type="primary">
+                <Icon name="jenkins" className="m-tool-btn-icon"></Icon>
+                <span className="m-space-left">Jenkins部署</span>
+              </Button>
+            </a>
           </div>
         )
       },
@@ -82,14 +113,20 @@ const getModalFields = () => {
   return (
     <>
       <Form.Item
-        label="名称"
+        label="项目名称"
         name="name"
         rules={[
           {
             required: true,
-            message: '请输入名称！',
+            message: '请输入项目名称！',
           },
         ]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        label="备注"
+        name="remarks"
       >
         <Input />
       </Form.Item>
