@@ -1,24 +1,52 @@
 const axios = require('axios')
 
-const emailPost = (emailData) => {
+const baseURL = `http://${process.env.IP}:81`
+console.log(baseURL)
+
+console.log(process.env.myBranch)
+
+const email = () => {
+  const emailData = {
+    type: 'jenkins',
+    title: '构建成功',
+    name: '无代码平台',
+    gitRepositorieName: 'air',
+    branch: 'origin/master',
+    url: `${baseURL}${process.env.myBranch}`,
+    remarks: '自动'
+  }
   axios
-    .post('http://39.97.238.175:81/api/log/email', {
+    .post(`${baseURL}/api/log/email`, {
       ...emailData,
     })
-    .then((res) => {})
+    .then((res) => {
+      console.log('E-Mail sent successfully!')
+    })
     .catch((error) => {
       console.error(error)
     })
 }
 
-const email = () => {
-  const tempValues = {
-    username: 'xxx',
-    path: `http://xx:${process.env.PORT}`,
-    errorTitle: '构建',
-    detail: '构建成功',
-    browser: '1',
+const handleAddRecord = () => {
+  const dataItem = {
+    id: Date.now(),
+    name: '无代码平台',
+    gitRepositorieName: 'air',
+    branch: 'origin/master',
+    url: `${baseURL}${process.env.myBranch}`,
+    remarks: '自动'
   }
-  emailPost(tempValues)
+  axios
+    .post(`${baseURL}/api/jenkins/add`, {
+      dataItem,
+    })
+    .then((res) => {
+      console.log('Record added successfully!')
+    })
+    .catch((error) => {
+      console.error(error)
+    })
 }
+
 email()
+handleAddRecord()

@@ -9,11 +9,11 @@ app.use(express.static('build'))
 function shouldCompress(req, res) {
   if (req.headers['x-no-compression']) {
     // don't compress responses with this request header
-    return false;
+    return false
   }
 
   // fallback to standard filter function
-  return compression.filter(req, res);
+  return compression.filter(req, res)
 }
 
 //通过代理解决跨域
@@ -28,10 +28,9 @@ app.use(
 const emailPost = (emailData) => {
   axios
     .post('http://39.97.238.175:81/api/log/email', {
-      ...emailData
+      ...emailData,
     })
-    .then((res) => {
-    })
+    .then((res) => {})
     .catch((error) => {
       console.error(error)
     })
@@ -44,7 +43,7 @@ app.listen(process.env.PORT, () => {
     path: `http://xx:${process.env.PORT}`,
     errorTitle: '构建',
     detail: '构建成功',
-    browser: '1'
+    browser: '1',
   }
   emailPost(tempValues)
 })

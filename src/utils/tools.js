@@ -296,6 +296,39 @@ const addLog = ({ errorTitle, detail }) => {
   Api.light.testLogAdd({ dataItem: { ...tempValues } }).then(() => {})
 }
 
+// 添加/更新时间
+const renderTime = (text, record) => {
+  return (
+    <div className="m-time-item-wrap">
+      <div className="m-time-item">
+        {moment(text)
+          .format('YYYY-MM-DD HH:mm:ss')
+          .split(' ')
+          .map((item, index) => (
+            <div key={index} className={`${index === 1 ? 'm-space-left' : ''}`}>
+              {item}
+            </div>
+          ))}
+      </div>
+      <div className="m-time-item">
+        {record.edittime
+          ? moment(record.edittime)
+              .format('YYYY-MM-DD HH:mm:ss')
+              .split(' ')
+              .map((item, index) => (
+                <div
+                  key={index}
+                  className={`${index === 1 ? 'm-space-left' : ''}`}
+                >
+                  {item}
+                </div>
+              ))
+          : ''}
+      </div>
+    </div>
+  )
+}
+
 
 export {
   showLoading,
@@ -309,4 +342,6 @@ export {
   formatAuthData,
   deepClone,
   addLog,
+  // 添加/更新时间
+  renderTime,
 }

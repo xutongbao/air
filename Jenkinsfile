@@ -4,28 +4,11 @@ pipeline {
         CI = 'true'
     }
     stages {
-        stage('install') {
-            input {
-                message "Please set the port number?"
-                ok "Ok"
-                parameters {
-                    string(name: 'PORT', defaultValue: '3002', description: ' Set the expose port number of docker container?')
-                }
-            }
-            agent {
-                docker {
-                    image 'node:12'
-                    args "-p ${PORT}:3002"
-                }
-            }            
+        stage('build') {         
             steps {
-                echo "PORT: ${PORT},http://xxx:${PORT}"
-                sh 'yarn -v'
-                sh 'yarn'
-                sh 'set -x'
-                sh 'yarn build_jenkins'
-                sh 'set +x'
-                sh 'yarn server'
+                bat "echo ${branch}"
+                bat 'yarn -v'
+                bat './build.bat'
             }
         }
     }
