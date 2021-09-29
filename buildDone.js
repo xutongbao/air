@@ -44,12 +44,6 @@ const handleAddRecord = () => {
     .catch((error) => {
       console.error(error)
     })
-  Api.light.jenkinsAdd({ dataItem: values }).then((res) => {
-    if (res.state === 1) {
-      setIsModalVisible(false)
-      handleSearch()
-    }
-  })
 }
 
 email()
