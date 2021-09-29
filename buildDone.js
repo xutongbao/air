@@ -5,6 +5,7 @@ console.log(baseURL)
 
 console.log(process.env.myBranch)
 
+// 发邮件
 const email = () => {
   const emailData = {
     type: 'jenkins',
@@ -27,6 +28,7 @@ const email = () => {
     })
 }
 
+// 添加构建记录
 const handleAddRecord = () => {
   const dataItem = {
     id: Date.now(),
