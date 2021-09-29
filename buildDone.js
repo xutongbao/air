@@ -11,7 +11,7 @@ const email = () => {
     type: 'jenkins',
     title: '构建成功',
     name: '无代码平台',
-    gitRepositorieName: 'air',
+    gitRepositorieName: process.env.gitRepositorieName,
     branch: 'origin/master',
     url: `${baseURL}${process.env.myBranch}`,
     remarks: '自动'
@@ -33,7 +33,7 @@ const handleAddRecord = () => {
   const dataItem = {
     id: Date.now(),
     name: '无代码平台',
-    gitRepositorieName: 'air',
+    gitRepositorieName: process.env.gitRepositorieName,
     branch: 'origin/master',
     url: `${baseURL}${process.env.myBranch}`,
     remarks: '自动'
