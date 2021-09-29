@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-const baseURL = `http://${process.env.IP}:81${process.env.myBranch}`
+const baseURL = `http://${process.env.IP}:81`
 console.log(baseURL)
 
 const email = () => {
@@ -8,7 +8,7 @@ const email = () => {
     type: 'jenkins',
     title: '构建成功',
     username: 'xxx',
-    path: `${baseURL}{process.env.myBranch}`,
+    path: `${baseURL}${process.env.myBranch}`,
     errorTitle: '构建',
     detail: '构建成功',
     browser: '1',
