@@ -4,13 +4,15 @@ const baseURL = `http://${process.env.IP}:81`
 console.log(baseURL)
 
 console.log(process.env.myBranch)
+//项目名称
+const name = '无代码平台'
 
 // 发邮件
 const email = () => {
   const emailData = {
     type: 'jenkins',
     title: '构建成功',
-    name: '无代码平台',
+    name,
     gitRepositorieName: process.env.gitRepositorieName,
     branch: 'origin/master',
     url: `${baseURL}${process.env.myBranch}`,
@@ -32,7 +34,7 @@ const email = () => {
 const handleAddRecord = () => {
   const dataItem = {
     id: Date.now(),
-    name: '无代码平台',
+    name,
     gitRepositorieName: process.env.gitRepositorieName,
     branch: 'origin/master',
     url: `${baseURL}${process.env.myBranch}`,
