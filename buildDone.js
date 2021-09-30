@@ -16,8 +16,8 @@ const email = () => {
     title: '构建成功',
     name,
     gitRepositorieName: process.env.gitRepositorieName,
-    branch: process.env.myBranch,
-    url: `${baseURL}${process.env.myBranch}`,
+    branch: process.env.branch,
+    url: `${baseURL}/${process.env.gitRepositorieName}/${process.env.branch}`,
     remarks: '自动'
   }
   axios
@@ -38,8 +38,8 @@ const handleAddRecord = () => {
     id: Date.now(),
     name,
     gitRepositorieName: process.env.gitRepositorieName,
-    branch: process.env.myBranch,
-    url: `${baseURL}${process.env.myBranch}`,
+    branch: process.env.branch,
+    url: `${baseURL}/${process.env.gitRepositorieName}/${process.env.branch}`,
     remarks: '自动'
   }
   axios
