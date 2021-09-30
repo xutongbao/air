@@ -16,7 +16,7 @@ const email = () => {
     title: '构建成功',
     name,
     gitRepositorieName: process.env.gitRepositorieName,
-    branch: 'origin/master',
+    branch: process.env.myBranch,
     url: `${baseURL}${process.env.myBranch}`,
     remarks: '自动'
   }
