@@ -4,6 +4,8 @@ const baseURL = `http://${process.env.IP}:${process.env.PORT}`
 console.log(baseURL)
 
 console.log(process.env.myBranch)
+console.log(process.env.GENERATE_SOURCEMAP)
+console.log(typeof process.env.GENERATE_SOURCEMAP)
 //项目名称
 const name = '无代码平台'
 

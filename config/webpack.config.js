@@ -39,6 +39,9 @@ const CompressionPlugin = require("compression-webpack-plugin");
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
+console.log(process.env.GENERATE_SOURCEMAP)
+console.log(typeof process.env.GENERATE_SOURCEMAP)
+console.log('s:', shouldUseSourceMap)
 
 const webpackDevClientEntry = require.resolve(
   'react-dev-utils/webpackHotDevClient'
