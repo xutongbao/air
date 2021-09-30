@@ -10,7 +10,7 @@ set MODE_ENV=production
 set REACT_APP_MODE=prod 
 set BUILD_PATH=build
 set PUBLIC_URL=/%gitRepositorieName%/%branch%
-set GENERATE_SOURCEMAP=false 
+set GENERATE_SOURCEMAP=false
 call node scripts/build.js
 
 @REM 复制编译好的的代码到新目录
