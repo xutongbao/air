@@ -121,6 +121,8 @@
 .m-check-status.never{background: #e6e6e6;color: #333;}
 .m-check-status.refuse{background: #FF9900;cursor: pointer;}
 .m-check-status.down{background: #555;cursor: pointer;}
+.m-ci-title-wrap{margin: 10px 10px 0px;padding: 10px; background: white;line-height: 50px;font-size: 24px;font-weight: bold;}
+.m-colorful {color: #333;}
 
 
 
@@ -130,8 +132,22 @@
 }
 @media (max-width:575px) {
 .m-formview-formitem-footer-mobile .ant-form-item-control{margin-left: 0;text-align: center;}
-
 }
+
+@supports (-webkit-transform: scale(0)) {
+  .m-colorful {
+    background-image: linear-gradient(to right, red, orange, yellow, green, yellow, orange, red, orange, yellow, green, yellow, orange, red);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-size: 200% 100%;
+    animation: bgp 5s infinite linear;
+  }
+}
+@keyframes bgp {
+  0% { background-position: 0 0;}
+  100% { background-position: -100% 0;}
+}
+
 
 
 

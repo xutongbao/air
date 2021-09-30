@@ -170,7 +170,7 @@ export default function useList(props) {
   }, [search, searchForm])
 
   useEffect(() => {
-    document.title = '管理系统'
+    document.title = 'web前端项目持续集成系统（CI/CD）'
   }, [])
 
 
