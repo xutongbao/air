@@ -19,5 +19,6 @@ xcopy \Jenkins\workspace\%gitRepositorieName%\build \temp\%gitRepositorieName%\%
 @REM 设置环境变量并执行js脚本发送邮件通知、添加构建记录
 set myBranch=/%gitRepositorieName%/%branch%
 set IP=39.97.238.175
+set PORT=81
 call node buildDone
-echo http://39.97.238.175:81/%gitRepositorieName%/%branch%
+echo http://%IP%:%PORT%/%gitRepositorieName%/%branch%
