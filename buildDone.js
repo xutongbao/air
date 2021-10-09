@@ -7,7 +7,7 @@ console.log(baseURL)
 const name = '无代码平台'
 
 // 发邮件
-const email = () => {
+const email = async () => {
   const emailData = {
     type: 'jenkins',
     title: '构建成功',
@@ -17,7 +17,7 @@ const email = () => {
     url: `${baseURL}/${process.env.gitRepositorieName}/${process.env.branch}`,
     remarks: '自动'
   }
-  axios
+  await axios
     .post(`${baseURL}/api/log/email`, {
       ...emailData,
     })
@@ -30,7 +30,7 @@ const email = () => {
 }
 
 // 添加构建记录
-const handleAddRecord = () => {
+const handleAddRecord = async () => {
   const dataItem = {
     id: Date.now(),
     name,
@@ -39,7 +39,7 @@ const handleAddRecord = () => {
     url: `${baseURL}/${process.env.gitRepositorieName}/${process.env.branch}`,
     remarks: '自动'
   }
-  axios
+  await axios
     .post(`${baseURL}/api/jenkins/add`, {
       dataItem,
     })
@@ -51,5 +51,8 @@ const handleAddRecord = () => {
     })
 }
 
-email()
-handleAddRecord()
+(async () => {
+  await email()
+  await handleAddRecord()
+})()
+
