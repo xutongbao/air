@@ -1,4 +1,4 @@
-import { Form, Col, Input, Button } from 'antd'
+import { Form, Col, Input, Button, Space } from 'antd'
 import { Icon } from '../../../../components/light'
 import { renderTime } from '../../../../utils/tools'
 
@@ -40,9 +40,22 @@ const getColumns = (props) => {
           <div>
             <div>{text}</div>
             {record.gitRepositorieName === 'm-node-edu' && (
-              <a href={`${window.location.protocol}//${window.location.host}/myLog.log`} target="_blank" rel="noreferrer">
-                日志
-              </a>
+              <Space>
+                <a
+                  href={`${window.location.protocol}//${window.location.host}/myLog.log`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  日志
+                </a>
+                <a
+                  href={`https://app.pm2.io/bucket/615faf0cc0bbbba1fbcb831f/backend/overview/servers`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  监控
+                </a>
+              </Space>
             )}
           </div>
         )
