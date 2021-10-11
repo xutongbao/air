@@ -35,6 +35,18 @@ const getColumns = (props) => {
     {
       title: '备注',
       dataIndex: 'remarks',
+      render: (text, record) => {
+        return (
+          <div>
+            <div>{text}</div>
+            {record.gitRepositorieName === 'm-node-edu' && (
+              <a href={`${window.location.protocol}//${window.location.host}/myLog.log`} target="_blank" rel="noreferrer">
+                日志
+              </a>
+            )}
+          </div>
+        )
+      },
     },
     {
       title: '添加/更新时间',
@@ -119,10 +131,7 @@ const getModalFields = () => {
       >
         <Input />
       </Form.Item>
-      <Form.Item
-        label="备注"
-        name="remarks"
-      >
+      <Form.Item label="备注" name="remarks">
         <Input />
       </Form.Item>
     </>
