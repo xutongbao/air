@@ -1,4 +1,4 @@
-import { Form, Col, Input, Button } from 'antd'
+import { Form, Col, Input, Button, Space } from 'antd'
 import { Icon } from '../../../../components/light'
 import { renderTime } from '../../../../utils/tools'
 
@@ -26,15 +26,50 @@ const getColumns = (props) => {
       dataIndex: 'url',
       render: (text) => {
         return (
-          <a href={text} target="_blank" rel="noreferrer">
-            {text}
-          </a>
+          <>
+            <div>
+              <a href={text} target="_blank" rel="noreferrer">
+                {text}
+              </a>
+            </div>
+            <div>
+              <a href={text.replace('81', '83')} target="_blank" rel="noreferrer">
+                {text.replace('81', '83')}
+              </a>
+              <span>(nginx)</span>
+            </div>
+          </>
         )
       },
     },
     {
       title: '备注',
       dataIndex: 'remarks',
+      render: (text, record) => {
+        return (
+          <div>
+            <div>{text}</div>
+            {record.gitRepositorieName === 'm-node-edu' && (
+              <Space>
+                <a
+                  href={`${window.location.protocol}//${window.location.host}/myLog.log`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  日志
+                </a>
+                <a
+                  href={`https://app.pm2.io/bucket/615faf0cc0bbbba1fbcb831f/backend/overview/servers`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  监控
+                </a>
+              </Space>
+            )}
+          </div>
+        )
+      },
     },
     {
       title: '添加/更新时间',
@@ -119,10 +154,7 @@ const getModalFields = () => {
       >
         <Input />
       </Form.Item>
-      <Form.Item
-        label="备注"
-        name="remarks"
-      >
+      <Form.Item label="备注" name="remarks">
         <Input />
       </Form.Item>
     </>

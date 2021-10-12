@@ -170,7 +170,7 @@ export default function useList(props) {
   }, [search, searchForm])
 
   useEffect(() => {
-    document.title = '管理系统'
+    document.title = 'Web前端项目测试环境部署系统'
   }, [])
 
 

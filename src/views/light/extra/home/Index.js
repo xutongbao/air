@@ -43,7 +43,9 @@ function Index(props) {
   return (
     <div className="m-list-wrap">
       <div className="m-content-list-wrap" id="m-content-wrap">
-        <div className="m-template-page">管理系统</div>
+        <div className="m-ci-title-wrap">
+          <div className="m-colorful">Web前端项目测试环境部署系统</div>
+        </div>
         <Search
           searchForm={searchForm}
           onSearch={handleSearch}

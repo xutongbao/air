@@ -7,7 +7,7 @@ set gitRepositorieName=air
 
 @REM 设置环境变量并编译
 set MODE_ENV=production
-set REACT_APP_MODE=prod 
+set REACT_APP_MODE=prod
 set BUILD_PATH=build
 set PUBLIC_URL=/%gitRepositorieName%/%branch%
 set GENERATE_SOURCEMAP=false
