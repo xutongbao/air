@@ -26,9 +26,19 @@ const getColumns = (props) => {
       dataIndex: 'url',
       render: (text) => {
         return (
-          <a href={text} target="_blank" rel="noreferrer">
-            {text}
-          </a>
+          <>
+            <div>
+              <a href={text} target="_blank" rel="noreferrer">
+                {text}
+              </a>
+            </div>
+            <div>
+              <a href={text.replace('81', '83')} target="_blank" rel="noreferrer">
+                {text.replace('81', '83')}
+              </a>
+              <span>(nginx)</span>
+            </div>
+          </>
         )
       },
     },
