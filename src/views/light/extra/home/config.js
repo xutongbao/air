@@ -24,7 +24,7 @@ const getColumns = (props) => {
     {
       title: '测试链接',
       dataIndex: 'url',
-      render: (text) => {
+      render: (text, record) => {
         return (
           <>
             <div>
@@ -32,12 +32,18 @@ const getColumns = (props) => {
                 {text}
               </a>
             </div>
-            <div>
-              <a href={text.replace('81', '83')} target="_blank" rel="noreferrer">
-                {text.replace('81', '83')}
-              </a>
-              <span>(nginx)</span>
-            </div>
+            {record.gitRepositorieName !== 'm-node-edu' && (
+              <div>
+                <a
+                  href={text.replace('81', '83')}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {text.replace('81', '83')}
+                </a>
+                <span>(nginx)</span>
+              </div>
+            )}
           </>
         )
       },
