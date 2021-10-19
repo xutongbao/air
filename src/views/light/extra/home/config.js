@@ -58,7 +58,8 @@ const getColumns = (props) => {
             {record.gitRepositorieName === 'm-node-edu' && (
               <Space>
                 <a
-                  href={`${window.location.protocol}//${window.location.host}/myLog.log`}
+                  //href={`${window.location.protocol}//${window.location.host}/myLog.log`}
+                  href={`${record.url}/myLog.log`}
                   target="_blank"
                   rel="noreferrer"
                 >
