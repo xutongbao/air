@@ -19,7 +19,7 @@ const email = async () => {
     name,
     gitRepositorieName: process.env.gitRepositorieName,
     branch: process.env.branch,
-    url: `${baseURL}/${process.env.gitRepositorieName}/${process.env.branch}`,
+    url: `${baseURL}/${process.env.pipeline}/${process.env.gitRepositorieName}/${process.env.branch}`,
     remarks: '自动'
   }
   await axios
@@ -41,7 +41,7 @@ const handleAddRecord = async () => {
     name,
     gitRepositorieName: process.env.gitRepositorieName,
     branch: process.env.branch,
-    url: `${baseURL}/${process.env.gitRepositorieName}/${process.env.branch}`,
+    url: `${baseURL}/${process.env.pipeline}/${process.env.gitRepositorieName}/${process.env.branch}`,
     remarks: '自动'
   }
   await axios

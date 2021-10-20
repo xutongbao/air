@@ -1,8 +1,12 @@
 const axios = require('axios')
 
-const baseURL = `http://${process.env.IP}:${process.env.PORT}`
-console.log(baseURL)
-
+const port = 81
+const host = {
+  'LAPTOP-4KDIA4A3': 'http://localhost',
+  iZ6ilh61jzkvrhZ: 'http://39.97.238.175'
+}[process.env.computername]
+const baseURL = `${host}:${port}`
+console.log('prod', baseURL)
 //项目名称
 const name = '无代码平台'
 
@@ -10,11 +14,11 @@ const name = '无代码平台'
 const email = async () => {
   const emailData = {
     type: 'jenkins',
-    title: '构建成功',
+    title: '构建成功-线上环境',
     name,
     gitRepositorieName: process.env.gitRepositorieName,
     branch: process.env.branch,
-    url: `${baseURL}/${process.env.gitRepositorieName}/${process.env.branch}`,
+    url: `${baseURL}/${process.env.gitRepositorieName}`,
     remarks: '自动'
   }
   await axios
@@ -36,7 +40,7 @@ const handleAddRecord = async () => {
     name,
     gitRepositorieName: process.env.gitRepositorieName,
     branch: process.env.branch,
-    url: `${baseURL}/${process.env.gitRepositorieName}/${process.env.branch}`,
+    url: `${baseURL}/${process.env.gitRepositorieName}`,
     remarks: '自动'
   }
   await axios
