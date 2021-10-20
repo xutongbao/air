@@ -18,7 +18,6 @@ call node --max_old_space_size=4096 scripts/build.js
 xcopy \Jenkins\workspace\%pipeline%%gitRepositorieName%\build \temp\%gitRepositorieName%\%branch:/=\%\ /Y /E
 
 @REM 设置环境变量并执行js脚本发送邮件通知、添加构建记录
-set IP=39.97.238.175
-set PORT=81
-call node buildDone
-echo http://%IP%:%PORT%/%gitRepositorieName%/%branch%
+set computername=%computername%
+call node .\jenkins\test\buildDone
+echo test success
