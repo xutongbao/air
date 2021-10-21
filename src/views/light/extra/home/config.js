@@ -63,13 +63,13 @@ const getColumns = (props) => {
         )
       },
     },
-    {
-      title: '哈希',
-      dataIndex: 'hash',
-      render: (text) => {
-        return <span className="m-white-space-light">{text}</span>
-      },
-    },
+    // {
+    //   title: '哈希',
+    //   dataIndex: 'hash',
+    //   render: (text) => {
+    //     return <span className="m-white-space-light">{text}</span>
+    //   },
+    // },
     {
       title: '备注',
       dataIndex: 'remarks',
