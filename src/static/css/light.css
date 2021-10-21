@@ -123,7 +123,7 @@
 .m-check-status.down{background: #555;cursor: pointer;}
 .m-ci-title-wrap{margin: 10px 10px 0px;padding: 10px; background: white;line-height: 50px;font-size: 24px;font-weight: bold;}
 .m-colorful {color: #333;}
-
+.m-white-space-light{white-space: nowrap;}
 
 
 @media screen and (max-width: 800px) {  
