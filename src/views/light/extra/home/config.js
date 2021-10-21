@@ -18,13 +18,17 @@ const getColumns = (props) => {
       dataIndex: 'gitRepositorieName',
     },
     {
+      title: 'Jenkins工程名称',
+      dataIndex: 'jenkinsProjectName',
+    },
+    {
       title: '分支名称',
       dataIndex: 'branch',
     },
     {
       title: '测试链接',
       dataIndex: 'url',
-      render: (text) => {
+      render: (text, record) => {
         return (
           <>
             <div>
@@ -32,12 +36,18 @@ const getColumns = (props) => {
                 {text}
               </a>
             </div>
-            <div>
-              <a href={text.replace('81', '83')} target="_blank" rel="noreferrer">
-                {text.replace('81', '83')}
-              </a>
-              <span>(nginx)</span>
-            </div>
+            {record.gitRepositorieName !== 'm-node-edu' && (
+              <div>
+                <a
+                  href={text.replace('81', '83')}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {text.replace('81', '83')}
+                </a>
+                <span>(nginx)</span>
+              </div>
+            )}
           </>
         )
       },
@@ -52,7 +62,8 @@ const getColumns = (props) => {
             {record.gitRepositorieName === 'm-node-edu' && (
               <Space>
                 <a
-                  href={`${window.location.protocol}//${window.location.host}/myLog.log`}
+                  //href={`${window.location.protocol}//${window.location.host}/myLog.log`}
+                  href={`${record.url}/myLog.log`}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -82,7 +93,7 @@ const getColumns = (props) => {
       render: (record) => {
         const getHref = () => {
           const host = window.location.host.split(':')[0] + ':8080'
-          const href = `${window.location.protocol}//${host}/job/${record.gitRepositorieName}/build?delay=0sec`
+          const href = `${window.location.protocol}//${host}/job/${record.jenkinsProjectName}/build?delay=0sec`
           return href
         }
         return (

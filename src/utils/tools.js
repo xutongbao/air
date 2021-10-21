@@ -5,7 +5,6 @@ import { fromJS } from 'immutable'
 import Api from '../api'
 import Store from '../store'
 
-
 const { TextArea } = Input
 
 let timer
@@ -328,7 +327,6 @@ const renderTime = (text, record) => {
     </div>
   )
 }
-
 
 export {
   showLoading,
