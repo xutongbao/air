@@ -4,7 +4,7 @@ const baseURL = {
   //test: 'https://efficacious-tiny-infinity.glitch.me',
   test: 'http://39.97.238.175:81',
   // 使用yarn build打包，所有接口使用这个url，需要服务器解决跨域
-  prod: 'http://39.97.238.175:84'
+  prod: 'http://39.97.238.175'
 }[process.env.REACT_APP_MODE]
 
 const nodeBaseURL = {
@@ -12,7 +12,7 @@ const nodeBaseURL = {
   // test: 'https://efficacious-tiny-infinity.glitch.me',
   // prod: 'https://efficacious-tiny-infinity.glitch.me',
   test: 'http://39.97.238.175:81',
-  prod: 'http://39.97.238.175:84',
+  prod: 'http://39.97.238.175',
 }[process.env.REACT_APP_MODE]
 
 export { baseURL, nodeBaseURL }
