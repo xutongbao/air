@@ -18,6 +18,10 @@ const getColumns = (props) => {
       dataIndex: 'gitRepositorieName',
     },
     {
+      title: 'Jenkins工程名称',
+      dataIndex: 'jenkinsProjectName',
+    },
+    {
       title: '分支名称',
       dataIndex: 'branch',
     },
@@ -89,7 +93,7 @@ const getColumns = (props) => {
       render: (record) => {
         const getHref = () => {
           const host = window.location.host.split(':')[0] + ':8080'
-          const href = `${window.location.protocol}//${host}/job/${record.gitRepositorieName}/build?delay=0sec`
+          const href = `${window.location.protocol}//${host}/job/${record.jenkinsProjectName}/build?delay=0sec`
           return href
         }
         return (
