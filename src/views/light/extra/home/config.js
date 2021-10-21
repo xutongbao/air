@@ -29,6 +29,7 @@ const getColumns = (props) => {
       title: '测试链接',
       dataIndex: 'url',
       render: (text, record) => {
+        const host = window.location.host.split(':')[0]
         return (
           <>
             <div>
@@ -36,7 +37,17 @@ const getColumns = (props) => {
                 {text}
               </a>
             </div>
-            {record.gitRepositorieName !== 'm-node-edu' && (
+            {record.gitRepositorieName == 'm-node-edu' ? (
+              <div>
+                <a
+                  href={`${window.location.protocol}//${host}/${record.hash}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {`${window.location.protocol}//${host}/${record.hash}`}
+                </a>
+              </div>
+            ) : (
               <div>
                 <a
                   href={text.replace('81', '83')}
