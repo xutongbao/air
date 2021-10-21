@@ -15,10 +15,11 @@ set GENERATE_SOURCEMAP=false
 call node --max_old_space_size=4096 scripts/build.js
 
 @REM 复制编译好的的代码到新目录
-xcopy \Jenkins\workspace\%pipeline%-%gitRepositorieName%\build \temp\%gitRepositorieName%\ /Y /E
+xcopy %cd%\build \temp\%gitRepositorieName%\ /Y /E
 
 @REM 设置环境变量并执行js脚本发送邮件通知、添加构建记录
 set computername=%computername%
+set cd=%cd%
 call node .\jenkins\prod\buildDone
 echo prod success
 
