@@ -328,15 +328,6 @@ const renderTime = (text, record) => {
   )
 }
 
-//获取Jenkins项目名称
-const getJenkinsProjectName = ({ cd }) => {
-  cd = cd.split('\\')
-  cd = cd[cd.length - 1]
-
-  console.log(cd)
-  return cd
-}
-
 export {
   showLoading,
   hideLoading,
@@ -351,6 +342,4 @@ export {
   addLog,
   // 添加/更新时间
   renderTime,
-  //获取Jenkins项目名称
-  getJenkinsProjectName,
 }
