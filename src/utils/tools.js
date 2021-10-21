@@ -5,7 +5,6 @@ import { fromJS } from 'immutable'
 import Api from '../api'
 import Store from '../store'
 
-
 const { TextArea } = Input
 
 let timer
@@ -329,6 +328,14 @@ const renderTime = (text, record) => {
   )
 }
 
+//获取Jenkins项目名称
+const getJenkinsProjectName = ({ cd }) => {
+  cd = cd.split('\\')
+  cd = cd[cd.length - 1]
+
+  console.log(cd)
+  return cd
+}
 
 export {
   showLoading,
@@ -344,4 +351,6 @@ export {
   addLog,
   // 添加/更新时间
   renderTime,
+  //获取Jenkins项目名称
+  getJenkinsProjectName,
 }

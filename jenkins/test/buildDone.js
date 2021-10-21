@@ -1,4 +1,5 @@
 const axios = require('axios')
+const { getJenkinsProjectName } = require('../../src/utils/tools')
 
 const port = 81
 const host = {
@@ -18,6 +19,7 @@ const email = async () => {
     title: '构建成功-测试环境',
     name,
     gitRepositorieName: process.env.gitRepositorieName,
+    jenkinsProjectName: getJenkinsProjectName({ cd: process.env.cd }),
     branch: process.env.branch,
     url: `${baseURL}/${process.env.pipeline}/${process.env.gitRepositorieName}/${process.env.branch}`,
     remarks: '自动'
@@ -40,6 +42,7 @@ const handleAddRecord = async () => {
     id: Date.now(),
     name,
     gitRepositorieName: process.env.gitRepositorieName,
+    jenkinsProjectName: getJenkinsProjectName({ cd: process.env.cd }),
     branch: process.env.branch,
     url: `${baseURL}/${process.env.pipeline}/${process.env.gitRepositorieName}/${process.env.branch}`,
     remarks: '自动'
