@@ -38,7 +38,7 @@ const getColumns = (props) => {
                 {text}
               </a>
             </div>
-            {record.gitRepositorieName === 'm-node-edu' ? (
+            {record.info.projectType === 'node' ? (
               <div>
                 <a
                   href={`${window.location.protocol}//${host}/${hash}`}
@@ -64,13 +64,6 @@ const getColumns = (props) => {
         )
       },
     },
-    // {
-    //   title: '哈希',
-    //   dataIndex: 'hash',
-    //   render: (text) => {
-    //     return <span className="m-white-space-light">{text}</span>
-    //   },
-    // },
     {
       title: '备注',
       dataIndex: 'remarks',
@@ -78,10 +71,9 @@ const getColumns = (props) => {
         return (
           <div>
             <div>{text}</div>
-            {record.gitRepositorieName === 'm-node-edu' && (
+            {record.info.projectType === 'node' && (
               <Space>
                 <a
-                  //href={`${window.location.protocol}//${window.location.host}/myLog.log`}
                   href={`${record.url}/myLog.log`}
                   target="_blank"
                   rel="noreferrer"
@@ -108,7 +100,6 @@ const getColumns = (props) => {
     },
     {
       title: '操作',
-      //width: 220,
       render: (record) => {
         const getHref = () => {
           const host = window.location.host.split(':')[0] + ':8080'
