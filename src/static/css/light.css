@@ -25,6 +25,7 @@
 .m-action{text-align: left;}
 .m-action-btn{margin: 1px 2px; font-size: 12;}
 .m-content-tool{margin: 5px 10px 5px;padding: 10px; background: white;}
+.m-content-tool-row{margin: 5px 0;}
 .m-content-table{margin: 5px 10px 5px;}
 .m-set-application-header{line-height: 50px;height: 50px;font-size: 30px;font-weight: bold;}
 .m-set-application-header-icon{display: inline-block; width: 50px;font-size: 30px;text-align: center;font-weight: normal;cursor: pointer;}

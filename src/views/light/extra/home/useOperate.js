@@ -1,9 +1,10 @@
 import { Modal, message } from 'antd'
 import { useState } from 'react'
+import Api from '../../../../api'
 
 const { confirm } = Modal
 
-export default function useOperate() {
+export default function useOperate({ onSearch }) {
 
   const [selectedIds, setSelectedIds] = useState([])
 
@@ -19,9 +20,14 @@ export default function useOperate() {
       message.warning('请至少选择一项')
     } else if (type === 0) {
       confirm({
-        title: '确认要批量提交百度审核吗?',
+        title: '确认要批量删除吗?',
         onOk() {
           console.log(selectedIds)
+          Api.light.jenkinsDelete({ ids: selectedIds }).then((res) => {
+            if (res.state === 1) {
+              onSearch()
+            }
+          })
         },
       })
     }

@@ -1,8 +1,10 @@
 import React from 'react'
 import { Button } from 'antd'
 import { Icon } from '../../../../components/light'
+import { getToolBtnList } from './config'
 
-function Tool() {
+function Tool(props) {
+  const { onOperate } = props
   const getHref = () => {
     const host = window.location.host.split(':')[0] + ':8080'
     const href = `${window.location.protocol}//${host}`
@@ -23,6 +25,7 @@ function Tool() {
           </Button>
         </a>
       </div>
+      {getToolBtnList({ onOperate })}
     </div>
   )
 }

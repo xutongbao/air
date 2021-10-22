@@ -183,20 +183,17 @@ const getModalFields = () => {
 }
 
 //Tool组件里的按钮
-const getToolBtnList = ({ onOperate, myAuthObj }) => {
+const getToolBtnList = ({ onOperate }) => {
   return (
     <>
       <div className="m-content-tool-row">
-        {myAuthObj.btn && (
-          <Button
-            className="m-space"
-            type="primary"
-            onClick={() => onOperate({ type: 0 })}
-          >
-            <Icon name="correct" className="m-tool-btn-icon"></Icon>
-            按钮
-          </Button>
-        )}
+        <Button
+          className="m-space"
+          type="primary"
+          onClick={() => onOperate({ type: 0 })}
+        >
+          删除
+        </Button>
       </div>
     </>
   )
