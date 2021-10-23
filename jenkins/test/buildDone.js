@@ -1,13 +1,7 @@
 const axios = require('axios')
-const { getJenkinsProjectName } = require('../util/tools')
+const { getBaseURL, getJenkinsProjectName } = require('../util/tools')
 
-const port = 81
-const host = {
-  'LAPTOP-4KDIA4A3': 'http://localhost',
-  iZ6ilh61jzkvrhZ: 'http://39.97.238.175'
-}[process.env.computername]
-const baseURL = `${host}:${port}`
-console.log('test', baseURL)
+const { baseURL } = getBaseURL()
 
 //项目名称
 const name = '无代码平台'
