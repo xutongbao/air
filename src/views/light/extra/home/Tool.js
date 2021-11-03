@@ -6,9 +6,14 @@ import { getToolBtnList } from './config'
 function Tool(props) {
   const { onOperate } = props
   const getHref = () => {
-    const host = window.location.host.split(':')[0] + ':8080'
-    const href = `${window.location.protocol}//${host}`
-    return href
+    if (window.location.host.includes('xutongbao')) {
+      const href = `${window.location.protocol}//jenkins.xutongbao.top`
+      return href
+    } else {
+      const host = window.location.host.split(':')[0] + ':8080'
+      const href = `${window.location.protocol}//${host}`
+      return href
+    }
   }
 
   return (
