@@ -30,7 +30,6 @@ const getColumns = (props) => {
       dataIndex: 'url',
       render: (text, record) => {
         const host = window.location.host.split(':')[0]
-
         const hash = record.info.hash ? record.info.hash : ''
         if (host.includes('xutongbao')) {
           const icePath = text.replace(/39.97.238.175:81/g, 'www.xutongbao.top')
