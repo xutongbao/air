@@ -9,7 +9,7 @@ import {
   getModalFields,
   getToolBtnList,
 } from './config'
-import { Search, MyTable, Icon } from '../../../../components/light'
+import { Search, MyTable, Icon, GovernmentRequirements } from '../../../../components/light'
 import useList from './useList'
 import useOperate from './useOperate'
 
@@ -70,6 +70,7 @@ function Index(props) {
           onAction={handleAction}
           getColumns={getColumns}
         ></MyTable>
+        <GovernmentRequirements></GovernmentRequirements>
         <Modal
           title={modalTitle}
           visible={isModalVisible}

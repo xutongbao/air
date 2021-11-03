@@ -12,6 +12,8 @@ import ErrorBoundary from './ErrorBoundary'
 import Loading from './Loading'
 //搜索
 import Search from './Search'
+//政府要求备案
+import GovernmentRequirements from './GovernmentRequirements'
 
 export {
   Icon,
@@ -23,4 +25,6 @@ export {
   ErrorBoundary,
   Loading,
   Search,
+  //政府要求备案
+  GovernmentRequirements,
 }
