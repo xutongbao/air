@@ -33,7 +33,7 @@ const getColumns = (props) => {
         console.log(host)
 
         const hash = record.info.hash ? record.info.hash : ''
-        if (host.includes('localhost')) {
+        if (host.includes('xutongbao')) {
           const icePath = text.replace(/39.97.238.175:81/g, 'www.xutongbao.top')
           const nginxPath = text.replace(/39.97.238.175:81/g, 'nginx.xutongbao.top')
           return (
