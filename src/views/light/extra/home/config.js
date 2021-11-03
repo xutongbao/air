@@ -30,38 +30,76 @@ const getColumns = (props) => {
       dataIndex: 'url',
       render: (text, record) => {
         const host = window.location.host.split(':')[0]
+        console.log(host)
+
         const hash = record.info.hash ? record.info.hash : ''
-        return (
-          <>
-            <div>
-              <a href={text} target="_blank" rel="noreferrer">
-                {text}
-              </a>
-            </div>
-            {record.info.projectType === 'node' ? (
+        if (host.includes('localhost')) {
+          const icePath = text.replace(/39.97.238.175:81/g, 'www.xutongbao.top')
+          const nginxPath = text.replace(/39.97.238.175:81/g, 'nginx.xutongbao.top')
+          return (
+            <>
               <div>
-                <a
-                  href={`${window.location.protocol}//${host}/${hash}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {`${window.location.protocol}//${host}/${hash}`}
+                <a href={icePath} target="_blank" rel="noreferrer">
+                  {icePath}
                 </a>
               </div>
-            ) : (
+              {record.info.projectType === 'node' ? (
+                <div>
+                  <a
+                    href={`${window.location.protocol}//${host}/${hash}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {`${window.location.protocol}//${host}/${hash}`}
+                  </a>
+                </div>
+              ) : (
+                <div>
+                  <a
+                    href={nginxPath}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {nginxPath}
+                  </a>
+                  <span>(nginx)</span>
+                </div>
+              )}
+            </>
+          )
+        } else {
+          return (
+            <>
               <div>
-                <a
-                  href={text.replace('81', '83')}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {text.replace('81', '83')}
+                <a href={text} target="_blank" rel="noreferrer">
+                  {text}
                 </a>
-                <span>(nginx)</span>
               </div>
-            )}
-          </>
-        )
+              {record.info.projectType === 'node' ? (
+                <div>
+                  <a
+                    href={`${window.location.protocol}//${host}/${hash}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {`${window.location.protocol}//${host}/${hash}`}
+                  </a>
+                </div>
+              ) : (
+                <div>
+                  <a
+                    href={text.replace('81', '83')}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {text.replace('81', '83')}
+                  </a>
+                  <span>(nginx)</span>
+                </div>
+              )}
+            </>
+          )
+        }
       },
     },
     {

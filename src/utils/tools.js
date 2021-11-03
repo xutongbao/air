@@ -328,6 +328,11 @@ const renderTime = (text, record) => {
   )
 }
 
+//ip地址替换成域名
+const ipToDomainName = () => {
+
+}
+
 export {
   showLoading,
   hideLoading,
@@ -342,4 +347,6 @@ export {
   addLog,
   // 添加/更新时间
   renderTime,
+  //ip地址替换成域名
+  ipToDomainName,
 }
