@@ -30,7 +30,6 @@ const getColumns = (props) => {
       dataIndex: 'url',
       render: (text, record) => {
         const host = window.location.host.split(':')[0]
-        console.log(host)
 
         const hash = record.info.hash ? record.info.hash : ''
         if (host.includes('xutongbao')) {
