@@ -38,6 +38,7 @@ const handleAddRecord = async () => {
     gitRepositorieName: process.env.gitRepositorieName,
     jenkinsProjectName: getJenkinsProjectName({ cd: process.env.cd }),
     branch: process.env.branch,
+    projectType: 'web',
     url: `${baseURL}/${process.env.pipeline}/${process.env.gitRepositorieName}/${process.env.branch}`,
     remarks: '自动'
   }

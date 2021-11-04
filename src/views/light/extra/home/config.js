@@ -32,16 +32,19 @@ const getColumns = (props) => {
         const host = window.location.host.split(':')[0]
         const hash = record.info.hash ? record.info.hash : ''
         if (host.includes('xutongbao')) {
-          const icePath = text.replace(/39.97.238.175:81/g, 'www.xutongbao.top')
-          const nginxPath = text.replace(/39.97.238.175:81/g, 'nginx.xutongbao.top')
+          const wwwPath = text.replace(/39.97.238.175:81/g, 'www.xutongbao.top')
+          const nginxPath = text.replace(
+            /39.97.238.175:81/g,
+            'nginx.xutongbao.top'
+          )
           return (
             <>
               <div>
-                <a href={icePath} target="_blank" rel="noreferrer">
-                  {icePath}
+                <a href={wwwPath} target="_blank" rel="noreferrer">
+                  {wwwPath}
                 </a>
               </div>
-              {record.info.projectType === 'node' ? (
+              {record.info.projectType === 'node' && (
                 <div>
                   <a
                     href={`${window.location.protocol}//${host}/${hash}`}
@@ -51,13 +54,10 @@ const getColumns = (props) => {
                     {`${window.location.protocol}//${host}/${hash}`}
                   </a>
                 </div>
-              ) : (
+              )}
+              {!record.info.projectType && (
                 <div>
-                  <a
-                    href={nginxPath}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
+                  <a href={nginxPath} target="_blank" rel="noreferrer">
                     {nginxPath}
                   </a>
                   <span>(nginx)</span>
@@ -73,7 +73,7 @@ const getColumns = (props) => {
                   {text}
                 </a>
               </div>
-              {record.info.projectType === 'node' ? (
+              {record.info.projectType === 'node' && (
                 <div>
                   <a
                     href={`${window.location.protocol}//${host}/${hash}`}
@@ -83,7 +83,8 @@ const getColumns = (props) => {
                     {`${window.location.protocol}//${host}/${hash}`}
                   </a>
                 </div>
-              ) : (
+              )}
+              {record.info.projectType === 'web' && (
                 <div>
                   <a
                     href={text.replace('81', '83')}
