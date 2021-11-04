@@ -14,6 +14,8 @@ import Loading from './Loading'
 import Search from './Search'
 //政府要求备案
 import GovernmentRequirements from './GovernmentRequirements'
+//底部推荐
+import FooterRecommend from './FooterRecommend'
 
 export {
   Icon,
@@ -27,4 +29,6 @@ export {
   Search,
   //政府要求备案
   GovernmentRequirements,
+  //底部推荐
+  FooterRecommend,
 }

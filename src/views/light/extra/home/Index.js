@@ -9,7 +9,7 @@ import {
   getModalFields,
   getToolBtnList,
 } from './config'
-import { Search, MyTable, Icon, GovernmentRequirements } from '../../../../components/light'
+import { Search, MyTable, Icon, GovernmentRequirements, FooterRecommend } from '../../../../components/light'
 import useList from './useList'
 import useOperate from './useOperate'
 
@@ -70,6 +70,7 @@ function Index(props) {
           onAction={handleAction}
           getColumns={getColumns}
         ></MyTable>
+        <FooterRecommend></FooterRecommend>
         <GovernmentRequirements></GovernmentRequirements>
         <Modal
           title={modalTitle}

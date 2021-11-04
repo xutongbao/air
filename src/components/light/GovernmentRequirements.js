@@ -1,5 +1,5 @@
 import React from 'react'
-import { Space, Button } from 'antd'
+import { Space } from 'antd'
 
 export default function GovernmentRequirements() {
   return (
