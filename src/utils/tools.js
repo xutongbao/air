@@ -343,6 +343,25 @@ const renderTime = (text, record) => {
 //ip地址替换成域名
 const ipToDomainName = () => {}
 
+// 格式化所属分类列表页数据
+const formatCategoryForList = ({ categoryOptions }) => {
+  const find = (arr, parentid) => {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].children.length > 0) {
+        arr[i].parentid = parentid
+        find(arr[i].children, arr[i].id)
+      } else {
+        arr[i].parentid = parentid
+        if (arr[i].children.length === 0) {
+          delete arr[i].children
+        }
+      }
+    }
+  }
+  find(categoryOptions, '0')
+  return categoryOptions
+}
+
 export {
   showLoading,
   hideLoading,
@@ -359,4 +378,6 @@ export {
   renderTime,
   //ip地址替换成域名
   ipToDomainName,
+  // 格式化所属分类列表页数据
+  formatCategoryForList,
 }

@@ -1,5 +1,7 @@
 import { baseURL, nodeBaseURL } from '../utils/config'
 
+const zlhxUrl = 'http://api-zlhx.gongzuoshouji.cn'
+
 const urls = {
   testUpload: baseURL + '/api/upload', //不是axios发起的请求，需要特殊处
 
@@ -58,6 +60,15 @@ const urls = {
   jenkinsEdit: '/api/jenkins/edit',
   jenkinsUp: '/api/jenkins/up',
   //#endregion  
+
+  //#region 基础管理-分类管理-分类列表-后端李傲
+  categorySearch: zlhxUrl + '/zlhx/admin/Category/queryAllCategory',
+  categoryAdd: zlhxUrl + '/zlhx/admin/Category/add',
+  categoryDelete: nodeBaseURL + '/api/category/delete',
+  categoryEdit: zlhxUrl + '/zlhx/admin/Category/edit',
+  categoryClose: zlhxUrl + '/zlhx/admin/Category/changeClose',
+  categoryOpen: zlhxUrl + '/zlhx/admin/Category/changeOpen',
+  //#endregion
 }
 
 export default urls

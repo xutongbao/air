@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route, Redirect, useHistory } from 'react-router-dom'
 import { ErrorBoundary, Loading } from '../components/light'
 const Index = lazy(() => import('../views/light/index/Index'))
 const Admin = lazy(() => import('../views/light/admin/Index'))
@@ -12,6 +12,7 @@ const Template = lazy(() => import('../views/light/extra/template/Index'))
 const NotFound = lazy(() => import('../views/light/notFound/NotFound'))
 
 export default function Router() {
+  window.reactRouter = useHistory()
   return (
     <>
       <ErrorBoundary>
