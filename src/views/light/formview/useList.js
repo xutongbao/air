@@ -23,7 +23,7 @@ export default function useList(props) {
 
   //搜索
   const handleSearch = () => {
-    Api.light.fieldsSearch({ tableId }).then((res) => {
+    Api.light.appFieldsSearch({ tableId }).then((res) => {
       if (res.code === 200) {
         const fields = res.data.fields
         setFieldsDom(getFieldsDom(res.data.fields))

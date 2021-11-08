@@ -28,11 +28,11 @@ const Api = {
   appTableAdd: (data) => common({ url: urls.light.appTableAdd, data, method: 'post' }),
   appTableDelete: (data) => common({ url: urls.light.appTableDelete, data, method: 'post' }),
   appTableEdit: (data) => common({ url: urls.light.appTableEdit, data, method: 'post' }),
-  fieldsSearch: (data) => common({ url: urls.light.fieldsSearch, data, method: 'post' }),
-  fieldsAdd: (data) => common({ url: urls.light.fieldsAdd, data, method: 'post' }),
-  fieldsDelete: (data) => common({ url: urls.light.fieldsDelete, data, method: 'post' }),
-  fieldsEdit: (data) => common({ url: urls.light.fieldsEdit, data, method: 'post' }),
-  fieldsEditAll: (data) => common({ url: urls.light.fieldsEditAll, data, method: 'post' }),
+  appFieldsSearch: (data) => common({ url: urls.light.appFieldsSearch, data, method: 'post' }),
+  appFieldsAdd: (data) => common({ url: urls.light.appFieldsAdd, data, method: 'post' }),
+  appFieldsDelete: (data) => common({ url: urls.light.appFieldsDelete, data, method: 'post' }),
+  appFieldsEdit: (data) => common({ url: urls.light.appFieldsEdit, data, method: 'post' }),
+  appFieldsEditAll: (data) => common({ url: urls.light.appFieldsEditAll, data, method: 'post' }),
   //#endregion
 
   //#region jenkins部署列表

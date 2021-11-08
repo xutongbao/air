@@ -28,11 +28,11 @@ const urls = {
   appTableAdd: '/api/app/table/add',
   appTableDelete: '/api/app/table/delete',
   appTableEdit: '/api/app/table/edit',
-  fieldsSearch: '/api/app/fields/search',
-  fieldsAdd: '/api/app/fields/add',
-  fieldsDelete: '/api/app/fields/delete',
-  fieldsEdit: '/api/app/fields/edit',
-  fieldsEditAll: '/api/app/fields/editAll',
+  appFieldsSearch: '/api/app/fields/search',
+  appFieldsAdd: '/api/app/fields/add',
+  appFieldsDelete: '/api/app/fields/delete',
+  appFieldsEdit: '/api/app/fields/edit',
+  appFieldsEditAll: '/api/app/fields/editAll',
   //#endregion
 
   //#region jenkins部署列表
