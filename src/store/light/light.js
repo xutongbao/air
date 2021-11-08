@@ -5,7 +5,8 @@ const defaultState = fromJS({
   router,
   collapsed: false,
   userInfo: {},
-  appList: []
+  appList: [],
+  processList: [],
 })
 
 const reducer = (state = defaultState, action) => {

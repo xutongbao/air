@@ -10,6 +10,15 @@ const getAppList = (callback) => (dispatch) => {
   })
 }
 
+const getProcessList = (callback) => (dispatch) => {
+  Api.light.processListSearch().then(res => {
+    if (res.code === 200) {
+      dispatch({ type: 'SET_LIGHT_STATE', key: ['processList'], value: res.data })
+      callback && callback()
+    }
+  })
+}
+
 const getUserInfo =
   () =>
   (dispatch) => {
@@ -64,4 +73,4 @@ const setAuth =
     }
   }
 
-export { getAppList, getUserInfo, setAuth }
+export { getAppList, getProcessList, getUserInfo, setAuth }
