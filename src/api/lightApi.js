@@ -20,10 +20,10 @@ const Api = {
   easyTemplateEdit: (data) => common({ url: urls.light.easyTemplateEdit, data, method: 'post' }),
 
   //#region 应用管理
-  routerSearch: (data) => common({ url: urls.light.routerSearch, data, method: 'post' }),
-  routerAdd: (data) => common({ url: urls.light.routerAdd, data, method: 'post' }),
-  routerDelete: (data) => common({ url: urls.light.routerDelete, data, method: 'post' }),
-  routerEdit: (data) => common({ url: urls.light.routerEdit, data, method: 'post' }),
+  listSearch: (data) => common({ url: urls.light.listSearch, data, method: 'post' }),
+  listAdd: (data) => common({ url: urls.light.listAdd, data, method: 'post' }),
+  listDelete: (data) => common({ url: urls.light.listDelete, data, method: 'post' }),
+  listEdit: (data) => common({ url: urls.light.listEdit, data, method: 'post' }),
   tableSearch: (data) => common({ url: urls.light.tableSearch, data, method: 'post' }),
   tableAdd: (data) => common({ url: urls.light.tableAdd, data, method: 'post' }),
   tableDelete: (data) => common({ url: urls.light.tableDelete, data, method: 'post' }),

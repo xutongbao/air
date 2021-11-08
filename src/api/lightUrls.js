@@ -20,10 +20,10 @@ const urls = {
   easyTemplateEdit: '/api/easyTemplate/edit', 
 
   //#region 应用管理
-  routerSearch: '/api/app/router/search',
-  routerAdd: '/api/app/router/add',
-  routerDelete: '/api/app/router/delete',
-  routerEdit: '/api/app/router/edit',
+  listSearch: '/api/app/list/search',
+  listAdd: '/api/app/list/add',
+  listDelete: '/api/app/list/delete',
+  listEdit: '/api/app/list/edit',
   tableSearch: '/api/app/table/search',
   tableAdd: '/api/app/table/add',
   tableDelete: '/api/app/table/delete',
