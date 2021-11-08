@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Api from '../../../../../api'
 import { Modal, Form } from 'antd'
-import { getRouter } from '../../../../../store/light/actionCreator'
+import { getAppList } from '../../../../../store/light/actionCreator'
 
 
 const { confirm } = Modal
@@ -20,7 +20,7 @@ export default function useList(props) {
 
   //搜索
   const handleSearch = () => {
-    props.onDispatch(getRouter())
+    props.onDispatch(getAppList())
   }
 
   //删除
@@ -31,7 +31,7 @@ export default function useList(props) {
       onOk() {
         Api.light.processListDelete({ ids: [id] }).then((res) => {
           if (res.code === 200) {
-            props.onDispatch(getRouter())
+            props.onDispatch(getAppList())
           }
         })
       },

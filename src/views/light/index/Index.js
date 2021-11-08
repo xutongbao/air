@@ -4,7 +4,7 @@ import { Link, Switch, Route } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getRouterSearchObj } from '../../../utils/tools'
-import { getRouter } from  '../../../store/light/actionCreator'
+import { getAppList } from  '../../../store/light/actionCreator'
 import { MyBackTop } from '../../../components/light'
 
 const Content = lazy(() => import('./content/Index'))
@@ -15,7 +15,7 @@ function Index(props) {
   const routerSearchObj = getRouterSearchObj(props)
 
   useEffect(() => {
-    props.onDispatch(getRouter())
+    props.onDispatch(getAppList())
     // eslint-disable-next-line 
   }, [])
 

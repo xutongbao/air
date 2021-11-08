@@ -1,7 +1,7 @@
 import Api from '../../api'
 import { formatAuthData } from '../../utils/tools'
 
-const getRouter = (callback) => (dispatch) => {
+const getAppList = (callback) => (dispatch) => {
   Api.light.appListSearch().then(res => {
     if (res.code === 200) {
       dispatch({ type: 'SET_LIGHT_STATE', key: ['appList'], value: res.data })
@@ -64,4 +64,4 @@ const setAuth =
     }
   }
 
-export { getRouter, getUserInfo, setAuth }
+export { getAppList, getUserInfo, setAuth }
