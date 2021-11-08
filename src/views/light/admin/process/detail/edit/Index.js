@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Form, Collapse, Col, Row, Input, Card } from 'antd'
+import { Form, Collapse, Col, Row, Card } from 'antd'
 import Header from '../Header'
 import useList from './useList'
 import { Icon } from '../../../../../../components/light'
@@ -15,14 +15,11 @@ function Index(props) {
   const {
     applicationTitle,
     dataSource,
-    form,
     formForAttr,
-    initValues,
     initValuesForAttr,
     routerSearchObj,
     cardActiveId,
     handleFinish,
-    handleFinishFailed,
     handleAdd,
     handleSave,
     handleCardActiveId,
@@ -94,106 +91,77 @@ function Index(props) {
           </Collapse>
         </div>
         <div className="m-design-content">
-          <Form
-            form={form}
-            labelCol={{ span: 4 }}
-            wrapperCol={{ span: 17 }}
-            initialValues={{ ...initValues }}
-            onFinish={handleFinish}
-            onFinishFailed={handleFinishFailed}
-          >
-            <Card title="流程开始" bordered={false}>
-              1
-            </Card>
-            <div className="m-design-card-wrap">
-              <Container
-                orientation="vertical"
-                onDrop={(dragResult) =>
-                  handleCardDrop({ type: 'content', dragResult })
-                }
-                getChildPayload={(index) =>
-                  handleGetChildPayload({ type: 'content', index })
-                }
-                groupName="col"
-              >
-                {dataSource.map((item) => {
-                  const result = getFormComponentArr().find(
-                    (componentItem) =>
-                      componentItem.formComponentName === item.formComponentName
-                  )
-                  return (
-                    <Draggable key={item.id}>
-                      <div
-                        className={`m-design-card ${
-                          cardActiveId === item.id ? 'active' : ''
-                        }`}
-                        onClick={() => handleCardActiveId({ id: item.id })}
-                      >
-                        <div className="m-design-card-info">
-                          {item.type === 'condition' && (
-                            <div key={item.id}>
-                              {result ? (
-                                result.getComponent({
-                                  props: { title: item.title, ...item.props },
-                                })
-                              ) : (
-                                <Input></Input>
-                              )}
-                            </div>
-                          )}
-                          {item.type === 'formItem' && (
-                            <Form.Item
-                              key={item.id}
-                              label={item.title}
-                              name={item.dataIndex}
-                              rules={item.rules}
-                            >
-                              {result ? (
-                                result.getComponent({ props: item.props })
-                              ) : (
-                                <Input></Input>
-                              )}
-                            </Form.Item>
-                          )}
-                          {item.type === 'image' && (
-                            <Form.Item
-                              key={item.id}
-                              name={item.dataIndex}
-                              wrapperCol={24}
-                            >
-                              {result ? (
-                                result.getComponent({
-                                  props: {
-                                    src: item.src,
-                                  },
-                                })
-                              ) : (
-                                <Input></Input>
-                              )}
-                            </Form.Item>
-                          )}
-                        </div>
+          <Card title="流程开始" bordered={false}>
+            1
+          </Card>
+          <Row gutter={[16, 16]}>
+            <Col span={8}>
+              <div className="m-design-card-wrap">
+                <Container
+                  orientation="vertical"
+                  onDrop={(dragResult) =>
+                    handleCardDrop({ type: 'content', dragResult })
+                  }
+                  getChildPayload={(index) =>
+                    handleGetChildPayload({ type: 'content', index })
+                  }
+                  groupName="col"
+                >
+                  {dataSource.map((item) => {
+                    const result = getFormComponentArr().find(
+                      (componentItem) =>
+                        componentItem.formComponentName ===
+                        item.formComponentName
+                    )
+                    return (
+                      <Draggable key={item.id}>
                         <div
-                          className={`m-design-card-action ${
+                          className={`m-design-card ${
                             cardActiveId === item.id ? 'active' : ''
                           }`}
+                          onClick={() => handleCardActiveId({ id: item.id })}
                         >
-                          <Icon
-                            name="delete"
-                            className="m-design-card-delete"
-                            onClick={(e) => handleDelete(e, item)}
-                          ></Icon>
+                          <div className="m-design-card-info">
+                            {item.type === 'condition' && (
+                              <div key={item.id}>
+                                {result.getComponent({
+                                  props: { title: item.title, ...item.props },
+                                })}
+                              </div>
+                            )}
+                          </div>
+                          <div
+                            className={`m-design-card-action ${
+                              cardActiveId === item.id ? 'active' : ''
+                            }`}
+                          >
+                            <Icon
+                              name="delete"
+                              className="m-design-card-delete"
+                              onClick={(e) => handleDelete(e, item)}
+                            ></Icon>
+                          </div>
                         </div>
-                      </div>
-                    </Draggable>
-                  )
-                })}
-              </Container>
-            </div>
+                      </Draggable>
+                    )
+                  })}
+                </Container>
+              </div>
+            </Col>
+            <Col span={8}>
+              <Card hoverable title="通话数" bordered={false}>
+                {2}
+              </Card>
+            </Col>
+            <Col span={8}>
+              <Card hoverable title="短信数" bordered={false}>
+                {3}
+              </Card>
+            </Col>
             <Card title="流程结束" bordered={false}>
               1
             </Card>
-          </Form>
+          </Row>
         </div>
         <div className="m-design-attr">
           <Form
