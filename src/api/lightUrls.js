@@ -62,6 +62,15 @@ const urls = {
   //#endregion  
 
   //#region 基础管理-分类管理-分类列表-后端李傲
+  testCategorySearch: '/api/category/search',
+  // categoryAdd: zlhxUrl + '/zlhx/admin/Category/add',
+  // categoryDelete: nodeBaseURL + '/api/category/delete',
+  // categoryEdit: zlhxUrl + '/zlhx/admin/Category/edit',
+  // categoryClose: zlhxUrl + '/zlhx/admin/Category/changeClose',
+  // categoryOpen: zlhxUrl + '/zlhx/admin/Category/changeOpen',
+  //#endregion
+
+  //#region 基础管理-分类管理-分类列表-后端李傲
   categorySearch: zlhxUrl + '/zlhx/admin/Category/queryAllCategory',
   categoryAdd: zlhxUrl + '/zlhx/admin/Category/add',
   categoryDelete: nodeBaseURL + '/api/category/delete',

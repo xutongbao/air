@@ -62,6 +62,15 @@ const Api = {
   //#endregion  
 
   //#region 基础管理-分类管理-分类列表-后端李傲
+  testCategroySearch: (data) => common({ url: urls.light.testCategorySearch, data, method: 'post' }),
+  // categroyAdd: (data) => common({ url: urls.light.categoryAdd, data, method: 'post' }),
+  // categroyDelete: (data) => common({ url: urls.light.categoryDelete, data, method: 'post' }),
+  // categroyEdit: (data) => common({ url: urls.light.categoryEdit, data, method: 'post' }),
+  // categoryClose: (data) => common({ url: urls.light.categoryClose, data, method: 'post' }),
+  // categoryOpen: (data) => common({ url: urls.light.categoryOpen, data, method: 'post' }),
+  //#endregion  
+
+  //#region 基础管理-分类管理-分类列表-后端李傲
   categroySearch: (data) => common({ url: urls.light.categorySearch, data, method: 'post' }),
   categroyAdd: (data) => common({ url: urls.light.categoryAdd, data, method: 'post' }),
   categroyDelete: (data) => common({ url: urls.light.categoryDelete, data, method: 'post' }),

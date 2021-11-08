@@ -4,7 +4,6 @@ import { Modal, Form } from 'antd'
 import {
   deepClone,
   formatCategoryForList,
-  getMyAuth,
 } from '../../../../../utils/tools'
 
 const { confirm } = Modal
@@ -42,7 +41,7 @@ export default function useList(props) {
 
   //搜索
   const handleSearch = () => {
-    Api.light.categroySearch().then((res) => {
+    Api.light.testCategroySearch().then((res) => {
       if (res.state === 1) {
         setDataSource(formatCategoryForList({ categoryOptions: res.data }))
       }

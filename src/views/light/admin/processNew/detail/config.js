@@ -19,9 +19,9 @@ const getColumns = (props) => {
       render: (text) => {
         return (
           <span
-            className={`m-check-status ${text === 3 ? 'open' : 'forbidden'}`}
+            className={`m-check-status ${text ? 'open' : 'forbidden'}`}
           >
-            {text === 3 ? '已开启' : '已禁用'}
+            {text ? '已开启' : '已禁用'}
           </span>
         )
       },

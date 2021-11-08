@@ -29,7 +29,7 @@ function Index(props) {
   } = useList(props)
 
   return (
-    <div className="m-content-wrap" id="m-content-wrap">
+    <div className="m-content-list-wrap" id="m-content-wrap">
       <Tool myAuthObj={myAuthObj} onAdd={handleAdd}></Tool>
       <MyTableForEasy
         myAuthObj={myAuthObj}

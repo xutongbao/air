@@ -347,12 +347,12 @@ const ipToDomainName = () => {}
 const formatCategoryForList = ({ categoryOptions }) => {
   const find = (arr, parentid) => {
     for (let i = 0; i < arr.length; i++) {
-      if (arr[i].children.length > 0) {
+      if (arr[i].children && arr[i].children.length > 0) {
         arr[i].parentid = parentid
         find(arr[i].children, arr[i].id)
       } else {
         arr[i].parentid = parentid
-        if (arr[i].children.length === 0) {
+        if (arr[i].children && arr[i].children.length === 0) {
           delete arr[i].children
         }
       }
