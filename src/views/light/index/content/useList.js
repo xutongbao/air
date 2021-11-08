@@ -51,7 +51,7 @@ export default function useList(props) {
     pageSize = state.pageSize,
     searchParams = {},
   } = {}) => {
-    Api.light.tableSearch({ tableId, page, pageSize, searchParams }).then((res) => {
+    Api.light.appTableSearch({ tableId, page, pageSize, searchParams }).then((res) => {
       if (res.code === 200) {
         setState({
           columns: getColumns(res.data.fields),
@@ -71,7 +71,7 @@ export default function useList(props) {
     confirm({
       title: '确认要删除吗？',
       onOk() {
-        Api.light.tableDelete({ tableId, ids: [record.id] }).then((res) => {
+        Api.light.appTableDelete({ tableId, ids: [record.id] }).then((res) => {
           if (res.code === 200) {
             handleSearch()
           }
@@ -101,7 +101,7 @@ export default function useList(props) {
   const handleFinish = (values) => {
     console.log('Success:', values)
     if (type === 'add') {
-      Api.light.tableAdd({ tableId, dataItem: values }).then((res) => {
+      Api.light.appTableAdd({ tableId, dataItem: values }).then((res) => {
         if (res.code === 200) {
           setIsModalVisible(false)
           handleSearch()
@@ -109,7 +109,7 @@ export default function useList(props) {
       })
     } else if (type === 'edit') {
       Api.light
-        .tableEdit({
+        .appTableEdit({
           tableId,
           id: initValues.id,
           dataItem: { ...initValues, ...values },

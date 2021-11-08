@@ -42,7 +42,7 @@ export default function useList(props) {
   //添加或编辑
   const handleFinish = (values) => {
     console.log('Success:', values)
-    Api.light.tableAdd({ tableId, dataItem: values }).then((res) => {
+    Api.light.appTableAdd({ tableId, dataItem: values }).then((res) => {
       if (res.code === 200) {
         setIsShowResult(true)
       }
