@@ -35,6 +35,22 @@ const urls = {
   appFieldsEditAll: '/api/app/fields/editAll',
   //#endregion
 
+  //#region 流程管理
+  processListSearch: '/api/process/list/search',
+  processListAdd: '/api/process/list/add',
+  processListDelete: '/api/process/list/delete',
+  processListEdit: '/api/process/list/edit',
+  processTableSearch: '/api/process/table/search',
+  processTableAdd: '/api/process/table/add',
+  processTableDelete: '/api/process/table/delete',
+  processTableEdit: '/api/process/table/edit',
+  processFieldsSearch: '/api/process/fields/search',
+  processFieldsAdd: '/api/process/fields/add',
+  processFieldsDelete: '/api/process/fields/delete',
+  processFieldsEdit: '/api/process/fields/edit',
+  processFieldsEditAll: '/api/process/fields/editAll',
+  //#endregion
+
   //#region jenkins部署列表
   jenkinsSearch: '/api/jenkins/search',
   jenkinsAdd: '/api/jenkins/add',

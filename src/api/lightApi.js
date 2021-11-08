@@ -35,6 +35,23 @@ const Api = {
   appFieldsEditAll: (data) => common({ url: urls.light.appFieldsEditAll, data, method: 'post' }),
   //#endregion
 
+  //#region 流程管理
+  processListSearch: (data) => common({ url: urls.light.processListSearch, data, method: 'post' }),
+  processListAdd: (data) => common({ url: urls.light.processListAdd, data, method: 'post' }),
+  processListDelete: (data) => common({ url: urls.light.processListDelete, data, method: 'post' }),
+  processListEdit: (data) => common({ url: urls.light.processListEdit, data, method: 'post' }),
+  processTableSearch: (data) => common({ url: urls.light.processTableSearch, data, method: 'post' }),
+  processTableAdd: (data) => common({ url: urls.light.processTableAdd, data, method: 'post' }),
+  processTableDelete: (data) => common({ url: urls.light.processTableDelete, data, method: 'post' }),
+  processTableEdit: (data) => common({ url: urls.light.processTableEdit, data, method: 'post' }),
+  processFieldsSearch: (data) => common({ url: urls.light.processFieldsSearch, data, method: 'post' }),
+  processFieldsAdd: (data) => common({ url: urls.light.processFieldsAdd, data, method: 'post' }),
+  processFieldsDelete: (data) => common({ url: urls.light.processFieldsDelete, data, method: 'post' }),
+  processFieldsEdit: (data) => common({ url: urls.light.processFieldsEdit, data, method: 'post' }),
+  processFieldsEditAll: (data) => common({ url: urls.light.processFieldsEditAll, data, method: 'post' }),
+  //#endregion
+
+
   //#region jenkins部署列表
   jenkinsSearch: (data) => common({ url: urls.light.jenkinsSearch, data, method: 'post' }),
   jenkinsAdd: (data) => common({ url: urls.light.jenkinsAdd, data, method: 'post' }),
