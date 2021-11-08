@@ -90,7 +90,7 @@ export default function useList(props) {
 
   //跳转到应用设置页面
   const handleJumpToSet = (id) => {
-    props.history.push(`/light/admin/app?type=detail&id=${id}&progress=edit`)
+    props.history.push(`/light/admin/process?type=detail&id=${id}&progress=edit`)
   }
 
   //挂载完
