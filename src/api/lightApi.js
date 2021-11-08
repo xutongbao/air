@@ -18,6 +18,8 @@ const Api = {
   easyTemplateAdd: (data) => common({ url: urls.light.easyTemplateAdd, data, method: 'post' }),
   easyTemplateDelete: (data) => common({ url: urls.light.easyTemplateDelete, data, method: 'post' }),
   easyTemplateEdit: (data) => common({ url: urls.light.easyTemplateEdit, data, method: 'post' }),
+
+  //#region 应用管理
   routerSearch: (data) => common({ url: urls.light.routerSearch, data, method: 'post' }),
   routerAdd: (data) => common({ url: urls.light.routerAdd, data, method: 'post' }),
   routerDelete: (data) => common({ url: urls.light.routerDelete, data, method: 'post' }),
@@ -31,6 +33,7 @@ const Api = {
   fieldsDelete: (data) => common({ url: urls.light.fieldsDelete, data, method: 'post' }),
   fieldsEdit: (data) => common({ url: urls.light.fieldsEdit, data, method: 'post' }),
   fieldsEditAll: (data) => common({ url: urls.light.fieldsEditAll, data, method: 'post' }),
+  //#endregion
 
   //#region jenkins部署列表
   jenkinsSearch: (data) => common({ url: urls.light.jenkinsSearch, data, method: 'post' }),
