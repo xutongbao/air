@@ -2,19 +2,10 @@ import Api from '../../api'
 import { formatAuthData } from '../../utils/tools'
 
 const getRouter = (callback) => (dispatch) => {
-  Api.light.listSearch().then(res => {
+  Api.light.appListSearch().then(res => {
     if (res.code === 200) {
       dispatch({ type: 'SET_LIGHT_STATE', key: ['routerForApp'], value: res.data })
       callback && callback()
-    }
-  })
-}
-
-
-const getList = () => (dispatch) => {
-  Api.list().then((res) => {
-    if (res.code === 200) {
-      dispatch({ type: 'SET_STATE', key: ['list'], value: res.data })
     }
   })
 }
@@ -73,4 +64,4 @@ const setAuth =
     }
   }
 
-export { getRouter, getList, getUserInfo, setAuth }
+export { getRouter, getUserInfo, setAuth }

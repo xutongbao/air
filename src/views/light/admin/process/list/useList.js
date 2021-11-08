@@ -29,7 +29,7 @@ export default function useList(props) {
     confirm({
       title: '确认要删除吗？',
       onOk() {
-        Api.light.listDelete({ ids: [id] }).then((res) => {
+        Api.light.appListDelete({ ids: [id] }).then((res) => {
           if (res.code === 200) {
             props.onDispatch(getRouter())
           }
@@ -62,7 +62,7 @@ export default function useList(props) {
     console.log('Success:', values)
     if (type === 'add') {
       values.path = '/light/index/content'
-      Api.light.listAdd({ dataItem: values }).then((res) => {
+      Api.light.appListAdd({ dataItem: values }).then((res) => {
         if (res.code === 200) {
           setIsModalVisible(false)
           handleSearch()
@@ -70,7 +70,7 @@ export default function useList(props) {
       })
     } else if (type === 'edit') {
       Api.light
-        .listEdit({
+        .appListEdit({
           id: initValues.id,
           dataItem: { ...initValues, ...values },
         })
