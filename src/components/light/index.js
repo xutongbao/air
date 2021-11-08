@@ -10,6 +10,12 @@ import MyBackTop from './MyBackTop'
 import ErrorBoundary from './ErrorBoundary'
 //loading
 import Loading from './Loading'
+//搜索
+import Search from './Search'
+//政府要求备案
+import GovernmentRequirements from './GovernmentRequirements'
+//底部推荐
+import FooterRecommend from './FooterRecommend'
 
 export {
   Icon,
@@ -20,4 +26,9 @@ export {
   MyBackTop,
   ErrorBoundary,
   Loading,
+  Search,
+  //政府要求备案
+  GovernmentRequirements,
+  //底部推荐
+  FooterRecommend,
 }
