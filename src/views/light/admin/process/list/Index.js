@@ -23,7 +23,7 @@ function Index(props) {
     handleJumpToSet,
   } = useList(props)
 
-  const { routerForApp } = props
+  const { appList } = props
 
   return (
     <>
@@ -31,7 +31,7 @@ function Index(props) {
         <div className="m-admin-row">
           <div className="m-adimn-row-title">自定义应用</div>
           <div className="m-app-wrap">
-            {routerForApp.map((item) => (
+            {appList.map((item) => (
               <div
                 key={item.id}
                 className="m-app-item"
@@ -116,7 +116,7 @@ function Index(props) {
 
 const mapStateToProps = (state) => {
   return {
-    routerForApp: state.getIn(['light', 'routerForApp']).toJS(),
+    appList: state.getIn(['light', 'appList']).toJS(),
   }
 }
 

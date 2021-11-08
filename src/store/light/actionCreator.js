@@ -4,7 +4,7 @@ import { formatAuthData } from '../../utils/tools'
 const getRouter = (callback) => (dispatch) => {
   Api.light.appListSearch().then(res => {
     if (res.code === 200) {
-      dispatch({ type: 'SET_LIGHT_STATE', key: ['routerForApp'], value: res.data })
+      dispatch({ type: 'SET_LIGHT_STATE', key: ['appList'], value: res.data })
       callback && callback()
     }
   })

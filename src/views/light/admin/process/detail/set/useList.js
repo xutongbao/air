@@ -22,7 +22,7 @@ export default function useList(props) {
 
   //搜索
   const handleSearch = () => {
-    Api.light.appFieldsSearch({ tableId }).then((res) => {
+    Api.light.processFieldsSearch({ tableId }).then((res) => {
       if (res.code === 200) {
         let tempDataSource = res.data.fields.filter((item) => !item.isSystem)
         setDataSource(tempDataSource)
@@ -71,7 +71,7 @@ export default function useList(props) {
     })
     console.log(newDataSource)
     Api.light
-      .appFieldsEditAll({ tableId, dataItem: newDataSource })
+      .processFieldsEditAll({ tableId, dataItem: newDataSource })
       .then((res) => {
         if (res.code === 200) {
           message.success(res.message)

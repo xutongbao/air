@@ -14,7 +14,7 @@ export default function useList(props) {
   const [initValues, setInitValues] = useState({})
   const [type, setType] = useState('add')
   const [modalTitle, setModalTitle] = useState()
-  const { routerForApp } = props
+  const { appList } = props
 
   const addInitValues = {}
 
@@ -29,7 +29,7 @@ export default function useList(props) {
     confirm({
       title: '确认要删除吗？',
       onOk() {
-        Api.light.appListDelete({ ids: [id] }).then((res) => {
+        Api.light.processListDelete({ ids: [id] }).then((res) => {
           if (res.code === 200) {
             props.onDispatch(getRouter())
           }
@@ -49,7 +49,7 @@ export default function useList(props) {
 
   //显示编辑对话框
   const handleEdit = (id) => {
-    const record = routerForApp.find(item => item.id === id)
+    const record = appList.find(item => item.id === id)
     console.log('编辑, id:', record)
     setType('edit')
     setModalTitle('修改名称')
@@ -62,7 +62,7 @@ export default function useList(props) {
     console.log('Success:', values)
     if (type === 'add') {
       values.path = '/light/index/content'
-      Api.light.appListAdd({ dataItem: values }).then((res) => {
+      Api.light.processListAdd({ dataItem: values }).then((res) => {
         if (res.code === 200) {
           setIsModalVisible(false)
           handleSearch()
@@ -70,7 +70,7 @@ export default function useList(props) {
       })
     } else if (type === 'edit') {
       Api.light
-        .appListEdit({
+        .processListEdit({
           id: initValues.id,
           dataItem: { ...initValues, ...values },
         })

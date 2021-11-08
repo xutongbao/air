@@ -10,7 +10,7 @@ import { MyBackTop } from '../../../components/light'
 const Content = lazy(() => import('./content/Index'))
 
 function Index(props) {
-  const { routerForApp } = props
+  const { appList } = props
   //获取路由参数
   const routerSearchObj = getRouterSearchObj(props)
 
@@ -29,7 +29,7 @@ function Index(props) {
           mode="horizontal"
         >
           {
-            routerForApp.map(item => (
+            appList.map(item => (
               <Menu.Item key={item.key}>
                 <Link to={item.path}>{item.title}</Link>
               </Menu.Item>
@@ -54,7 +54,7 @@ function Index(props) {
 
 const mapStateToProps = (state) => {
   return {
-    routerForApp: state.getIn(['light', 'routerForApp']).toJS(),
+    appList: state.getIn(['light', 'appList']).toJS(),
   }
 }
 
