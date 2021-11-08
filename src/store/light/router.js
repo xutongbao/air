@@ -17,6 +17,13 @@ const router = [
     path: '/light/admin/app',
     component: lazy(() => import('../../views/light/admin/app/Index')),
   },
+  {
+    title: '流程管理',
+    icon: 'process',
+    isVisible: true,
+    path: '/light/admin/process',
+    component: lazy(() => import('../../views/light/admin/process/Index')),
+  },
 ]
 
 export default router
