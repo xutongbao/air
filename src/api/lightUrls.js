@@ -65,7 +65,7 @@ const urls = {
   testCategorySearch: '/api/category/search',
   testCategoryAdd: '/api/category/add',
   // categoryDelete: nodeBaseURL + '/api/category/delete',
-  // categoryEdit: zlhxUrl + '/zlhx/admin/Category/edit',
+  testCategoryEdit: '/api/category/edit',
   // categoryClose: zlhxUrl + '/zlhx/admin/Category/changeClose',
   // categoryOpen: zlhxUrl + '/zlhx/admin/Category/changeOpen',
   //#endregion

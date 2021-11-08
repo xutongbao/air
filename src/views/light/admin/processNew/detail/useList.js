@@ -76,11 +76,12 @@ export default function useList(props) {
   //显示增加子类对话框
   const handleAddChild = (record) => {
     setType('add')
-    setInitValues({ addInitValues })
+    console.log(record)
+    setInitValues({ addInitValues, belongCategory: record.id })
     console.log(addInitValues)
     setModalTitle('新增子类')
     setIsModalVisible(true)
-    getTreeData()
+    getTreeData(record.id)
   }
 
   //显示编辑对话框
@@ -90,7 +91,7 @@ export default function useList(props) {
     setInitValues({ ...initValues, ...record })
     setModalTitle('编辑分类')
     setIsModalVisible(true)
-    getTreeData()
+    getTreeData(record.id)
   }
 
   //添加或编辑
@@ -105,7 +106,7 @@ export default function useList(props) {
       })
     } else if (type === 'edit') {
       Api.light
-        .categroyEdit({
+        .testCategroyEdit({
           id: initValues.id,
           ...values,
         })

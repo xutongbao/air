@@ -13,34 +13,11 @@ const getColumns = (props) => {
       dataIndex: 'id',
     },
     {
-      title: '状态',
-      dataIndex: 'status',
-      width: 100,
-      render: (text) => {
-        return (
-          <span
-            className={`m-check-status ${text ? 'open' : 'forbidden'}`}
-          >
-            {text ? '已开启' : '已禁用'}
-          </span>
-        )
-      },
-    },
-    {
       title: '操作',
       width: 320,
       render: (record) => {
         return (
           <div className="m-action">
-            <Button
-              className={`m-action-btn ${
-                record.status === 3 ? 'forbidden' : 'open'
-              }`}
-              size="small"
-              onClick={() => props.onStatus(record)}
-            >
-              {record.status === 3 ? '禁用' : '开启'}
-            </Button>
             <Button
               className="m-action-btn"
               size="small"
