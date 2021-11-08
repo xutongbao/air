@@ -1,5 +1,5 @@
 import store from '../store'
-import { Input, InputNumber, Form } from 'antd'
+import { Input, InputNumber, Form, Card } from 'antd'
 import moment from 'moment'
 import { fromJS } from 'immutable'
 import Api from '../api'
@@ -100,6 +100,18 @@ const getFormComponentArr = () => {
       component: <img style={{ width: '100%' }} alt="图片"></img>,
       getComponent: ({ props }) => {
         return <img style={{ width: '100%' }} {...props} alt="图片"></img>
+      },
+    },
+    {
+      id: 5,
+      title: '卡片',
+      formComponentName: 'Card',
+      getComponent: ({ props }) => {
+        return (
+          <Card hoverable {...props} bordered={false}>
+            {1}
+          </Card>
+        )
       },
     },
   ]
@@ -329,9 +341,7 @@ const renderTime = (text, record) => {
 }
 
 //ip地址替换成域名
-const ipToDomainName = () => {
-
-}
+const ipToDomainName = () => {}
 
 export {
   showLoading,

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Form, Button, Collapse, Col, Row, Input } from 'antd'
+import { Form, Collapse, Col, Row, Input, Card } from 'antd'
 import Header from '../Header'
 import useList from './useList'
 import { Icon } from '../../../../../../components/light'
@@ -102,6 +102,9 @@ function Index(props) {
             onFinish={handleFinish}
             onFinishFailed={handleFinishFailed}
           >
+            <Card title="流程开始" bordered={false}>
+              1
+            </Card>
             <div className="m-design-card-wrap">
               <Container
                 orientation="vertical"
@@ -127,6 +130,17 @@ function Index(props) {
                         onClick={() => handleCardActiveId({ id: item.id })}
                       >
                         <div className="m-design-card-info">
+                          {item.type === 'condition' && (
+                            <div key={item.id}>
+                              {result ? (
+                                result.getComponent({
+                                  props: { title: item.title, ...item.props },
+                                })
+                              ) : (
+                                <Input></Input>
+                              )}
+                            </div>
+                          )}
                           {item.type === 'formItem' && (
                             <Form.Item
                               key={item.id}
@@ -176,24 +190,9 @@ function Index(props) {
                 })}
               </Container>
             </div>
-            <Form.Item
-              wrapperCol={{ offset: 4, span: 17 }}
-              className="m-design-footer"
-            >
-              <Button type="primary" htmlType="submit" className="m-space">
-                <Icon name="submit" className="m-tool-btn-icon"></Icon>
-                提交
-              </Button>
-              <Button
-                className="m-space"
-                onClick={() => {
-                  form.resetFields()
-                }}
-              >
-                <Icon name="reset" className="m-tool-btn-icon"></Icon>
-                重置
-              </Button>
-            </Form.Item>
+            <Card title="流程结束" bordered={false}>
+              1
+            </Card>
           </Form>
         </div>
         <div className="m-design-attr">

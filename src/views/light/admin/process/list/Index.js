@@ -59,7 +59,7 @@ function Index(props) {
             ))}
             <div className="m-app-item" onClick={handleAdd}>
               <Icon name="add" className="m-application-icon"></Icon>
-              创建新应用
+              创建新流程
             </div>
           </div>
         </div>
