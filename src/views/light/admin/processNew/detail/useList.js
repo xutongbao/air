@@ -29,7 +29,7 @@ export default function useList(props) {
       // 首字母
       initalLetter: 'A',
       // 所属分类
-      parentid: 0,
+      belongCategory: '0',
       // 备注
       remark: '备注1',
       // 排序值
@@ -97,7 +97,7 @@ export default function useList(props) {
   const handleFinish = (values) => {
     console.log('Success:', values)
     if (type === 'add') {
-      Api.light.categroyAdd({ ...values }).then((res) => {
+      Api.light.testCategroyAdd({ ...values }).then((res) => {
         if (res.state === 1) {
           setIsModalVisible(false)
           handleSearch()

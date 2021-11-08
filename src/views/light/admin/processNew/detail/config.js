@@ -83,7 +83,7 @@ const getModalFields = ({ treeData }) => {
       </Form.Item>
       <Form.Item
         label="所属分类"
-        name="parentid"
+        name="belongCategory"
         rules={[
           {
             required: true,
