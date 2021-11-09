@@ -79,7 +79,7 @@ export default function useList(props) {
     console.log(record)
     setInitValues({ addInitValues, belongCategory: record.id })
     console.log(addInitValues)
-    setModalTitle('新增添加分支')
+    setModalTitle('新增子条件分支')
     setIsModalVisible(true)
     getTreeData(record.id)
   }

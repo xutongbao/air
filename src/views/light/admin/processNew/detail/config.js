@@ -33,7 +33,7 @@ const getColumns = (props) => {
               size="small"
               onClick={() => props.onAddChild(record)}
             >
-              新增条件分支
+              新增子条件分支
             </Button>
             <Button
               className="m-action-btn"
