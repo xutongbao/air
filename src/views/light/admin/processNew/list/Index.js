@@ -23,7 +23,7 @@ function Index(props) {
     handleJumpToSet,
   } = useList(props)
 
-  const { appList } = props
+  const { processList } = props
 
   return (
     <>
@@ -31,7 +31,7 @@ function Index(props) {
         <div className="m-admin-row">
           <div className="m-adimn-row-title">自定义应用</div>
           <div className="m-app-wrap">
-            {appList.map((item) => (
+            {processList.map((item) => (
               <div
                 key={item.id}
                 className="m-app-item"
@@ -59,7 +59,7 @@ function Index(props) {
             ))}
             <div className="m-app-item" onClick={handleAdd}>
               <Icon name="add" className="m-application-icon"></Icon>
-              创建新应用
+              创建新流程
             </div>
           </div>
         </div>
@@ -116,7 +116,7 @@ function Index(props) {
 
 const mapStateToProps = (state) => {
   return {
-    appList: state.getIn(['light', 'appList']).toJS(),
+    processList: state.getIn(['light', 'processList']).toJS(),
   }
 }
 

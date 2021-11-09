@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Api from '../../../../../api'
 import { Modal, Form } from 'antd'
-import { getAppList } from '../../../../../store/light/actionCreator'
+import { getProcessList } from '../../../../../store/light/actionCreator'
 
 
 const { confirm } = Modal
@@ -20,7 +20,7 @@ export default function useList(props) {
 
   //搜索
   const handleSearch = () => {
-    props.onDispatch(getAppList())
+    props.onDispatch(getProcessList())
   }
 
   //删除
@@ -29,9 +29,9 @@ export default function useList(props) {
     confirm({
       title: '确认要删除吗？',
       onOk() {
-        Api.light.appListDelete({ ids: [id] }).then((res) => {
+        Api.light.processListDelete({ ids: [id] }).then((res) => {
           if (res.code === 200) {
-            props.onDispatch(getAppList())
+            props.onDispatch(getProcessList())
           }
         })
       },
@@ -62,7 +62,7 @@ export default function useList(props) {
     console.log('Success:', values)
     if (type === 'add') {
       values.path = '/light/index/content'
-      Api.light.appListAdd({ dataItem: values }).then((res) => {
+      Api.light.processListAdd({ dataItem: values }).then((res) => {
         if (res.code === 200) {
           setIsModalVisible(false)
           handleSearch()
@@ -70,7 +70,7 @@ export default function useList(props) {
       })
     } else if (type === 'edit') {
       Api.light
-        .appListEdit({
+        .processListEdit({
           id: initValues.id,
           dataItem: { ...initValues, ...values },
         })
@@ -90,7 +90,7 @@ export default function useList(props) {
 
   //跳转到应用设置页面
   const handleJumpToSet = (id) => {
-    props.history.push(`/light/admin/app?type=detail&id=${id}&progress=edit`)
+    props.history.push(`/light/admin/processNew?type=detail&id=${id}&progress=edit`)
   }
 
   //挂载完

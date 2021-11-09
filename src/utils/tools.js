@@ -1,5 +1,5 @@
 import store from '../store'
-import { Input, InputNumber, Form } from 'antd'
+import { Input, InputNumber, Form, Card } from 'antd'
 import moment from 'moment'
 import { fromJS } from 'immutable'
 import Api from '../api'
@@ -100,6 +100,18 @@ const getFormComponentArr = () => {
       component: <img style={{ width: '100%' }} alt="图片"></img>,
       getComponent: ({ props }) => {
         return <img style={{ width: '100%' }} {...props} alt="图片"></img>
+      },
+    },
+    {
+      id: 5,
+      title: '卡片',
+      formComponentName: 'Card',
+      getComponent: ({ props }) => {
+        return (
+          <Card hoverable {...props} bordered={false}>
+            {1}
+          </Card>
+        )
       },
     },
   ]
@@ -329,8 +341,25 @@ const renderTime = (text, record) => {
 }
 
 //ip地址替换成域名
-const ipToDomainName = () => {
+const ipToDomainName = () => {}
 
+// 格式化所属分类列表页数据
+const formatCategoryForList = ({ categoryOptions }) => {
+  const find = (arr, parentid) => {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].children && arr[i].children.length > 0) {
+        arr[i].parentid = parentid
+        find(arr[i].children, arr[i].id)
+      } else {
+        arr[i].parentid = parentid
+        if (arr[i].children && arr[i].children.length === 0) {
+          delete arr[i].children
+        }
+      }
+    }
+  }
+  find(categoryOptions, '0')
+  return categoryOptions
 }
 
 export {
@@ -349,4 +378,6 @@ export {
   renderTime,
   //ip地址替换成域名
   ipToDomainName,
+  // 格式化所属分类列表页数据
+  formatCategoryForList,
 }

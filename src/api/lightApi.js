@@ -18,19 +18,39 @@ const Api = {
   easyTemplateAdd: (data) => common({ url: urls.light.easyTemplateAdd, data, method: 'post' }),
   easyTemplateDelete: (data) => common({ url: urls.light.easyTemplateDelete, data, method: 'post' }),
   easyTemplateEdit: (data) => common({ url: urls.light.easyTemplateEdit, data, method: 'post' }),
-  routerSearch: (data) => common({ url: urls.light.routerSearch, data, method: 'post' }),
-  routerAdd: (data) => common({ url: urls.light.routerAdd, data, method: 'post' }),
-  routerDelete: (data) => common({ url: urls.light.routerDelete, data, method: 'post' }),
-  routerEdit: (data) => common({ url: urls.light.routerEdit, data, method: 'post' }),
-  tableSearch: (data) => common({ url: urls.light.tableSearch, data, method: 'post' }),
-  tableAdd: (data) => common({ url: urls.light.tableAdd, data, method: 'post' }),
-  tableDelete: (data) => common({ url: urls.light.tableDelete, data, method: 'post' }),
-  tableEdit: (data) => common({ url: urls.light.tableEdit, data, method: 'post' }),
-  fieldsSearch: (data) => common({ url: urls.light.fieldsSearch, data, method: 'post' }),
-  fieldsAdd: (data) => common({ url: urls.light.fieldsAdd, data, method: 'post' }),
-  fieldsDelete: (data) => common({ url: urls.light.fieldsDelete, data, method: 'post' }),
-  fieldsEdit: (data) => common({ url: urls.light.fieldsEdit, data, method: 'post' }),
-  fieldsEditAll: (data) => common({ url: urls.light.fieldsEditAll, data, method: 'post' }),
+
+  //#region 应用管理
+  appListSearch: (data) => common({ url: urls.light.appListSearch, data, method: 'post' }),
+  appListAdd: (data) => common({ url: urls.light.appListAdd, data, method: 'post' }),
+  appListDelete: (data) => common({ url: urls.light.appListDelete, data, method: 'post' }),
+  appListEdit: (data) => common({ url: urls.light.appListEdit, data, method: 'post' }),
+  appTableSearch: (data) => common({ url: urls.light.appTableSearch, data, method: 'post' }),
+  appTableAdd: (data) => common({ url: urls.light.appTableAdd, data, method: 'post' }),
+  appTableDelete: (data) => common({ url: urls.light.appTableDelete, data, method: 'post' }),
+  appTableEdit: (data) => common({ url: urls.light.appTableEdit, data, method: 'post' }),
+  appFieldsSearch: (data) => common({ url: urls.light.appFieldsSearch, data, method: 'post' }),
+  appFieldsAdd: (data) => common({ url: urls.light.appFieldsAdd, data, method: 'post' }),
+  appFieldsDelete: (data) => common({ url: urls.light.appFieldsDelete, data, method: 'post' }),
+  appFieldsEdit: (data) => common({ url: urls.light.appFieldsEdit, data, method: 'post' }),
+  appFieldsEditAll: (data) => common({ url: urls.light.appFieldsEditAll, data, method: 'post' }),
+  //#endregion
+
+  //#region 流程管理
+  processListSearch: (data) => common({ url: urls.light.processListSearch, data, method: 'post' }),
+  processListAdd: (data) => common({ url: urls.light.processListAdd, data, method: 'post' }),
+  processListDelete: (data) => common({ url: urls.light.processListDelete, data, method: 'post' }),
+  processListEdit: (data) => common({ url: urls.light.processListEdit, data, method: 'post' }),
+  processTableSearch: (data) => common({ url: urls.light.processTableSearch, data, method: 'post' }),
+  processTableAdd: (data) => common({ url: urls.light.processTableAdd, data, method: 'post' }),
+  processTableDelete: (data) => common({ url: urls.light.processTableDelete, data, method: 'post' }),
+  processTableEdit: (data) => common({ url: urls.light.processTableEdit, data, method: 'post' }),
+  processFieldsSearch: (data) => common({ url: urls.light.processFieldsSearch, data, method: 'post' }),
+  processFieldsAdd: (data) => common({ url: urls.light.processFieldsAdd, data, method: 'post' }),
+  processFieldsDelete: (data) => common({ url: urls.light.processFieldsDelete, data, method: 'post' }),
+  processFieldsEdit: (data) => common({ url: urls.light.processFieldsEdit, data, method: 'post' }),
+  processFieldsEditAll: (data) => common({ url: urls.light.processFieldsEditAll, data, method: 'post' }),
+  //#endregion
+
 
   //#region jenkins部署列表
   jenkinsSearch: (data) => common({ url: urls.light.jenkinsSearch, data, method: 'post' }),
@@ -39,6 +59,24 @@ const Api = {
   jenkinsEdit: (data) => common({ url: urls.light.jenkinsEdit, data, method: 'post' }),
   jenkinsUp: (data) => common({ url: urls.light.jenkinsUp, data, method: 'post' }),
 
+  //#endregion  
+
+  //#region 基础管理-分类管理-分类列表-后端李傲
+  testCategroySearch: (data) => common({ url: urls.light.testCategorySearch, data, method: 'post' }),
+  testCategroyAdd: (data) => common({ url: urls.light.testCategoryAdd, data, method: 'post' }),
+  testCategroyDelete: (data) => common({ url: urls.light.testCategoryDelete, data, method: 'post' }),
+  testCategroyEdit: (data) => common({ url: urls.light.testCategoryEdit, data, method: 'post' }),
+  // categoryClose: (data) => common({ url: urls.light.categoryClose, data, method: 'post' }),
+  // categoryOpen: (data) => common({ url: urls.light.categoryOpen, data, method: 'post' }),
+  //#endregion  
+
+  //#region 基础管理-分类管理-分类列表-后端李傲
+  //categroySearch: (data) => common({ url: urls.light.categorySearch, data, method: 'post' }),
+  //categroyAdd: (data) => common({ url: urls.light.categoryAdd, data, method: 'post' }),
+  //categroyDelete: (data) => common({ url: urls.light.categoryDelete, data, method: 'post' }),
+  //categroyEdit: (data) => common({ url: urls.light.categoryEdit, data, method: 'post' }),
+  //categoryClose: (data) => common({ url: urls.light.categoryClose, data, method: 'post' }),
+  //categoryOpen: (data) => common({ url: urls.light.categoryOpen, data, method: 'post' }),
   //#endregion  
 }
 

@@ -1,20 +1,20 @@
 import Api from '../../api'
 import { formatAuthData } from '../../utils/tools'
 
-const getRouter = (callback) => (dispatch) => {
-  Api.light.routerSearch().then(res => {
+const getAppList = (callback) => (dispatch) => {
+  Api.light.appListSearch().then(res => {
     if (res.code === 200) {
-      dispatch({ type: 'SET_LIGHT_STATE', key: ['routerForApp'], value: res.data })
+      dispatch({ type: 'SET_LIGHT_STATE', key: ['appList'], value: res.data })
       callback && callback()
     }
   })
 }
 
-
-const getList = () => (dispatch) => {
-  Api.list().then((res) => {
+const getProcessList = (callback) => (dispatch) => {
+  Api.light.processListSearch().then(res => {
     if (res.code === 200) {
-      dispatch({ type: 'SET_STATE', key: ['list'], value: res.data })
+      dispatch({ type: 'SET_LIGHT_STATE', key: ['processList'], value: res.data })
+      callback && callback()
     }
   })
 }
@@ -73,4 +73,4 @@ const setAuth =
     }
   }
 
-export { getRouter, getList, getUserInfo, setAuth }
+export { getAppList, getProcessList, getUserInfo, setAuth }

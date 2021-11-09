@@ -4,18 +4,18 @@ import { Link, Switch, Route } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getRouterSearchObj } from '../../../utils/tools'
-import { getRouter } from  '../../../store/light/actionCreator'
+import { getAppList } from  '../../../store/light/actionCreator'
 import { MyBackTop } from '../../../components/light'
 
 const Content = lazy(() => import('./content/Index'))
 
 function Index(props) {
-  const { routerForApp } = props
+  const { appList } = props
   //获取路由参数
   const routerSearchObj = getRouterSearchObj(props)
 
   useEffect(() => {
-    props.onDispatch(getRouter())
+    props.onDispatch(getAppList())
     // eslint-disable-next-line 
   }, [])
 
@@ -29,7 +29,7 @@ function Index(props) {
           mode="horizontal"
         >
           {
-            routerForApp.map(item => (
+            appList.map(item => (
               <Menu.Item key={item.key}>
                 <Link to={item.path}>{item.title}</Link>
               </Menu.Item>
@@ -54,7 +54,7 @@ function Index(props) {
 
 const mapStateToProps = (state) => {
   return {
-    routerForApp: state.getIn(['light', 'routerForApp']).toJS(),
+    appList: state.getIn(['light', 'appList']).toJS(),
   }
 }
 

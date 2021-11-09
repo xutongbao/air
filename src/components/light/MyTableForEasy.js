@@ -2,7 +2,7 @@ import React from 'react'
 import { Table } from 'antd'
 
 function MyTableForEasy(props) {
-  const { dataSource, getColumns } = props
+  const { dataSource, getColumns, defaultExpandAllRows = false } = props
 
   return (
     <div className="m-content-table">
@@ -12,8 +12,13 @@ function MyTableForEasy(props) {
         dataSource={dataSource}
         rowKey="id"
         scroll={{ scrollToFirstRowOnChange: true, x: true }}
+        expandable={{ defaultExpandAllRows }}
         pagination={{
-          showTotal: (total) => <span>共有数据： <span className="m-total-text">{total}</span> 条</span>,
+          showTotal: (total) => (
+            <span>
+              共有数据： <span className="m-total-text">{total}</span> 条
+            </span>
+          ),
         }}
         //pagination={false}
       ></Table>

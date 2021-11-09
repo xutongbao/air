@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import Api from '../../../../../../api'
-import { Modal, message } from 'antd'
+import { Modal, Form, message } from 'antd'
 import { getRouterSearchObj } from '../../../../../../utils/tools'
 import { v4 as uuidv4 } from 'uuid'
 import { getComponentArr } from './config'
@@ -9,6 +9,8 @@ const { confirm } = Modal
 
 let currentDataSource = []
 export default function useList(props) {
+  const [form] = Form.useForm()
+  const [formForAttr] = Form.useForm()
   const [dataSource, setDataSource] = useState([])
   const [applicationTitle, setApplicationTitle] = useState()
   const [cardActiveId, setCardActiveId] = useState()
@@ -22,7 +24,7 @@ export default function useList(props) {
 
   //搜索
   const handleSearch = () => {
-    Api.light.appFieldsSearch({ tableId }).then((res) => {
+    Api.light.processFieldsSearch({ tableId }).then((res) => {
       if (res.code === 200) {
         let tempDataSource = res.data.fields.filter((item) => !item.isSystem)
         setDataSource(tempDataSource)
@@ -71,7 +73,7 @@ export default function useList(props) {
     })
     console.log(newDataSource)
     Api.light
-      .appFieldsEditAll({ tableId, dataItem: newDataSource })
+      .processFieldsEditAll({ tableId, dataItem: newDataSource })
       .then((res) => {
         if (res.code === 200) {
           message.success(res.message)
@@ -129,7 +131,26 @@ export default function useList(props) {
 
   //修改表单字段属性
   const handleValuesChange = (changedValues, allValues) => {
+    const temp = formForAttr.getFieldsValue()
+    console.log(temp)
+    const cardActiveIndex = dataSource.findIndex(
+      (item) => item.id === cardActiveId
+    )
 
+    let tempValues = {
+      rules: [allValues.rules],
+      props: {
+        placeholder: allValues.placeholder,
+      },
+      //src: 'https://jsformimages.biaodan.info/611f6c2afc918f46dd5ee186.jpg'
+    }
+
+    dataSource[cardActiveIndex] = {
+      ...dataSource[cardActiveIndex],
+      ...allValues,
+      ...tempValues,
+    }
+    setDataSource([...dataSource])
   }
 
   //拖拽处理函数
@@ -186,6 +207,11 @@ export default function useList(props) {
     }
   }
 
+  useEffect(() => {
+    formForAttr.resetFields()
+    // eslint-disable-next-line
+  }, [initValuesForAttr])
+
   //挂载完
   useEffect(() => {
     handleSearch()
@@ -198,6 +224,8 @@ export default function useList(props) {
   }, [dataSource])
 
   return {
+    form,
+    formForAttr,
     initValuesForAttr,
     dataSource,
     applicationTitle,
