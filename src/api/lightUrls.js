@@ -64,7 +64,7 @@ const urls = {
   //#region 基础管理-分类管理-分类列表-后端李傲
   testCategorySearch: '/api/category/search',
   testCategoryAdd: '/api/category/add',
-  // categoryDelete: nodeBaseURL + '/api/category/delete',
+  testCategoryDelete: '/api/category/delete',
   testCategoryEdit: '/api/category/edit',
   // categoryClose: zlhxUrl + '/zlhx/admin/Category/changeClose',
   // categoryOpen: zlhxUrl + '/zlhx/admin/Category/changeOpen',

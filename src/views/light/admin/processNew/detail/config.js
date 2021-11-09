@@ -21,6 +21,14 @@ const getColumns = (props) => {
             <Button
               className="m-action-btn"
               size="small"
+              danger
+              onClick={() => props.onDelete(record)}
+            >
+              删除
+            </Button>
+            <Button
+              className="m-action-btn"
+              size="small"
               onClick={() => props.onAddChild(record)}
             >
               新增子类
