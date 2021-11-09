@@ -12,7 +12,7 @@ function MyTableForEasy(props) {
         dataSource={dataSource}
         rowKey="id"
         scroll={{ scrollToFirstRowOnChange: true, x: true }}
-        expandable={{ defaultExpandAllRows: true }}
+        expandable={{ defaultExpandAllRows }}
         pagination={{
           showTotal: (total) => (
             <span>

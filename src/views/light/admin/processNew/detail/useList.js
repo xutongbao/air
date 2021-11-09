@@ -79,7 +79,7 @@ export default function useList(props) {
     console.log(record)
     setInitValues({ addInitValues, belongCategory: record.id })
     console.log(addInitValues)
-    setModalTitle('新增子类')
+    setModalTitle('新增添加分支')
     setIsModalVisible(true)
     getTreeData(record.id)
   }
@@ -89,7 +89,7 @@ export default function useList(props) {
     console.log('编辑, id:', record)
     setType('edit')
     setInitValues({ ...initValues, ...record })
-    setModalTitle('编辑分类')
+    setModalTitle('编辑条件分支')
     setIsModalVisible(true)
     getTreeData(record.id)
   }
@@ -172,6 +172,7 @@ export default function useList(props) {
     treeData.unshift({
       title: '一级分类',
       value: '0',
+      disabled: true
     })
     setTreeData(treeData)
   }

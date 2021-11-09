@@ -48,6 +48,7 @@ function Index(props) {
         title={modalTitle}
         visible={isModalVisible}
         onCancel={() => setIsModalVisible(false)}
+        width={800}
         footer={null}
         forceRender
       >
@@ -61,7 +62,7 @@ function Index(props) {
           onFinishFailed={handleFinishFailed}
         >
           <div id="m-modal-form-info" className="m-modal-form-info">
-            {getModalFields({ treeData })}
+            {getModalFields({ treeData, initValues })}
           </div>
           <Form.Item
             wrapperCol={{ offset: 4, span: 17 }}
