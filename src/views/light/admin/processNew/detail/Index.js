@@ -31,16 +31,19 @@ function Index(props) {
   return (
     <div className="m-content-list-wrap" id="m-content-wrap">
       <Tool myAuthObj={myAuthObj} onAdd={handleAdd}></Tool>
-      <MyTableForEasy
-        myAuthObj={myAuthObj}
-        dataSource={dataSource}
-        onSearch={handleSearch}
-        onDelete={handleDelete}
-        onEdit={handleEdit}
-        onAddChild={handleAddChild}
-        getColumns={getColumns}
-        onStatus={handleStatus}
-      ></MyTableForEasy>
+      {Array.isArray(dataSource) && dataSource.length > 0 && (
+        <MyTableForEasy
+          myAuthObj={myAuthObj}
+          dataSource={dataSource}
+          defaultExpandAllRows={true}
+          onSearch={handleSearch}
+          onDelete={handleDelete}
+          onEdit={handleEdit}
+          onAddChild={handleAddChild}
+          getColumns={getColumns}
+          onStatus={handleStatus}
+        ></MyTableForEasy>
+      )}
       <Modal
         title={modalTitle}
         visible={isModalVisible}
