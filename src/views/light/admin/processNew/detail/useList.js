@@ -101,8 +101,8 @@ export default function useList(props) {
   const handleFinish = (values) => {
     console.log('Success:', values)
     if (type === 'add') {
-      Api.light.testCategroyAdd({ ...values }).then((res) => {
-        if (res.state === 1) {
+      Api.light.processFieldsAdd({tableId, dataItem: values }).then((res) => {
+        if (res.code === 200) {
           setIsModalVisible(false)
           handleSearch()
         }
