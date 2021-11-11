@@ -57,8 +57,8 @@ export default function useList(props) {
     confirm({
       title: '该分类及子分类都会被删除，确认要删除吗？',
       onOk() {
-        Api.light.testCategroyDelete({ id: record.id }).then((res) => {
-          if (res.state === 1) {
+        Api.light.processFieldsDelete({ tableId, id: record.id }).then((res) => {
+          if (res.code === 200) {
             handleSearch()
           }
         })
