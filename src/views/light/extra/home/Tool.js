@@ -18,7 +18,7 @@ function Tool(props) {
   }
 
   const handleRefreshLogReport = () => {
-    Api.light.refreshLogReport().then(res => {
+    Api.light.refreshLogReport().then((res) => {
       if (res.state === 1) {
         console.log(res)
       }
@@ -37,17 +37,23 @@ function Tool(props) {
           </Button>
         </a>
         {isDev === 'true' && (
-          <Button className="m-space" type="primary" onClick={handleRefreshLogReport}>
+          <Button
+            className="m-space"
+            type="primary"
+            onClick={handleRefreshLogReport}
+          >
             <Icon name="reset" className="m-tool-btn-icon"></Icon>
             <span className="m-space-left">刷新日志报告</span>
           </Button>
         )}
-        <a href={`/report.html`} target="_blank" rel="noreferrer">
-          <Button className="m-space" type="primary">
-            <Icon name="log" className="m-tool-btn-icon"></Icon>
-            <span className="m-space-left">日志报告</span>
-          </Button>
-        </a>
+        {isDev === 'true' && (
+          <a href={`/report.html`} target="_blank" rel="noreferrer">
+            <Button className="m-space" type="primary">
+              <Icon name="log" className="m-tool-btn-icon"></Icon>
+              <span className="m-space-left">日志报告</span>
+            </Button>
+          </a>
+        )}
       </div>
       {getToolBtnList({ onOperate })}
     </div>
