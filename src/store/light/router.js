@@ -18,18 +18,19 @@ const router = [
     component: lazy(() => import('../../views/light/admin/app/Index')),
   },
   {
+    title: '流程管理(旧)',
+    icon: 'process',
+    isVisible: true,
+    isDevMenu: true,
+    path: '/light/admin/processOld',
+    component: lazy(() => import('../../views/light/admin/processOld/Index')),
+  },
+  {
     title: '流程管理',
     icon: 'process',
     isVisible: true,
     path: '/light/admin/process',
     component: lazy(() => import('../../views/light/admin/process/Index')),
-  },
-  {
-    title: '流程管理新',
-    icon: 'process',
-    isVisible: true,
-    path: '/light/admin/processNew',
-    component: lazy(() => import('../../views/light/admin/processNew/Index')),
   },
 ]
 

@@ -14,7 +14,7 @@ export default function useList(props) {
   const [initValues, setInitValues] = useState({})
   const [type, setType] = useState('add')
   const [modalTitle, setModalTitle] = useState()
-  const { appList } = props
+  const { processList } = props
 
   const addInitValues = {}
 
@@ -49,7 +49,7 @@ export default function useList(props) {
 
   //显示编辑对话框
   const handleEdit = (id) => {
-    const record = appList.find(item => item.id === id)
+    const record = processList.find(item => item.id === id)
     console.log('编辑, id:', record)
     setType('edit')
     setModalTitle('修改名称')
