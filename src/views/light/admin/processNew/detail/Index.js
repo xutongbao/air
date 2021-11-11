@@ -6,6 +6,7 @@ import Tool from './Tool'
 import { getColumns, getModalFields } from './config'
 import { MyTableForEasy, Icon } from '../../../../../components/light'
 import useList from './useList'
+import Header from './Header'
 
 function Index(props) {
   const {
@@ -17,6 +18,7 @@ function Index(props) {
     form,
     modalTitle,
     myAuthObj,
+    applicationTitle,
     handleSearch,
     handleDelete,
     handleAdd,
@@ -30,6 +32,7 @@ function Index(props) {
 
   return (
     <div className="m-content-list-wrap" id="m-content-wrap">
+      <Header applicationTitle={applicationTitle}></Header>
       <Tool myAuthObj={myAuthObj} onAdd={handleAdd}></Tool>
       {Array.isArray(dataSource) && dataSource.length > 0 && (
         <MyTableForEasy

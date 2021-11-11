@@ -15,6 +15,7 @@ export default function useList(props) {
   const [type, setType] = useState('add')
   const [treeData, setTreeData] = useState([])
   const [modalTitle, setModalTitle] = useState()
+  const [applicationTitle, setApplicationTitle] = useState()
   //权限
   const [myAuthObj, setMyAuthObj] = useState({})
 
@@ -44,6 +45,7 @@ export default function useList(props) {
   const handleSearch = () => {
     Api.light.processFieldsSearch({ tableId }).then((res) => {
       if (res.code === 200) {
+        setApplicationTitle(res.data.title)
         setDataSource(formatCategoryForList({ categoryOptions: res.data.tree }))
       }
     })
@@ -204,6 +206,7 @@ export default function useList(props) {
     form,
     modalTitle,
     myAuthObj,
+    applicationTitle,
     handleSearch,
     handleDelete,
     handleAdd,
