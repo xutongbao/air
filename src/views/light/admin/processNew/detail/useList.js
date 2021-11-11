@@ -1,10 +1,7 @@
 import { useState, useEffect } from 'react'
 import Api from '../../../../../api'
 import { Modal, Form } from 'antd'
-import {
-  deepClone,
-  formatCategoryForList,
-} from '../../../../../utils/tools'
+import { deepClone, formatCategoryForList, getRouterSearchObj } from '../../../../../utils/tools'
 
 const { confirm } = Modal
 
@@ -20,6 +17,10 @@ export default function useList(props) {
   const [modalTitle, setModalTitle] = useState()
   //权限
   const [myAuthObj, setMyAuthObj] = useState({})
+
+  //获取路由参数
+  const routerSearchObj = getRouterSearchObj(props)
+  const tableId = routerSearchObj.id
 
   let addInitValues = {}
   if (process.env.REACT_APP_MODE === 'dev') {
@@ -41,9 +42,9 @@ export default function useList(props) {
 
   //搜索
   const handleSearch = () => {
-    Api.light.testCategroySearch().then((res) => {
-      if (res.state === 1) {
-        setDataSource(formatCategoryForList({ categoryOptions: res.data }))
+    Api.light.processFieldsSearch({ tableId }).then((res) => {
+      if (res.code === 200) {
+        setDataSource(formatCategoryForList({ categoryOptions: res.data.tree }))
       }
     })
   }
@@ -172,7 +173,7 @@ export default function useList(props) {
     treeData.unshift({
       title: '一级分类',
       value: '0',
-      disabled: true
+      disabled: true,
     })
     setTreeData(treeData)
   }
