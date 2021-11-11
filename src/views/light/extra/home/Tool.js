@@ -54,6 +54,14 @@ function Tool(props) {
             </Button>
           </a>
         )}
+        {isDev === 'true' && (
+          <a href={`/access.html`} target="_blank" rel="noreferrer">
+            <Button className="m-space" type="primary">
+              <Icon name="log" className="m-tool-btn-icon"></Icon>
+              <span className="m-space-left">nginx日志</span>
+            </Button>
+          </a>
+        )}
       </div>
       {getToolBtnList({ onOperate })}
     </div>
