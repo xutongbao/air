@@ -109,12 +109,13 @@ export default function useList(props) {
       })
     } else if (type === 'edit') {
       Api.light
-        .testCategroyEdit({
+        .processFieldsEdit({
+          tableId: tableId,
           id: initValues.id,
-          ...values,
+          dataItem: values,
         })
         .then((res) => {
-          if (res.state === 1) {
+          if (res.code === 200) {
             setIsModalVisible(false)
             handleSearch()
           }
