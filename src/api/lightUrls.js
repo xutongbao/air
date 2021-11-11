@@ -59,6 +59,7 @@ const urls = {
   jenkinsDelete: '/api/jenkins/delete',
   jenkinsEdit: '/api/jenkins/edit',
   jenkinsUp: '/api/jenkins/up',
+  refreshLogReport: '/api/jenkins/refreshLogReport',
   //#endregion  
 
   //#region 基础管理-分类管理-分类列表-后端李傲

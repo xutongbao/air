@@ -58,7 +58,7 @@ const Api = {
   jenkinsDelete: (data) => common({ url: urls.light.jenkinsDelete, data, method: 'post' }),
   jenkinsEdit: (data) => common({ url: urls.light.jenkinsEdit, data, method: 'post' }),
   jenkinsUp: (data) => common({ url: urls.light.jenkinsUp, data, method: 'post' }),
-
+  refreshLogReport: (data) => common({ url: urls.light.refreshLogReport, data, method: 'post' }),
   //#endregion  
 
   //#region 基础管理-分类管理-分类列表-后端李傲
