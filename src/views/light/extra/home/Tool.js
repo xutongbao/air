@@ -55,7 +55,7 @@ function Tool(props) {
           </a>
         )}
         {isDev === 'true' && (
-          <a href={`/access.html`} target="_blank" rel="noreferrer">
+          <a href={`/access.log`} target="_blank" rel="noreferrer">
             <Button className="m-space" type="primary">
               <Icon name="log" className="m-tool-btn-icon"></Icon>
               <span className="m-space-left">nginx日志</span>
