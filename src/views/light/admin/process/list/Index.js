@@ -29,7 +29,7 @@ function Index(props) {
     <>
       <div className="m-admin-content home">
         <div className="m-admin-row">
-          <div className="m-adimn-row-title">自定义应用</div>
+          <div className="m-adimn-row-title">自定义流程</div>
           <div className="m-app-wrap">
             {processList.map((item) => (
               <div
