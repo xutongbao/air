@@ -55,7 +55,7 @@ const getColumns = (props) => {
                   </a>
                 </div>
               )}
-              {!record.info.projectType && (
+              {record.info.projectType === 'web' && (
                 <div>
                   <a href={nginxPath} target="_blank" rel="noreferrer">
                     {nginxPath}
