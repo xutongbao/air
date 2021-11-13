@@ -130,12 +130,16 @@
 .m-hide{display: none;}
 .m-tree-wrap{margin: 5px 10px 5px;padding: 16px; background: white;border: 1px solid #ddd;overflow: auto;}
 .m-tree-row{white-space: nowrap;margin: 2px;}
-.m-tree-col{display: inline-block;margin: 2px;width: 240px;height: 93px; border: 1px solid #ddd;border-radius: 4px;}
+.m-tree-col{display: inline-block;margin: 2px;width: 240px;height: 93px; border: 1px solid #ddd;border-radius: 4px;vertical-align: top;}
 .m-tree-card{display: flex;height: 100%; flex-direction: column; border-radius: 4px;}
 .m-tree-card-header{padding: 5px 0 5px 5px;}
-.m-tree-card-content{flex:1; background: white;}
+.m-tree-card-content{flex:1; padding: 5px; background: white;}
 .m-tree-card.blue{border-top: 4px solid #4A94FF;background: #E9F2FF;}
 .m-tree-card.blue:hover{box-shadow: 0 1px 8px 0 #4a94ff;}
+.m-tree-card.orange{border-top: 4px solid #FCAD22;background: #FFF9EE;}
+.m-tree-card.orange:hover{box-shadow: 0 1px 8px 0 #FCAD22;}
+.m-tree-card.green{border-top: 4px solid #3CB4B2;background: #E6F8F8;}
+.m-tree-card.green:hover{box-shadow: 0 1px 8px 0 #3CB4B2;}
 
 @media screen and (max-width: 800px) {  
 .m-formview-inner{width: 100%;} 
