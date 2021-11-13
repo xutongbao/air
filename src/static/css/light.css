@@ -128,8 +128,9 @@
 .m-gov-footer{padding: 5px 0 20px;text-align: center;}
 .m-footer-recommend-wrap{border-top: 1px solid #dedede;min-height: 30px;}
 .m-hide{display: none;}
-.m-tree-wrap{margin: 5px 10px 5px;padding: 16px; background: white;border: 1px solid #ddd;}
-.m-tree-col{border: 1px solid #ddd}
+.m-tree-wrap{margin: 5px 10px 5px;padding: 16px; background: white;border: 1px solid #ddd;overflow: auto;}
+.m-tree-row{white-space: nowrap;margin: 2px;}
+.m-tree-col{display: inline-block;margin: 2px;padding: 2px; width: 240px;height: 93px; border: 1px solid #ddd;text-align: center;font-weight: bold;}
 
 @media screen and (max-width: 800px) {  
 .m-formview-inner{width: 100%;} 
