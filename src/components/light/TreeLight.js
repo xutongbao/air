@@ -1,7 +1,7 @@
 import React from 'react'
 import TreeCard from './TreeCard'
 import { deepClone } from '../../utils/tools'
-import { treeDataSource1, treeDataSource2, treeData1, treeData2, treeData3 } from './data'
+import { treeData1, treeData2, treeData3 } from './data'
 
 export default function TreeLight() {
   //如何添加position
@@ -38,14 +38,14 @@ export default function TreeLight() {
   }
 
   //切换数据源
-  const treeDataResult = handleAddPositon({ treeDataSource: treeData3 })
+  let treeDataResult 
+  let treeDataSource = treeData3
+  treeDataResult = handleAddPositon({ treeDataSource })
+
   //打印添加position后的tree
   console.log(treeDataResult)
   //切换真正用于渲染的treeData
-  let treeData = treeDataResult
-  // let treeData = treeData1
-  //let treeData = treeData2
-  //let treeData = treeData3
+  let treeData = treeDataResult ? treeDataResult : treeDataSource
 
   //查找行列值和position值一致的元素
   const findTreeNode = ({ treeData, positon }) => {
