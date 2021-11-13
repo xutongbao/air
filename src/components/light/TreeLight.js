@@ -3,7 +3,8 @@ import TreeCard from './TreeCard'
 import { deepClone } from '../../utils/tools'
 import { treeData1, treeData2, treeData3, treeData4 } from './data'
 
-export default function TreeLight() {
+export default function TreeLight(props) {
+  const { dataSource } = props
   //如何添加position
   const handleAddPositon = ({ treeDataSource }) => {
     //rolIndex计算方式：孩子节点rolIndex = 父节点rolIndex + 2
@@ -60,7 +61,8 @@ export default function TreeLight() {
 
   //切换数据源
   let treeDataResult
-  let treeDataSource = treeData4
+  //let treeDataSource = treeData4
+  let treeDataSource = dataSource
   treeDataResult = handleAddPositon({ treeDataSource })
 
   //打印添加position后的tree
