@@ -33,7 +33,6 @@ export default function TreeLight() {
       treeData,
       positon: { rolIndex, colIndex },
     })
-    console.log(result)
     if (result) {
       return (
         <TreeCard title={result.name} color={result.color}>
