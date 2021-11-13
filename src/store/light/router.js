@@ -32,6 +32,13 @@ const router = [
     path: '/light/admin/process',
     component: lazy(() => import('../../views/light/admin/process/Index')),
   },
+  {
+    title: '流程管理Air',
+    icon: 'process',
+    isVisible: true,
+    path: '/light/admin/processAir',
+    component: lazy(() => import('../../views/light/admin/processAir/Index')),
+  },
 ]
 
 export default router

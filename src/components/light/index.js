@@ -16,6 +16,8 @@ import Search from './Search'
 import GovernmentRequirements from './GovernmentRequirements'
 //底部推荐
 import FooterRecommend from './FooterRecommend'
+//树
+import TreeLight from './TreeLight'
 
 export {
   Icon,
@@ -31,4 +33,6 @@ export {
   GovernmentRequirements,
   //底部推荐
   FooterRecommend,
+  //树
+  TreeLight,
 }

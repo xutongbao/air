@@ -4,9 +4,10 @@ import { withRouter } from 'react-router-dom'
 import { Modal, Button, Form } from 'antd'
 import Tool from './Tool'
 import { getColumns, getModalFields } from './config'
-import { MyTableForEasy, Icon } from '../../../../../components/light'
+import { MyTableForEasy, Icon, TreeLight } from '../../../../../components/light'
 import useList from './useList'
 import Header from './Header'
+
 
 function Index(props) {
   const {
@@ -34,19 +35,7 @@ function Index(props) {
     <div className="m-content-list-wrap" id="m-content-wrap">
       <Header applicationTitle={applicationTitle}></Header>
       <Tool myAuthObj={myAuthObj} onAdd={handleAdd}></Tool>
-      {Array.isArray(dataSource) && dataSource.length > 0 && (
-        <MyTableForEasy
-          myAuthObj={myAuthObj}
-          dataSource={dataSource}
-          defaultExpandAllRows={true}
-          onSearch={handleSearch}
-          onDelete={handleDelete}
-          onEdit={handleEdit}
-          onAddChild={handleAddChild}
-          getColumns={getColumns}
-          onStatus={handleStatus}
-        ></MyTableForEasy>
-      )}
+      <TreeLight></TreeLight>
       <Modal
         title={modalTitle}
         visible={isModalVisible}

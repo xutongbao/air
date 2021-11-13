@@ -128,7 +128,8 @@
 .m-gov-footer{padding: 5px 0 20px;text-align: center;}
 .m-footer-recommend-wrap{border-top: 1px solid #dedede;min-height: 30px;}
 .m-hide{display: none;}
-
+.m-tree-wrap{margin: 5px 10px 5px;padding: 16px; background: white;border: 1px solid #ddd;}
+.m-tree-col{border: 1px solid #ddd}
 
 @media screen and (max-width: 800px) {  
 .m-formview-inner{width: 100%;} 
