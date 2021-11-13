@@ -30,6 +30,56 @@ const treeDataSource1 = [
   },
 ]
 
+//待转化的原始数据
+const treeDataSource2 = [
+  {
+    name: '申请人',
+    content: '商之讯',
+    belongCategory: '0',
+    status: true,
+    id: 1622771045562,
+    color: 'blue',
+    children: [
+      {
+        name: '审批人',
+        content: '申请人自选 不限范围 多选 依次审批',
+        belongCategory: 1622771045562,
+        status: false,
+        id: 1622771052842,
+        color: 'orange',
+        children: [
+          {
+            name: '抄送人',
+            content: '申请人自选',
+            belongCategory: 1622771052842,
+            status: false,
+            id: 1636424256035,
+            color: 'green',
+          },
+        ],
+      },
+      {
+        name: '审批人',
+        content: '申请人自选 不限范围 多选 依次审批',
+        belongCategory: 1622771045562,
+        status: false,
+        id: 1622771052842,
+        color: 'orange',
+        children: [
+          {
+            name: '抄送人',
+            content: '申请人自选',
+            belongCategory: 1622771052842,
+            status: false,
+            id: 1636424256035,
+            color: 'green',
+          },
+        ],
+      },
+    ],
+  },
+]
+
 //转化后的数据
 const treeData1 = [
   {
@@ -144,4 +194,4 @@ const treeData2 = [
   },
 ]
 
-export { treeData1, treeData2 }
+export { treeDataSource1, treeDataSource2, treeData1, treeData2 }

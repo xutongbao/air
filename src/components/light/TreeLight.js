@@ -1,11 +1,19 @@
 import React from 'react'
 import TreeCard from './TreeCard'
 import { deepClone } from '../../utils/tools'
-import { treeData1, treeData2 } from './data'
-
-let treeData = treeData2
+import { treeDataSource1, treeDataSource2, treeData1, treeData2 } from './data'
 
 export default function TreeLight() {
+  let treeData = treeData2
+
+  //如何添加position
+  const handleAddPositon = ({ treeDataSource }) => {
+    return treeDataSource
+  }
+
+  const treeDataResult = handleAddPositon({ treeDataSource: treeDataSource1 })
+  console.log(treeDataResult)
+
   //查找行列值和position值一致的元素
   const findTreeNode = ({ treeData, positon }) => {
     let result
