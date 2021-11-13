@@ -5,6 +5,37 @@ import { treeData1, treeData2, treeData3, treeData4 } from './data'
 
 export default function TreeLight(props) {
   const { dataSource, onAddChild, onDelete, onEdit } = props
+
+  //统计一个棵树各层的元素的个数，并求出最大值
+  const getMaxTreeLevelNodeCount = ({ treeDataSource }) => {
+    let levelObj = {}
+    const find = (arr, level = 0) => {
+      for (let i = 0; i < arr.length; i++) {
+        arr[i].level = level
+        levelObj[level] = levelObj[level] ? levelObj[level] + 1 : 1
+        if (Array.isArray(arr[i].children) && arr[i].children.length > 0) {
+          find(arr[i].children, level + 1)
+        }
+      }
+    }
+    const treeDataSourceCopy = deepClone(treeDataSource)
+    find(treeDataSourceCopy)
+
+    let levelCountArr = []
+    for (let key in levelObj) {
+      levelCountArr.push(levelObj[key])
+    }
+    let maxLevelCount = 0
+    if (Array.isArray(levelCountArr) && levelCountArr.length > 0) {
+      maxLevelCount = Math.max.apply(null, levelCountArr)
+    }
+    
+    return maxLevelCount
+  }
+
+  const count = getMaxTreeLevelNodeCount({ treeDataSource: dataSource })
+  console.log(count)
+
   //如何添加position
   const handleAddPositon = ({ treeDataSource }) => {
     //rolIndex计算方式：孩子节点rolIndex = 父节点rolIndex + 2
@@ -66,7 +97,7 @@ export default function TreeLight(props) {
   treeDataResult = handleAddPositon({ treeDataSource })
 
   //打印添加position后的tree
-  console.log(treeDataResult)
+  // console.log(treeDataResult)
   //切换真正用于渲染的treeData
   let treeData = treeDataResult ? treeDataResult : treeDataSource
 
