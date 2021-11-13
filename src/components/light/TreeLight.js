@@ -29,12 +29,12 @@ export default function TreeLight(props) {
     if (Array.isArray(levelCountArr) && levelCountArr.length > 0) {
       maxLevelCount = Math.max.apply(null, levelCountArr)
     }
-    
+
     return maxLevelCount
   }
 
-  const count = getMaxTreeLevelNodeCount({ treeDataSource: dataSource })
-  console.log(count)
+  // const count = getMaxTreeLevelNodeCount({ treeDataSource: dataSource })
+  // console.log(count)
 
   //如何添加position
   const handleAddPositon = ({ treeDataSource }) => {
@@ -44,20 +44,31 @@ export default function TreeLight(props) {
     //(2)有两个孩子时：第1个孩子colIndex = 父节点colIndex - 1; 第2个孩子colIndex = 父节点colIndex + 1;
     const setPositon = (arr, { rolIndex, childColIndexArr }) => {
       for (let i = 0; i < arr.length; i++) {
+        const maxTreeLevelNodeCount = getMaxTreeLevelNodeCount({
+          treeDataSource: [arr[i]],
+        })
+        console.log(maxTreeLevelNodeCount)
+        let move = 0
+        if (maxTreeLevelNodeCount % 2 === 0) {
+          move = ((maxTreeLevelNodeCount - 2) / 2) * 2 + 1
+        } else {
+          move = ((maxTreeLevelNodeCount - 1) / 2) * 2
+        }
+        const fatherColIndex = childColIndexArr[i] + move
         arr[i].positon = {
           rolIndex: rolIndex + 2,
-          colIndex: childColIndexArr[i],
+          colIndex: fatherColIndex,
         }
         if (Array.isArray(arr[i].children) && arr[i].children.length > 0) {
           let tempChildColIndexArr = []
           let childrenLength = arr[i].children.length
           //奇数偶数处理方式不同
           let startColIndex
+
           if (childrenLength % 2 === 1) {
-            startColIndex = childColIndexArr[i] - ((childrenLength - 1) / 2) * 2
+            startColIndex = fatherColIndex - ((childrenLength - 1) / 2) * 2
           } else {
-            startColIndex =
-              childColIndexArr[i] - ((childrenLength - 2) / 2) * 2 - 1
+            startColIndex = fatherColIndex - ((childrenLength - 2) / 2) * 2 - 1
           }
           for (let i = 0; i < childrenLength; i++) {
             tempChildColIndexArr.push(startColIndex + i * 2)
@@ -83,7 +94,7 @@ export default function TreeLight(props) {
     //起始行数： -1 + 2 = 1
     //起始列： 2
     //初步设置position
-    setPositon(treeDataSourceCopy, { rolIndex: -1, childColIndexArr: [6] })
+    setPositon(treeDataSourceCopy, { rolIndex: -1, childColIndexArr: [1] })
     //找出最小的colIndex
     //平移这个树
 
