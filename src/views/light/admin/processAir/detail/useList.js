@@ -28,14 +28,12 @@ export default function useList(props) {
     addInitValues = {
       // 分类名称
       name: '测试',
-      // 首字母
-      initalLetter: 'A',
+      content: '1',
+      color: 'orange',
       // 所属分类
       belongCategory: '0',
       // 备注
-      remark: '备注1',
-      // 排序值
-      order: 0,
+      remark: '备注',
     }
   } else {
     addInitValues = {}
@@ -80,7 +78,7 @@ export default function useList(props) {
   const handleAddChild = (record) => {
     setType('add')
     console.log(record)
-    setInitValues({ addInitValues, belongCategory: record.id })
+    setInitValues({ ...addInitValues, belongCategory: record.id })
     console.log(addInitValues)
     setModalTitle('新增子条件分支')
     setIsModalVisible(true)

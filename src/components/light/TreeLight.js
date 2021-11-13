@@ -4,7 +4,7 @@ import { deepClone } from '../../utils/tools'
 import { treeData1, treeData2, treeData3, treeData4 } from './data'
 
 export default function TreeLight(props) {
-  const { dataSource, onAddChild } = props
+  const { dataSource, onAddChild, onDelete, onEdit } = props
   //如何添加position
   const handleAddPositon = ({ treeDataSource }) => {
     //rolIndex计算方式：孩子节点rolIndex = 父节点rolIndex + 2
@@ -99,7 +99,14 @@ export default function TreeLight(props) {
     })
     if (result) {
       return (
-        <TreeCard title={result.name} color={result.color} item={result} onAddChild={onAddChild} >
+        <TreeCard
+          title={result.name}
+          color={result.color}
+          item={result}
+          onAddChild={onAddChild}
+          onDelete={onDelete}
+          onEdit={onEdit}
+        >
           {result.content}
         </TreeCard>
       )
@@ -114,7 +121,7 @@ export default function TreeLight(props) {
     //20行， 10列
     for (let i = 0; i < 20; i++) {
       let dataRow = []
-      for (let j = 0; j < 10; j++) {
+      for (let j = 0; j < 20; j++) {
         dataRow.push({
           row: i,
           col: j,
