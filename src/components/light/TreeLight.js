@@ -10,7 +10,7 @@ export default function TreeLight() {
     //colIndex计算方式：
     //(1)只有一个孩子时： 孩子colIndex = 父节点colIndex
     //(2)有两个孩子时：第1个孩子colIndex = 父节点colIndex - 1; 第2个孩子colIndex = 父节点colIndex + 1;
-    const find = (arr, { rolIndex, childColIndexArr }) => {
+    const setPositon = (arr, { rolIndex, childColIndexArr }) => {
       for (let i = 0; i < arr.length; i++) {
         arr[i].positon = {
           rolIndex: rolIndex + 2,
@@ -24,7 +24,8 @@ export default function TreeLight() {
           if (childrenLength % 2 === 1) {
             startColIndex = childColIndexArr[i] - ((childrenLength - 1) / 2) * 2
           } else {
-            startColIndex = childColIndexArr[i] - ((childrenLength - 2) / 2) * 2 -1
+            startColIndex =
+              childColIndexArr[i] - ((childrenLength - 2) / 2) * 2 - 1
           }
           for (let i = 0; i < childrenLength; i++) {
             tempChildColIndexArr.push(startColIndex + i * 2)
@@ -39,19 +40,26 @@ export default function TreeLight() {
           // } else if (arr[i].children.length === 4) {
           //   tempChildColIndexArr = [childColIndexArr[i] - 3, childColIndexArr[i] - 1, childColIndexArr[i] + 1, childColIndexArr[i] + 3]
           // }
-          find(arr[i].children, { rolIndex: rolIndex + 2, childColIndexArr: tempChildColIndexArr })
+          setPositon(arr[i].children, {
+            rolIndex: rolIndex + 2,
+            childColIndexArr: tempChildColIndexArr,
+          })
         }
       }
     }
     const treeDataSourceCopy = deepClone(treeDataSource)
     //起始行数： -1 + 2 = 1
     //起始列： 2
-    find(treeDataSourceCopy, { rolIndex: -1, childColIndexArr: [6] })
+    //初步设置position
+    setPositon(treeDataSourceCopy, { rolIndex: -1, childColIndexArr: [6] })
+    //找出最小的colIndex
+    //平移这个树
+
     return treeDataSourceCopy
   }
 
   //切换数据源
-  let treeDataResult 
+  let treeDataResult
   let treeDataSource = treeData4
   treeDataResult = handleAddPositon({ treeDataSource })
 
@@ -63,7 +71,7 @@ export default function TreeLight() {
   //查找行列值和position值一致的元素
   const findTreeNode = ({ treeData, positon }) => {
     let result
-    const find = (arr, parentId = '') => {
+    const setPositon = (arr, parentId = '') => {
       for (let i = 0; i < arr.length; i++) {
         if (
           positon.rolIndex === arr[i].positon.rolIndex &&
@@ -72,12 +80,12 @@ export default function TreeLight() {
           result = arr[i]
         }
         if (Array.isArray(arr[i].children) && arr[i].children.length > 0) {
-          find(arr[i].children, `${parentId}${i + 1}`)
+          setPositon(arr[i].children, `${parentId}${i + 1}`)
         }
       }
     }
     const treeDataCopy = deepClone(treeData)
-    find(treeDataCopy)
+    setPositon(treeDataCopy)
     return result
   }
 
