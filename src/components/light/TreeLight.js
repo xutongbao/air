@@ -48,16 +48,28 @@ export default function TreeLight(props) {
           treeDataSource: [arr[i]],
         })
         console.log(maxTreeLevelNodeCount)
-        let move = 0
+        let levelMove = 0
         if (maxTreeLevelNodeCount % 2 === 0) {
-          move = ((maxTreeLevelNodeCount - 2) / 2) * 2 + 1
+          levelMove = ((maxTreeLevelNodeCount - 2) / 2) * 2 + 1
         } else {
-          move = ((maxTreeLevelNodeCount - 1) / 2) * 2
+          levelMove = ((maxTreeLevelNodeCount - 1) / 2) * 2
         }
-        const fatherColIndex = childColIndexArr[i] + move
+        let oldBrotherMove = 0
+        let fatherColIndex
+        if (i === 0) {
+          fatherColIndex = childColIndexArr[i] + levelMove
+        } else if (i > 0 && arr[i - 1].positon) {
+          fatherColIndex = arr[i - 1].positon.colIndex + 2 + arr[i - 1].positon.levelMove + levelMove
+          // debugger
+          // fatherColIndex = childColIndexArr[i] + levelMove + oldBrotherMove
+        }
+        // console.log('old', oldBrotherMove)
+        // const fatherColIndex = childColIndexArr[i] + levelMove + oldBrotherMove
         arr[i].positon = {
           rolIndex: rolIndex + 2,
           colIndex: fatherColIndex,
+          levelMove,
+          oldBrotherMove,
         }
         if (Array.isArray(arr[i].children) && arr[i].children.length > 0) {
           let tempChildColIndexArr = []
