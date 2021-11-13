@@ -1,5 +1,6 @@
 import React from 'react'
 import { Row, Col } from 'antd'
+import TreeCard from './TreeCard'
 
 export default function TreeLight() {
   const treeData = [
@@ -28,7 +29,7 @@ export default function TreeLight() {
   ]
   const getDom = () => {
     const dataArr = []
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 20; i++) {
       let dataRow = []
       for (let j = 0; j < 10; j++) {
         dataRow.push({
@@ -38,22 +39,15 @@ export default function TreeLight() {
       }
       dataArr.push(dataRow)
     }
-    console.log(dataArr)
-    // for (let i = 0; i < 10; i++) {
-
-    //   colArr.push(
-    //     <div key={i} className="m-tree-col">
-    //       <div>1</div>
-    //     </div>
-    //   )
-    // }
     return (
       <>
         {dataArr.map((colList, rolIndex) => (
           <div className="m-tree-row" key={rolIndex}>
             {colList.map((item, colIndex) => (
               <div key={`${rolIndex}-${colIndex}`} className="m-tree-col">
-                {item.row},{item.col}
+                <TreeCard title={1}>
+                  {item.row},{item.col}
+                </TreeCard>
               </div>
             ))}
           </div>
