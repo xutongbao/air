@@ -1,7 +1,7 @@
 import React from 'react'
 import TreeCard from './TreeCard'
 import { deepClone } from '../../utils/tools'
-import { treeData1, treeData2, treeData3 } from './data'
+import { treeData1, treeData2, treeData3, treeData4 } from './data'
 
 export default function TreeLight() {
   //如何添加position
@@ -19,13 +19,26 @@ export default function TreeLight() {
         if (Array.isArray(arr[i].children) && arr[i].children.length > 0) {
           let tempChildColIndexArr = []
           let childrenLength = arr[i].children.length
-          if (childrenLength === 1) {
-            tempChildColIndexArr = [childColIndexArr[i]]
-          } else if (arr[i].children.length === 2) {
-            tempChildColIndexArr = [childColIndexArr[i] - 1, childColIndexArr[i] + 1]
-          } else if (arr[i].children.length === 3) {
-            tempChildColIndexArr = [childColIndexArr[i] - 2, childColIndexArr[i], childColIndexArr[i] + 2]
+          //奇数偶数处理方式不同
+          let startColIndex
+          if (childrenLength % 2 === 1) {
+            startColIndex = childColIndexArr[i] - ((childrenLength - 1) / 2) * 2
+          } else {
+            startColIndex = childColIndexArr[i] - ((childrenLength - 2) / 2) * 2 -1
           }
+          for (let i = 0; i < childrenLength; i++) {
+            tempChildColIndexArr.push(startColIndex + i * 2)
+          }
+
+          // if (childrenLength === 1) {
+          //   tempChildColIndexArr = [childColIndexArr[i]]
+          // } else if (arr[i].children.length === 2) {
+          //   tempChildColIndexArr = [childColIndexArr[i] - 1, childColIndexArr[i] + 1]
+          // } else if (arr[i].children.length === 3) {
+          //   tempChildColIndexArr = [childColIndexArr[i] - 2, childColIndexArr[i], childColIndexArr[i] + 2]
+          // } else if (arr[i].children.length === 4) {
+          //   tempChildColIndexArr = [childColIndexArr[i] - 3, childColIndexArr[i] - 1, childColIndexArr[i] + 1, childColIndexArr[i] + 3]
+          // }
           find(arr[i].children, { rolIndex: rolIndex + 2, childColIndexArr: tempChildColIndexArr })
         }
       }
@@ -33,13 +46,13 @@ export default function TreeLight() {
     const treeDataSourceCopy = deepClone(treeDataSource)
     //起始行数： -1 + 2 = 1
     //起始列： 2
-    find(treeDataSourceCopy, { rolIndex: -1, childColIndexArr: [2] })
+    find(treeDataSourceCopy, { rolIndex: -1, childColIndexArr: [6] })
     return treeDataSourceCopy
   }
 
   //切换数据源
   let treeDataResult 
-  let treeDataSource = treeData3
+  let treeDataSource = treeData4
   treeDataResult = handleAddPositon({ treeDataSource })
 
   //打印添加position后的tree
