@@ -1,18 +1,51 @@
 import React from 'react'
 import TreeCard from './TreeCard'
 import { deepClone } from '../../utils/tools'
-import { treeDataSource1, treeDataSource2, treeData1, treeData2 } from './data'
+import { treeDataSource1, treeDataSource2, treeData1, treeData2, treeData3 } from './data'
 
 export default function TreeLight() {
-  let treeData = treeData2
-
   //如何添加position
   const handleAddPositon = ({ treeDataSource }) => {
-    return treeDataSource
+    //rolIndex计算方式：孩子节点rolIndex = 父节点rolIndex + 2
+    //colIndex计算方式：
+    //(1)只有一个孩子时： 孩子colIndex = 父节点colIndex
+    //(2)有两个孩子时：第1个孩子colIndex = 父节点colIndex - 1; 第2个孩子colIndex = 父节点colIndex + 1;
+    const find = (arr, { rolIndex, childColIndexArr }) => {
+      for (let i = 0; i < arr.length; i++) {
+        arr[i].positon = {
+          rolIndex: rolIndex + 2,
+          colIndex: childColIndexArr[i],
+        }
+        if (Array.isArray(arr[i].children) && arr[i].children.length > 0) {
+          let tempChildColIndexArr = []
+          let childrenLength = arr[i].children.length
+          if (childrenLength === 1) {
+            tempChildColIndexArr = [childColIndexArr[i]]
+          } else if (arr[i].children.length === 2) {
+            tempChildColIndexArr = [childColIndexArr[i] - 1, childColIndexArr[i] + 1]
+          } else if (arr[i].children.length === 3) {
+            tempChildColIndexArr = [childColIndexArr[i] - 2, childColIndexArr[i], childColIndexArr[i] + 2]
+          }
+          find(arr[i].children, { rolIndex: rolIndex + 2, childColIndexArr: tempChildColIndexArr })
+        }
+      }
+    }
+    const treeDataSourceCopy = deepClone(treeDataSource)
+    //起始行数： -1 + 2 = 1
+    //起始列： 2
+    find(treeDataSourceCopy, { rolIndex: -1, childColIndexArr: [2] })
+    return treeDataSourceCopy
   }
 
-  const treeDataResult = handleAddPositon({ treeDataSource: treeDataSource1 })
+  //切换数据源
+  const treeDataResult = handleAddPositon({ treeDataSource: treeData3 })
+  //打印添加position后的tree
   console.log(treeDataResult)
+  //切换真正用于渲染的treeData
+  let treeData = treeDataResult
+  // let treeData = treeData1
+  //let treeData = treeData2
+  //let treeData = treeData3
 
   //查找行列值和position值一致的元素
   const findTreeNode = ({ treeData, positon }) => {
