@@ -45,7 +45,7 @@ export default function TreeLight(props) {
     //根据该节点的children计算出来的，和最大层节点数有关
     //(3)如果不是第一个节点，除了和levelMove偏移量有关外，和紧邻的上一个兄弟节点的位置也有关，
     //和紧邻的上一个兄弟节点的levelMove也有关，
-    const setPositon = (arr, { rolIndex, startColIndex }) => {
+    const setPositon = (arr, { rolIndex, startColIndex, isRoot }) => {
       for (let i = 0; i < arr.length; i++) {
         const maxTreeLevelNodeCount = getMaxTreeLevelNodeCount({
           treeDataSource: [arr[i]],
@@ -58,7 +58,7 @@ export default function TreeLight(props) {
         }
         let fatherColIndex
         if (i === 0) {
-          fatherColIndex = startColIndex + levelMove
+          fatherColIndex = startColIndex + (isRoot ? levelMove : 0)
         } else if (i > 0 && arr[i - 1].positon) {
           fatherColIndex = arr[i - 1].positon.colIndex + 2 + arr[i - 1].positon.levelMove + levelMove
         }
@@ -88,7 +88,7 @@ export default function TreeLight(props) {
     //起始行数： -1 + 2 = 1
     //起始列： 2
     //初步设置position
-    setPositon(treeDataSourceCopy, { rolIndex: -1, startColIndex: 1 })
+    setPositon(treeDataSourceCopy, { rolIndex: -1, startColIndex: 2, isRoot: true })
     //找出最小的colIndex
     //平移这个树
 

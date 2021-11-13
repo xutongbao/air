@@ -129,12 +129,15 @@
 .m-footer-recommend-wrap{border-top: 1px solid #dedede;min-height: 30px;}
 .m-hide{display: none;}
 .m-tree-wrap{margin: 5px 10px 5px;padding: 16px; background: white;border: 1px solid #ddd;overflow: auto;}
-.m-tree-row{white-space: nowrap;margin: 2px;}
-.m-tree-col{display: inline-block;margin: 2px;width: 240px;height: 93px; border: 1px solid #ddd;border-radius: 4px;vertical-align: top;}
-.m-tree-card{display: flex;height: 100%; flex-direction: column; border-radius: 4px;}
-.m-tree-card-header{padding: 5px 0 5px 5px;}
-.m-tree-card-content{flex:1; padding: 5px; background: white;}
-.m-tree-card-content-text{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.m-tree-row{white-space: nowrap;}
+.m-tree-col{display: inline-block;width: 240px;height: 120px; border: 1px solid #ddd;vertical-align: top;}
+.m-tree-card{display: flex;height: 100%; flex-direction: column; border-radius: 4px;cursor: pointer;}
+.m-tree-card-header{display: flex; padding: 5px 0 5px 5px;}
+.m-tree-card-header-title{flex:1;}
+.m-tree-card-header-delete{opacity: 0;;width: 30px;cursor: pointer;text-align: center;vertical-align: top;}
+.m-tree-card:hover .m-tree-card-header-delete{opacity: 1;}
+.m-tree-card-content{display: flex; flex:1;flex-direction: column; padding: 5px; background: white;}
+.m-tree-card-content-text{flex:1; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 .m-tree-card.blue{border-top: 4px solid #4A94FF;background: #E9F2FF;}
 .m-tree-card.blue:hover{box-shadow: 0 1px 8px 0 #4a94ff;}
 .m-tree-card.orange{border-top: 4px solid #FCAD22;background: #FFF9EE;}
