@@ -139,7 +139,7 @@
 .m-tree-card-header-delete{opacity: 0;;width: 30px;cursor: pointer;text-align: center;vertical-align: top;}
 .m-tree-card:hover .m-tree-card-header-delete{opacity: 1;}
 .m-tree-card-header-delete:hover{color: #1890ff;font-weight: bold;}
-.m-tree-card-content{display: flex; flex:1;flex-direction: column; padding: 5px; background: white;}
+.m-tree-card-content{display: flex; flex:1;flex-direction: column; padding: 5px; background: white;border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;}
 .m-tree-card-content-text{flex:1; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 .m-tree-card.gray{border-top: 4px solid #88939F;background: #EEF4FB;}
 .m-tree-card.gray:hover{box-shadow: 0 1px 8px 0 #88939F;}
