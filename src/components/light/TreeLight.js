@@ -38,7 +38,7 @@ export default function TreeLight(props) {
   // console.log(count)
 
   //添加position
-  const handleAddPositon = ({ treeDataSource }) => {
+  const handleAddPosition = ({ treeDataSource }) => {
     //rolIndex计算方式：孩子节点rolIndex = 父节点rolIndex + 2
     //colIndex计算方式：
     //(1)startColIndex标识起始位置，
@@ -46,7 +46,7 @@ export default function TreeLight(props) {
     //根据该节点的children计算出来的，和最大层节点数有关
     //(3)如果不是第一个节点，除了和levelMove偏移量有关外，和紧邻的上一个兄弟节点的位置也有关，
     //和紧邻的上一个兄弟节点的levelMove也有关，
-    const setPositon = (arr, { rolIndex, startColIndex, isRoot }) => {
+    const setPosition = (arr, { rolIndex, startColIndex, isRoot }) => {
       for (let i = 0; i < arr.length; i++) {
         const maxTreeLevelNodeCount = getMaxTreeLevelNodeCount({
           treeDataSource: [arr[i]],
@@ -60,14 +60,14 @@ export default function TreeLight(props) {
         let fatherColIndex
         if (i === 0) {
           fatherColIndex = startColIndex + (isRoot ? levelMove : 0)
-        } else if (i > 0 && arr[i - 1].positon) {
+        } else if (i > 0 && arr[i - 1].position) {
           fatherColIndex =
-            arr[i - 1].positon.colIndex +
+            arr[i - 1].position.colIndex +
             2 +
-            arr[i - 1].positon.levelMove +
+            arr[i - 1].position.levelMove +
             levelMove
         }
-        arr[i].positon = {
+        arr[i].position = {
           rolIndex: rolIndex + 2,
           colIndex: fatherColIndex,
           levelMove,
@@ -82,7 +82,7 @@ export default function TreeLight(props) {
           } else {
             startColIndex = fatherColIndex - ((childrenLength - 2) / 2) * 2 - 1
           }
-          setPositon(arr[i].children, {
+          setPosition(arr[i].children, {
             rolIndex: rolIndex + 2,
             startColIndex,
           })
@@ -93,7 +93,7 @@ export default function TreeLight(props) {
     //起始行数： -1 + 2 = 1
     //起始列： 2
     //初步设置position
-    setPositon(treeDataSourceCopy, {
+    setPosition(treeDataSourceCopy, {
       rolIndex: -1,
       startColIndex: 2,
       isRoot: true,
@@ -108,23 +108,23 @@ export default function TreeLight(props) {
   const handleAddLines = ({ treeDataSource }) => {
     const setLines = (arr) => {
       for (let i = 0; i < arr.length; i++) {
-        const rolIndex = arr[i].positon.rolIndex + 1
+        const rolIndex = arr[i].position.rolIndex + 1
         arr[i].lines = []
 
         if (Array.isArray(arr[i].children) && arr[i].children.length > 0) {
-          const fatherColIndex = arr[i].positon.colIndex
+          const fatherColIndex = arr[i].position.colIndex
           const childrenColIndexArr = arr[i].children.map(
             (item) => {
               console.log(item)
-              if (item.positon.colIndex) {
-                return item.positon.colIndex
+              if (item.position.colIndex) {
+                return item.position.colIndex
               }
             } 
           )
 
           for (
-            let j = arr[i].children[0].positon.colIndex;
-            j < arr[i].children[arr[i].children.length - 1].positon.colIndex;
+            let j = arr[i].children[0].position.colIndex;
+            j < arr[i].children[arr[i].children.length - 1].position.colIndex;
             j++
           ) {
             //设置不合孩子节点及父节点在同一列的lineType
@@ -149,7 +149,7 @@ export default function TreeLight(props) {
 
           //设置孩子节点正上方的lineType
           for (let j = 0; j < arr[i].children.length; j++) {
-            const tempColIndex = arr[i].children[j].positon.colIndex
+            const tempColIndex = arr[i].children[j].position.colIndex
             if (tempColIndex < fatherColIndex && j === 0) {
               arr[i].lines.push({
                 rolIndex,
@@ -220,7 +220,7 @@ export default function TreeLight(props) {
   //let treeDataSource = treeData4
   let treeDataSource = dataSource
   if (Array.isArray(treeDataSource) && treeDataSource.length > 0) {
-    treeDataResult = handleAddPositon({ treeDataSource })
+    treeDataResult = handleAddPosition({ treeDataSource })
     console.log(treeDataResult)
     const hasLines = handleAddLines({ treeDataSource: treeDataResult })
     console.log(hasLines)
@@ -233,36 +233,36 @@ export default function TreeLight(props) {
   let treeData = treeDataResult ? treeDataResult : treeDataSource
 
   //查找行列值和position值一致的元素
-  const findTreeNode = ({ treeData, positon }) => {
+  const findTreeNode = ({ treeData, position }) => {
     let result
-    const setPositon = (arr, parentId = '') => {
+    const setPosition = (arr, parentId = '') => {
       for (let i = 0; i < arr.length; i++) {
         if (
-          positon.rolIndex === arr[i].positon.rolIndex &&
-          positon.colIndex === arr[i].positon.colIndex
+          position.rolIndex === arr[i].position.rolIndex &&
+          position.colIndex === arr[i].position.colIndex
         ) {
           result = arr[i]
         }
         if (Array.isArray(arr[i].children) && arr[i].children.length > 0) {
-          setPositon(arr[i].children, `${parentId}${i + 1}`)
+          setPosition(arr[i].children, `${parentId}${i + 1}`)
         }
       }
     }
     const treeDataCopy = deepClone(treeData)
-    setPositon(treeDataCopy)
+    setPosition(treeDataCopy)
     return result
   }
 
   //查找行列值等于lines数组包含的行列值，对应的type
-  const findLineType = ({ treeData, positon }) => {
+  const findLineType = ({ treeData, position }) => {
     let result
     const findLineTypeLoop = (arr, parentId = '') => {
       for (let i = 0; i < arr.length; i++) {
         if (Array.isArray(arr[i].lines)) {
           const lineItem = arr[i].lines.find(
             (item) =>
-              item.rolIndex === positon.rolIndex &&
-              item.colIndex === positon.colIndex
+              item.rolIndex === position.rolIndex &&
+              item.colIndex === position.colIndex
           )
           if (lineItem) {
             result = lineItem.lineType
@@ -282,11 +282,11 @@ export default function TreeLight(props) {
   const renderTreeCard = ({ rolIndex, colIndex }) => {
     const treeNode = findTreeNode({
       treeData,
-      positon: { rolIndex, colIndex },
+      position: { rolIndex, colIndex },
     })
     const lineType = findLineType({
       treeData,
-      positon: { rolIndex, colIndex },
+      position: { rolIndex, colIndex },
     })
     return (
       <>
