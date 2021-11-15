@@ -113,19 +113,32 @@ export default function TreeLight(props) {
 
         if (Array.isArray(arr[i].children) && arr[i].children.length > 0) {
           const fatherColIndex = arr[i].positon.colIndex
-          const childrenColIndexArr = arr[i].children.map(item => item.positon.colIndex)
-          //设置不合孩子节点及父节点在同一列的lineType
+          const childrenColIndexArr = arr[i].children.map(
+            (item) => item.positon.colIndex
+          )
+
           for (
             let j = arr[i].children[0].positon.colIndex;
             j < arr[i].children[arr[i].children.length - 1].positon.colIndex;
             j++
           ) {
+            //设置不合孩子节点及父节点在同一列的lineType
             if (!childrenColIndexArr.includes(j) && j !== fatherColIndex) {
               arr[i].lines.push({
                 rolIndex,
                 colIndex: j,
                 lineType: [2, 4],
               })
+            }
+            //设置父节点正下方的lineType
+            if (j === fatherColIndex) {
+              if (arr[i].children.length > 1) {
+                arr[i].lines.push({
+                  rolIndex,
+                  colIndex: j,
+                  lineType: [1, 2, 4],
+                })
+              }
             }
           }
 
