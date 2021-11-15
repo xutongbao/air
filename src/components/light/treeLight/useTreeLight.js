@@ -9,7 +9,7 @@ export default function useTreeLight(props) {
   const { dataSource, isToCenter, onAddChild, onDelete, onEdit } = props
   const [scaleValue, setScaleValue] = useState(1)
   //添加position和lines
-  const { treeData, treeBoundary, processEndNode } = useTreeLightList({ dataSource })
+  const { treeData, treeBoundary, processEndNode, endNodeLines } = useTreeLightList({ dataSource })
 
   //查找行列值和position值一致的元素
   const findTreeNode = ({ treeData, position }) => {
@@ -67,7 +67,7 @@ export default function useTreeLight(props) {
       treeData,
       position: { rolIndex, colIndex },
     })
-    const endNode = processEndNode.find(item => item.rolIndex === rolIndex && item.colIndex === colIndex)
+    const endNodeLine = endNodeLines.find(item => item.rolIndex === rolIndex && item.colIndex === colIndex)
     return (
       <>
         {treeNode && (
@@ -83,7 +83,8 @@ export default function useTreeLight(props) {
           </TreeCard>
         )}
         {lineType && <TreeLine lineType={lineType}></TreeLine>}
-        {endNode && <div className="m-tree-end-node">流程结束</div>}
+        {processEndNode.rolIndex === rolIndex && processEndNode.colIndex === colIndex && <div className="m-tree-end-node">流程结束</div>}
+        {endNodeLine && <TreeLine lineType={endNodeLine.lineType}></TreeLine>}
       </>
     )
   }

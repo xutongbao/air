@@ -233,13 +233,39 @@ export default function useTreeLightList({ dataSource }) {
 
   //流程结束节点位置
   const getPorcessEndNode = ({ treeDataSource, treeBoundary }) => {
-    
-    return [
-      {
+    return ({
         rolIndex: treeBoundary.rolIndexEnd + 4,
-        colIndex: treeDataSource[0].position.colIndex
+        colIndex: treeDataSource[0].position.colIndex,
+      })
+  }
+
+  //叶子节点连接到流程结束节点的线
+  const getEndNodeLines = ({ treeDataSource, processEndNode }) => {
+    let leafNodeArr = []
+    let endNodeLines = []
+    const find = (arr, level = 0) => {
+      for (let i = 0; i < arr.length; i++) {
+        if (Array.isArray(arr[i].children) && arr[i].children.length > 0) {
+          find(arr[i].children, level + 1)
+        } else {
+          leafNodeArr.push(arr[i].position)
+        }
       }
-    ]
+    }
+    const treeDataSourceCopy = deepClone(treeDataSource)
+    find(treeDataSourceCopy)
+
+    console.log('l', leafNodeArr)
+    leafNodeArr.forEach(item => {
+      for(let i = item.rolIndex + 1; i < processEndNode.rolIndex - 1; i++) {
+        endNodeLines.push({
+          rolIndex: i,
+          colIndex: item.colIndex,
+          lineType: [1, 3],
+        })
+      }
+    })
+    return endNodeLines
   }
 
   //切换数据源
@@ -247,12 +273,15 @@ export default function useTreeLightList({ dataSource }) {
   let treeDataSource = dataSource
   let treeBoundary = {}
   let processEndNode = []
+  let endNodeLines = []
   if (Array.isArray(treeDataSource) && treeDataSource.length > 0) {
     treeDataResult = handleAddPosition({ treeDataSource })
     treeDataResult = handleAddLines({ treeDataSource: treeDataResult })
     treeBoundary = getTreeBoundary({ treeDataSource: treeDataResult })
     processEndNode = getPorcessEndNode({ treeDataSource: treeDataResult, treeBoundary })
+    endNodeLines = getEndNodeLines({ treeDataSource: treeDataResult, processEndNode })
     console.log(processEndNode)
+    console.log('e', endNodeLines)
   }
 
   //切换真正用于渲染的treeData
@@ -261,5 +290,6 @@ export default function useTreeLightList({ dataSource }) {
     treeData,
     treeBoundary,
     processEndNode,
+    endNodeLines,
   }
 }
