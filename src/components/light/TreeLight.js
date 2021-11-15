@@ -2,6 +2,7 @@ import React from 'react'
 import TreeCard from './TreeCard'
 import { deepClone } from '../../utils/tools'
 import { treeData1, treeData2, treeData3, treeData4 } from './data'
+import TreeLine from './TreeLine'
 
 export default function TreeLight(props) {
   const { dataSource, onAddChild, onDelete, onEdit } = props
@@ -60,7 +61,11 @@ export default function TreeLight(props) {
         if (i === 0) {
           fatherColIndex = startColIndex + (isRoot ? levelMove : 0)
         } else if (i > 0 && arr[i - 1].positon) {
-          fatherColIndex = arr[i - 1].positon.colIndex + 2 + arr[i - 1].positon.levelMove + levelMove
+          fatherColIndex =
+            arr[i - 1].positon.colIndex +
+            2 +
+            arr[i - 1].positon.levelMove +
+            levelMove
         }
         arr[i].positon = {
           rolIndex: rolIndex + 2,
@@ -88,7 +93,11 @@ export default function TreeLight(props) {
     //起始行数： -1 + 2 = 1
     //起始列： 2
     //初步设置position
-    setPositon(treeDataSourceCopy, { rolIndex: -1, startColIndex: 2, isRoot: true })
+    setPositon(treeDataSourceCopy, {
+      rolIndex: -1,
+      startColIndex: 2,
+      isRoot: true,
+    })
     //找出最小的colIndex
     //平移这个树
 
@@ -127,28 +136,62 @@ export default function TreeLight(props) {
     return result
   }
 
+  //查找行列值等于lines数组包含的行列值，对应的type
+  const findLineType = ({ treeData, positon }) => {
+    let result
+    const findLineTypeLoop = (arr, parentId = '') => {
+      for (let i = 0; i < arr.length; i++) {
+        if (Array.isArray(arr[i].lines)) {
+          const lineItem = arr[i].lines.find(
+            (item) =>
+              item.rolIndex === positon.rolIndex &&
+              item.colIndex === positon.colIndex
+          )
+          if (lineItem) {
+            result = lineItem.lineType
+          }
+        }
+        if (Array.isArray(arr[i].children) && arr[i].children.length > 0) {
+          findLineTypeLoop(arr[i].children, `${parentId}${i + 1}`)
+        }
+      }
+    }
+    const treeDataCopy = deepClone(treeData)
+    findLineTypeLoop(treeDataCopy)
+    return result
+  }
+
   //根据树结构判断是否应该渲染TreeCard组件
   const renderTreeCard = ({ rolIndex, colIndex }) => {
-    const result = findTreeNode({
+    const treeNode = findTreeNode({
       treeData,
       positon: { rolIndex, colIndex },
     })
-    if (result) {
-      return (
-        <TreeCard
-          title={result.name}
-          color={result.color}
-          item={result}
-          onAddChild={onAddChild}
-          onDelete={onDelete}
-          onEdit={onEdit}
-        >
-          {result.content}
-        </TreeCard>
-      )
-    } else {
-      return null
-    }
+    const lineType = findLineType({
+      treeData,
+      positon: { rolIndex, colIndex },
+    })
+    return (
+      <>
+        {treeNode && (
+          <TreeCard
+            title={treeNode.name}
+            color={treeNode.color}
+            item={treeNode}
+            onAddChild={onAddChild}
+            onDelete={onDelete}
+            onEdit={onEdit}
+          >
+            {treeNode.content}
+          </TreeCard>
+        )}
+        {
+          lineType && (
+            <TreeLine lineType={lineType}></TreeLine> 
+          )
+        }
+      </>
+    )
   }
 
   //基础网格
@@ -165,13 +208,16 @@ export default function TreeLight(props) {
       }
       dataArr.push(dataRow)
     }
-    const isDev = localStorage.getItem('isDev') === 'true' ? true : false 
+    const isDev = localStorage.getItem('isDev') === 'true' ? true : false
     return (
       <>
         {dataArr.map((colList, rolIndex) => (
           <div className="m-tree-row" key={rolIndex}>
             {colList.map((item, colIndex) => (
-              <div key={`${rolIndex}-${colIndex}`} className={`m-tree-col ${isDev ? 'active' : ''}`}>
+              <div
+                key={`${rolIndex}-${colIndex}`}
+                className={`m-tree-col ${isDev ? 'active' : ''}`}
+              >
                 {renderTreeCard({ rolIndex, colIndex })}
               </div>
             ))}

@@ -148,6 +148,13 @@
 .m-tree-card.green:hover{box-shadow: 0 1px 8px 0 #3CB4B2;}
 .m-tree-card-add{position: absolute;transform: translateY(115px) translateX(98px);font-size: 30px;color: #A0B5C8;cursor: pointer;}
 .m-tree-card-add:hover{color: #8599AA;}
+.m-tree-line-wrap{}
+
+
+
+
+
+
 @media screen and (max-width: 800px) {  
 .m-formview-inner{width: 100%;} 
 .m-formview-inner{margin: 0;}

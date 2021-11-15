@@ -22,13 +22,6 @@ export default function TreeCard(props) {
         <div className="m-tree-card-content-text" title={children}>
           {children}
         </div>
-        <div style={{ textAlign: 'center' }}>
-          <Space>
-            <Button size="small" onClick={handleAdd}>
-              添加
-            </Button>
-          </Space>
-        </div>
         <Icon
           name="bg-add"
           onClick={handleAdd}
