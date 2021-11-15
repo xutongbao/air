@@ -139,6 +139,33 @@ export default function TreeLight(props) {
                 colIndex: tempColIndex,
                 lineType: [1, 3],
               })
+            } else if (
+              arr[i].children.length > 1 &&
+              fatherColIndex === tempColIndex
+            ) {
+              arr[i].lines.push({
+                rolIndex,
+                colIndex: tempColIndex,
+                lineType: [1, 2, 3, 4],
+              })
+            } else if (
+              arr[i].children.length > 1 &&
+              fatherColIndex > tempColIndex && j !== 0
+            ) {
+              arr[i].lines.push({
+                rolIndex,
+                colIndex: tempColIndex,
+                lineType: [2, 3, 4],
+              })
+            } else if (
+              arr[i].children.length > 1 &&
+              fatherColIndex < tempColIndex && j !== arr[i].children.length - 1
+            ) {
+              arr[i].lines.push({
+                rolIndex,
+                colIndex: tempColIndex,
+                lineType: [2, 3, 4],
+              })
             }
           }
           setLines(arr[i].children)
