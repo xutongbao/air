@@ -1,9 +1,12 @@
 import React from 'react'
-import { Button } from 'antd'
+import { Button, Slider } from 'antd'
 import { Icon } from '../../../../../components/light'
 
 function Tool(props) {
-  const { onResetTreeToCenter } = props
+  const { onResetTreeToCenter, onScale } = props
+  function formatter(value) {
+    return `${value}%`;
+  }
 
   return (
     <>
@@ -17,6 +20,8 @@ function Tool(props) {
             <Icon name="reset" className="m-tool-btn-icon"></Icon>
             复位
           </Button>
+          <span className="m-space">调整大小：</span>
+          <Slider defaultValue={100} min={50} max={100} onChange={onScale} tipFormatter={formatter} tooltipVisible className="m-space m-tree-slider" />
         </div>
       </div>
     </>

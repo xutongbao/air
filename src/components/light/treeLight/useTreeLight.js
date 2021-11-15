@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import TreeCard from './TreeCard'
 import { deepClone } from '../../../utils/tools'
 // import { treeData1, treeData2, treeData3, treeData4 } from './data'
@@ -7,6 +7,7 @@ import useTreeLightList from './useTreeLightList'
 
 export default function useTreeLight(props) {
   const { dataSource, onAddChild, onDelete, onEdit } = props
+  const [scaleValue, setScaleValue] = useState(1)
   //添加position和lines
   const { treeData, treeBoundary } = useTreeLightList({ dataSource })
 
@@ -85,6 +86,7 @@ export default function useTreeLight(props) {
     )
   }
 
+  //根节点回到可视区域内
   const handleResetTreeToCenter = () => {
     const treeRoot = document.getElementById('m-tree-root')
     if (treeRoot) {
@@ -96,6 +98,11 @@ export default function useTreeLight(props) {
     }
   }
 
+  //调解大小
+  const handleScale = (value) => {
+    setScaleValue( (value / 100).toFixed(2))
+  }
+
   useEffect(() => {
     handleResetTreeToCenter()
     // eslint-disable-next-line
@@ -105,10 +112,8 @@ export default function useTreeLight(props) {
   const renderDom = () => {
     const dataArr = []
     const { rolIndexEnd = 10, colIndexEnd = 10 } = treeBoundary
-    console.log('s', rolIndexEnd, colIndexEnd)
     const rolCount = rolIndexEnd + 6 < 10 ? 10 : rolIndexEnd + 6
     const colCount = colIndexEnd + 2 < 10 ? 10 : colIndexEnd + 2
-    console.log('r', rolCount, colCount)
 
     for (let i = 0; i < rolCount; i++) {
       let dataRow = []
@@ -123,7 +128,7 @@ export default function useTreeLight(props) {
     const isDev = localStorage.getItem('isDev') === 'true' ? true : false
     return (
       <div className="m-tree-wrap">
-        <div className="m-tree-row">
+        <div className="m-tree-inner" style={{transform: `scale(${scaleValue})`}}>
           {dataArr.map((colList, rolIndex) => (
             <div className="m-tree-row" key={rolIndex}>
               {colList.map((item, colIndex) => (
@@ -144,5 +149,6 @@ export default function useTreeLight(props) {
   return {
     getTreeDom: renderDom,
     handleResetTreeToCenter,
+    handleScale,
   }
 }
