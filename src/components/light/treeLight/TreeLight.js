@@ -1,6 +1,6 @@
 import React from 'react'
 import TreeCard from './TreeCard'
-import { deepClone } from '../../utils/tools'
+import { deepClone } from '../../../utils/tools'
 // import { treeData1, treeData2, treeData3, treeData4 } from './data'
 import TreeLine from './TreeLine'
 import useTreeLight from './useTreeLight'

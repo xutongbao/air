@@ -1,5 +1,5 @@
 import React from 'react'
-import Icon from './Icon'
+import Icon from '../Icon'
 
 export default function TreeCard(props) {
   const { title, children, color = 'blue', item } = props

@@ -17,7 +17,7 @@ import GovernmentRequirements from './GovernmentRequirements'
 //底部推荐
 import FooterRecommend from './FooterRecommend'
 //树
-import TreeLight from './TreeLight'
+import TreeLight from './treeLight/TreeLight'
 
 export {
   Icon,

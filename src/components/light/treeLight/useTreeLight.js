@@ -1,4 +1,4 @@
-import { deepClone } from '../../utils/tools'
+import { deepClone } from '../../../utils/tools'
 
 export default function useTreeLight({ dataSource }) {
   //统计一个棵树各层的元素的个数，并求出最大值
