@@ -8,7 +8,7 @@ export default function TreeCard(props) {
     props.onAddChild(item)
   }
   return (
-    <div className={`m-tree-card ${color}`}>
+    <div className={`m-tree-card ${color}`} id={`${item.belongCategory === '0' ? 'm-tree-root': ''}`}>
       <div className={`m-tree-card-header ${color}`}>
         <div className="m-tree-card-header-title">{title}</div>
         {item.belongCategory !== '0' && (

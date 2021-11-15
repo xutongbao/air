@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import TreeCard from './TreeCard'
 import { deepClone } from '../../../utils/tools'
 // import { treeData1, treeData2, treeData3, treeData4 } from './data'
@@ -88,11 +88,15 @@ export default function TreeLight(props) {
   //渲染dom
   const renderDom = () => {
     const dataArr = []
-    const { rolIndexEnd, colIndexEnd } = treeBoundary
-    //20行， 10列
-    for (let i = 0; i < rolIndexEnd + 6; i++) {
+    const { rolIndexEnd = 10, colIndexEnd = 10 } = treeBoundary
+    console.log('s', rolIndexEnd, colIndexEnd)
+    const rolCount = rolIndexEnd + 6 < 10 ? 10 : rolIndexEnd + 6
+    const colCount = colIndexEnd + 2 < 10 ? 10 : colIndexEnd + 2
+    console.log('r', rolCount, colCount)
+
+    for (let i = 0; i < rolCount; i++) {
       let dataRow = []
-      for (let j = 0; j < colIndexEnd + 2; j++) {
+      for (let j = 0; j < colCount; j++) {
         dataRow.push({
           row: i,
           col: j,
@@ -118,6 +122,14 @@ export default function TreeLight(props) {
       </>
     )
   }
+
+  useEffect(() => {
+    const treeRoot = document.getElementById('m-tree-root')
+    if (treeRoot) {
+      treeRoot.scrollIntoView({behavior: "smooth", block: "center", inline: "center"})
+    }
+    // eslint-disable-next-line
+  }, [dataSource])
 
   return (
     <div className="m-tree-wrap">
