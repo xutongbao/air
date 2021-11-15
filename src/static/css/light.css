@@ -131,9 +131,9 @@
 .m-tree-wrap{flex: 1; margin: 5px 10px 5px;padding: 16px; background: white;overflow: auto;}
 .m-tree-wrap.active{border: 1px solid #ddd;}
 .m-tree-row{white-space: nowrap;}
-.m-tree-col{display: inline-block;width: 240px;height: 120px;vertical-align: top;}
+.m-tree-col{display: inline-block;position: relative;width: 240px;height: 120px;vertical-align: top;}
 .m-tree-col.active{border: 1px solid #ddd;}
-.m-tree-card{display: flex;position: relative; height: 100%; flex-direction: column; border-radius: 4px;cursor: pointer;box-shadow: 0 1px 8px 0 #ddd;}
+.m-tree-card{display: flex; height: 100%; flex-direction: column; border-radius: 4px;cursor: pointer;box-shadow: 0 1px 8px 0 #ddd;}
 .m-tree-card-header{display: flex; padding: 5px 0 5px 5px;}
 .m-tree-card-header-title{flex:1;}
 .m-tree-card-header-delete{opacity: 0;;width: 30px;cursor: pointer;text-align: center;vertical-align: top;}
@@ -146,8 +146,9 @@
 .m-tree-card.orange:hover{box-shadow: 0 1px 8px 0 #FCAD22;}
 .m-tree-card.green{border-top: 4px solid #3CB4B2;background: #E6F8F8;}
 .m-tree-card.green:hover{box-shadow: 0 1px 8px 0 #3CB4B2;}
-.m-tree-card-add{position: absolute;transform: translateY(112px) translateX(99px);font-size: 30px;color: #A0B5C8;cursor: pointer;}
-.m-tree-card-add:hover{color: #8599AA;}
+.m-tree-card-add-wrap{position: absolute;display: flex;align-items: center;padding: 0 0 0 2px; height: 30px; width: 30px; transform: translateY(122px) translateX(100px);font-size: 30px;background: #A0B5C8;cursor: pointer;z-index: 99;color: white;border-radius: 50%;}
+.m-tree-card-add-wrap:hover{background: #8599AA;color: white;}
+.m-tree-card-add-icon{font-size: 22px;padding: 0 0 0 2px;}
 .m-tree-line-wrap{display: flex;flex-direction: column;height: 100%;}
 .m-tree-line-row{display: flex; flex:1;}
 .m-tree-line-item{flex:1;}
