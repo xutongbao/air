@@ -204,18 +204,47 @@ export default function useTreeLight({ dataSource }) {
     return treeDataSourceCopy
   }
 
+  //求树坐标的边界值
+  const getTreeBoundary = ({ treeDataSource }) => {
+    let rolIndexArr = []
+    let colIndexArr = []
+    const find = (arr, level = 0) => {
+      for (let i = 0; i < arr.length; i++) {
+        rolIndexArr.push(arr[i].position.rolIndex)
+        colIndexArr.push(arr[i].position.colIndex)
+        if (Array.isArray(arr[i].children) && arr[i].children.length > 0) {
+          find(arr[i].children, level + 1)
+        }
+      }
+    }
+    const treeDataSourceCopy = deepClone(treeDataSource)
+    find(treeDataSourceCopy)
+
+    
+    rolIndexArr.sort((a, b) => a - b)
+    colIndexArr.sort((a, b) => a - b)
+    return {
+      rolIndexStart: rolIndexArr[0],
+      rolIndexEnd: rolIndexArr[rolIndexArr.length - 1],
+      colIndexStart: colIndexArr[0],
+      colIndexEnd: colIndexArr[colIndexArr.length - 1]
+    }
+  }
+
   //切换数据源
   let treeDataResult
   let treeDataSource = dataSource
+  let treeBoundary = {}
   if (Array.isArray(treeDataSource) && treeDataSource.length > 0) {
     treeDataResult = handleAddPosition({ treeDataSource })
-    const hasLines = handleAddLines({ treeDataSource: treeDataResult })
-    treeDataResult = hasLines
+    treeDataResult = handleAddLines({ treeDataSource: treeDataResult })
+    treeBoundary = getTreeBoundary({ treeDataSource: treeDataResult })
   }
 
   //切换真正用于渲染的treeData
   let treeData = treeDataResult ? treeDataResult : treeDataSource
   return {
     treeData,
+    treeBoundary
   }
 }

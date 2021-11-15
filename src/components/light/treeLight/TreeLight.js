@@ -8,7 +8,7 @@ import useTreeLight from './useTreeLight'
 export default function TreeLight(props) {
   const { dataSource, onAddChild, onDelete, onEdit } = props
   //添加position和lines
-  const { treeData } = useTreeLight({ dataSource })
+  const { treeData, treeBoundary } = useTreeLight({ dataSource })
 
   //查找行列值和position值一致的元素
   const findTreeNode = ({ treeData, position }) => {
@@ -88,10 +88,11 @@ export default function TreeLight(props) {
   //渲染dom
   const renderDom = () => {
     const dataArr = []
+    const { rolIndexEnd, colIndexEnd } = treeBoundary
     //20行， 10列
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < rolIndexEnd + 6; i++) {
       let dataRow = []
-      for (let j = 0; j < 20; j++) {
+      for (let j = 0; j < colIndexEnd + 2; j++) {
         dataRow.push({
           row: i,
           col: j,
