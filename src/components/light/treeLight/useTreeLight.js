@@ -85,6 +85,22 @@ export default function useTreeLight(props) {
     )
   }
 
+  const handleResetTreeToCenter = () => {
+    const treeRoot = document.getElementById('m-tree-root')
+    if (treeRoot) {
+      treeRoot.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'center',
+      })
+    }
+  }
+
+  useEffect(() => {
+    handleResetTreeToCenter()
+    // eslint-disable-next-line
+  }, [dataSource])
+
   //渲染dom
   const renderDom = () => {
     const dataArr = []
@@ -125,19 +141,8 @@ export default function useTreeLight(props) {
     )
   }
 
-  useEffect(() => {
-    const treeRoot = document.getElementById('m-tree-root')
-    if (treeRoot) {
-      treeRoot.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-        inline: 'center',
-      })
-    }
-    // eslint-disable-next-line
-  }, [dataSource])
-
   return {
-    getTreeDom: renderDom
+    getTreeDom: renderDom,
+    handleResetTreeToCenter,
   }
 }

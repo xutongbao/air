@@ -29,7 +29,7 @@ function Index(props) {
     handleFinishFailed,
   } = useList(props)
 
-  const { getTreeDom } = useTreeLightList({
+  const { getTreeDom, handleResetTreeToCenter } = useTreeLightList({
     dataSource,
     onSearch: handleSearch,
     onDelete: handleDelete,
@@ -40,7 +40,7 @@ function Index(props) {
   return (
     <div className="m-content-list-wrap" id="m-content-wrap">
       <Header applicationTitle={applicationTitle}></Header>
-      <Tool myAuthObj={myAuthObj} onAdd={handleAdd}></Tool>
+      <Tool myAuthObj={myAuthObj} onAdd={handleAdd} onResetTreeToCenter={handleResetTreeToCenter}></Tool>
       {/* <TreeLight
         dataSource={dataSource}
         onSearch={handleSearch}
