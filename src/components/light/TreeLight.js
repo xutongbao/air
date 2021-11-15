@@ -108,7 +108,39 @@ export default function TreeLight(props) {
   const handleAddLines = ({ treeDataSource }) => {
     const setLines = (arr) => {
       for (let i = 0; i < arr.length; i++) {
+        const rolIndex = arr[i].positon.rolIndex + 1
+        arr[i].lines = []
+
         if (Array.isArray(arr[i].children) && arr[i].children.length > 0) {
+          const fatherColIndex = arr[i].positon.colIndex
+          for (let j = 0; j < arr[i].children.length; j++) {
+            const tempColIndex = arr[i].children[j].positon.colIndex
+            if (tempColIndex < fatherColIndex && j === 0) {
+              arr[i].lines.push({
+                rolIndex,
+                colIndex: tempColIndex,
+                lineType: [2, 3],
+              })
+            } else if (
+              tempColIndex > fatherColIndex &&
+              j === arr[i].children.length - 1
+            ) {
+              arr[i].lines.push({
+                rolIndex,
+                colIndex: tempColIndex,
+                lineType: [4, 3],
+              })
+            } else if (
+              arr[i].children.length === 1 &&
+              fatherColIndex === tempColIndex
+            ) {
+              arr[i].lines.push({
+                rolIndex,
+                colIndex: tempColIndex,
+                lineType: [1, 3],
+              })
+            }
+          }
           setLines(arr[i].children)
         }
       }
@@ -125,6 +157,7 @@ export default function TreeLight(props) {
   treeDataResult = handleAddPositon({ treeDataSource })
   const hasLines = handleAddLines({ treeDataSource })
   console.log(hasLines)
+  treeDataResult = hasLines
 
   //打印添加position后的tree
   // console.log(treeDataResult)
@@ -201,11 +234,7 @@ export default function TreeLight(props) {
             {treeNode.content}
           </TreeCard>
         )}
-        {
-          lineType && (
-            <TreeLine lineType={lineType}></TreeLine> 
-          )
-        }
+        {lineType && <TreeLine lineType={lineType}></TreeLine>}
       </>
     )
   }
