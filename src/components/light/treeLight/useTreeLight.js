@@ -9,12 +9,12 @@ export default function useTreeLight(props) {
   const { dataSource, isToCenter, onAddChild, onDelete, onEdit } = props
   const [scaleValue, setScaleValue] = useState(1)
   //添加position和lines
-  const { treeData, treeBoundary } = useTreeLightList({ dataSource })
+  const { treeData, treeBoundary, processEndNode } = useTreeLightList({ dataSource })
 
   //查找行列值和position值一致的元素
   const findTreeNode = ({ treeData, position }) => {
     let result
-    const setPosition = (arr, parentId = '') => {
+    const findTreeNodeLoop = (arr, parentId = '') => {
       for (let i = 0; i < arr.length; i++) {
         if (
           position.rolIndex === arr[i].position.rolIndex &&
@@ -23,12 +23,12 @@ export default function useTreeLight(props) {
           result = arr[i]
         }
         if (Array.isArray(arr[i].children) && arr[i].children.length > 0) {
-          setPosition(arr[i].children, `${parentId}${i + 1}`)
+          findTreeNodeLoop(arr[i].children, `${parentId}${i + 1}`)
         }
       }
     }
     const treeDataCopy = deepClone(treeData)
-    setPosition(treeDataCopy)
+    findTreeNodeLoop(treeDataCopy)
     return result
   }
 
@@ -67,6 +67,7 @@ export default function useTreeLight(props) {
       treeData,
       position: { rolIndex, colIndex },
     })
+    const endNode = processEndNode.find(item => item.rolIndex === rolIndex && item.colIndex === colIndex)
     return (
       <>
         {treeNode && (
@@ -82,6 +83,7 @@ export default function useTreeLight(props) {
           </TreeCard>
         )}
         {lineType && <TreeLine lineType={lineType}></TreeLine>}
+        {endNode && <div className="m-tree-end-node">流程结束</div>}
       </>
     )
   }

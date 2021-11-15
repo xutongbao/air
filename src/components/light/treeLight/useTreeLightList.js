@@ -231,20 +231,35 @@ export default function useTreeLightList({ dataSource }) {
     }
   }
 
+  //流程结束节点位置
+  const getPorcessEndNode = ({ treeDataSource, treeBoundary }) => {
+    
+    return [
+      {
+        rolIndex: treeBoundary.rolIndexEnd + 4,
+        colIndex: treeDataSource[0].position.colIndex
+      }
+    ]
+  }
+
   //切换数据源
   let treeDataResult
   let treeDataSource = dataSource
   let treeBoundary = {}
+  let processEndNode = []
   if (Array.isArray(treeDataSource) && treeDataSource.length > 0) {
     treeDataResult = handleAddPosition({ treeDataSource })
     treeDataResult = handleAddLines({ treeDataSource: treeDataResult })
     treeBoundary = getTreeBoundary({ treeDataSource: treeDataResult })
+    processEndNode = getPorcessEndNode({ treeDataSource: treeDataResult, treeBoundary })
+    console.log(processEndNode)
   }
 
   //切换真正用于渲染的treeData
   let treeData = treeDataResult ? treeDataResult : treeDataSource
   return {
     treeData,
-    treeBoundary
+    treeBoundary,
+    processEndNode,
   }
 }
