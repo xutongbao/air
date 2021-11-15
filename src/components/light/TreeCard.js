@@ -12,7 +12,11 @@ export default function TreeCard(props) {
     <div className={`m-tree-card ${color}`}>
       <div className={`m-tree-card-header ${color}`}>
         <div className="m-tree-card-header-title">{title}</div>
-        <Icon className="m-tree-card-header-delete" name="delete" onClick={() => props.onDelete(item)}></Icon>
+        <Icon
+          className="m-tree-card-header-delete"
+          name="delete"
+          onClick={() => props.onDelete(item)}
+        ></Icon>
       </div>
       <div className="m-tree-card-content" onClick={() => props.onEdit(item)}>
         <div className="m-tree-card-content-text" title={children}>
@@ -25,6 +29,11 @@ export default function TreeCard(props) {
             </Button>
           </Space>
         </div>
+        <Icon
+          name="bg-add"
+          onClick={handleAdd}
+          className="m-tree-card-add"
+        ></Icon>
       </div>
     </div>
   )

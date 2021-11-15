@@ -165,12 +165,13 @@ export default function TreeLight(props) {
       }
       dataArr.push(dataRow)
     }
+    const isDev = localStorage.getItem('isDev') === 'true' ? true : false 
     return (
       <>
         {dataArr.map((colList, rolIndex) => (
           <div className="m-tree-row" key={rolIndex}>
             {colList.map((item, colIndex) => (
-              <div key={`${rolIndex}-${colIndex}`} className="m-tree-col">
+              <div key={`${rolIndex}-${colIndex}`} className={`m-tree-col ${isDev ? 'active' : ''}`}>
                 {renderTreeCard({ rolIndex, colIndex })}
               </div>
             ))}
