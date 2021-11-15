@@ -31,12 +31,13 @@ export default function TreeCard(props) {
         <div className="m-tree-card-content-text" title={children}>
           {children}
         </div>
-        <span className="m-tree-card-add-wrap">
+        <span className="m-tree-card-add-wrap" >
           <Icon
             name="bg-add"
             onClick={handleAdd}
             className="m-tree-card-add"
           ></Icon>
+          <span className="m-tree-card-add-bg"></span>
         </span>
       </div>
     </div>
