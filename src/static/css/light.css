@@ -100,7 +100,7 @@
 .m-list-nav-info-icon{display: inline-block; margin: -1px 0 0 5px;vertical-align: top;color: rgba(0, 0, 0, 0.45);}
 .m-home-content-box{margin: 10px 10px 5px;padding: 10px;}
 .m-home-welcome{font-size: 20px;line-height: 32px;color: #333;margin: 0 0 10px 10px;}
-.m-content-wrap{display: flex;flex:1;height: 100%;}
+.m-content-wrap{display: flex;flex:1;overflow: auto;}
 .m-loading{display: none; position: fixed;top: 0;left: 0;right: 0;bottom: 0;background: rgba(0, 0, 0, 0);z-index: 10000;}
 .m-loading.active{display: flex;}
 .m-spin{margin: auto;}
@@ -128,7 +128,7 @@
 .m-gov-footer{padding: 5px 0 20px;text-align: center;}
 .m-footer-recommend-wrap{border-top: 1px solid #dedede;min-height: 30px;}
 .m-hide{display: none;}
-.m-tree-wrap{margin: 5px 10px 5px;padding: 16px;border: 1px solid #ddd; background: white;overflow: auto;}
+.m-tree-wrap{flex: 1; margin: 5px 10px 5px;padding: 16px; background: white;overflow: auto;}
 .m-tree-wrap.active{border: 1px solid #ddd;}
 .m-tree-row{white-space: nowrap;}
 .m-tree-col{display: inline-block;width: 240px;height: 120px;vertical-align: top;}
