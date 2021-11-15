@@ -114,7 +114,12 @@ export default function TreeLight(props) {
         if (Array.isArray(arr[i].children) && arr[i].children.length > 0) {
           const fatherColIndex = arr[i].positon.colIndex
           const childrenColIndexArr = arr[i].children.map(
-            (item) => item.positon.colIndex
+            (item) => {
+              console.log(item)
+              if (item.positon.colIndex) {
+                return item.positon.colIndex
+              }
+            } 
           )
 
           for (
@@ -214,10 +219,13 @@ export default function TreeLight(props) {
   let treeDataResult
   //let treeDataSource = treeData4
   let treeDataSource = dataSource
-  treeDataResult = handleAddPositon({ treeDataSource })
-  const hasLines = handleAddLines({ treeDataSource })
-  console.log(hasLines)
-  treeDataResult = hasLines
+  if (Array.isArray(treeDataSource) && treeDataSource.length > 0) {
+    treeDataResult = handleAddPositon({ treeDataSource })
+    console.log(treeDataResult)
+    const hasLines = handleAddLines({ treeDataSource: treeDataResult })
+    console.log(hasLines)
+    treeDataResult = hasLines
+  }
 
   //打印添加position后的tree
   // console.log(treeDataResult)
