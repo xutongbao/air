@@ -154,10 +154,10 @@
 .m-tree-line-wrap{display: flex;flex-direction: column;height: 100%;}
 .m-tree-line-row{display: flex; flex:1;}
 .m-tree-line-item{flex:1;}
-.m-tree-line-item.top{border-top: 1px solid #ddd}
-.m-tree-line-item.right{border-right: 1px solid #ddd}
-.m-tree-line-item.bottom{border-bottom: 1px solid #ddd}
-.m-tree-line-item.left{border-left: 1px solid #ddd}
+.m-tree-line-item.top{border-top: 1px solid #333}
+.m-tree-line-item.right{border-right: 1px solid #333}
+.m-tree-line-item.bottom{border-bottom: 1px solid #333}
+.m-tree-line-item.left{border-left: 1px solid #333}
 .m-tree-slider{display: inline-block; width: 100px;}
 .m-tree-end-node{display: flex; align-items: center;justify-content: center;height:60px;border-radius: 4px;box-shadow: 0 1px 8px 0 #ddd;}
 

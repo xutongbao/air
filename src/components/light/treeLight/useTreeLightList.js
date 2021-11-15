@@ -220,23 +220,22 @@ export default function useTreeLightList({ dataSource }) {
     const treeDataSourceCopy = deepClone(treeDataSource)
     find(treeDataSourceCopy)
 
-    
     rolIndexArr.sort((a, b) => a - b)
     colIndexArr.sort((a, b) => a - b)
     return {
       rolIndexStart: rolIndexArr[0],
       rolIndexEnd: rolIndexArr[rolIndexArr.length - 1],
       colIndexStart: colIndexArr[0],
-      colIndexEnd: colIndexArr[colIndexArr.length - 1]
+      colIndexEnd: colIndexArr[colIndexArr.length - 1],
     }
   }
 
   //流程结束节点位置
   const getPorcessEndNode = ({ treeDataSource, treeBoundary }) => {
-    return ({
-        rolIndex: treeBoundary.rolIndexEnd + 4,
-        colIndex: treeDataSource[0].position.colIndex,
-      })
+    return {
+      rolIndex: treeBoundary.rolIndexEnd + 4,
+      colIndex: treeDataSource[0].position.colIndex,
+    }
   }
 
   //叶子节点连接到流程结束节点的线
@@ -256,8 +255,8 @@ export default function useTreeLightList({ dataSource }) {
     find(treeDataSourceCopy)
 
     console.log('l', leafNodeArr)
-    leafNodeArr.forEach(item => {
-      for(let i = item.rolIndex + 1; i < processEndNode.rolIndex - 1; i++) {
+    leafNodeArr.forEach((item) => {
+      for (let i = item.rolIndex + 1; i < processEndNode.rolIndex - 1; i++) {
         endNodeLines.push({
           rolIndex: i,
           colIndex: item.colIndex,
@@ -265,6 +264,56 @@ export default function useTreeLightList({ dataSource }) {
         })
       }
     })
+    for (
+      let i = leafNodeArr[0].colIndex;
+      i < leafNodeArr[leafNodeArr.length - 1].colIndex + 1;
+      i++
+    ) {
+      if (leafNodeArr.length === 1) {
+        endNodeLines.push({
+          rolIndex: processEndNode.rolIndex - 1,
+          colIndex: i,
+          lineType: [1, 3],
+        })
+      } else if (i === leafNodeArr[0].colIndex) {
+        endNodeLines.push({
+          rolIndex: processEndNode.rolIndex - 1,
+          colIndex: i,
+          lineType: [1, 2],
+        })
+      } else if (i === leafNodeArr[leafNodeArr.length - 1].colIndex) {
+        endNodeLines.push({
+          rolIndex: processEndNode.rolIndex - 1,
+          colIndex: i,
+          lineType: [1, 4],
+        })
+      } else if (i === processEndNode.colIndex && leafNodeArr.find(item => item.colIndex === i)) {
+        endNodeLines.push({
+          rolIndex: processEndNode.rolIndex - 1,
+          colIndex: i,
+          lineType: [1, 2, 3, 4],
+        })
+      } else if (i === processEndNode.colIndex && !leafNodeArr.find(item => item.colIndex === i)) {
+        endNodeLines.push({
+          rolIndex: processEndNode.rolIndex - 1,
+          colIndex: i,
+          lineType: [2, 3, 4],
+        })
+      } else if (i !== processEndNode.colIndex && leafNodeArr.find(item => item.colIndex === i)) {
+        endNodeLines.push({
+          rolIndex: processEndNode.rolIndex - 1,
+          colIndex: i,
+          lineType: [ 1, 2, 4],
+        })
+      } else {
+        endNodeLines.push({
+          rolIndex: processEndNode.rolIndex - 1,
+          colIndex: i,
+          lineType: [2, 4],
+        })
+      }
+
+    }
     return endNodeLines
   }
 
@@ -278,8 +327,14 @@ export default function useTreeLightList({ dataSource }) {
     treeDataResult = handleAddPosition({ treeDataSource })
     treeDataResult = handleAddLines({ treeDataSource: treeDataResult })
     treeBoundary = getTreeBoundary({ treeDataSource: treeDataResult })
-    processEndNode = getPorcessEndNode({ treeDataSource: treeDataResult, treeBoundary })
-    endNodeLines = getEndNodeLines({ treeDataSource: treeDataResult, processEndNode })
+    processEndNode = getPorcessEndNode({
+      treeDataSource: treeDataResult,
+      treeBoundary,
+    })
+    endNodeLines = getEndNodeLines({
+      treeDataSource: treeDataResult,
+      processEndNode,
+    })
     console.log(processEndNode)
     console.log('e', endNodeLines)
   }
