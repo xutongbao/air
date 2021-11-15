@@ -3,9 +3,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Modal, Button, Form } from 'antd'
 import Tool from './Tool'
-import { getColumns, getModalFields } from './config'
+import { getModalFields } from './config'
 import {
-  MyTableForEasy,
   Icon,
   TreeLight,
 } from '../../../../../components/light'
@@ -31,7 +30,6 @@ function Index(props) {
     setIsModalVisible,
     handleFinish,
     handleFinishFailed,
-    handleStatus,
   } = useList(props)
 
   return (

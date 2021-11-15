@@ -1,5 +1,4 @@
 import React from 'react'
-import { Button, Space } from 'antd'
 import Icon from './Icon'
 
 export default function TreeCard(props) {

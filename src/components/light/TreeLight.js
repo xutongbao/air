@@ -1,7 +1,7 @@
 import React from 'react'
 import TreeCard from './TreeCard'
 import { deepClone } from '../../utils/tools'
-import { treeData1, treeData2, treeData3, treeData4 } from './data'
+// import { treeData1, treeData2, treeData3, treeData4 } from './data'
 import TreeLine from './TreeLine'
 
 export default function TreeLight(props) {
@@ -37,7 +37,7 @@ export default function TreeLight(props) {
   // const count = getMaxTreeLevelNodeCount({ treeDataSource: dataSource })
   // console.log(count)
 
-  //如何添加position
+  //添加position
   const handleAddPositon = ({ treeDataSource }) => {
     //rolIndex计算方式：孩子节点rolIndex = 父节点rolIndex + 2
     //colIndex计算方式：
@@ -104,11 +104,27 @@ export default function TreeLight(props) {
     return treeDataSourceCopy
   }
 
+  //添加lines
+  const handleAddLines = ({ treeDataSource }) => {
+    const setLines = (arr) => {
+      for (let i = 0; i < arr.length; i++) {
+        if (Array.isArray(arr[i].children) && arr[i].children.length > 0) {
+          setLines(arr[i].children)
+        }
+      }
+    }
+    const treeDataSourceCopy = deepClone(treeDataSource)
+    setLines(treeDataSourceCopy)
+    return treeDataSourceCopy
+  }
+
   //切换数据源
   let treeDataResult
   //let treeDataSource = treeData4
   let treeDataSource = dataSource
   treeDataResult = handleAddPositon({ treeDataSource })
+  const hasLines = handleAddLines({ treeDataSource })
+  console.log(hasLines)
 
   //打印添加position后的tree
   // console.log(treeDataResult)
