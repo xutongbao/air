@@ -4,9 +4,9 @@ import { deepClone } from '../../../utils/tools'
 // import { treeData1, treeData2, treeData3, treeData4 } from './data'
 import TreeLine from './TreeLine'
 import useTreeLightList from './useTreeLightList'
-
+let timer
 export default function useTreeLight(props) {
-  const { dataSource, onAddChild, onDelete, onEdit } = props
+  const { dataSource, isToCenter, onAddChild, onDelete, onEdit } = props
   const [scaleValue, setScaleValue] = useState(1)
   //添加position和lines
   const { treeData, treeBoundary } = useTreeLightList({ dataSource })
@@ -100,13 +100,19 @@ export default function useTreeLight(props) {
 
   //调解大小
   const handleScale = (value) => {
-    setScaleValue( (value / 100).toFixed(2))
+    setScaleValue((value / 100).toFixed(2))
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      handleResetTreeToCenter()
+    }, 200)
   }
 
   useEffect(() => {
-    handleResetTreeToCenter()
+    if (isToCenter) {
+      handleResetTreeToCenter()
+    }
     // eslint-disable-next-line
-  }, [dataSource])
+  }, [isToCenter])
 
   //渲染dom
   const renderDom = () => {
@@ -128,7 +134,10 @@ export default function useTreeLight(props) {
     const isDev = localStorage.getItem('isDev') === 'true' ? true : false
     return (
       <div className="m-tree-wrap">
-        <div className="m-tree-inner" style={{transform: `scale(${scaleValue})`}}>
+        <div
+          className="m-tree-inner"
+          style={{ transform: `scale(${scaleValue})` }}
+        >
           {dataArr.map((colList, rolIndex) => (
             <div className="m-tree-row" key={rolIndex}>
               {colList.map((item, colIndex) => (

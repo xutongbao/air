@@ -21,7 +21,7 @@ function Tool(props) {
             复位
           </Button>
           <span className="m-space">调整大小：</span>
-          <Slider defaultValue={100} min={50} max={100} onChange={onScale} tipFormatter={formatter} tooltipVisible className="m-space m-tree-slider" />
+          <Slider defaultValue={100} min={50} max={100} onAfterChange={onScale} tipFormatter={formatter} tooltipVisible className="m-space m-tree-slider" getTooltipPopupContainer={() => document.getElementById('m-content-wrap')}/>
         </div>
       </div>
     </>

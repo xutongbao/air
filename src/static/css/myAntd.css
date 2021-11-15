@@ -18,4 +18,4 @@
 .m-upload-order .ant-upload-list-item-card-actions button:first-child{width: 60px;}
 .m-directory-tree .ant-tree-node-content-wrapper{margin: 0 0 0 -10px;}
 .m-directory-tree .ant-tree-node-content-wrapper-normal{margin: 0 0 0 -22px;}
-
+.m-content-wrap .ant-tooltip{z-index: 70;}

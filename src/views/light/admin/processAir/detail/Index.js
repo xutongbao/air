@@ -19,6 +19,7 @@ function Index(props) {
     modalTitle,
     myAuthObj,
     applicationTitle,
+    isToCenter,
     handleSearch,
     handleDelete,
     handleAdd,
@@ -31,6 +32,7 @@ function Index(props) {
 
   const { getTreeDom, handleResetTreeToCenter, handleScale } = useTreeLightList({
     dataSource,
+    isToCenter,
     onSearch: handleSearch,
     onDelete: handleDelete,
     onEdit: handleEdit,
@@ -41,7 +43,7 @@ function Index(props) {
     <div className="m-content-list-wrap" id="m-content-wrap">
       <Header applicationTitle={applicationTitle}></Header>
       <Tool myAuthObj={myAuthObj} onAdd={handleAdd} onScale={handleScale} onResetTreeToCenter={handleResetTreeToCenter}></Tool>
-      {getTreeDom()}
+      {dataSource && getTreeDom()}
       <Modal
         title={modalTitle}
         visible={isModalVisible}

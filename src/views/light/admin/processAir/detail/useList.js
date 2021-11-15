@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react'
 import Api from '../../../../../api'
 import { Modal, Form } from 'antd'
-import { deepClone, formatCategoryForList, getRouterSearchObj } from '../../../../../utils/tools'
+import {
+  deepClone,
+  formatCategoryForList,
+  getRouterSearchObj,
+} from '../../../../../utils/tools'
 
 const { confirm } = Modal
 
@@ -18,6 +22,7 @@ export default function useList(props) {
   const [applicationTitle, setApplicationTitle] = useState()
   //权限
   const [myAuthObj, setMyAuthObj] = useState({})
+  const [isToCenter, setIsToCenter] = useState(false)
 
   //获取路由参数
   const routerSearchObj = getRouterSearchObj(props)
@@ -40,11 +45,12 @@ export default function useList(props) {
   }
 
   //搜索
-  const handleSearch = () => {
+  const handleSearch = ({ isToCenter = false } = {}) => {
     Api.light.processFieldsSearch({ tableId }).then((res) => {
       if (res.code === 200) {
         setApplicationTitle(res.data.title)
         setDataSource(formatCategoryForList({ categoryOptions: res.data.tree }))
+        setIsToCenter(isToCenter)
       }
     })
   }
@@ -55,11 +61,13 @@ export default function useList(props) {
     confirm({
       title: '该分类及子分类都会被删除，确认要删除吗？',
       onOk() {
-        Api.light.processFieldsDelete({ tableId, id: record.id }).then((res) => {
-          if (res.code === 200) {
-            handleSearch()
-          }
-        })
+        Api.light
+          .processFieldsDelete({ tableId, id: record.id })
+          .then((res) => {
+            if (res.code === 200) {
+              handleSearch()
+            }
+          })
       },
     })
   }
@@ -99,7 +107,7 @@ export default function useList(props) {
   const handleFinish = (values) => {
     console.log('Success:', values)
     if (type === 'add') {
-      Api.light.processFieldsAdd({tableId, dataItem: values }).then((res) => {
+      Api.light.processFieldsAdd({ tableId, dataItem: values }).then((res) => {
         if (res.code === 200) {
           setIsModalVisible(false)
           handleSearch()
@@ -181,7 +189,7 @@ export default function useList(props) {
 
   //挂载完
   useEffect(() => {
-    handleSearch()
+    handleSearch({ isToCenter: true })
     // eslint-disable-next-line
   }, [])
 
@@ -207,6 +215,7 @@ export default function useList(props) {
     modalTitle,
     myAuthObj,
     applicationTitle,
+    isToCenter,
     handleSearch,
     handleDelete,
     handleAdd,
