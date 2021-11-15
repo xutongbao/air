@@ -141,6 +141,8 @@
 .m-tree-card-header-delete:hover{color: #1890ff;font-weight: bold;}
 .m-tree-card-content{display: flex; flex:1;flex-direction: column; padding: 5px; background: white;}
 .m-tree-card-content-text{flex:1; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.m-tree-card.gray{border-top: 4px solid #88939F;background: #EEF4FB;}
+.m-tree-card.gray:hover{box-shadow: 0 1px 8px 0 #88939F;}
 .m-tree-card.blue{border-top: 4px solid #4A94FF;background: #E9F2FF;}
 .m-tree-card.blue:hover{box-shadow: 0 1px 8px 0 #4a94ff;}
 .m-tree-card.orange{border-top: 4px solid #FCAD22;background: #FFF9EE;}

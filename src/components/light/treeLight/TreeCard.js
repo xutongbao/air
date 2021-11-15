@@ -2,7 +2,7 @@ import React from 'react'
 import Icon from '../Icon'
 
 export default function TreeCard(props) {
-  const { title, children, color = 'blue', item } = props
+  const { title, children, color = 'gray', item } = props
   const handleAdd = (e) => {
     e.stopPropagation()
     props.onAddChild(item)

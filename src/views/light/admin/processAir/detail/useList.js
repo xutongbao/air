@@ -34,7 +34,7 @@ export default function useList(props) {
       // 分类名称
       name: '测试',
       content: '1',
-      color: 'orange',
+      // color: 'orange',
       // 所属分类
       belongCategory: '0',
       // 备注
