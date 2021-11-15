@@ -146,10 +146,15 @@
 .m-tree-card.orange:hover{box-shadow: 0 1px 8px 0 #FCAD22;}
 .m-tree-card.green{border-top: 4px solid #3CB4B2;background: #E6F8F8;}
 .m-tree-card.green:hover{box-shadow: 0 1px 8px 0 #3CB4B2;}
-.m-tree-card-add{position: absolute;transform: translateY(115px) translateX(98px);font-size: 30px;color: #A0B5C8;cursor: pointer;}
+.m-tree-card-add{position: absolute;transform: translateY(112px) translateX(99px);font-size: 30px;color: #A0B5C8;cursor: pointer;}
 .m-tree-card-add:hover{color: #8599AA;}
-.m-tree-line-wrap{}
-
+.m-tree-line-wrap{display: flex;flex-direction: column;height: 100%;}
+.m-tree-line-row{display: flex; flex:1;}
+.m-tree-line-item{flex:1;}
+.m-tree-line-item.top{border-top: 1px solid #ddd}
+.m-tree-line-item.right{border-right: 1px solid #ddd}
+.m-tree-line-item.bottom{border-bottom: 1px solid #ddd}
+.m-tree-line-item.left{border-left: 1px solid #ddd}
 
 
 
