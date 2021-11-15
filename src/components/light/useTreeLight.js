@@ -125,7 +125,7 @@ export default function useTreeLight({ dataSource }) {
               })
             }
             //设置父节点正下方的lineType
-            if (j === fatherColIndex) {
+            if (!childrenColIndexArr.includes(j) && j === fatherColIndex) {
               if (arr[i].children.length > 1) {
                 arr[i].lines.push({
                   rolIndex,
