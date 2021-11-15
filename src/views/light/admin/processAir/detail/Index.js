@@ -4,10 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { Modal, Button, Form } from 'antd'
 import Tool from './Tool'
 import { getModalFields } from './config'
-import {
-  Icon,
-  TreeLight,
-} from '../../../../../components/light'
+import { Icon, useTreeLightList } from '../../../../../components/light'
 import useList from './useList'
 import Header from './Header'
 
@@ -32,17 +29,26 @@ function Index(props) {
     handleFinishFailed,
   } = useList(props)
 
+  const { getTreeDom } = useTreeLightList({
+    dataSource,
+    onSearch: handleSearch,
+    onDelete: handleDelete,
+    onEdit: handleEdit,
+    onAddChild: handleAddChild,
+  })
+
   return (
     <div className="m-content-list-wrap" id="m-content-wrap">
       <Header applicationTitle={applicationTitle}></Header>
       <Tool myAuthObj={myAuthObj} onAdd={handleAdd}></Tool>
-      <TreeLight
+      {/* <TreeLight
         dataSource={dataSource}
         onSearch={handleSearch}
         onDelete={handleDelete}
         onEdit={handleEdit}
         onAddChild={handleAddChild}
-      ></TreeLight>
+      ></TreeLight> */}
+      {getTreeDom()}
       <Modal
         title={modalTitle}
         visible={isModalVisible}

@@ -8,11 +8,15 @@ function Tool(props) {
   return (
     <>
       {myAuthObj.add && (
-        <div className="m-content-tool m-hide">
+        <div className="m-content-tool">
           <div className="m-content-tool-row">
             <Button className="m-space" type="primary" onClick={onAdd}>
               <Icon name="add" className="m-tool-btn-icon"></Icon>
               添加分类
+            </Button>
+            <Button className="m-space" type="primary" onClick={onAdd}>
+              <Icon name="add" className="m-tool-btn-icon"></Icon>
+              复位
             </Button>
           </div>
         </div>
