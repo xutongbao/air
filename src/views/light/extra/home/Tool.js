@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'antd'
+import { Button, message } from 'antd'
 import { Icon } from '../../../../components/light'
 import { getToolBtnList } from './config'
 import Api from '../../../../api'
@@ -21,6 +21,7 @@ function Tool(props) {
     Api.light.refreshLogReport().then((res) => {
       if (res.state === 1) {
         console.log(res)
+        message.success('刷新成功')
       }
     })
   }
