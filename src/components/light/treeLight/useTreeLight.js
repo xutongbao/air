@@ -75,11 +75,11 @@ export default function useTreeLight(props) {
             title={treeNode.name}
             color={treeNode.color}
             item={treeNode}
+            treeNodeContent={treeNode.content}
             onAddChild={onAddChild}
             onDelete={onDelete}
             onEdit={onEdit}
           >
-            {treeNode.content}
           </TreeCard>
         )}
         {lineType && <TreeLine lineType={lineType}></TreeLine>}

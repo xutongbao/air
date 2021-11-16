@@ -34,20 +34,6 @@ function Tool(props) {
             }
           />
         </div>
-        <div className="m-content-tool-row">
-          <Button
-            className="m-space"
-            type="primary"
-            onClick={onResetTreeToCenter}
-          >
-            <Icon name="submit" className="m-tool-btn-icon"></Icon>
-            保存
-          </Button>
-          <Button className="m-space" onClick={onResetTreeToCenter}>
-            <Icon name="reset" className="m-tool-btn-icon"></Icon>
-            重置
-          </Button>
-        </div>
       </div>
     </>
   )
