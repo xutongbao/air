@@ -14,7 +14,7 @@ export default function TreeCard(props) {
 
   const getShortContent = () => {
     let shortContent
-    if (treeNodeContent.length > 50) {
+    if (treeNodeContent && treeNodeContent.length > 50) {
       shortContent = treeNodeContent.slice(0, 50) + '...'
     } else {
       shortContent = treeNodeContent

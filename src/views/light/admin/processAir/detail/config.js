@@ -66,20 +66,29 @@ const getModalFields = ({ treeData, initValues }) => {
       >
         <Input />
       </Form.Item>
-      <Form.Item label="内容" name="content">
+      <Form.Item
+        label="内容"
+        name="content"
+        rules={[
+          {
+            required: true,
+            message: '请输入内容！',
+          },
+        ]}
+      >
         <Input />
       </Form.Item>
       <Form.Item name="color" label="颜色">
-          <Select
-            placeholder="请选择"
-            allowClear
-            getPopupContainer={() => document.getElementById('m-content-wrap')}
-          >
-            <Option value="blue">蓝色</Option>
-            <Option value="orange">橙色</Option>
-            <Option value="green">绿色</Option>
-          </Select>
-        </Form.Item>
+        <Select
+          placeholder="请选择"
+          allowClear
+          getPopupContainer={() => document.getElementById('m-content-wrap')}
+        >
+          <Option value="blue">蓝色</Option>
+          <Option value="orange">橙色</Option>
+          <Option value="green">绿色</Option>
+        </Select>
+      </Form.Item>
       <Form.Item
         label="父级条件分支"
         name="belongCategory"
