@@ -129,10 +129,9 @@
 .m-footer-recommend-wrap{border-top: 1px solid #dedede;min-height: 30px;}
 .m-hide{display: none;}
 .m-tree-wrap{display: flex; position: relative; flex: 1; margin: 5px 10px 5px; }
-.m-tree-wrap.active{border: 1px solid #ddd;}
 .m-tree-container{position: relative; flex: 1;padding: 16px;background: white;overflow: auto;}
 .m-drag-level{position: absolute;top: 0;left: 0;right: 0;bottom: 0; pointer-events: none;}
-.m-drag-level.active{pointer-events: unset;cursor: move;}
+.m-drag-level.active{pointer-events: unset;}
 .m-tree-inner{white-space: nowrap;position: absolute;top: 0;left: 0;user-select: none;}
 .m-tree-col{display: inline-block;position: relative;width: 240px;height: 120px;vertical-align: top;}
 .m-tree-col.active{border: 1px solid #ddd;}
@@ -152,7 +151,7 @@
 .m-tree-card.orange:hover{box-shadow: 0 1px 8px 0 #FCAD22;}
 .m-tree-card.green{border-top: 4px solid #3CB4B2;background: #E6F8F8;}
 .m-tree-card.green:hover{box-shadow: 0 1px 8px 0 #3CB4B2;}
-.m-tree-card-add-wrap{position: absolute;display: inline-block; transform: translateY(117px) translateX(100px);width: 30px;height: 30px;z-index: 999;}
+.m-tree-card-add-wrap{position: absolute;display: inline-block; transform: translateY(115px) translateX(99px);width: 30px;height: 30px;z-index: 999;}
 .m-tree-card-add{position: absolute;top: 0;left: 0;  display: inline-block;width: 30px;height: 30px;font-size: 30px;color: #A0B5C8;cursor: pointer;z-index: 99;}
 .m-tree-card-add:hover{color: #8599AA;}
 .m-tree-card-add-bg{position: absolute;top: 16px; left: 8px; width: 15px; height: 15px; background: white;}

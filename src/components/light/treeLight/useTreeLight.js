@@ -102,14 +102,20 @@ export default function useTreeLight(props) {
 
   //根节点回到可视区域内
   const handleResetTreeToCenter = () => {
-    const treeRoot = document.getElementById('m-tree-root')
-    if (treeRoot) {
-      treeRoot.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-        inline: 'center',
-      })
-    }
+    setDomHistoryPositon({
+      clientX: 0,
+      clientY: 0,
+    })
+    setTimeout(() => {
+      const treeRoot = document.getElementById('m-tree-root')
+      if (treeRoot) {
+        treeRoot.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+          inline: 'center',
+        })
+      }
+    }, 0)
   }
 
   //调解大小
@@ -129,6 +135,10 @@ export default function useTreeLight(props) {
       clientY: e.clientY,
     }
     setIsDrag(true)
+    // clearTimeout(timer2)
+    // timer2 = setTimeout(function () {
+    //   setIsDrag(true)
+    // }, 500)
   }
 
   //鼠标抬起
@@ -140,7 +150,7 @@ export default function useTreeLight(props) {
   //拖拽
   const handleMouseMove = (e) => {
     if (e.buttons === 1) {
-      console.log('move', e.clientX, e.clientY, e)
+      //console.log('move', e.clientX, e.clientY, e)
       setIsDrag(true)
       setDomHistoryPositon({
         clientX:
@@ -197,7 +207,7 @@ export default function useTreeLight(props) {
   //渲染dom
   const renderDom = () => {
     return (
-      <div className="m-tree-wrap">
+      <div className={`m-tree-wrap`}>
         <div className="m-tree-container" onMouseDown={handleMouseDown}>
           <div
             className="m-tree-inner"
