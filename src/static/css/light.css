@@ -128,9 +128,12 @@
 .m-gov-footer{padding: 5px 0 20px;text-align: center;}
 .m-footer-recommend-wrap{border-top: 1px solid #dedede;min-height: 30px;}
 .m-hide{display: none;}
-.m-tree-wrap{flex: 1; margin: 5px 10px 5px;padding: 16px; background: white;overflow: auto;}
+.m-tree-wrap{display: flex; position: relative; flex: 1; margin: 5px 10px 5px; }
 .m-tree-wrap.active{border: 1px solid #ddd;}
-.m-tree-inner{white-space: nowrap;}
+.m-tree-container{position: relative; flex: 1;padding: 16px;background: white;overflow: auto;}
+.m-drag-level{position: absolute;top: 0;left: 0;right: 0;bottom: 0; pointer-events: none;}
+.m-drag-level.active{pointer-events: unset;}
+.m-tree-inner{white-space: nowrap;position: absolute;top: 0;left: 0;}
 .m-tree-col{display: inline-block;position: relative;width: 240px;height: 120px;vertical-align: top;}
 .m-tree-col.active{border: 1px solid #ddd;}
 .m-tree-card{display: flex; height: 100%; flex-direction: column; border-radius: 4px;cursor: pointer;box-shadow: 0 1px 8px 0 #ddd;}

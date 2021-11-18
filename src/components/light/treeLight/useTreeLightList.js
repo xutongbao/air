@@ -254,7 +254,6 @@ export default function useTreeLightList({ dataSource }) {
     const treeDataSourceCopy = deepClone(treeDataSource)
     find(treeDataSourceCopy)
 
-    console.log('l', leafNodeArr)
     leafNodeArr.forEach((item) => {
       for (let i = item.rolIndex + 1; i < processEndNode.rolIndex - 1; i++) {
         endNodeLines.push({
@@ -335,8 +334,6 @@ export default function useTreeLightList({ dataSource }) {
       treeDataSource: treeDataResult,
       processEndNode,
     })
-    console.log(processEndNode)
-    console.log('e', endNodeLines)
   }
 
   //切换真正用于渲染的treeData

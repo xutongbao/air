@@ -5,11 +5,18 @@ import { deepClone } from '../../../utils/tools'
 import TreeLine from './TreeLine'
 import useTreeLightList from './useTreeLightList'
 let timer
+let historyPosition = {}
 export default function useTreeLight(props) {
   const { dataSource, isToCenter, onAddChild, onDelete, onEdit } = props
   const [scaleValue, setScaleValue] = useState(1)
+  const [isDrag, setIsDrag] = useState(false)
+  const [domHistoryPositon, setDomHistoryPositon] = useState({
+    clientX: 0,
+    clientY: 0,
+  })
   //添加position和lines
-  const { treeData, treeBoundary, processEndNode, endNodeLines } = useTreeLightList({ dataSource })
+  const { treeData, treeBoundary, processEndNode, endNodeLines } =
+    useTreeLightList({ dataSource })
 
   //查找行列值和position值一致的元素
   const findTreeNode = ({ treeData, position }) => {
@@ -67,7 +74,9 @@ export default function useTreeLight(props) {
       treeData,
       position: { rolIndex, colIndex },
     })
-    const endNodeLine = endNodeLines.find(item => item.rolIndex === rolIndex && item.colIndex === colIndex)
+    const endNodeLine = endNodeLines.find(
+      (item) => item.rolIndex === rolIndex && item.colIndex === colIndex
+    )
     return (
       <>
         {treeNode && (
@@ -79,11 +88,13 @@ export default function useTreeLight(props) {
             onAddChild={onAddChild}
             onDelete={onDelete}
             onEdit={onEdit}
-          >
-          </TreeCard>
+          ></TreeCard>
         )}
         {lineType && <TreeLine lineType={lineType}></TreeLine>}
-        {processEndNode.rolIndex === rolIndex && processEndNode.colIndex === colIndex && <div className="m-tree-end-node">流程结束</div>}
+        {processEndNode.rolIndex === rolIndex &&
+          processEndNode.colIndex === colIndex && (
+            <div className="m-tree-end-node">流程结束</div>
+          )}
         {endNodeLine && <TreeLine lineType={endNodeLine.lineType}></TreeLine>}
       </>
     )
@@ -110,6 +121,42 @@ export default function useTreeLight(props) {
     }, 200)
   }
 
+  //鼠标按下
+  const handleMouseDown = (e) => {
+    console.log('down', e.clientX, e.clientY, e)
+    historyPosition = {
+      clientX: e.clientX,
+      clientY: e.clientY,
+    }
+    setIsDrag(true)
+  }
+
+  //鼠标抬起
+  const handleMouseUp = (e) => {
+    console.log('up', e.clientX, e.clientY, e)
+    setIsDrag(false)
+  }
+
+  //拖拽
+  const handleMouseMove = (e) => {
+    if (e.buttons === 1) {
+      console.log('move', e.clientX, e.clientY, e)
+      setIsDrag(true)
+      setDomHistoryPositon({
+        clientX:
+          domHistoryPositon.clientX + (e.clientX - historyPosition.clientX),
+        clientY:
+          domHistoryPositon.clientY + (e.clientY - historyPosition.clientY),
+      })
+      historyPosition = {
+        clientX: e.clientX,
+        clientY: e.clientY,
+      }
+    } else {
+      setIsDrag(false)
+    }
+  }
+
   useEffect(() => {
     if (isToCenter) {
       handleResetTreeToCenter()
@@ -119,6 +166,7 @@ export default function useTreeLight(props) {
 
   //渲染dom
   const renderDom = () => {
+    console.log('dom')
     const dataArr = []
     const { rolIndexEnd = 10, colIndexEnd = 10 } = treeBoundary
     const rolCount = rolIndexEnd + 6 < 10 ? 10 : rolIndexEnd + 6
@@ -137,23 +185,34 @@ export default function useTreeLight(props) {
     const isDev = localStorage.getItem('isDev') === 'true' ? true : false
     return (
       <div className="m-tree-wrap">
-        <div
-          className="m-tree-inner"
-          style={{ transform: `scale(${scaleValue})` }}
-        >
-          {dataArr.map((colList, rolIndex) => (
-            <div className="m-tree-row" key={rolIndex}>
-              {colList.map((item, colIndex) => (
-                <div
-                  key={`${rolIndex}-${colIndex}`}
-                  className={`m-tree-col ${isDev ? 'active' : ''}`}
-                >
-                  {renderTreeCol({ rolIndex, colIndex })}
-                </div>
-              ))}
-            </div>
-          ))}
+        <div className="m-tree-container" onMouseDown={handleMouseDown}>
+          <div
+            className="m-tree-inner"
+            style={{
+              transform: `scale(${scaleValue})`,
+              left: domHistoryPositon.clientX + 'px',
+              top: domHistoryPositon.clientY + 'px',
+            }}
+          >
+            {dataArr.map((colList, rolIndex) => (
+              <div className="m-tree-row" key={rolIndex}>
+                {colList.map((item, colIndex) => (
+                  <div
+                    key={`${rolIndex}-${colIndex}`}
+                    className={`m-tree-col ${isDev ? 'active' : ''}`}
+                  >
+                    {renderTreeCol({ rolIndex, colIndex })}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
+        <div
+          className={`m-drag-level ${isDrag ? 'active' : ''}`}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+        ></div>
       </div>
     )
   }
