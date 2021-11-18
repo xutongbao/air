@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react'
 import TreeCard from './TreeCard'
 import { deepClone } from '../../../utils/tools'
-// import { treeData1, treeData2, treeData3, treeData4 } from './data'
 import TreeLine from './TreeLine'
 import useTreeLightList from './useTreeLightList'
 let timer
