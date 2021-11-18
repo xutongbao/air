@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import TreeCard from './TreeCard'
 import { deepClone } from '../../../utils/tools'
 // import { treeData1, treeData2, treeData3, treeData4 } from './data'
@@ -157,16 +157,8 @@ export default function useTreeLight(props) {
     }
   }
 
-  useEffect(() => {
-    if (isToCenter) {
-      handleResetTreeToCenter()
-    }
-    // eslint-disable-next-line
-  }, [isToCenter])
-
-  //渲染dom
-  const renderDom = () => {
-    console.log('dom')
+  const renderTree = useMemo(() => {
+    console.log('tree')
     const dataArr = []
     const { rolIndexEnd = 10, colIndexEnd = 10 } = treeBoundary
     const rolCount = rolIndexEnd + 6 < 10 ? 10 : rolIndexEnd + 6
@@ -184,6 +176,27 @@ export default function useTreeLight(props) {
     }
     const isDev = localStorage.getItem('isDev') === 'true' ? true : false
     return (
+      <>
+        {dataArr.map((colList, rolIndex) => (
+          <div className="m-tree-row" key={rolIndex}>
+            {colList.map((item, colIndex) => (
+              <div
+                key={`${rolIndex}-${colIndex}`}
+                className={`m-tree-col ${isDev ? 'active' : ''}`}
+              >
+                {renderTreeCol({ rolIndex, colIndex })}
+              </div>
+            ))}
+          </div>
+        ))}
+      </>
+    )
+    // eslint-disable-next-line
+  }, [dataSource])
+
+  //渲染dom
+  const renderDom = () => {
+    return (
       <div className="m-tree-wrap">
         <div className="m-tree-container" onMouseDown={handleMouseDown}>
           <div
@@ -194,18 +207,7 @@ export default function useTreeLight(props) {
               top: domHistoryPositon.clientY + 'px',
             }}
           >
-            {dataArr.map((colList, rolIndex) => (
-              <div className="m-tree-row" key={rolIndex}>
-                {colList.map((item, colIndex) => (
-                  <div
-                    key={`${rolIndex}-${colIndex}`}
-                    className={`m-tree-col ${isDev ? 'active' : ''}`}
-                  >
-                    {renderTreeCol({ rolIndex, colIndex })}
-                  </div>
-                ))}
-              </div>
-            ))}
+            {renderTree}
           </div>
         </div>
         <div
@@ -216,6 +218,13 @@ export default function useTreeLight(props) {
       </div>
     )
   }
+
+  useEffect(() => {
+    if (isToCenter) {
+      handleResetTreeToCenter()
+    }
+    // eslint-disable-next-line
+  }, [isToCenter])
 
   return {
     getTreeDom: renderDom,

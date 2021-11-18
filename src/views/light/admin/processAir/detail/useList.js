@@ -33,6 +33,7 @@ export default function useList(props) {
     addInitValues = {
       // 分类名称
       name: '测试',
+      nodeType: 0,
       content: '1',
       // color: 'orange',
       // 所属分类

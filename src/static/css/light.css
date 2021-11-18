@@ -132,8 +132,8 @@
 .m-tree-wrap.active{border: 1px solid #ddd;}
 .m-tree-container{position: relative; flex: 1;padding: 16px;background: white;overflow: auto;}
 .m-drag-level{position: absolute;top: 0;left: 0;right: 0;bottom: 0; pointer-events: none;}
-.m-drag-level.active{pointer-events: unset;}
-.m-tree-inner{white-space: nowrap;position: absolute;top: 0;left: 0;}
+.m-drag-level.active{pointer-events: unset;cursor: move;}
+.m-tree-inner{white-space: nowrap;position: absolute;top: 0;left: 0;user-select: none;}
 .m-tree-col{display: inline-block;position: relative;width: 240px;height: 120px;vertical-align: top;}
 .m-tree-col.active{border: 1px solid #ddd;}
 .m-tree-card{display: flex; height: 100%; flex-direction: column; border-radius: 4px;cursor: pointer;box-shadow: 0 1px 8px 0 #ddd;}

@@ -11,6 +11,9 @@ export default function TreeCard(props) {
     e.stopPropagation()
     props.onDelete(item)
   }
+  const handleMouseDown = (e) => {
+    e.stopPropagation()
+  }
 
   const getShortContent = () => {
     let shortContent
@@ -22,13 +25,12 @@ export default function TreeCard(props) {
     return shortContent
   }
 
-
-
   return (
     <div
       className={`m-tree-card ${color}`}
       onClick={() => props.onEdit(item)}
       id={`${item.belongCategory === '0' ? 'm-tree-root' : ''}`}
+      onMouseDown={handleMouseDown}
     >
       <div className={`m-tree-card-header ${color}`}>
         <div className="m-tree-card-header-title" title={title}>{title}</div>
