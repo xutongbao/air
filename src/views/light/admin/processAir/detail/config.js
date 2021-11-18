@@ -67,6 +67,27 @@ const getModalFields = ({ treeData, initValues }) => {
         <Input />
       </Form.Item>
       <Form.Item
+        name="nodeType"
+        label="节点类型"
+        rules={[
+          {
+            required: true,
+            message: '请选择节点类型！',
+          },
+        ]}
+      >
+        <Select
+          placeholder="请选择"
+          allowClear
+          getPopupContainer={() => document.getElementById('m-content-wrap')}
+        >
+          <Option value={0}>条件节点</Option>
+          <Option value={1}>执行节点</Option>
+          <Option value={2}>审批节点</Option>
+          <Option value={3}>抄送节点</Option>
+        </Select>
+      </Form.Item>
+      <Form.Item
         label="内容"
         name="content"
         rules={[
