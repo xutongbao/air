@@ -20,6 +20,7 @@ function Index(props) {
     myAuthObj,
     applicationTitle,
     isToCenter,
+    nodeType,
     handleSearch,
     handleDelete,
     handleAdd,
@@ -28,6 +29,7 @@ function Index(props) {
     setIsModalVisible,
     handleFinish,
     handleFinishFailed,
+    handleChangeNodeType,
   } = useList(props)
 
   const { getTreeDom, handleResetTreeToCenter, handleScale } = useTreeLightList({
@@ -62,7 +64,7 @@ function Index(props) {
           onFinishFailed={handleFinishFailed}
         >
           <div id="m-modal-form-info" className="m-modal-form-info">
-            {getModalFields({ treeData, initValues })}
+            {getModalFields({ treeData, initValues, nodeType, handleChangeNodeType })}
           </div>
           <Form.Item
             wrapperCol={{ offset: 4, span: 17 }}

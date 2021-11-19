@@ -51,7 +51,7 @@ const getColumns = (props) => {
 }
 
 //添加编辑查看对话框表单字段
-const getModalFields = ({ treeData, initValues }) => {
+const getModalFields = ({ treeData, initValues, nodeType, handleChangeNodeType }) => {
   return (
     <>
       <Form.Item
@@ -78,7 +78,7 @@ const getModalFields = ({ treeData, initValues }) => {
       >
         <Select
           placeholder="请选择"
-          allowClear
+          onChange={handleChangeNodeType}
           getPopupContainer={() => document.getElementById('m-content-wrap')}
         >
           <Option value={0}>条件节点</Option>
@@ -87,6 +87,11 @@ const getModalFields = ({ treeData, initValues }) => {
           <Option value={3}>抄送节点</Option>
         </Select>
       </Form.Item>
+      {
+        nodeType === 0 && (
+          <div>1</div>
+        )
+      }
       <Form.Item
         label="内容"
         name="content"

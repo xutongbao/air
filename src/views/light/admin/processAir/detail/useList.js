@@ -23,6 +23,7 @@ export default function useList(props) {
   //权限
   const [myAuthObj, setMyAuthObj] = useState({})
   const [isToCenter, setIsToCenter] = useState(false)
+  const [nodeType, setNodeType] = useState()
 
   //获取路由参数
   const routerSearchObj = getRouterSearchObj(props)
@@ -102,6 +103,7 @@ export default function useList(props) {
     setModalTitle('编辑条件分支')
     setIsModalVisible(true)
     getTreeData(record.id)
+    setNodeType(record.nodeType)
   }
 
   //添加或编辑
@@ -188,6 +190,11 @@ export default function useList(props) {
     setTreeData(treeData)
   }
 
+  //改变节点类型
+  const handleChangeNodeType = (value) => {
+    setNodeType(value)
+  }
+
   //挂载完
   useEffect(() => {
     handleSearch({ isToCenter: true })
@@ -217,6 +224,7 @@ export default function useList(props) {
     myAuthObj,
     applicationTitle,
     isToCenter,
+    nodeType,
     handleSearch,
     handleDelete,
     handleAdd,
@@ -226,5 +234,6 @@ export default function useList(props) {
     handleFinish,
     handleFinishFailed,
     handleStatus,
+    handleChangeNodeType,
   }
 }
