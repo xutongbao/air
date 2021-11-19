@@ -51,7 +51,12 @@ const getColumns = (props) => {
 }
 
 //添加编辑查看对话框表单字段
-const getModalFields = ({ treeData, initValues, nodeType, handleChangeNodeType }) => {
+const getModalFields = ({
+  treeData,
+  initValues,
+  nodeType,
+  handleChangeNodeType,
+}) => {
   return (
     <>
       <Form.Item
@@ -87,11 +92,14 @@ const getModalFields = ({ treeData, initValues, nodeType, handleChangeNodeType }
           <Option value={3}>抄送节点</Option>
         </Select>
       </Form.Item>
-      {
-        nodeType === 0 && (
-          <div>1</div>
-        )
-      }
+      {nodeType === 0 && (
+        <Form.Item
+          label="用户ID"
+          name="ids"
+        >
+          <Input />
+        </Form.Item>
+      )}
       <Form.Item
         label="内容"
         name="content"
